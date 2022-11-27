@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 {
     // Variables
     // --------------------
-    private Camera _playerCam;
+    [SerializeField] private Camera _playerCam;
     private CharacterController _charCon;
 
     public bool InControl = true;
@@ -47,7 +47,6 @@ public class PlayerController : MonoBehaviour
     // --------------------
     private void Awake()
     {
-        _playerCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         _charCon = GetComponent<CharacterController>();
     }
 

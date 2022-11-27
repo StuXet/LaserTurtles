@@ -15,9 +15,13 @@ public class CameraFollow : MonoBehaviour
 
     // Default Methods
     // --------------------
+    private void OnValidate()
+    {
+        _thisCamera = GetComponent<Camera>();
+    }
+
     private void Awake()
     {
-        _thisCamera = GetComponent<Camera>();    
     }
 
     void Update()
