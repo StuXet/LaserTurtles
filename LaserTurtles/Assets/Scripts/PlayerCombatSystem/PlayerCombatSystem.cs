@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class PlayerCombatSystem : MonoBehaviour
 {
-    GameObject sword;
-    [SerializeField] bool attacking = false;
-    float attackCooldown = 0;
+    [SerializeField] GameObject Sword;
+    public bool isAttacking = false;
+    public bool canAttack = true;
+    float attackCooldown = 1f;
     public float mouseHoldCounter;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -29,35 +25,45 @@ public class PlayerCombatSystem : MonoBehaviour
         {
             Attack();
         }
-        if (Input.GetKeyDown(KeyCode.Mouse0) && mouseHoldCounter >= .5f)
-        {
-            HeavyAttack();
-        }
-        else
-        {
-            attacking = false;
-        }
     }
     
     void Attack()
     {
-        if (!attacking)
+        if (canAttack)
         {
             Debug.Log("Attack");
-            attacking = true;
-            attackCooldown = 0.5f;
-            //sword.GetComponent<Collider>().enabled = true;
+            isAttacking = true;
+            canAttack = false;
+            Animator anim = Sword.GetComponent<Animator>();
+            anim.SetTrigger("Attack");
+            StartCoroutine(ResetAttackCooldown());
         }
     }
 
     void HeavyAttack()
     {
-        if (!attacking)
+        if (canAttack)
         {
             Debug.Log("Heavy Attack");
-            attacking = true;
-            attackCooldown = 0.5f;
+            isAttacking = true;
+            canAttack = false;
+            Animator anim = Sword.GetComponent<Animator>();
+            anim.SetTrigger("HeavyAttack");
+            StartCoroutine(ResetAttackCooldown());
         }
+    }
+
+    IEnumerator ResetAttackCooldown()
+    {
+        StartCoroutine(ResetAttackBool());
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
+    }
+
+    IEnumerator ResetAttackBool()
+    {
+        yield return new WaitForSeconds(1f);
+        isAttacking = false;
     }
 
     void MouseHoldCounter()
