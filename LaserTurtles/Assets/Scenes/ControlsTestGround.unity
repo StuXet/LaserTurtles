@@ -840,9 +840,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4800407385372773094, guid: a142b932503d1024ba9a73b15001633a,
         type: 3}
+      propertyPath: dashType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800407385372773094, guid: a142b932503d1024ba9a73b15001633a,
+        type: 3}
       propertyPath: _playerCam
       value: 
       objectReference: {fileID: 288588076}
+    - target: {fileID: 4800407385372773094, guid: a142b932503d1024ba9a73b15001633a,
+        type: 3}
+      propertyPath: dodgeSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800407385372773094, guid: a142b932503d1024ba9a73b15001633a,
+        type: 3}
+      propertyPath: dodgeLength
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800407385372773094, guid: a142b932503d1024ba9a73b15001633a,
+        type: 3}
+      propertyPath: dodgeCooldown
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5195345205009075710, guid: a142b932503d1024ba9a73b15001633a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a142b932503d1024ba9a73b15001633a, type: 3}
 --- !u!1001 &8250697210132700139
@@ -856,6 +881,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 8250697211932938706, guid: 4cd587ed70b22cb41ab277cdbfc7f51d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8250697211932938709, guid: 4cd587ed70b22cb41ab277cdbfc7f51d,
         type: 3}

@@ -1,5 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:LaserTurtles/Assets/Thirdparty/Ciathyza/Gridbox Prototype Materials/Demo/Prototype Materials Demo.unity.meta
 guid: 735c40e4d7967d7458e6a4db48651d2a
+========
+guid: 349f38d3606449708c7340d26740e1e2
+timeCreated: 1434495347
+licenseType: Store
+>>>>>>>> George:LaserTurtles/Assets/TextMesh Pro/Examples & Extras/Scenes/09 - Margin Tag Example.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

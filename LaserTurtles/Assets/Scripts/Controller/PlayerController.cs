@@ -14,6 +14,13 @@ public enum MovementType
     TowardsCursor
 }
 
+// Dodge Type Enum
+// --------------------
+public enum DodgeType
+{
+    ToMoveDirection,
+    TowardsCursor
+}
 
 public class PlayerController : MonoBehaviour
 {
@@ -31,6 +38,15 @@ public class PlayerController : MonoBehaviour
     //public bool WorldSpaceMove = true;
     private Vector3 _movementDir;
     private Vector3 _skewedMoveDir;
+
+    [Header("Dodge")]
+    public DodgeType dashType = DodgeType.ToMoveDirection;
+    [SerializeField] float dodgeCooldown = 0.7f;
+    private float _dodgeCooldownTimer;
+    private Vector3 _cachedSkewedDir;
+    [SerializeField] float dodgeLength = 1; 
+    [SerializeField] float dodgeSpeed = 10;
+    [HideInInspector] public bool isDodging;
 
     [Header("Gravity")]
     public LayerMask GroundMask;
@@ -56,6 +72,7 @@ public class PlayerController : MonoBehaviour
         {
             MovementManager();
         }
+        CanDodge();
         Gravity();
     }
 
@@ -122,6 +139,62 @@ public class PlayerController : MonoBehaviour
                 _skewedMoveDir = matrixRot.MultiplyPoint3x4(_movementDir).normalized;
                 _charCon.Move(_skewedMoveDir * Speed * Time.deltaTime);
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.W))
+        {
+            _cachedSkewedDir = _skewedMoveDir; //Gets a direction for the dodge when player stands still
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCoroutine(Dodge());
+        }
+    }
+
+    IEnumerator Dodge()
+    {
+        if (CanDodge())
+        {
+            float startTime = Time.time;
+            Vector3 dodgeDir;
+            if (dashType == DodgeType.ToMoveDirection) //Sets Dodge direction to movement direction
+            {
+                if (_cachedSkewedDir != Vector3.zero)
+                {
+                    dodgeDir = _cachedSkewedDir;
+                }
+                else
+                {
+                    dodgeDir = new Vector3(1,0,-1);//Direction of dodge when player haven't pressed any keys
+                }
+            }
+            else
+            {
+                dodgeDir = transform.forward;
+            }
+            while (Time.time < startTime + dodgeLength / 10) //Sets Dodge direction to look/cursor direction
+            {
+                _charCon.Move(dodgeDir * dodgeSpeed * Time.deltaTime);
+                isDodging = true;
+                yield return null;
+            }
+            isDodging = false;
+            _dodgeCooldownTimer = dodgeCooldown;
+        }
+    }
+
+    bool CanDodge()
+    {
+        if (_dodgeCooldownTimer <= 0)
+        {
+            _dodgeCooldownTimer = 0;
+            return true;
+        }
+        else
+        {
+            _dodgeCooldownTimer -= Time.deltaTime;
+            return false;
         }
     }
 
