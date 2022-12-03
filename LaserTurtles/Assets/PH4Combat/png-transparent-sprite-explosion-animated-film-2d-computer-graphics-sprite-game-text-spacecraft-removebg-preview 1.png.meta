@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:LaserTurtles/Assets/Models/Envirnoment/Decoration/CandyLevel/lambert2_Base_color.png.meta
+guid: 022d1efa7dd34924d9fffccd324cf7d6
+========
 guid: fc59c919c1704cd40aa60d31bc19cc8c
+>>>>>>>> main:LaserTurtles/Assets/PH4Combat/png-transparent-sprite-explosion-animated-film-2d-computer-graphics-sprite-game-text-spacecraft-removebg-preview 1.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -39,7 +43,7 @@ TextureImporter:
     wrapU: 0
     wrapV: 0
     wrapW: 0
-  nPOTScale: 0
+  nPOTScale: 1
   lightmap: 0
   compressionQuality: 50
   spriteMode: 0
@@ -51,7 +55,7 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 1
+  alphaIsTransparency: 0
   spriteTessellationDetail: -1
   textureType: 0
   textureShape: 1

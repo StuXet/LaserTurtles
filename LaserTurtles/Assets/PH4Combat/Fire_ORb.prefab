@@ -4827,9 +4827,10 @@ GameObject:
   - component: {fileID: 5514600947242165797}
   - component: {fileID: -4161408011109426827}
   - component: {fileID: -841467657136748065}
+  - component: {fileID: -6016230473043599787}
   m_Layer: 0
   m_Name: Fire_ORb
-  m_TagString: Untagged
+  m_TagString: Damager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9697,6 +9698,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HitParticle: {fileID: 4171024077177296981, guid: 94ff02466dfa308458a89577c3583b87,
     type: 3}
+--- !u!114 &-6016230473043599787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778532939917248221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 416fc2038a606d6449a7ea2db33a81d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _canAffect: 1
+  _damagerType: 0
+  _lightDamageAmount: 10
+  _heavyDamageAmount: 0
+  UsingHeavy: 0
+  CanDamage: 1
 --- !u!1 &1778532940123825965
 GameObject:
   m_ObjectHideFlags: 0

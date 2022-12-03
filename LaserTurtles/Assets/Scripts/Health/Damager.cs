@@ -24,17 +24,18 @@ public class Damager : MonoBehaviour
 {
     // Variables
     // --------------------
-    [SerializeField] private GameObject _usedBy;
     [SerializeField] private CanAffect _canAffect;
     [SerializeField] private DamagerType _damagerType;
-    [SerializeField] private int _damageAmount;
+    [SerializeField] private int _lightDamageAmount;
+    [SerializeField] private int _heavyDamageAmount;
+    public bool UsingHeavy = false;
+    public bool CanDamage = false;
 
 
     // Properties
     // --------------------
-    public GameObject UsedBy { get { return _usedBy; } }
     internal CanAffect CanAffect { get { return _canAffect; } }
     internal DamagerType DamagerType { get { return _damagerType; } }
-    public int DamageAmount { get { return _damageAmount; } }
-
+    public int LightDamageAmount { get { return _lightDamageAmount; } }
+    public int HeavyDamageAmount { get { return _heavyDamageAmount; } }
 }
