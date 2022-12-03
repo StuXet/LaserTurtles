@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:LaserTurtles/Assets/Models/Envirnoment/Decoration.meta
 guid: 4269d237ac37eaf40a1b59fdbcd977b0
+========
+guid: 202499fe79f4a474381cb46ee9369a03
+>>>>>>>> main:LaserTurtles/Assets/Models/Envirnoment/Decoration/CandyLevel.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
