@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PlayerCombatSystem : MonoBehaviour
 {
-    [SerializeField] GameObject Sword;
+    [SerializeField] GameObject sword;
+    [SerializeField] GameObject fireBall;
+    [SerializeField] Transform shootingPoint;
     public bool isAttacking = false;
-    public bool canAttack = true;
     float attackCooldown = 1f;
     public float mouseHoldCounter;
     
@@ -21,20 +22,30 @@ public class PlayerCombatSystem : MonoBehaviour
 
     void InputHandler()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyUp(KeyCode.Mouse0))
         {
-            Attack();
+            if (mouseHoldCounter < 0.5f)
+            {
+                Attack();
+            }
+            else
+            {
+                HeavyAttack();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            Shooting();
         }
     }
     
     void Attack()
     {
-        if (canAttack)
+        if (!isAttacking)
         {
             Debug.Log("Attack");
             isAttacking = true;
-            canAttack = false;
-            Animator anim = Sword.GetComponent<Animator>();
+            Animator anim = sword.GetComponent<Animator>();
             anim.SetTrigger("Attack");
             StartCoroutine(ResetAttackCooldown());
         }
@@ -42,29 +53,27 @@ public class PlayerCombatSystem : MonoBehaviour
 
     void HeavyAttack()
     {
-        if (canAttack)
+        if (!isAttacking)
         {
             Debug.Log("Heavy Attack");
             isAttacking = true;
-            canAttack = false;
-            Animator anim = Sword.GetComponent<Animator>();
+            Animator anim = sword.GetComponent<Animator>();
             anim.SetTrigger("HeavyAttack");
             StartCoroutine(ResetAttackCooldown());
         }
     }
 
-    IEnumerator ResetAttackCooldown()
+    void Shooting()
     {
-        StartCoroutine(ResetAttackBool());
-        yield return new WaitForSeconds(attackCooldown);
-        canAttack = true;
+        Instantiate(fireBall, shootingPoint.position, shootingPoint.rotation);
     }
 
-    IEnumerator ResetAttackBool()
+    IEnumerator ResetAttackCooldown()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(attackCooldown);
         isAttacking = false;
     }
+    
 
     void MouseHoldCounter()
     {
