@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:LaserTurtles/Assets/Scenes/CandyLevel.meta
 guid: 9b55fd9e591c81e47af0165476ba8e5d
+========
+guid: 5394c9b6dfd29024c926bdb800e2d4eb
+>>>>>>>> George:LaserTurtles/Assets/Models/Maps/CandyLevel.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:LaserTurtles/Assets/Scripts/Controller/PlayerController.cs.meta
 guid: 2d9d3c036394f2f4db538ce207f3fc97
+========
+guid: c981977dddf4822478dd091a0998f9c3
+>>>>>>>> main:LaserTurtles/Assets/Scripts/Controller/HPSystem.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

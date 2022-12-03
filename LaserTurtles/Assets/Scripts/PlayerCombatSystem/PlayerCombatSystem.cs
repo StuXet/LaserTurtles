@@ -8,15 +8,18 @@ public class PlayerCombatSystem : MonoBehaviour
     [SerializeField] GameObject fireBall;
     [SerializeField] Transform shootingPoint;
     public bool isAttacking = false;
-    float attackCooldown = 1f;
-    public float mouseHoldCounter;
-    
-    
+    [SerializeField] private float _attackCooldown = 1f;
+    [SerializeField] private float _damageLength = 0.1f;
+    private float _timer;
+    private float mouseHoldCounter;
+
+
     // Update is called once per frame
     void Update()
     {
         MouseHoldCounter();
         InputHandler();
+        AttackTimer();
     }
 
 
@@ -39,7 +42,7 @@ public class PlayerCombatSystem : MonoBehaviour
             Shooting();
         }
     }
-    
+
     void Attack()
     {
         if (!isAttacking)
@@ -48,7 +51,7 @@ public class PlayerCombatSystem : MonoBehaviour
             isAttacking = true;
             Animator anim = sword.GetComponent<Animator>();
             anim.SetTrigger("Attack");
-            StartCoroutine(ResetAttackCooldown());
+            //StartCoroutine(ResetAttackCooldown());
         }
     }
 
@@ -58,9 +61,10 @@ public class PlayerCombatSystem : MonoBehaviour
         {
             Debug.Log("Heavy Attack");
             isAttacking = true;
+            sword.GetComponent<Damager>().UsingHeavy = true;
             Animator anim = sword.GetComponent<Animator>();
             anim.SetTrigger("HeavyAttack");
-            StartCoroutine(ResetAttackCooldown());
+            //StartCoroutine(ResetAttackCooldown());
         }
     }
 
@@ -69,12 +73,37 @@ public class PlayerCombatSystem : MonoBehaviour
         Instantiate(fireBall, shootingPoint.position, shootingPoint.rotation);
     }
 
-    IEnumerator ResetAttackCooldown()
+    //IEnumerator ResetAttackCooldown()
+    //{
+    //    yield return new WaitForSeconds(_attackCooldown);
+    //    isAttacking = false;
+    //}
+
+    private void AttackTimer()
     {
-        yield return new WaitForSeconds(attackCooldown);
-        isAttacking = false;
+        if (isAttacking)
+        {
+            if (_timer >= _attackCooldown)
+            {
+                isAttacking = false;
+            }
+            else if (_timer <= _damageLength)
+            {
+                sword.GetComponent<Damager>().CanDamage = true;
+            }
+            else if (_timer >= _damageLength)
+            {
+                sword.GetComponent<Damager>().CanDamage = false;
+            }
+
+            _timer += Time.deltaTime;
+        }
+        else
+        {
+            _timer = 0;
+        }
     }
-    
+
 
     void MouseHoldCounter()
     {

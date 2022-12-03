@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float dodgeCooldown = 0.7f;
     private float _dodgeCooldownTimer;
     private Vector3 _cachedSkewedDir;
-    [SerializeField] float dodgeLength = 1; 
+    [SerializeField] float dodgeDuration = 1; 
     [SerializeField] float dodgeSpeed = 10;
     [HideInInspector] public bool isDodging;
 
@@ -173,7 +173,7 @@ public class PlayerController : MonoBehaviour
             {
                 dodgeDir = transform.forward;
             }
-            while (Time.time < startTime + dodgeLength / 10) //Sets Dodge direction to look/cursor direction
+            while (Time.time < startTime + dodgeDuration / 10) //Sets Dodge direction to look/cursor direction
             {
                 _charCon.Move(dodgeDir * dodgeSpeed * Time.deltaTime);
                 isDodging = true;
