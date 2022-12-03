@@ -24,7 +24,7 @@ public class PlayerCombatSystem : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
-            if (mouseHoldCounter < 0.5f)
+            if (mouseHoldCounter < 0.6f)
             {
                 Attack();
             }
@@ -32,6 +32,7 @@ public class PlayerCombatSystem : MonoBehaviour
             {
                 HeavyAttack();
             }
+            mouseHoldCounter = 0;
         }
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
@@ -80,10 +81,6 @@ public class PlayerCombatSystem : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             mouseHoldCounter += Time.deltaTime;
-        }
-        else
-        {
-            mouseHoldCounter = 0;
         }
     }
 }
