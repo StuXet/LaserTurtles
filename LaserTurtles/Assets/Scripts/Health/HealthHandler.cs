@@ -6,6 +6,7 @@ public class HealthHandler : MonoBehaviour
 {
     private HealthSystem _healthSystem;
 
+    [SerializeField] private GameObject _mainObj;
     [SerializeField] private HealthBar _healthBar;
     [SerializeField] private int _maxHP;
     [SerializeField] private int _currentHP;
@@ -13,7 +14,7 @@ public class HealthHandler : MonoBehaviour
 
     private void Awake()
     {
-        _healthSystem = new HealthSystem(_maxHP);
+        _healthSystem = new HealthSystem(_maxHP, _mainObj);
         if (_healthBar != null) _healthBar.Setup(_healthSystem);
     }
 
