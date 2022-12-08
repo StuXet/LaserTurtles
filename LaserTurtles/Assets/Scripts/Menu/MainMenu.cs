@@ -6,28 +6,59 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    void NewGame()
+    public string gameScene = "SampleScene";
+
+    public GameObject mainMenuPanel;
+    public GameObject settingsPanel;
+    public GameObject creditsPanel;
+
+    private void Update()
     {
-        SceneManager.LoadScene("Game");
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (creditsPanel.activeSelf || settingsPanel.activeSelf)
+            {
+                creditsPanel.SetActive(false);
+                settingsPanel.SetActive(false);
+
+                mainMenuPanel.SetActive(true);
+            }
+        }
     }
 
-    void Continue()
+    public void NewGame()
     {
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene(gameScene);
+    }
+    
+    public void Continue()
+    {
+        SceneManager.LoadScene(gameScene);
     }
 
-    void Settings()
+    public void Settings()
     {
-        Debug.Log("Settings");
+        mainMenuPanel.SetActive(false);
+        settingsPanel.SetActive(true);
     }
 
-    void Credits()
+    public void Credits()
     {
-        Debug.Log("Credits");
+        mainMenuPanel.SetActive(false);
+        creditsPanel.SetActive(true);
     }
 
-    void Quit()
+    public void ClosePanel()
+    {
+        creditsPanel.SetActive(false);
+        settingsPanel.SetActive(false);
+
+        mainMenuPanel.SetActive(true);
+    }
+
+    public void Quit()
     {
         Application.Quit();
+        Debug.Log("Quit");
     }
 }
