@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Dodge")]
     public DodgeType dashType = DodgeType.ToMoveDirection;
+    [SerializeField] GameObject _dodgeEffect;
     [SerializeField] float dodgeCooldown = 0.7f;
     private float _dodgeCooldownTimer;
     private Vector3 _cachedSkewedDir;
@@ -149,6 +150,19 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             StartCoroutine(Dodge());
+        }
+        DodgeEffect();
+    }
+
+    private void DodgeEffect()
+    {
+        if (isDodging)
+        {
+            _dodgeEffect.SetActive(true);
+        }
+        else
+        {
+            _dodgeEffect.SetActive(false);
         }
     }
 

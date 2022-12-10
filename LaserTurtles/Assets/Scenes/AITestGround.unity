@@ -466,10 +466,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canAffect: 2
   _damagerType: 0
-  _lightDamageAmount: 0
+  _lightDamageAmount: 5
   _heavyDamageAmount: 0
   UsingHeavy: 0
-  CanDamage: 0
+  CanDamage: 1
 --- !u!65 &281673974
 BoxCollider:
   m_ObjectHideFlags: 0
