@@ -1,12 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthHandler : MonoBehaviour
 {
+    public event EventHandler OnDeathOccured;
+
     private HealthSystem _healthSystem;
 
-    [SerializeField] private GameObject _mainObj;
     [SerializeField] private HealthBar _healthBar;
     [SerializeField] private int _maxHP;
     [SerializeField] private int _currentHP;
@@ -14,8 +16,14 @@ public class HealthHandler : MonoBehaviour
 
     private void Awake()
     {
-        _healthSystem = new HealthSystem(_maxHP, _mainObj);
+        _healthSystem = new HealthSystem(_maxHP);
         if (_healthBar != null) _healthBar.Setup(_healthSystem);
+        _healthSystem.OnDeath += _healthSystem_OnDeath;
+    }
+
+    private void _healthSystem_OnDeath(object sender, System.EventArgs e)
+    {
+        if (OnDeathOccured != null) OnDeathOccured(this, EventArgs.Empty);
     }
 
     // Update is called once per frame

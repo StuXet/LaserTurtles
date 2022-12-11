@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using static UnityEngine.GraphicsBuffer;
+using UnityEngine.SceneManagement;
 
 
 // Movement Type Enum
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
     // Variables
     // --------------------
     [SerializeField] private Camera _playerCam;
+    private HealthHandler _healthHandlerRef;
     private CharacterController _charCon;
 
     public bool InControl = true;
@@ -45,7 +47,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float dodgeCooldown = 0.7f;
     private float _dodgeCooldownTimer;
     private Vector3 _cachedSkewedDir;
-    [SerializeField] float dodgeDuration = 1; 
+    [SerializeField] float dodgeDuration = 1;
     [SerializeField] float dodgeSpeed = 10;
     [HideInInspector] public bool isDodging;
 
@@ -65,6 +67,8 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _charCon = GetComponent<CharacterController>();
+        _healthHandlerRef = GetComponent<HealthHandler>();
+        _healthHandlerRef.OnDeathOccured += _healthHandlerRef_OnDeathOccured;
     }
 
     private void Update()
@@ -180,7 +184,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    dodgeDir = new Vector3(1,0,-1);//Direction of dodge when player haven't pressed any keys
+                    dodgeDir = new Vector3(1, 0, -1);//Direction of dodge when player haven't pressed any keys
                 }
             }
             else
@@ -212,7 +216,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
     private void Gravity()
     {
         _isGrounded = Physics.CheckSphere(GroundCheck.position, GroundDistance, GroundMask);
@@ -230,6 +233,19 @@ public class PlayerController : MonoBehaviour
             _charCon.Move(_velocity * Time.deltaTime);
         }
     }
+
+
+    private void _healthHandlerRef_OnDeathOccured(object sender, System.EventArgs e)
+    {
+        PlayerDeath();
+    }
+
+    private void PlayerDeath()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+
     private void OnDrawGizmosSelected()
     {
         Color transparentGreen = new Color(0.0f, 1.0f, 0.0f, 0.35f);

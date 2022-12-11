@@ -32,6 +32,7 @@ public class EnemyAI : MonoBehaviour
     {
         Agent = GetComponent<NavMeshAgent>();
         Player = GameObject.FindGameObjectWithTag("Player").transform;
+        _healthHandlerRef.OnDeathOccured += _healthHandlerRef_OnDeathOccured;
     }
 
     private void Update()
@@ -190,6 +191,15 @@ public class EnemyAI : MonoBehaviour
 
     }
 
+    private void _healthHandlerRef_OnDeathOccured(object sender, System.EventArgs e)
+    {
+        EnemyDeath();
+    }
+
+    public virtual void EnemyDeath()
+    {
+        Destroy(gameObject);
+    }
 
     private void OnDrawGizmosSelected()
     {
