@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.AI;
 using UnityEngine;
 
 public class HealthHandler : MonoBehaviour
@@ -12,6 +13,12 @@ public class HealthHandler : MonoBehaviour
     [SerializeField] private HealthBar _healthBar;
     [SerializeField] private int _maxHP;
     [SerializeField] private int _currentHP;
+    [Header("Knockback")]
+    [SerializeField] bool knockbackable = true;
+    [SerializeField] float strength;
+    [SerializeField] float height;
+    [SerializeField] float heavyAttackMultiplier = 2;
+    [SerializeField] float stunTime = 2;
 
 
     private void Awake()
@@ -30,6 +37,11 @@ public class HealthHandler : MonoBehaviour
     void Update()
     {
         _currentHP = _healthSystem.CurrentHealth;
+    }
+
+    private void FixedUpdate()
+    {
+        //ResetKnockback();
     }
 
     public void ToggleHealthBar(bool state)
@@ -52,10 +64,12 @@ public class HealthHandler : MonoBehaviour
                 {
                     if (!tempDamager.UsingHeavy)
                     {
+                        Knockback(damagerObj, strength, height, stunTime);
                         _healthSystem.Damage(tempDamager.LightDamageAmount);
                     }
                     else
                     {
+                        Knockback(damagerObj, strength * heavyAttackMultiplier, height, stunTime * heavyAttackMultiplier);
                         _healthSystem.Damage(tempDamager.HeavyDamageAmount);
                         tempDamager.UsingHeavy = false;
                     }
@@ -82,6 +96,60 @@ public class HealthHandler : MonoBehaviour
         if (other.CompareTag("Damager"))
         {
             TakeDamage(other.gameObject);
+        }
+    }
+
+    //KnockBack
+    private void Knockback(GameObject damager, float strength, float height, float stunTime)
+    {
+        //Adds a rigidbody to the object if it does'nt have one
+        Rigidbody rb = GetComponent<Rigidbody>();
+        EnemyAI eAI = GetComponent<EnemyAI>();
+        NavMeshAgent navAgent = GetComponent<NavMeshAgent>();
+        if (!rb)
+        {
+            gameObject.AddComponent<Rigidbody>();
+            rb = GetComponent<Rigidbody>();
+        }
+
+        if (eAI)
+        {
+            eAI.enabled = false;
+        }
+
+        if (navAgent)
+        {
+            navAgent.enabled = false;
+        }
+
+        rb.isKinematic = false;
+        rb.detectCollisions = true;
+        rb.freezeRotation = true;
+        
+        Vector3 knockBackDir = gameObject.transform.position - damager.transform.position;
+
+        knockBackDir.y = height;
+
+        rb.AddForce(knockBackDir * strength, ForceMode.Impulse);
+        StartCoroutine(ResetKnockback(stunTime));
+    }
+
+    //Resets enemy AI and rigidbody to their origianl state if rigidbody's velocity reaches zero
+    private IEnumerator ResetKnockback(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+        NavMeshAgent navAgent = GetComponent<NavMeshAgent>();
+        EnemyAI eAI = gameObject.GetComponent<EnemyAI>();
+        if (rb && eAI && navAgent)
+        {
+            if (!rb.isKinematic && rb.detectCollisions && !eAI.enabled && rb.velocity == Vector3.zero)
+            {
+                rb.isKinematic = true;
+
+                eAI.enabled = true;
+                navAgent.enabled = true;
+            }
         }
     }
 }
