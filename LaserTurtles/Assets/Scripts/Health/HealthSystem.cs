@@ -3,19 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthSystem : MonoBehaviour
+public class HealthSystem
 {
     public event EventHandler OnHealthChanged;
-    [SerializeField] private GameObject _mainObj;
+    public event EventHandler OnDeath;
+
     private int _maxHealth;
     private int _currentHealth;
     public int CurrentHealth { get { return _currentHealth; } }
 
-    public HealthSystem(int maxHealth, GameObject mainObj)
+    public HealthSystem(int maxHealth)
     {
         _maxHealth = maxHealth;
         _currentHealth = _maxHealth;
-        _mainObj = mainObj;
     }
 
     public float GetHealthPercent()
@@ -29,7 +29,7 @@ public class HealthSystem : MonoBehaviour
         if (_currentHealth <= 0)
         {
             _currentHealth = 0;
-            Death();
+            if (OnDeath != null) OnDeath(this, EventArgs.Empty);
         }
         if (OnHealthChanged != null) OnHealthChanged(this, EventArgs.Empty);
     }
@@ -48,10 +48,5 @@ public class HealthSystem : MonoBehaviour
     {
         _currentHealth = _maxHealth;
         if (OnHealthChanged != null) OnHealthChanged(this, EventArgs.Empty);
-    }
-
-    virtual public void Death()
-    {
-        Destroy(_mainObj);
     }
 }
