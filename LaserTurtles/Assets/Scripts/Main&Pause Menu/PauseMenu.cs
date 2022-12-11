@@ -12,7 +12,13 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (pauseMenu.activeSelf)
+            if (settingsMenu.activeSelf)
+            {
+                // Close the settings menu and show the pause menu
+                settingsMenu.SetActive(false);
+                pauseMenu.SetActive(true);
+            }
+            else if (pauseMenu.activeSelf)
             {
                 ResumeGame();
             }
