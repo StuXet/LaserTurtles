@@ -23,6 +23,11 @@ public class HealthHandler : MonoBehaviour
         _currentHP = _healthSystem.CurrentHealth;
     }
 
+    public void IncreaseMaxHP(int addHealth)
+    {
+        _maxHP += addHealth;
+    }
+
     public void ToggleHealthBar(bool state)
     {
         if (_healthBar != null) _healthBar.gameObject.SetActive(state);
