@@ -15,10 +15,8 @@ public class HealthHandler : MonoBehaviour
     [SerializeField] private int _currentHP;
     [Header("Knockback")]
     [SerializeField] bool knockbackable = true;
-    [SerializeField] float strength;
-    [SerializeField] float height;
+    [SerializeField] float kbMass;
     [SerializeField] float heavyAttackMultiplier = 2;
-    [SerializeField] float stunTime = 2;
 
 
     private void Awake()
@@ -64,12 +62,18 @@ public class HealthHandler : MonoBehaviour
                 {
                     if (!tempDamager.UsingHeavy)
                     {
-                        Knockback(damagerObj, strength, height, stunTime);
+                        if (knockbackable)
+                        {
+                            Knockback(tempDamager, false);
+                        }
                         _healthSystem.Damage(tempDamager.LightDamageAmount);
                     }
                     else
                     {
-                        Knockback(damagerObj, strength * heavyAttackMultiplier, height, stunTime * heavyAttackMultiplier);
+                        if (knockbackable)
+                        {
+                            Knockback(tempDamager, true);
+                        }
                         _healthSystem.Damage(tempDamager.HeavyDamageAmount);
                         tempDamager.UsingHeavy = false;
                     }
@@ -100,7 +104,7 @@ public class HealthHandler : MonoBehaviour
     }
 
     //KnockBack
-    private void Knockback(GameObject damager, float strength, float height, float stunTime)
+    private void Knockback(Damager damager, bool isHeavy)
     {
         //Adds a rigidbody to the object if it does'nt have one
         Rigidbody rb = GetComponent<Rigidbody>();
@@ -125,13 +129,14 @@ public class HealthHandler : MonoBehaviour
         rb.isKinematic = false;
         rb.detectCollisions = true;
         rb.freezeRotation = true;
+        //rb.mass = kbMass;
         
-        Vector3 knockBackDir = gameObject.transform.position - damager.transform.position;
-
-        knockBackDir.y = height;
-
-        rb.AddForce(knockBackDir * strength, ForceMode.Impulse);
-        StartCoroutine(ResetKnockback(stunTime));
+        Vector3 knockBackDir = damager.KnockbackPower * (gameObject.transform.position - damager.transform.root.position).normalized;
+        //knockBackDir *= strength;
+        knockBackDir.y = damager.KnockbackHeight;
+         
+        rb.AddForce(knockBackDir, ForceMode.VelocityChange);
+        StartCoroutine(ResetKnockback(damager.KnockbackStunTime));
     }
 
     //Resets enemy AI and rigidbody to their origianl state if rigidbody's velocity reaches zero
