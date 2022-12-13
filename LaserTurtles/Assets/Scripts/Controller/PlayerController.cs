@@ -81,6 +81,10 @@ public class PlayerController : MonoBehaviour
         Gravity();
     }
 
+    public void IncreaseMaxSpeed(float speedIncrease)
+    {
+        Speed += speedIncrease;
+    }
 
     // Created Methods
     // --------------------
