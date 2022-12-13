@@ -217,6 +217,7 @@ GameObject:
   - component: {fileID: 139676829}
   - component: {fileID: 139676828}
   - component: {fileID: 139676827}
+  - component: {fileID: 139676831}
   m_Layer: 0
   m_Name: SpeedAdder
   m_TagString: Untagged
@@ -232,7 +233,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 139676826}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -302,6 +303,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &139676831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139676826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1a4ad8157960f4cac79c4d3b7ac32c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedToAdd: 50
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
