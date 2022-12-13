@@ -16,7 +16,6 @@ public class HealthHandler : MonoBehaviour
     [Header("Knockback")]
     [SerializeField] bool knockbackable = true;
     [SerializeField] float kbMass;
-    [SerializeField] float heavyAttackMultiplier = 2;
 
 
     private void Awake()
@@ -134,8 +133,15 @@ public class HealthHandler : MonoBehaviour
         Vector3 knockBackDir = damager.KnockbackPower * (gameObject.transform.position - damager.transform.root.position).normalized;
         //knockBackDir *= strength;
         knockBackDir.y = damager.KnockbackHeight;
-         
-        rb.AddForce(knockBackDir, ForceMode.VelocityChange);
+        if (isHeavy)
+        {
+            rb.AddForce(knockBackDir * damager.KnockbackHeavyMultiplier, ForceMode.VelocityChange);
+        }
+        else
+        {
+            rb.AddForce(knockBackDir, ForceMode.VelocityChange);
+
+        }
         StartCoroutine(ResetKnockback(damager.KnockbackStunTime));
     }
 
