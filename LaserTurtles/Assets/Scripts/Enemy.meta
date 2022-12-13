@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:LaserTurtles/Assets/Scripts/Enemy.meta
 guid: 28109fee2735afc4793cc201900ed5d8
+========
+guid: 00da33180e72bae499f710bbfa0c7780
+>>>>>>>> George:LaserTurtles/Assets/Scenes/SampleScene.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
