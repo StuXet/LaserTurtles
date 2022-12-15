@@ -390,6 +390,11 @@ MonoBehaviour:
   _heavyDamageAmount: 0
   UsingHeavy: 0
   CanDamage: 1
+  _knockbackPower: 2
+  _knockbackHeight: 1
+  _knockbackHeavyMultiplier: 2
+  _knockbackStunTime: 2
+  _canKnockback: 1
 --- !u!65 &281673974
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -875,6 +880,7 @@ GameObject:
   - component: {fileID: 1052967470}
   - component: {fileID: 1052967472}
   - component: {fileID: 1052967471}
+  - component: {fileID: 1052967473}
   m_Layer: 7
   m_Name: GroundIcon
   m_TagString: Untagged
@@ -917,7 +923,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3914397e3b9c74949ae14d7f40ab9628, type: 2}
+  - {fileID: 2100000, guid: 3f0300cd575dd9a4caf7707435e93ba7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -947,6 +953,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1052967469}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &1052967473
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052967469}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1085680827
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1019,6 +1038,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cameras
       objectReference: {fileID: 0}
+    - target: {fileID: 7314486929818332710, guid: e5b4271f7efcabd429e44df2baf7fa39,
+        type: 3}
+      propertyPath: m_player
+      value: 
+      objectReference: {fileID: 1734929750}
+    - target: {fileID: 7314486929818332710, guid: e5b4271f7efcabd429e44df2baf7fa39,
+        type: 3}
+      propertyPath: m_fogOfWarPlane
+      value: 
+      objectReference: {fileID: 1052967469}
     - target: {fileID: 7815363749510776939, guid: e5b4271f7efcabd429e44df2baf7fa39,
         type: 3}
       propertyPath: _objToFollow
@@ -1345,6 +1374,12 @@ PrefabInstance:
 --- !u!1 &1734929749 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4800407385372773092, guid: a142b932503d1024ba9a73b15001633a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1734929748}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1734929750 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4800407385372773090, guid: a142b932503d1024ba9a73b15001633a,
     type: 3}
   m_PrefabInstance: {fileID: 1734929748}
   m_PrefabAsset: {fileID: 0}

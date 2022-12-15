@@ -1,8 +1,15 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:LaserTurtles/Assets/Textures/RenderTextures/LargeMapRenderTexture.renderTexture.meta
+guid: 233f6d3c5cfa6e446b9a3967bcb2d518
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 8400000
+========
 guid: f97033f66d707ac46b5883cdee939549
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000
+>>>>>>>> Mark:LaserTurtles/Assets/Materials/Blue.mat.meta
   userData: 
   assetBundleName: 
   assetBundleVariant: 

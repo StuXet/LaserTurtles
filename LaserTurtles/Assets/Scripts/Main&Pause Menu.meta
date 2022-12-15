@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:LaserTurtles/Assets/Scripts/Managers.meta
+guid: cd43c72c51bc43b4088cbedb5673ebf2
+========
 guid: a015bd07ed132ec49a3c8850f5f23e98
+>>>>>>>> Mark:LaserTurtles/Assets/Scripts/Main&Pause Menu.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

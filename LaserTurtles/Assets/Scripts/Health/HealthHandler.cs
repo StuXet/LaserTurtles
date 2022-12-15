@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthHandler : MonoBehaviour
 {
+    public event EventHandler OnDeathOccured;
+
     private HealthSystem _healthSystem;
 
     [SerializeField] private HealthBar _healthBar;
@@ -15,6 +18,12 @@ public class HealthHandler : MonoBehaviour
     {
         _healthSystem = new HealthSystem(_maxHP);
         if (_healthBar != null) _healthBar.Setup(_healthSystem);
+        _healthSystem.OnDeath += _healthSystem_OnDeath;
+    }
+
+    private void _healthSystem_OnDeath(object sender, System.EventArgs e)
+    {
+        if (OnDeathOccured != null) OnDeathOccured(this, EventArgs.Empty);
     }
 
     // Update is called once per frame
