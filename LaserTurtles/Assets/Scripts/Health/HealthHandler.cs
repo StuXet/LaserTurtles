@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.AI;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class HealthHandler : MonoBehaviour
 {
@@ -16,7 +16,6 @@ public class HealthHandler : MonoBehaviour
     [Header("Knockback")]
     [SerializeField] bool knockbackable = true;
     [SerializeField] float kbMass;
-
 
     private void Awake()
     {
@@ -36,9 +35,9 @@ public class HealthHandler : MonoBehaviour
         _currentHP = _healthSystem.CurrentHealth;
     }
 
-    private void FixedUpdate()
+    public void IncreaseMaxHP(int addHealth)
     {
-        //ResetKnockback();
+        _maxHP += addHealth;
     }
 
     public void ToggleHealthBar(bool state)
@@ -103,6 +102,7 @@ public class HealthHandler : MonoBehaviour
     }
 
     //KnockBack
+    // --------------------
     private void Knockback(Damager damager, bool isHeavy)
     {
         //Adds a rigidbody to the object if it does'nt have one
@@ -129,7 +129,7 @@ public class HealthHandler : MonoBehaviour
         rb.detectCollisions = true;
         rb.freezeRotation = true;
         //rb.mass = kbMass;
-        
+
         Vector3 knockBackDir = damager.KnockbackPower * (gameObject.transform.position - damager.transform.root.position).normalized;
         //knockBackDir *= strength;
         knockBackDir.y = damager.KnockbackHeight;
