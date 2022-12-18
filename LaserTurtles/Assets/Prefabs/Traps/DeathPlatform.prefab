@@ -133,3 +133,8 @@ MonoBehaviour:
   _heavyDamageAmount: 0
   UsingHeavy: 0
   CanDamage: 1
+  _knockbackPower: 2
+  _knockbackHeight: 1
+  _knockbackHeavyMultiplier: 2
+  _knockbackStunTime: 2
+  _canKnockback: 0

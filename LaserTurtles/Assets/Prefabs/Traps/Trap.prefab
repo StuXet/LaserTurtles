@@ -130,10 +130,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canAffect: 2
   _damagerType: 0
-  _lightDamageAmount: 0
+  _lightDamageAmount: 10
   _heavyDamageAmount: 0
   UsingHeavy: 0
-  CanDamage: 0
+  CanDamage: 1
+  _knockbackPower: 2
+  _knockbackHeight: 1
+  _knockbackHeavyMultiplier: 2
+  _knockbackStunTime: 2
+  _canKnockback: 0
 --- !u!1 &4758229840582627618
 GameObject:
   m_ObjectHideFlags: 0
