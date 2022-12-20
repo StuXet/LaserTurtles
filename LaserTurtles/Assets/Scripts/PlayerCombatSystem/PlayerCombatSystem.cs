@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerCombatSystem : MonoBehaviour
 {
+    [SerializeField] private InputManager _inputManagerRef;
+    private PlayerInputActions _plInputActions;
+
     [SerializeField] GameObject sword;
     [SerializeField] GameObject fireBall;
     [SerializeField] Transform shootingPoint;
@@ -13,34 +16,54 @@ public class PlayerCombatSystem : MonoBehaviour
     private float _timer;
     private float mouseHoldCounter;
 
+    private void Start()
+    {
+        _plInputActions = _inputManagerRef.PlInputActions;
+        _plInputActions.Player.RangedAttack.performed += RangedAttack;
+        _plInputActions.Player.LightAttack.performed += LightAttack;
+        _plInputActions.Player.HeavyAttack.performed += HeavyAttack;
+    }
+
 
     // Update is called once per frame
     void Update()
     {
-        MouseHoldCounter();
-        InputHandler();
+        //MouseHoldCounter();
+        //InputHandler();
         AttackTimer();
     }
 
 
-    void InputHandler()
+    //void InputHandler()
+    //{
+    //    //if (Input.GetKeyUp(KeyCode.Mouse0))
+    //    //{
+    //    //    if (mouseHoldCounter < 0.6f)
+    //    //    {
+    //    //        Attack();
+    //    //    }
+    //    //    else
+    //    //    {
+    //    //        HeavyAttack();
+    //    //    }
+    //    //    mouseHoldCounter = 0;
+    //    //}
+    //}
+
+
+    private void LightAttack(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        if (Input.GetKeyUp(KeyCode.Mouse0))
-        {
-            if (mouseHoldCounter < 0.6f)
-            {
-                Attack();
-            }
-            else
-            {
-                HeavyAttack();
-            }
-            mouseHoldCounter = 0;
-        }
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            Shooting();
-        }
+            Attack();
+    }
+
+    private void HeavyAttack(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+            HeavyAttack();
+    }
+
+    private void RangedAttack(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        Shooting();
     }
 
     void Attack()
@@ -105,11 +128,11 @@ public class PlayerCombatSystem : MonoBehaviour
     }
 
 
-    void MouseHoldCounter()
-    {
-        if (Input.GetMouseButton(0))
-        {
-            mouseHoldCounter += Time.deltaTime;
-        }
-    }
+    //void MouseHoldCounter()
+    //{
+    //    if (_plActions.Player.LightAttack.IsPressed())
+    //    {
+    //        mouseHoldCounter += Time.deltaTime;
+    //    }
+    //}
 }
