@@ -578,6 +578,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4800407385372773090}
   - component: {fileID: 4800407385372773101}
+  - component: {fileID: 39110088067695669}
   - component: {fileID: 4800407385372773094}
   - component: {fileID: 8980513415885741700}
   - component: {fileID: 878156989}
@@ -627,6 +628,18 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &39110088067695669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4800407385372773092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2568ea88bd54bcc49aac0980a27aaf89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4800407385372773094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -639,15 +652,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d9d3c036394f2f4db538ce207f3fc97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inputManagerRef: {fileID: 39110088067695669}
   _playerCam: {fileID: 0}
   InControl: 1
   Speed: 10
   MoveType: 1
+  _controlsSkewAngle: 45
   dashType: 0
   _dodgeEffect: {fileID: 826759907}
-  dodgeCooldown: 0.7
-  dodgeDuration: 1
-  dodgeSpeed: 40
+  dodgeCooldown: 2
+  dodgeDuration: 0.2
+  dodgeSpeed: 50
   isDodging: 0
   GroundMask:
     serializedVersion: 2
@@ -671,6 +686,8 @@ MonoBehaviour:
   _healthBar: {fileID: 8353132162002614410}
   _maxHP: 100
   _currentHP: 0
+  knockbackable: 1
+  kbMass: 0
 --- !u!114 &878156989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -683,6 +700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51f4749fd0ffffb46afb230d1cb6761e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inputManagerRef: {fileID: 39110088067695669}
   sword: {fileID: 5724766927341007883}
   fireBall: {fileID: 1778532939917248221, guid: 447f7d342a2753f4c8055dbcde02c727,
     type: 3}
@@ -735,6 +753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f36170bd5175b347b7ca0bfa203b0b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inputManagerRef: {fileID: 39110088067695669}
   LargeMapOverlay: {fileID: 2565370255680769995}
 --- !u!1 &5986399918260106865
 GameObject:

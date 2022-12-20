@@ -4,30 +4,40 @@ using UnityEngine;
 
 public class PlayerUIManager : MonoBehaviour
 {
+    [SerializeField] private InputManager _inputManagerRef;
+    private PlayerInputActions _plInputActions;
+
     [SerializeField] private GameObject LargeMapOverlay;
     private bool _isLargeMapOverlayOpen = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        _plInputActions = _inputManagerRef.PlInputActions;
+        _plInputActions.Player.Map.performed += MapToggle;
         CloseAll();
+    }
+
+    private void MapToggle(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        ToggleLargeMapOverlay();
     }
 
     // Update is called once per frame
     void Update()
     {
-        ListenForInput();
+        //ListenForInput();
         UIStatesRunner();
     }
 
     #region Main Methods
-    private void ListenForInput()
-    {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            ToggleLargeMapOverlay();
-        }
-    }
+    //private void ListenForInput()
+    //{
+    //    //if (Input.GetKeyDown(KeyCode.Tab))
+    //    //{
+    //    //    ToggleLargeMapOverlay();
+    //    //}
+    //}
 
     private void UIStatesRunner()
     {
