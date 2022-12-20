@@ -37,7 +37,7 @@ public class Damager : MonoBehaviour
     [SerializeField] private float _knockbackHeight = 1;
     [SerializeField] private float _knockbackHeavyMultiplier = 2;
     [SerializeField] private float _knockbackStunTime = 2;
-    [SerializeField] private bool _canKnockback = true;
+    [SerializeField] private bool _canKnockback;
 
     // Properties
     // --------------------
