@@ -22,7 +22,9 @@ public class PlayerCombatSystem : MonoBehaviour
         _plInputActions.Player.RangedAttack.performed += RangedAttack;
         _plInputActions.Player.LightAttack.performed += LightAttack;
         _plInputActions.Player.HeavyAttack.performed += HeavyAttack;
+        _plInputActions.Player.SpecialAttack.performed += SpecialAttack;  
     }
+
 
 
     // Update is called once per frame
@@ -53,18 +55,23 @@ public class PlayerCombatSystem : MonoBehaviour
 
     private void LightAttack(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-            Attack();
+        Attack();
     }
 
     private void HeavyAttack(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-            HeavyAttack();
-    }
-
+        HeavyAttack();
+    } 
     private void RangedAttack(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         Shooting();
     }
+    
+    private void SpecialAttack(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        SpecialAttack();
+    }
+    
 
     void Attack()
     {
@@ -89,6 +96,11 @@ public class PlayerCombatSystem : MonoBehaviour
             anim.SetTrigger("HeavyAttack");
             //StartCoroutine(ResetAttackCooldown());
         }
+    }
+
+    void SpecialAttack()
+    {
+
     }
 
     void Shooting()

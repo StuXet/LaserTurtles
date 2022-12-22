@@ -30,6 +30,7 @@ public class Damager : MonoBehaviour
     [SerializeField] private int _lightDamageAmount;
     [SerializeField] private int _heavyDamageAmount;
     public bool UsingHeavy = false;
+    public bool UsingSpecial = false;
     public bool CanDamage = false;
 
     [Header("Knockback")]
@@ -38,6 +39,13 @@ public class Damager : MonoBehaviour
     [SerializeField] private float _knockbackHeavyMultiplier = 2;
     [SerializeField] private float _knockbackStunTime = 2;
     [SerializeField] private bool _canKnockback;
+
+    [Header("Special Attack")]
+    [SerializeField] private float _pullPower = 2;
+    [SerializeField] private float _pullHeight = 1;
+    [SerializeField] private float _pullStunTime = 2;
+    [SerializeField] private bool _canpull;
+    
 
     // Properties
     // --------------------
