@@ -40,13 +40,6 @@ public class Damager : MonoBehaviour
     [SerializeField] private float _knockbackStunTime = 2;
     [SerializeField] private bool _canKnockback;
 
-    [Header("Special Attack")]
-    [SerializeField] private float _pullPower = 2;
-    [SerializeField] private float _pullHeight = 1;
-    [SerializeField] private float _pullStunTime = 2;
-    [SerializeField] private bool _canpull;
-    
-
     // Properties
     // --------------------
     internal CanAffect CanAffect { get { return _canAffect; } }

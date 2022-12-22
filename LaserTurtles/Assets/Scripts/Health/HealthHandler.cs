@@ -15,7 +15,6 @@ public class HealthHandler : MonoBehaviour
     [SerializeField] private int _currentHP;
     [Header("Knockback")]
     [SerializeField] bool knockbackable = true;
-    [SerializeField] bool specialAttack = false;
     [SerializeField] float kbMass;
 
     private void Awake()
@@ -59,13 +58,9 @@ public class HealthHandler : MonoBehaviour
                 // If Damager is One Hit
                 if (tempDamager.DamagerType == DamagerType.OneHit)
                 {
-                    if (tempDamager.UsingSpecial)
+                    if (!tempDamager.UsingHeavy)
                     {
-                        
-                    }
-                    else if (!tempDamager.UsingHeavy)
-                    {
-                        if (knockbackable && !specialAttack)
+                        if (knockbackable)
                         {
                             Knockback(tempDamager, false);
                         }
@@ -73,7 +68,7 @@ public class HealthHandler : MonoBehaviour
                     }
                     else
                     {
-                        if (knockbackable && !specialAttack)
+                        if (knockbackable)
                         {
                             Knockback(tempDamager, true);
                         }
@@ -94,7 +89,6 @@ public class HealthHandler : MonoBehaviour
             }
         }
     }
-
 
     // Collision Handling
     // --------------------
