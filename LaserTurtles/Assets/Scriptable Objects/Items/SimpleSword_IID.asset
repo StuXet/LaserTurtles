@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dad202f5750e70a4fa48889eb8ffd23c, type: 3}
-  m_Name: IOD_SimpleSword
+  m_Name: SimpleSword_IID
   m_EditorClassIdentifier: 
   ItemID: Item_SimpleSword
   DisplayName: Simple Sword

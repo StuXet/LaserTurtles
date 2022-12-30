@@ -9,8 +9,8 @@ public enum ItemType
     Consumable
 }
 
-[CreateAssetMenu(menuName = "Scriptable Object/ItemObjectData")]
-public class ItemObjectData : ScriptableObject
+[CreateAssetMenu(menuName = "Scriptable Object/InventoryItemData")]
+public class InventoryItemData : ScriptableObject
 {
     public string ItemID;
     public string DisplayName;
