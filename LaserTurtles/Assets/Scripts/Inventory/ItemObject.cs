@@ -14,8 +14,11 @@ public class ItemObject : MonoBehaviour
         if (CanBePicked)
         {
             PlayerInventoryRef = inventoryRef;
-            PlayerInventoryRef.Add(ReferenceItem);
-            Destroy(gameObject);
+            if (!PlayerInventoryRef.CheckIfInInventory(ReferenceItem) || ReferenceItem.IsStackable)
+            {
+                PlayerInventoryRef.Add(ReferenceItem);
+                Destroy(gameObject);
+            }
         }
     }
 }

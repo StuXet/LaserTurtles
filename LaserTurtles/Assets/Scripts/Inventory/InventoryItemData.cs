@@ -17,6 +17,7 @@ public class InventoryItemData : ScriptableObject
     public Sprite Icon;
     public GameObject Prefab;
     public ItemType Type;
+    public bool IsStackable;
     [TextArea(5,20)]
     public string Description;
 }

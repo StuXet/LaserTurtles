@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,8 @@ public class InventorySystem : MonoBehaviour
     public List<InventoryItem> InventoryItems { get; private set; }
 
     private ItemObject _currentCollisionObj;
+
+    public event EventHandler OnInventoryChanged;
 
     private void Awake()
     {
@@ -33,6 +36,15 @@ public class InventorySystem : MonoBehaviour
         return null;
     }
 
+    public bool CheckIfInInventory(InventoryItemData referenceData)
+    {
+        if (m_itemDictionary.TryGetValue(referenceData, out InventoryItem value))
+        {
+            return true;
+        }
+        return false;
+    }
+
     public void Add(InventoryItemData referenceData)
     {
         if (m_itemDictionary.TryGetValue(referenceData, out InventoryItem value))
@@ -45,6 +57,8 @@ public class InventorySystem : MonoBehaviour
             InventoryItems.Add(newItem);
             m_itemDictionary.Add(referenceData, newItem);
         }
+
+        if (OnInventoryChanged != null) OnInventoryChanged(this, EventArgs.Empty);
     }
 
     public void Remove(InventoryItemData referenceData)
@@ -59,6 +73,8 @@ public class InventorySystem : MonoBehaviour
                 m_itemDictionary.Remove(referenceData);
             }
         }
+
+        if (OnInventoryChanged != null) OnInventoryChanged(this, EventArgs.Empty);
     }
 
     private void SubscribeToInputs()
