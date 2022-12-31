@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dad202f5750e70a4fa48889eb8ffd23c, type: 3}
+  m_Name: SimpleSword_IID
+  m_EditorClassIdentifier: 
+  ItemID: Item_SimpleSword
+  DisplayName: Simple Sword
+  Icon: {fileID: 21300000, guid: 3fe2082e1d06aa54fb7b150b8d1859ff, type: 3}
+  Prefab: {fileID: 6889558794958142706, guid: 1c09ceed06bd8ad42b4307abf5dd0e14, type: 3}
+  Type: 0
+  IsStackable: 0
+  Description: A Sword used for Testing.
