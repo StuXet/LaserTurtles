@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 402917102}
   - component: {fileID: 402917107}
   - component: {fileID: 402917113}
+  - component: {fileID: 8877126198372048628}
   m_Layer: 0
   m_Name: PHSword
   m_TagString: Damager
@@ -254,3 +255,21 @@ MonoBehaviour:
   _heavyDamageAmount: 20
   UsingHeavy: 0
   CanDamage: 0
+  _knockbackPower: 2
+  _knockbackHeight: 1
+  _knockbackHeavyMultiplier: 2
+  _knockbackStunTime: 2
+  _canKnockback: 0
+--- !u!114 &8877126198372048628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6889558794958142706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3119c7746239e54ab715db9046c02b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ReferenceItem: {fileID: 11400000, guid: e3586046bcdc3d5479541f34d224c60d, type: 2}
