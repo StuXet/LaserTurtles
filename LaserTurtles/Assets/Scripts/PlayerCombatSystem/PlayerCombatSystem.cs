@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerCombatSystem : MonoBehaviour
 {
@@ -15,6 +17,8 @@ public class PlayerCombatSystem : MonoBehaviour
     [SerializeField] private float _damageLength = 0.1f;
     private float _timer;
     private float mouseHoldCounter;
+    [SerializeField] float poolForce = 2f;
+    [SerializeField] float specialAttackLength = 10f;
 
     private void Start()
     {
@@ -22,7 +26,9 @@ public class PlayerCombatSystem : MonoBehaviour
         _plInputActions.Player.RangedAttack.performed += RangedAttack;
         _plInputActions.Player.LightAttack.performed += LightAttack;
         _plInputActions.Player.HeavyAttack.performed += HeavyAttack;
+        _plInputActions.Player.SpecialAttack.performed += SpecialAttack;  
     }
+
 
 
     // Update is called once per frame
@@ -31,6 +37,7 @@ public class PlayerCombatSystem : MonoBehaviour
         //MouseHoldCounter();
         //InputHandler();
         AttackTimer();
+        Debug.DrawRay(transform.position, transform.forward * specialAttackLength, Color.red);
     }
 
 
@@ -53,18 +60,23 @@ public class PlayerCombatSystem : MonoBehaviour
 
     private void LightAttack(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-            Attack();
+        Attack();
     }
 
     private void HeavyAttack(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-            HeavyAttack();
-    }
-
+        HeavyAttack();
+    } 
     private void RangedAttack(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         Shooting();
     }
+    
+    private void SpecialAttack(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        SpecialAttack();
+    }
+    
 
     void Attack()
     {
@@ -88,6 +100,45 @@ public class PlayerCombatSystem : MonoBehaviour
             Animator anim = sword.GetComponent<Animator>();
             anim.SetTrigger("HeavyAttack");
             //StartCoroutine(ResetAttackCooldown());
+        }
+    }
+
+    void SpecialAttack()
+    {
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, specialAttackLength))
+        {
+            if (hit.collider.tag == "Enemy")
+            {
+                //Adds a rigidbody to the object if it does'nt have one
+                Rigidbody rb = hit.collider.GetComponent<Rigidbody>();
+                EnemyAI eAI = hit.collider.GetComponent<EnemyAI>();
+                NavMeshAgent navAgent = hit.collider.GetComponent<NavMeshAgent>();
+                if (!rb)
+                {
+                    hit.collider.AddComponent<Rigidbody>();
+                    rb = hit.collider.GetComponent<Rigidbody>();
+                }
+
+                if (eAI)
+                {
+                    eAI.enabled = false;
+                }
+
+                if (navAgent)
+                {
+                    navAgent.enabled = false;
+                }
+
+                rb.isKinematic = false;
+                rb.detectCollisions = true;
+                rb.freezeRotation = true;
+                
+                Vector3 dir = transform.position - hit.transform.position;
+                rb = hit.collider.GetComponent<Rigidbody>();
+                rb.AddForce(dir * poolForce, ForceMode.Impulse);
+                Debug.Log("Special Attack");
+                StartCoroutine(ResetAI(1.5f, hit.collider));
+            }
         }
     }
 
@@ -135,4 +186,24 @@ public class PlayerCombatSystem : MonoBehaviour
     //        mouseHoldCounter += Time.deltaTime;
     //    }
     //}
+
+    //Resets enemy AI and rigidbody to their origianl state if rigidbody's velocity reaches zero
+    private IEnumerator ResetAI(float seconds, Collider col)
+    {
+        yield return new WaitForSeconds(seconds);
+        Rigidbody rb = col.GetComponent<Rigidbody>();
+        NavMeshAgent navAgent = col.GetComponent<NavMeshAgent>();
+        EnemyAI eAI = col.GetComponent<EnemyAI>();
+        if (rb && eAI && navAgent)
+        {
+            if (!rb.isKinematic && rb.detectCollisions && !eAI.enabled)
+            {
+                rb.isKinematic = true;
+
+                eAI.enabled = true;
+                navAgent.enabled = true;
+                Debug.Log("BIG PP");
+            }
+        }
+    }
 }

@@ -30,6 +30,7 @@ public class Damager : MonoBehaviour
     [SerializeField] private int _lightDamageAmount;
     [SerializeField] private int _heavyDamageAmount;
     public bool UsingHeavy = false;
+    public bool UsingSpecial = false;
     public bool CanDamage = false;
 
     [Header("Knockback")]
