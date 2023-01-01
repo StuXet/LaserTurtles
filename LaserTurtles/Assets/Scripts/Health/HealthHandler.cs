@@ -16,12 +16,24 @@ public class HealthHandler : MonoBehaviour
     [Header("Knockback")]
     [SerializeField] bool knockbackable = true;
     [SerializeField] float kbMass;
+    private bool isKnockedBack;
+    private float kbDelay = 0.2f;
+    private float kbTimer;
 
     private void Awake()
     {
         _healthSystem = new HealthSystem(_maxHP);
         if (_healthBar != null) _healthBar.Setup(_healthSystem);
         _healthSystem.OnDeath += _healthSystem_OnDeath;
+    }
+
+    private void FixedUpdate()
+    {
+        kbTimer -= Time.fixedDeltaTime;
+        if (isKnockedBack && kbTimer <= 0)
+        {
+            ResetKB();
+        }
     }
 
     private void _healthSystem_OnDeath(object sender, System.EventArgs e)
@@ -109,6 +121,7 @@ public class HealthHandler : MonoBehaviour
         Rigidbody rb = GetComponent<Rigidbody>();
         EnemyAI eAI = GetComponent<EnemyAI>();
         NavMeshAgent navAgent = GetComponent<NavMeshAgent>();
+        kbTimer = kbDelay;
         if (!rb)
         {
             gameObject.AddComponent<Rigidbody>();
@@ -142,7 +155,8 @@ public class HealthHandler : MonoBehaviour
             rb.AddForce(knockBackDir, ForceMode.VelocityChange);
 
         }
-        StartCoroutine(ResetKnockback(damager.KnockbackStunTime));
+        //StartCoroutine(ResetKnockback(damager.KnockbackStunTime));
+        isKnockedBack = true;
     }
 
     //Resets enemy AI and rigidbody to their origianl state if rigidbody's velocity reaches zero
@@ -160,6 +174,24 @@ public class HealthHandler : MonoBehaviour
 
                 eAI.enabled = true;
                 navAgent.enabled = true;
+            }
+        }
+    }
+
+    private void ResetKB()
+    {
+        Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+        NavMeshAgent navAgent = GetComponent<NavMeshAgent>();
+        EnemyAI eAI = gameObject.GetComponent<EnemyAI>();
+        if (rb && eAI && navAgent)
+        {
+            if (!rb.isKinematic && rb.detectCollisions && !eAI.enabled && rb.velocity == Vector3.zero)
+            {
+                rb.isKinematic = true;
+
+                eAI.enabled = true;
+                navAgent.enabled = true;
+                isKnockedBack = false;
             }
         }
     }
