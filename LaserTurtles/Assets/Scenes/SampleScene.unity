@@ -1009,6 +1009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb9339b5ef8a6b644a9516c9db413e7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerTag: Player
   enemyPrefab: {fileID: 5585892860136655844, guid: 09a1ebadf2959ff4faa7f6d1a6df864d,
     type: 3}
   numberOfEnemies: 5
@@ -1018,7 +1019,6 @@ MonoBehaviour:
   maxY: 0
   minZ: 39
   maxZ: 16
-  playerTag: Player
 --- !u!4 &1334284273
 Transform:
   m_ObjectHideFlags: 0
@@ -1054,6 +1054,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3559669636324293586, guid: a142b932503d1024ba9a73b15001633a,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3559669636324293586, guid: a142b932503d1024ba9a73b15001633a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4800407385372773090, guid: a142b932503d1024ba9a73b15001633a,
         type: 3}
       propertyPath: m_RootOrder
@@ -1119,6 +1129,21 @@ PrefabInstance:
       propertyPath: _playerCam
       value: 
       objectReference: {fileID: 2139149720}
+    - target: {fileID: 7533680252215550480, guid: a142b932503d1024ba9a73b15001633a,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7533680252215550480, guid: a142b932503d1024ba9a73b15001633a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7533680252215550480, guid: a142b932503d1024ba9a73b15001633a,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a142b932503d1024ba9a73b15001633a, type: 3}
 --- !u!1 &1420146842 stripped
