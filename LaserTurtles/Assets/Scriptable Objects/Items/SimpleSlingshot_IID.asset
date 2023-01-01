@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemID: Item_SimpleSlingshot
   DisplayName: Simple Slingshot
-  Icon: {fileID: 21300000, guid: 396576ce23e7a8142b251730c4a21583, type: 3}
+  Icon: {fileID: 21300000, guid: 41065e7277246ee478e0e84f58eeb39f, type: 3}
   Prefab: {fileID: 4075626481022974206, guid: f088df6a9382ed44eb4e1c03c63c12b3, type: 3}
   Type: 1
   IsStackable: 0
