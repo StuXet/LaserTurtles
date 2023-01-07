@@ -6,12 +6,14 @@ using UnityEngine.UI;
 
 public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    private InventoryUIManager _inventoryUIRef;
     private Transform _originalParent;
     private Transform _canvasParent;
     private Image _img;
 
     public Transform OriginalParent { get => _originalParent; set => _originalParent = value; }
     public Transform CanvasParent { get => _canvasParent; set => _canvasParent = value; }
+    public InventoryUIManager InventoryUIRef { get => _inventoryUIRef; set => _inventoryUIRef = value; }
 
     private void Awake()
     {
@@ -38,5 +40,6 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         Debug.Log("End Drag");
         transform.SetParent(_originalParent);
         _img.raycastTarget = true;
+        InventoryUIRef.RedrawInventory();
     }
 }

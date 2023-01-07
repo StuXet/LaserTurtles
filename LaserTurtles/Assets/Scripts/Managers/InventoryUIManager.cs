@@ -25,18 +25,13 @@ public class InventoryUIManager : MonoBehaviour
         PlayerInventoryRef.OnInventoryChanged += OnUpdateInventory;
     }
 
-    private void OnDisable()
-    {
-        RedrawInventory();
-    }
-
 
     private void OnUpdateInventory(object sender, System.EventArgs e)
     {
         RedrawInventory();
     }
 
-    private void RedrawInventory()
+    public void RedrawInventory()
     {
         foreach (Transform t in _contentBar)
         {
@@ -62,6 +57,7 @@ public class InventoryUIManager : MonoBehaviour
         GameObject obj = Instantiate(_slotPrefab, _contentBar, false);
         obj.GetComponent<InventorySlot>().Set(item);
         obj.GetComponent<DraggableItem>().CanvasParent = _canvas;
+        obj.GetComponent<DraggableItem>().InventoryUIRef = this;
     }
 
     private bool PassFilter(InventoryItem item)
