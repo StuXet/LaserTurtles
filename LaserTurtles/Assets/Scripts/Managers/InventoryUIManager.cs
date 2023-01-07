@@ -18,6 +18,9 @@ public class InventoryUIManager : MonoBehaviour
     [SerializeField] private Transform _canvas;
     [SerializeField] private InventoryFilter _currentFilter;
 
+    public InventorySystem PlayerInventoryRefrence { get => PlayerInventoryRef;}
+    public Transform ContentBar { get => _contentBar;}
+
 
     // Start is called before the first frame update
     void Start()
