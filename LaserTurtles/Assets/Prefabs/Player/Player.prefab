@@ -1139,6 +1139,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: EquipmentUI
       objectReference: {fileID: 0}
+    - target: {fileID: 5877063876439976936, guid: adddd2546efb5d24585c769d9392ffbb,
+        type: 3}
+      propertyPath: _inventorySystemRef
+      value: 
+      objectReference: {fileID: 2773289642886009211}
+    - target: {fileID: 7270626598167504400, guid: adddd2546efb5d24585c769d9392ffbb,
+        type: 3}
+      propertyPath: _inventorySystemRef
+      value: 
+      objectReference: {fileID: 2773289642886009211}
+    - target: {fileID: 7465424917666317894, guid: adddd2546efb5d24585c769d9392ffbb,
+        type: 3}
+      propertyPath: _inventorySystemRef
+      value: 
+      objectReference: {fileID: 2773289642886009211}
+    - target: {fileID: 8104866030933375965, guid: adddd2546efb5d24585c769d9392ffbb,
+        type: 3}
+      propertyPath: _inventorySystemRef
+      value: 
+      objectReference: {fileID: 2773289642886009211}
     - target: {fileID: 8963565169629045500, guid: adddd2546efb5d24585c769d9392ffbb,
         type: 3}
       propertyPath: m_Pivot.x

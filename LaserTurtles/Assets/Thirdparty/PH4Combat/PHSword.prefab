@@ -254,6 +254,7 @@ MonoBehaviour:
   _lightDamageAmount: 10
   _heavyDamageAmount: 20
   UsingHeavy: 0
+  UsingSpecial: 0
   CanDamage: 0
   _knockbackPower: 2
   _knockbackHeight: 1
@@ -273,3 +274,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ReferenceItem: {fileID: 11400000, guid: e3586046bcdc3d5479541f34d224c60d, type: 2}
+  CanBePicked: 0
+  RequiresInteraction: 1
