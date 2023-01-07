@@ -430,6 +430,7 @@ MonoBehaviour:
   _slotPrefab: {fileID: 622909744971911531, guid: 3823268b46aedc84da85ba6cef632521,
     type: 3}
   _contentBar: {fileID: 9129803447762991784}
+  _canvas: {fileID: 0}
   _currentFilter: 0
 --- !u!1 &2066617752853326112
 GameObject:

@@ -15,6 +15,7 @@ public class InventoryUIManager : MonoBehaviour
     [SerializeField] private InventorySystem PlayerInventoryRef;
     [SerializeField] private GameObject _slotPrefab;
     [SerializeField] private Transform _contentBar;
+    [SerializeField] private Transform _canvas;
     [SerializeField] private InventoryFilter _currentFilter;
 
 
@@ -23,6 +24,12 @@ public class InventoryUIManager : MonoBehaviour
     {
         PlayerInventoryRef.OnInventoryChanged += OnUpdateInventory;
     }
+
+    private void OnDisable()
+    {
+        RedrawInventory();
+    }
+
 
     private void OnUpdateInventory(object sender, System.EventArgs e)
     {
@@ -54,6 +61,7 @@ public class InventoryUIManager : MonoBehaviour
     {
         GameObject obj = Instantiate(_slotPrefab, _contentBar, false);
         obj.GetComponent<InventorySlot>().Set(item);
+        obj.GetComponent<DraggableItem>().CanvasParent = _canvas;
     }
 
     private bool PassFilter(InventoryItem item)
