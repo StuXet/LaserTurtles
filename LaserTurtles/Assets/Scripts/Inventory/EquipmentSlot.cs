@@ -5,14 +5,18 @@ using UnityEngine.EventSystems;
 
 public class EquipmentSlot : MonoBehaviour, IDropHandler
 {
+    [SerializeField] private ItemType EquipType;
     public void OnDrop(PointerEventData eventData)
     {
         if (transform.childCount == 0)
         {
-            Debug.Log("Dropped");
             GameObject droppedObj = eventData.pointerDrag;
-            DraggableItem draggableItem = droppedObj.GetComponent<DraggableItem>();
-            draggableItem.OriginalParent = transform;
+            if (EquipType == droppedObj.GetComponent<InventorySlot>().ItemData.Type)
+            {
+                DraggableItem draggableItem = droppedObj.GetComponent<DraggableItem>();
+                draggableItem.OriginalParent = transform;
+                Debug.Log("Dropped");
+            }
         }
     }
 }
