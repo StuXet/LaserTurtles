@@ -82,15 +82,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""RangedAttack"",
-                    ""type"": ""Button"",
-                    ""id"": ""c285936f-2fcb-4b4e-9450-c4f1aca8af9e"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Dodge"",
                     ""type"": ""Button"",
                     ""id"": ""0b92efc6-b777-49ec-8ae4-4a0190ec840b"",
@@ -130,6 +121,42 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""name"": ""SpecialAttack"",
                     ""type"": ""Button"",
                     ""id"": ""d8dc0465-1ebb-438e-8e0d-94011a955f45"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""WeaponSlot1"",
+                    ""type"": ""Button"",
+                    ""id"": ""81f4f8d3-47f7-4e6d-9fe2-0650d04d2d57"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""WeaponSlot2"",
+                    ""type"": ""Button"",
+                    ""id"": ""232226f4-f960-455d-942d-850ef1437a4e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""WeaponSlot3"",
+                    ""type"": ""Button"",
+                    ""id"": ""b0ae8b30-1db9-4ba7-92ae-c19376b1edaa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""WeaponSlot4"",
+                    ""type"": ""Button"",
+                    ""id"": ""345e4cf7-c64d-4bb7-9985-ff71479ee9fb"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -227,28 +254,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9e9d4615-d4a8-4e32-8e80-120a9a76e9f2"",
-                    ""path"": ""<Mouse>/middleButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""RangedAttack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""921875d5-d419-45a8-80a6-41fd78867f58"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""RangedAttack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""77a75c0e-333c-4366-83e0-a9179b1d5f2f"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
@@ -338,7 +343,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9faac1e6-e6cd-46bc-a03e-e4572d3ca6ae"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -409,6 +414,50 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""SpecialAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e2403fc3-3ac3-429a-aaab-e34b7043677e"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""WeaponSlot1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a9a70b58-dcc0-45f9-a67d-16ff586243e0"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""WeaponSlot2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2768c136-e1ab-4b2e-948d-3100c52d841e"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""WeaponSlot3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0b8c425c-4160-4170-8470-5ce7f029cd73"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""WeaponSlot4"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1002,12 +1051,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player_StickLook = m_Player.FindAction("StickLook", throwIfNotFound: true);
         m_Player_LightAttack = m_Player.FindAction("LightAttack", throwIfNotFound: true);
         m_Player_HeavyAttack = m_Player.FindAction("HeavyAttack", throwIfNotFound: true);
-        m_Player_RangedAttack = m_Player.FindAction("RangedAttack", throwIfNotFound: true);
         m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
         m_Player_Map = m_Player.FindAction("Map", throwIfNotFound: true);
         m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_SpecialAttack = m_Player.FindAction("SpecialAttack", throwIfNotFound: true);
+        m_Player_WeaponSlot1 = m_Player.FindAction("WeaponSlot1", throwIfNotFound: true);
+        m_Player_WeaponSlot2 = m_Player.FindAction("WeaponSlot2", throwIfNotFound: true);
+        m_Player_WeaponSlot3 = m_Player.FindAction("WeaponSlot3", throwIfNotFound: true);
+        m_Player_WeaponSlot4 = m_Player.FindAction("WeaponSlot4", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1085,12 +1137,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_StickLook;
     private readonly InputAction m_Player_LightAttack;
     private readonly InputAction m_Player_HeavyAttack;
-    private readonly InputAction m_Player_RangedAttack;
     private readonly InputAction m_Player_Dodge;
     private readonly InputAction m_Player_Map;
     private readonly InputAction m_Player_Inventory;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_SpecialAttack;
+    private readonly InputAction m_Player_WeaponSlot1;
+    private readonly InputAction m_Player_WeaponSlot2;
+    private readonly InputAction m_Player_WeaponSlot3;
+    private readonly InputAction m_Player_WeaponSlot4;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1101,12 +1156,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @StickLook => m_Wrapper.m_Player_StickLook;
         public InputAction @LightAttack => m_Wrapper.m_Player_LightAttack;
         public InputAction @HeavyAttack => m_Wrapper.m_Player_HeavyAttack;
-        public InputAction @RangedAttack => m_Wrapper.m_Player_RangedAttack;
         public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
         public InputAction @Map => m_Wrapper.m_Player_Map;
         public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @SpecialAttack => m_Wrapper.m_Player_SpecialAttack;
+        public InputAction @WeaponSlot1 => m_Wrapper.m_Player_WeaponSlot1;
+        public InputAction @WeaponSlot2 => m_Wrapper.m_Player_WeaponSlot2;
+        public InputAction @WeaponSlot3 => m_Wrapper.m_Player_WeaponSlot3;
+        public InputAction @WeaponSlot4 => m_Wrapper.m_Player_WeaponSlot4;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1134,9 +1192,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @HeavyAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHeavyAttack;
                 @HeavyAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHeavyAttack;
                 @HeavyAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHeavyAttack;
-                @RangedAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRangedAttack;
-                @RangedAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRangedAttack;
-                @RangedAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRangedAttack;
                 @Dodge.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
                 @Dodge.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
                 @Dodge.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
@@ -1152,6 +1207,18 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @SpecialAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpecialAttack;
                 @SpecialAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpecialAttack;
                 @SpecialAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpecialAttack;
+                @WeaponSlot1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponSlot1;
+                @WeaponSlot1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponSlot1;
+                @WeaponSlot1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponSlot1;
+                @WeaponSlot2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponSlot2;
+                @WeaponSlot2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponSlot2;
+                @WeaponSlot2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponSlot2;
+                @WeaponSlot3.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponSlot3;
+                @WeaponSlot3.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponSlot3;
+                @WeaponSlot3.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponSlot3;
+                @WeaponSlot4.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponSlot4;
+                @WeaponSlot4.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponSlot4;
+                @WeaponSlot4.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponSlot4;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1174,9 +1241,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @HeavyAttack.started += instance.OnHeavyAttack;
                 @HeavyAttack.performed += instance.OnHeavyAttack;
                 @HeavyAttack.canceled += instance.OnHeavyAttack;
-                @RangedAttack.started += instance.OnRangedAttack;
-                @RangedAttack.performed += instance.OnRangedAttack;
-                @RangedAttack.canceled += instance.OnRangedAttack;
                 @Dodge.started += instance.OnDodge;
                 @Dodge.performed += instance.OnDodge;
                 @Dodge.canceled += instance.OnDodge;
@@ -1192,6 +1256,18 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @SpecialAttack.started += instance.OnSpecialAttack;
                 @SpecialAttack.performed += instance.OnSpecialAttack;
                 @SpecialAttack.canceled += instance.OnSpecialAttack;
+                @WeaponSlot1.started += instance.OnWeaponSlot1;
+                @WeaponSlot1.performed += instance.OnWeaponSlot1;
+                @WeaponSlot1.canceled += instance.OnWeaponSlot1;
+                @WeaponSlot2.started += instance.OnWeaponSlot2;
+                @WeaponSlot2.performed += instance.OnWeaponSlot2;
+                @WeaponSlot2.canceled += instance.OnWeaponSlot2;
+                @WeaponSlot3.started += instance.OnWeaponSlot3;
+                @WeaponSlot3.performed += instance.OnWeaponSlot3;
+                @WeaponSlot3.canceled += instance.OnWeaponSlot3;
+                @WeaponSlot4.started += instance.OnWeaponSlot4;
+                @WeaponSlot4.performed += instance.OnWeaponSlot4;
+                @WeaponSlot4.canceled += instance.OnWeaponSlot4;
             }
         }
     }
@@ -1354,12 +1430,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnStickLook(InputAction.CallbackContext context);
         void OnLightAttack(InputAction.CallbackContext context);
         void OnHeavyAttack(InputAction.CallbackContext context);
-        void OnRangedAttack(InputAction.CallbackContext context);
         void OnDodge(InputAction.CallbackContext context);
         void OnMap(InputAction.CallbackContext context);
         void OnInventory(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnSpecialAttack(InputAction.CallbackContext context);
+        void OnWeaponSlot1(InputAction.CallbackContext context);
+        void OnWeaponSlot2(InputAction.CallbackContext context);
+        void OnWeaponSlot3(InputAction.CallbackContext context);
+        void OnWeaponSlot4(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

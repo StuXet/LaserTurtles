@@ -97,7 +97,16 @@ public class InventorySystem : MonoBehaviour
         {
             if (other.GetComponent<ItemObject>().CanBePicked)
             {
-                _currentCollisionObj = other.GetComponent<ItemObject>();
+                if (!other.GetComponent<ItemObject>().RequiresInteraction)
+                {
+                    _currentCollisionObj = other.GetComponent<ItemObject>();
+                    _currentCollisionObj.OnHandlePickupItem(this);
+                    _currentCollisionObj = null;
+                }
+                else
+                {
+                    _currentCollisionObj = other.GetComponent<ItemObject>();
+                }
             }
         }
     }
