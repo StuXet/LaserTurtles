@@ -10,6 +10,10 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler
 {
     [SerializeField] private ItemType EquipType;
     [SerializeField] private InventorySystem _inventorySystemRef;
+    private InventoryItemData _equippedItemData;
+
+    public InventoryItemData EquippedItemData { get => _equippedItemData; set => _equippedItemData = value; }
+
 
     public void OnDrop(PointerEventData eventData)
     {
@@ -24,12 +28,18 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler
                 {
                     Destroy(draggableItem.EquipIconRef.gameObject);
                     draggableItem.EquipIconRef = null;
+                    draggableItem.EquipSlotRef.EquippedItemData = null;
                 }
+
                 var icon = Instantiate(invSlot.Icon, transform);
                 icon.AddComponent<GridLayoutGroup>();
                 draggableItem.OriginalParent = icon.transform;
                 draggableItem.EquipIconRef = icon;
                 invSlot.SetTransparency(0);
+
+                _equippedItemData = invSlot.ItemData;
+                draggableItem.EquipSlotRef = this;
+
                 _inventorySystemRef.Remove(invSlot.ItemData);
                 Debug.Log("Dropped");
             }

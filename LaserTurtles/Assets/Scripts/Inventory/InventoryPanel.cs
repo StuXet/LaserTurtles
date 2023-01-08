@@ -23,6 +23,8 @@ public class InventoryPanel : MonoBehaviour, IDropHandler
             {
                 Destroy(draggableItem.EquipIconRef.gameObject);
                 draggableItem.EquipIconRef = null;
+                draggableItem.EquipSlotRef.EquippedItemData = null;
+                draggableItem.EquipSlotRef = null;
             }
 
             if (draggableItem.OriginalParent != _contentBar)

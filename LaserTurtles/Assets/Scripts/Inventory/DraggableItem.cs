@@ -13,11 +13,13 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     private InventorySlot _invSlot;
 
     private Image _equipIconRef;
+    private EquipmentSlot _equipSlotRef;
 
     public Transform OriginalParent { get => _originalParent; set => _originalParent = value; }
     public Transform CanvasParent { get => _canvasParent; set => _canvasParent = value; }
     public InventoryUIManager InventoryUIRef { get => _inventoryUIRef; set => _inventoryUIRef = value; }
     public Image EquipIconRef { get => _equipIconRef; set => _equipIconRef = value; }
+    public EquipmentSlot EquipSlotRef { get => _equipSlotRef; set => _equipSlotRef = value; }
 
 
     private void Awake()
@@ -49,9 +51,9 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         _img.raycastTarget = true;
         InventoryUIRef.RedrawInventory();
 
-        if (EquipIconRef != null)
+        if (_equipIconRef != null)
         {
-            if (_originalParent.name == EquipIconRef.name)
+            if (_originalParent.name == _equipIconRef.name)
             {
                 _invSlot.SetTransparency(0);
             }
