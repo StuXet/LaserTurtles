@@ -15,7 +15,7 @@ MonoBehaviour:
   ItemID: Item_SimpleSword
   DisplayName: Simple Sword
   Icon: {fileID: 21300000, guid: 3fe2082e1d06aa54fb7b150b8d1859ff, type: 3}
-  Prefab: {fileID: 6889558794958142706, guid: 1c09ceed06bd8ad42b4307abf5dd0e14, type: 3}
+  Prefab: {fileID: 5012736691022855372, guid: 35b212569493be047b039d737f236a18, type: 3}
   Type: 0
   IsStackable: 0
   Description: A Sword used for Testing.
