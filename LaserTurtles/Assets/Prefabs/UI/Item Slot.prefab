@@ -170,9 +170,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e4933b8ad5dce54b95a622928601fc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_itemSlot: {fileID: 7623867041674578690}
   m_icon: {fileID: 4350585105936707570}
   m_label: {fileID: 7348521363489617175}
-  m_stackObj: {fileID: 350255149585461608}
+  m_stackObj: {fileID: 6897692788444287417}
   m_stackLabel: {fileID: 8081068868055717227}
 --- !u!114 &8036821444788265701
 MonoBehaviour:
@@ -186,7 +187,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ccd84e62fa10fc429787f8cd8974bf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _originalParent: {fileID: 0}
 --- !u!1 &2636201813110694304
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,9 +19,16 @@ public class InventoryPanel : MonoBehaviour, IDropHandler
         GameObject droppedObj = eventData.pointerDrag;
         if (droppedObj.TryGetComponent(out DraggableItem draggableItem))
         {
+            if (draggableItem.EquipIconRef != null)
+            {
+                Destroy(draggableItem.EquipIconRef.gameObject);
+                draggableItem.EquipIconRef = null;
+            }
+
             if (draggableItem.OriginalParent != _contentBar)
             {
                 InventorySlot invSlot = droppedObj.GetComponent<InventorySlot>();
+                invSlot.SetTransparency(1);
                 _inventorySystemRef.Add(invSlot.ItemData);
                 Destroy(droppedObj);
 

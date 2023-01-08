@@ -1,7 +1,10 @@
+using Microsoft.Unity.VisualStudio.Editor;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class EquipmentSlot : MonoBehaviour, IDropHandler
 {
@@ -17,7 +20,16 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler
             if (EquipType == invSlot.ItemData.Type)
             {
                 DraggableItem draggableItem = droppedObj.GetComponent<DraggableItem>();
-                draggableItem.OriginalParent = transform;
+                if (draggableItem.EquipIconRef != null)
+                {
+                    Destroy(draggableItem.EquipIconRef.gameObject);
+                    draggableItem.EquipIconRef = null;
+                }
+                var icon = Instantiate(invSlot.Icon, transform);
+                icon.AddComponent<GridLayoutGroup>();
+                draggableItem.OriginalParent = icon.transform;
+                draggableItem.EquipIconRef = icon;
+                invSlot.SetTransparency(0);
                 _inventorySystemRef.Remove(invSlot.ItemData);
                 Debug.Log("Dropped");
             }

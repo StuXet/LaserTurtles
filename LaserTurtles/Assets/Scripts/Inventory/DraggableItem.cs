@@ -10,14 +10,20 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     private Transform _originalParent;
     private Transform _canvasParent;
     private Image _img;
+    private InventorySlot _invSlot;
+
+    private Image _equipIconRef;
 
     public Transform OriginalParent { get => _originalParent; set => _originalParent = value; }
     public Transform CanvasParent { get => _canvasParent; set => _canvasParent = value; }
     public InventoryUIManager InventoryUIRef { get => _inventoryUIRef; set => _inventoryUIRef = value; }
+    public Image EquipIconRef { get => _equipIconRef; set => _equipIconRef = value; }
+
 
     private void Awake()
     {
         _img = GetComponent<Image>();
+        _invSlot = GetComponent<InventorySlot>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -27,6 +33,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         //transform.SetParent(transform.parent.parent.parent.parent.parent);
         transform.SetParent(_canvasParent);
         _img.raycastTarget = false;
+        _invSlot.SetTransparency(0.75f);
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -41,5 +48,13 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         transform.SetParent(_originalParent);
         _img.raycastTarget = true;
         InventoryUIRef.RedrawInventory();
+
+        if (EquipIconRef != null)
+        {
+            if (_originalParent.name == EquipIconRef.name)
+            {
+                _invSlot.SetTransparency(0);
+            }
+        }
     }
 }
