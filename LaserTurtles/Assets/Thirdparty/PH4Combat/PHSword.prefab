@@ -115,7 +115,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6889558794958142706}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.7324113, y: 3.4133368, z: 1.4900928}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.08540371, y: 1.6983, z: 0.10626155}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -254,6 +254,7 @@ MonoBehaviour:
   _lightDamageAmount: 10
   _heavyDamageAmount: 20
   UsingHeavy: 0
+  UsingSpecial: 0
   CanDamage: 0
   _knockbackPower: 2
   _knockbackHeight: 1
@@ -273,3 +274,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ReferenceItem: {fileID: 11400000, guid: e3586046bcdc3d5479541f34d224c60d, type: 2}
+  CanBePicked: 0
+  RequiresInteraction: 1

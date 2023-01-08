@@ -15,7 +15,11 @@ public class InventoryUIManager : MonoBehaviour
     [SerializeField] private InventorySystem PlayerInventoryRef;
     [SerializeField] private GameObject _slotPrefab;
     [SerializeField] private Transform _contentBar;
+    [SerializeField] private Transform _canvas;
     [SerializeField] private InventoryFilter _currentFilter;
+
+    public InventorySystem PlayerInventoryRefrence { get => PlayerInventoryRef;}
+    public Transform ContentBar { get => _contentBar;}
 
 
     // Start is called before the first frame update
@@ -24,12 +28,13 @@ public class InventoryUIManager : MonoBehaviour
         PlayerInventoryRef.OnInventoryChanged += OnUpdateInventory;
     }
 
+
     private void OnUpdateInventory(object sender, System.EventArgs e)
     {
         RedrawInventory();
     }
 
-    private void RedrawInventory()
+    public void RedrawInventory()
     {
         foreach (Transform t in _contentBar)
         {
@@ -54,6 +59,8 @@ public class InventoryUIManager : MonoBehaviour
     {
         GameObject obj = Instantiate(_slotPrefab, _contentBar, false);
         obj.GetComponent<InventorySlot>().Set(item);
+        obj.GetComponent<DraggableItem>().CanvasParent = _canvas;
+        obj.GetComponent<DraggableItem>().InventoryUIRef = this;
     }
 
     private bool PassFilter(InventoryItem item)
