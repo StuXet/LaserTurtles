@@ -8,6 +8,7 @@ public class ItemObject : MonoBehaviour
     private InventorySystem PlayerInventoryRef;
 
     public bool CanBePicked;
+    public bool RequiresInteraction;
 
     public void OnHandlePickupItem(InventorySystem inventoryRef)
     {

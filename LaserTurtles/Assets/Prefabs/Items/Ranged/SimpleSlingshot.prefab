@@ -574,6 +574,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ReferenceItem: {fileID: 11400000, guid: 8dc6acde04003bc4ba02fd3ed6372956, type: 2}
   CanBePicked: 1
+  RequiresInteraction: 1
 --- !u!1 &4075626481198844736
 GameObject:
   m_ObjectHideFlags: 0

@@ -130,3 +130,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ReferenceItem: {fileID: 11400000, guid: 5284ac282a9479f459c20fbff623fb92, type: 2}
   CanBePicked: 1
+  RequiresInteraction: 0
