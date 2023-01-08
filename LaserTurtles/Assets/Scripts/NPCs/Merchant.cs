@@ -74,12 +74,14 @@ public class Merchant : MonoBehaviour
         dialogueText.gameObject.SetActive(false);
         dialogueButton.SetActive(false);
         inDialogue = false;
+        player.GetComponent<PlayerCombatSystem>().inDialogue = false;
         isFirstTime = false;
     }
 
     void StartDialogue()
     {
         inDialogue = true;
+        player.GetComponent<PlayerCombatSystem>().inDialogue = true;
         dialoguePanel.SetActive(true);
         dialogueText.gameObject.SetActive(true);
         dialogueButton.SetActive(true);
