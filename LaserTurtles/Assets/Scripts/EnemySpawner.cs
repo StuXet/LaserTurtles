@@ -5,16 +5,9 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public string playerTag;
-    
-    public GameObject enemyPrefab;
-    public int numberOfEnemies;
-
-    public float minX;
-    public float maxX;
-    public float minY;
-    public float maxY;
-    public float minZ;
-    public float maxZ;
+    public List<GameObject> enemyPrefabs;
+    public List<int> enemyCounts;
+    public Vector3 range;
 
     private bool spawned = false;
 
@@ -22,14 +15,17 @@ public class EnemySpawner : MonoBehaviour
     {
         if (other.gameObject.tag == playerTag && !spawned)
         {
-            for (int i = 0; i < numberOfEnemies; i++)
+            for (int i = 0; i < enemyPrefabs.Count; i++)
             {
-                float x = Random.Range(minX, maxX);
-                float y = Random.Range(minY, maxY);
-                float z = Random.Range(minZ, maxZ);
-                Vector3 randomPos = new Vector3(x, y, z);
+                for (int j = 0; j < enemyCounts[i]; j++)
+                {
+                    float x = Random.Range(-range.x / 2, range.x / 2);
+                    float y = Random.Range(-range.y / 2, range.y / 2);
+                    float z = Random.Range(-range.z / 2, range.z / 2);
+                    Vector3 randomPos = transform.position + new Vector3(x, y, z);
 
-                GameObject enemy = Instantiate(enemyPrefab, randomPos, Quaternion.identity);
+                    GameObject enemy = Instantiate(enemyPrefabs[i], randomPos, Quaternion.identity);
+                }
             }
             spawned = true;
         }

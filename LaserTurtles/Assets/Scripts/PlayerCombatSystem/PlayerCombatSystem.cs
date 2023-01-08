@@ -21,6 +21,7 @@ public class PlayerCombatSystem : MonoBehaviour
 
     [Header("Attacking")]
     public bool isAttacking = false;
+    public bool inDialogue = false;
     [SerializeField] private float _attackCooldown = 1f;
     [SerializeField] private float _damageLength = 0.1f;
     private float _timer;
@@ -108,19 +109,29 @@ public class PlayerCombatSystem : MonoBehaviour
 
     private void LightAttack(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        Attack();
-        Shooting();
+        if (!inDialogue)
+        {
+            Attack();
+            Shooting();
+        }
     }
 
     private void HeavyAttack(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        HeavyAttack();
+        if (!inDialogue)
+        {
+            HeavyAttack();
+        }
     }
 
 
     private void SpecialAttack(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        SpecialAttack();
+
+        if (!inDialogue)
+        {
+            SpecialAttack();
+        }
     }
 
 

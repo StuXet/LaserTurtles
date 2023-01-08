@@ -14,16 +14,18 @@ public class MainMenu : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (creditsPanel.activeSelf || settingsPanel.activeSelf)
-            {
-                creditsPanel.SetActive(false);
-                settingsPanel.SetActive(false);
+        //NEED TO CHANGE TO THE NEW INPUT SYSTEM + IN GAME PAUSE MENU AS WELL
+        
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    if (creditsPanel.activeSelf || settingsPanel.activeSelf)
+        //    {
+        //        creditsPanel.SetActive(false);
+        //        settingsPanel.SetActive(false);
 
-                mainMenuPanel.SetActive(true);
-            }
-        }
+        //        mainMenuPanel.SetActive(true);
+        //    }
+        //}
     }
 
     public void NewGame()
