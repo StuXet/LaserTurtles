@@ -6,19 +6,31 @@ public class SettingsMenu : MonoBehaviour
 {
     PlayerController playerController;
 
+
     private void Awake()
     {
-        FindObjectOfType<PlayerController>();
+        playerController = FindObjectOfType<PlayerController>();
     }
-    // Start is called before the first frame update
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-       
+        MoveType(true);
+    }
+
+    public void MoveType(bool state)
+    {
+        if (!state)
+        {
+            playerController.MoveType = MovementType.WorldPos;
+        }
+        else
+        {
+            playerController.MoveType = MovementType.WorldPosTrackLook;
+        }
     }
 }
