@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class MainMenu : MonoBehaviour
 {
@@ -12,27 +13,39 @@ public class MainMenu : MonoBehaviour
     public GameObject settingsPanel;
     public GameObject creditsPanel;
 
-    private void Update()
-    {
-        //NEED TO CHANGE TO THE NEW INPUT SYSTEM + IN GAME PAUSE MENU AS WELL
-        
-        //if (Input.GetKeyDown(KeyCode.Escape))
-        //{
-        //    if (creditsPanel.activeSelf || settingsPanel.activeSelf)
-        //    {
-        //        creditsPanel.SetActive(false);
-        //        settingsPanel.SetActive(false);
+    private InputAction escapeAction;
 
-        //        mainMenuPanel.SetActive(true);
-        //    }
-        //}
+    private void Awake()
+    {
+        escapeAction = new InputAction("Escape", binding: "<Keyboard>/escape");
+        escapeAction.performed += ctx => OnEscape();
+    }
+
+    private void OnEnable()
+    {
+        escapeAction.Enable();
+    }
+
+    private void OnDisable()
+    {
+        escapeAction.Disable();
+    }
+
+    private void OnEscape()
+    {
+        if (creditsPanel.activeSelf || settingsPanel.activeSelf)
+        {
+            creditsPanel.SetActive(false);
+            settingsPanel.SetActive(false);
+            mainMenuPanel.SetActive(true);
+        }
     }
 
     public void NewGame()
     {
         SceneManager.LoadScene(gameScene);
     }
-    
+
     public void Continue()
     {
         SceneManager.LoadScene(gameScene);

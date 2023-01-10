@@ -161,6 +161,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ESC"",
+                    ""type"": ""Button"",
+                    ""id"": ""c492679b-8eff-4463-9f29-f9195d9466b0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -458,6 +467,28 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""WeaponSlot4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0028c04f-1ff3-4380-a79b-a4f8c49111a0"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""ESC"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7f606cfe-5af8-4867-91e7-cdcb0b3255ee"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ESC"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1060,6 +1091,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player_WeaponSlot2 = m_Player.FindAction("WeaponSlot2", throwIfNotFound: true);
         m_Player_WeaponSlot3 = m_Player.FindAction("WeaponSlot3", throwIfNotFound: true);
         m_Player_WeaponSlot4 = m_Player.FindAction("WeaponSlot4", throwIfNotFound: true);
+        m_Player_ESC = m_Player.FindAction("ESC", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1146,6 +1178,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_WeaponSlot2;
     private readonly InputAction m_Player_WeaponSlot3;
     private readonly InputAction m_Player_WeaponSlot4;
+    private readonly InputAction m_Player_ESC;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1165,6 +1198,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @WeaponSlot2 => m_Wrapper.m_Player_WeaponSlot2;
         public InputAction @WeaponSlot3 => m_Wrapper.m_Player_WeaponSlot3;
         public InputAction @WeaponSlot4 => m_Wrapper.m_Player_WeaponSlot4;
+        public InputAction @ESC => m_Wrapper.m_Player_ESC;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1219,6 +1253,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @WeaponSlot4.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponSlot4;
                 @WeaponSlot4.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponSlot4;
                 @WeaponSlot4.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponSlot4;
+                @ESC.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnESC;
+                @ESC.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnESC;
+                @ESC.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnESC;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1268,6 +1305,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @WeaponSlot4.started += instance.OnWeaponSlot4;
                 @WeaponSlot4.performed += instance.OnWeaponSlot4;
                 @WeaponSlot4.canceled += instance.OnWeaponSlot4;
+                @ESC.started += instance.OnESC;
+                @ESC.performed += instance.OnESC;
+                @ESC.canceled += instance.OnESC;
             }
         }
     }
@@ -1439,6 +1479,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnWeaponSlot2(InputAction.CallbackContext context);
         void OnWeaponSlot3(InputAction.CallbackContext context);
         void OnWeaponSlot4(InputAction.CallbackContext context);
+        void OnESC(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
