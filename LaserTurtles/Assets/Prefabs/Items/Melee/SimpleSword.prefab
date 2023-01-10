@@ -100,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canAffect: 1
   _damagerType: 0
+  weaknessResistance: 1
   _lightDamageAmount: 10
   _heavyDamageAmount: 20
   UsingHeavy: 0
