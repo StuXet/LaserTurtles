@@ -3,7 +3,47 @@ guid: 335a46559420d1d4a88508ecce279a7a
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Crow_Eyebrows_MAT
+    second: {fileID: 2100000, guid: ef781d8a0dd0e0643b4ef55722c628c0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Crow_MAT
+    second: {fileID: 2100000, guid: 28d655267c8f0b947acf21f854129c5a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Crow_beak_1_MAT
+    second: {fileID: 2100000, guid: f3bd78a295ea60840af423391deebd28, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Crow_beak_2_MAT
+    second: {fileID: 2100000, guid: 9ff4a35af1c757949a23109d4cf2a25f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Crow_beak_3_MAT
+    second: {fileID: 2100000, guid: 433d66aa9d2e7024098767d2c09a16ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Srcondary_Crow_MAT
+    second: {fileID: 2100000, guid: 70b92d7299115224987f4ef8391d670f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: crow_eye_MAT
+    second: {fileID: 2100000, guid: 9e4bf26b55fac0f4390d4c05cf2bb02b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: crow_legs_MAT
+    second: {fileID: 2100000, guid: dbec3d49989c28148b932eeb97a6ed8a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -35,7 +75,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 10
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -88,7 +128,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 10
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
