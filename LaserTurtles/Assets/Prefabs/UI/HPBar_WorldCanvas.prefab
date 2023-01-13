@@ -358,10 +358,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0905acbcc293970479427c152050a6ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BGHealthBar: {fileID: 2981526687441287706}
+  MaxHealthBar: {fileID: 938125548101250546}
   CurrentHealthBar1: {fileID: 3170529403710328006}
   DamageHealthBar1: {fileID: 3264132441190399499}
   CurrentHealthBar2: {fileID: 0}
   DamageHealthBar2: {fileID: 0}
+  _shrinkTimerDelay: 1
+  _shrinkSpeed: 1
+  _hideSpeed: 1
+  UseTransparency: 1
 --- !u!114 &2996607905930068776
 MonoBehaviour:
   m_ObjectHideFlags: 0

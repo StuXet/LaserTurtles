@@ -8,7 +8,7 @@ public class HealthHandler : MonoBehaviour
 {
     public event EventHandler OnDeathOccured;
 
-    private HealthSystem _healthSystem;
+    public HealthSystem _healthSystem;
 
     [SerializeField] private HealthBar _healthBar;
     [SerializeField] private int _maxHP;

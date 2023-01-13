@@ -10,6 +10,7 @@ public class EnemyAI : MonoBehaviour
     public NavMeshAgent Agent;
     public Transform Player;
     [SerializeField] private HealthHandler _healthHandlerRef;
+    public bool DestroyOnDeath;
 
     // Patroling
     public bool CanPatrol = false;
@@ -47,11 +48,13 @@ public class EnemyAI : MonoBehaviour
         PlayerInSightRange = Physics.CheckSphere(transform.position, SightRange, PlayerLayer);
         PlayerInAttackRange = Physics.CheckSphere(transform.position, AttackRange, PlayerLayer) && CanSeePlayer();
 
-        ToggleHPBarState();
+        //ToggleHPBarState();
 
         if (!PlayerInSightRange && !PlayerInAttackRange) Patroling();
         if (PlayerInSightRange && !PlayerInAttackRange) ChasePlayer();
         if (PlayerInAttackRange && PlayerInSightRange) AttackPlayer(false);
+
+        AnimationHandler();
     }
 
     virtual public void Patroling()
@@ -83,17 +86,17 @@ public class EnemyAI : MonoBehaviour
             _walkPointSet = true;
     }
 
-    private void ToggleHPBarState()
-    {
-        if (PlayerInSightRange)
-        {
-            _healthHandlerRef.ToggleHealthBar(true);
-        }
-        else
-        {
-            _healthHandlerRef.ToggleHealthBar(false);
-        }
-    }
+    //private void ToggleHPBarState()
+    //{
+    //    if (PlayerInSightRange)
+    //    {
+    //        _healthHandlerRef.ToggleHealthBar(true);
+    //    }
+    //    else
+    //    {
+    //        _healthHandlerRef.ToggleHealthBar(false);
+    //    }
+    //}
 
     private bool CanSeePlayer()
     {
@@ -191,6 +194,11 @@ public class EnemyAI : MonoBehaviour
 
     }
 
+    virtual public void AnimationHandler()
+    {
+
+    }
+
     private void _healthHandlerRef_OnDeathOccured(object sender, System.EventArgs e)
     {
         EnemyDeath();
@@ -198,7 +206,16 @@ public class EnemyAI : MonoBehaviour
 
     public virtual void EnemyDeath()
     {
-        Destroy(gameObject);
+        if (DestroyOnDeath)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+            _healthHandlerRef._healthSystem.RefillHealth();
+            AlreadyAttacked = false;
+        }
     }
 
     private void OnDrawGizmosSelected()
