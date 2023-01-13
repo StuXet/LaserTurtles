@@ -34,12 +34,15 @@ public class PlayerController : MonoBehaviour
     private HealthHandler _healthHandlerRef;
     private CharacterController _charCon;
 
+    [SerializeField] private Animator _playerAnimator;
+
     public bool InControl = true;
+    private bool _isDead = false;
 
     [Header("Movement & Looking")]
     public float Speed = 10.0f;
     public MovementType MoveType = MovementType.WorldPos;
-    [Range(0,359)]
+    [Range(0, 359)]
     [SerializeField] int _controlsSkewAngle = 45;
     private Matrix4x4 _matrixRot;
     private Vector3 _movementDir;
@@ -94,6 +97,7 @@ public class PlayerController : MonoBehaviour
             DodgeManager();
             Gravity();
         }
+        AnimationHandler();
     }
 
 
@@ -281,7 +285,33 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerDeath()
     {
+        _isDead = true;
+        InControl = false;
+        StartCoroutine(DeathDelay());
+    }
+
+    IEnumerator DeathDelay()
+    {
+        yield return new WaitForSeconds(4);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private void AnimationHandler()
+    {
+        if (_playerAnimator)
+        {
+            // Idle & Movement
+            _playerAnimator.SetFloat("Speed", _movementDir.normalized.magnitude);
+
+            // Dodge
+            _playerAnimator.SetBool("Dodge", _calledDodge);
+
+            // Death
+            if (_isDead)
+            {
+                _playerAnimator.SetTrigger("Death");
+            }
+        }
     }
 
 
