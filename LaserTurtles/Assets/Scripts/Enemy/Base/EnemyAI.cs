@@ -8,7 +8,7 @@ public class EnemyAI : MonoBehaviour
     // Enemy Fields
     public LayerMask GroundLayer, PlayerLayer;
     public NavMeshAgent Agent;
-    public Transform Player;
+    [HideInInspector] public Transform Player;
     [SerializeField] private HealthHandler _healthHandlerRef;
     public bool DestroyOnDeath;
 
