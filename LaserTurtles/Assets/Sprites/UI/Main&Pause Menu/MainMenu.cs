@@ -14,6 +14,12 @@ public class MainMenu : MonoBehaviour
     public GameObject creditsPanel;
 
     private InputAction escapeAction;
+    private int lastSceneIndex;
+
+    private void Start()
+    {
+        lastSceneIndex = PlayerPrefs.GetInt("LastSceneIndex", 0);
+    }
 
     private void Awake()
     {
@@ -48,7 +54,7 @@ public class MainMenu : MonoBehaviour
 
     public void Continue()
     {
-        SceneManager.LoadScene(gameScene);
+        SceneManager.LoadScene(lastSceneIndex);
     }
 
     public void Settings()
@@ -69,6 +75,11 @@ public class MainMenu : MonoBehaviour
         settingsPanel.SetActive(false);
 
         mainMenuPanel.SetActive(true);
+    }
+
+    private void OnDestroy()
+    {
+        PlayerPrefs.SetInt("LastSceneIndex", SceneManager.GetActiveScene().buildIndex);
     }
 
     public void Quit()
