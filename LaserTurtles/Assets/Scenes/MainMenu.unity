@@ -478,7 +478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaa319e349f13cc41bfcbba805787306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameScene: SampleScene
+  gameScene: CandyLevel
   mainMenuPanel: {fileID: 208757305}
   settingsPanel: {fileID: 1334891392}
   creditsPanel: {fileID: 422565405}
