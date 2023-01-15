@@ -691,7 +691,9 @@ MonoBehaviour:
   _playerCam: {fileID: 0}
   _playerAnimator: {fileID: 4976644559587137402}
   InControl: 1
-  Speed: 10
+  MaxSpeed: 10
+  _acceleration: 40
+  _deceleration: 40
   MoveType: 1
   _controlsSkewAngle: 45
   dashType: 0
@@ -719,6 +721,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f23ecd1993a43c542995e99b9265a25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _weakness: 0
+  _resistance: 0
   _healthBar: {fileID: 8353132162002614410}
   _maxHP: 100
   _currentHP: 0
