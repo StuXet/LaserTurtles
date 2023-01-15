@@ -1,36 +1,71 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.UI;
+using TMPro;
 
 public class SettingsMenu : MonoBehaviour
 {
-    PlayerController playerController;
+    public TMP_Dropdown resolutionDropdown;
+    public Toggle fullscreenToggle;
+    public TMP_Dropdown graphicsDropdown;
+    public Slider volumeSlider;
+    Resolution[] resolutions;
 
 
-    private void Awake()
+    private void Start()
     {
-        playerController = FindObjectOfType<PlayerController>();
-    }
+        resolutions = Screen.resolutions;
+        resolutionDropdown.ClearOptions();
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        MoveType(true);
-    }
-
-    public void MoveType(bool state)
-    {
-        if (!state)
+        List<string> options = new List<string>();
+        int currentResolutionIndex = 0;
+        for (int i = 0; i < resolutions.Length; i++)
         {
-            playerController.MoveType = MovementType.WorldPos;
+            string option = resolutions[i].width + " x " + resolutions[i].height;
+            options.Add(option);
+
+            if (resolutions[i].width == Screen.currentResolution.width &&
+                resolutions[i].height == Screen.currentResolution.height)
+            {
+                currentResolutionIndex = i;
+            }
         }
-        else
-        {
-            playerController.MoveType = MovementType.WorldPosTrackLook;
-        }
+        resolutionDropdown.AddOptions(options);
+        resolutionDropdown.value = currentResolutionIndex;
+        resolutionDropdown.RefreshShownValue();
+
+        fullscreenToggle.isOn = true;
+        Screen.fullScreen = fullscreenToggle.isOn;
+
+        graphicsDropdown.ClearOptions();
+        List<string> graphicsOptions = new List<string>() { "Low", "Medium", "High" };
+        graphicsDropdown.AddOptions(graphicsOptions);
+        graphicsDropdown.value = QualitySettings.GetQualityLevel();
+        graphicsDropdown.RefreshShownValue();
+
+        volumeSlider.value = AudioListener.volume;
+    }
+
+    public void SetResolution(int resolutionIndex)
+    {
+        Resolution resolution = resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
+
+    public void SetFullscreen(bool isFullscreen)
+    {
+        Screen.fullScreen = isFullscreen;
+    }
+
+    public void SetGraphics(int graphicsIndex)
+    {
+        QualitySettings.SetQualityLevel(graphicsIndex);
+    }
+
+    public void SetVolume(float volume)
+    {
+        AudioListener.volume = volume;
     }
 }
