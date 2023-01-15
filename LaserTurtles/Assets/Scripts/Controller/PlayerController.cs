@@ -328,6 +328,19 @@ public class PlayerController : MonoBehaviour
             // Idle & Movement
             _playerAnimator.SetFloat("Speed", _currentSpeed / MaxSpeed);
 
+            // Move Direction
+            if (MoveType == MovementType.WorldPos)
+            {
+                _playerAnimator.SetFloat("MoveX", 0);
+                _playerAnimator.SetFloat("MoveZ", 1);
+            }
+            else
+            {
+                _playerAnimator.SetFloat("MoveX", _movementDir.x);
+                _playerAnimator.SetFloat("MoveZ", _movementDir.z);
+            }
+
+
             // Dodge
             _playerAnimator.SetBool("Dodge", _calledDodge);
 
