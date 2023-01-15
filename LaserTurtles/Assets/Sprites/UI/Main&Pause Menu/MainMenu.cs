@@ -49,7 +49,7 @@ public class MainMenu : MonoBehaviour
 
     public void NewGame()
     {
-        SceneManager.LoadScene(gameScene);
+        SceneManager.LoadScene(1);
     }
 
     public void Continue()
