@@ -19,6 +19,15 @@ enum DamagerType
     InstaDeath
 }
 
+// 
+public enum WeaknessResistance
+{
+    normal,
+    salty,
+    spicy,
+    sweet
+}
+
 
 public class Damager : MonoBehaviour
 {
@@ -27,9 +36,11 @@ public class Damager : MonoBehaviour
     [Header("Damage")]
     [SerializeField] private CanAffect _canAffect;
     [SerializeField] private DamagerType _damagerType;
+    public WeaknessResistance weaknessResistance;
     [SerializeField] private int _lightDamageAmount;
     [SerializeField] private int _heavyDamageAmount;
     public bool UsingHeavy = false;
+    public bool UsingSpecial = false;
     public bool CanDamage = false;
 
     [Header("Knockback")]

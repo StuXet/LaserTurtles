@@ -3,26 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class MainMenu : MonoBehaviour
 {
-    public string gameScene = "SampleScene";
+    public string gameScene = "CandyLevel";
 
     public GameObject mainMenuPanel;
     public GameObject settingsPanel;
     public GameObject creditsPanel;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (creditsPanel.activeSelf || settingsPanel.activeSelf)
-            {
-                creditsPanel.SetActive(false);
-                settingsPanel.SetActive(false);
+    private InputAction escapeAction;
 
-                mainMenuPanel.SetActive(true);
-            }
+    private void Awake()
+    {
+        escapeAction = new InputAction("Escape", binding: "<Keyboard>/escape");
+        escapeAction.performed += ctx => OnEscape();
+    }
+
+    private void OnEnable()
+    {
+        escapeAction.Enable();
+    }
+
+    private void OnDisable()
+    {
+        escapeAction.Disable();
+    }
+
+    private void OnEscape()
+    {
+        if (creditsPanel.activeSelf || settingsPanel.activeSelf)
+        {
+            creditsPanel.SetActive(false);
+            settingsPanel.SetActive(false);
+            mainMenuPanel.SetActive(true);
         }
     }
 
@@ -30,7 +45,7 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(gameScene);
     }
-    
+
     public void Continue()
     {
         SceneManager.LoadScene(gameScene);
@@ -58,6 +73,9 @@ public class MainMenu : MonoBehaviour
 
     public void Quit()
     {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
         Application.Quit();
         Debug.Log("Quit");
     }

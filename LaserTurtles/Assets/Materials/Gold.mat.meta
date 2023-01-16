@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:LaserTurtles/Assets/Materials/Gold.mat.meta
+guid: 1ae955badc2c11a469028d2b5d6543b5
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+========
+guid: 88b479cd9a56c3041a7a0e2388cf9c0d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+>>>>>>>> Mark:LaserTurtles/Assets/Models/Main Character/Character Rigged.controller.meta
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

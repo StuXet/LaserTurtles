@@ -8,20 +8,33 @@ public class HealthHandler : MonoBehaviour
 {
     public event EventHandler OnDeathOccured;
 
-    private HealthSystem _healthSystem;
-
+    public HealthSystem _healthSystem;
+    [SerializeField] private WeaknessResistance _weakness;
+    [SerializeField] private WeaknessResistance _resistance;
     [SerializeField] private HealthBar _healthBar;
     [SerializeField] private int _maxHP;
     [SerializeField] private int _currentHP;
     [Header("Knockback")]
     [SerializeField] bool knockbackable = true;
     [SerializeField] float kbMass;
+    private bool isKnockedBack;
+    private float kbDelay = 0.2f;
+    private float kbTimer;
 
     private void Awake()
     {
         _healthSystem = new HealthSystem(_maxHP);
         if (_healthBar != null) _healthBar.Setup(_healthSystem);
         _healthSystem.OnDeath += _healthSystem_OnDeath;
+    }
+
+    private void FixedUpdate()
+    {
+        kbTimer -= Time.fixedDeltaTime;
+        if (isKnockedBack && kbTimer <= 0)
+        {
+            ResetKB();
+        }
     }
 
     private void _healthSystem_OnDeath(object sender, System.EventArgs e)
@@ -64,7 +77,18 @@ public class HealthHandler : MonoBehaviour
                         {
                             Knockback(tempDamager, false);
                         }
-                        _healthSystem.Damage(tempDamager.LightDamageAmount);
+                        if (_weakness == tempDamager.weaknessResistance)
+                        {
+                            _healthSystem.Damage(tempDamager.LightDamageAmount * 2);
+                        }
+                        else if (_resistance == tempDamager.weaknessResistance)
+                        {
+                            _healthSystem.Damage(tempDamager.LightDamageAmount / 2);
+                        }
+                        else
+                        {
+                            _healthSystem.Damage(tempDamager.LightDamageAmount);
+                        }
                     }
                     else
                     {
@@ -72,7 +96,19 @@ public class HealthHandler : MonoBehaviour
                         {
                             Knockback(tempDamager, true);
                         }
-                        _healthSystem.Damage(tempDamager.HeavyDamageAmount);
+
+                        if (_weakness == tempDamager.weaknessResistance)
+                        {
+                            _healthSystem.Damage(tempDamager.HeavyDamageAmount * 2);
+                        }
+                        else if (_resistance == tempDamager.weaknessResistance)
+                        {
+                            _healthSystem.Damage(tempDamager.HeavyDamageAmount / 2);
+                        }
+                        else
+                        {
+                            _healthSystem.Damage(tempDamager.HeavyDamageAmount);
+                        }
                         tempDamager.UsingHeavy = false;
                     }
                 }
@@ -109,6 +145,7 @@ public class HealthHandler : MonoBehaviour
         Rigidbody rb = GetComponent<Rigidbody>();
         EnemyAI eAI = GetComponent<EnemyAI>();
         NavMeshAgent navAgent = GetComponent<NavMeshAgent>();
+        kbTimer = kbDelay;
         if (!rb)
         {
             gameObject.AddComponent<Rigidbody>();
@@ -142,7 +179,8 @@ public class HealthHandler : MonoBehaviour
             rb.AddForce(knockBackDir, ForceMode.VelocityChange);
 
         }
-        StartCoroutine(ResetKnockback(damager.KnockbackStunTime));
+        //StartCoroutine(ResetKnockback(damager.KnockbackStunTime));
+        isKnockedBack = true;
     }
 
     //Resets enemy AI and rigidbody to their origianl state if rigidbody's velocity reaches zero
@@ -160,6 +198,24 @@ public class HealthHandler : MonoBehaviour
 
                 eAI.enabled = true;
                 navAgent.enabled = true;
+            }
+        }
+    }
+
+    private void ResetKB()
+    {
+        Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+        NavMeshAgent navAgent = GetComponent<NavMeshAgent>();
+        EnemyAI eAI = gameObject.GetComponent<EnemyAI>();
+        if (rb && eAI && navAgent)
+        {
+            if (!rb.isKinematic && rb.detectCollisions && !eAI.enabled && rb.velocity == Vector3.zero)
+            {
+                rb.isKinematic = true;
+
+                eAI.enabled = true;
+                navAgent.enabled = true;
+                isKnockedBack = false;
             }
         }
     }
