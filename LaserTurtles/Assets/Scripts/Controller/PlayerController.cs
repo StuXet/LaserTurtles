@@ -40,13 +40,21 @@ public class PlayerController : MonoBehaviour
     private bool _isDead = false;
 
     [Header("Movement & Looking")]
-    public float Speed = 10.0f;
+    public float MaxSpeed = 10.0f;
+    private float _currentSpeed;
+    [SerializeField] private float _acceleration = 40;
+    [SerializeField] private float _deceleration = 40;
     public MovementType MoveType = MovementType.WorldPos;
     [Range(0, 359)]
     [SerializeField] int _controlsSkewAngle = 45;
     private Matrix4x4 _matrixRot;
     private Vector3 _movementDir;
     private Vector3 _skewedMoveDir;
+    private Vector3 _lastSkewedMoveDir;
+    private Vector3 _mousePosDelta;
+    private int _mouseAngleDelta;
+    private int _moveAngleDelta;
+    private int _mouseMoveAngleDelta;
 
     [Header("Dodge")]
     public DodgeType dashType = DodgeType.ToMoveDirection;
@@ -56,7 +64,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float dodgeDuration = 0.2f;
     private float dodgeDurationTimer;
     [SerializeField] float dodgeSpeed = 50;
-    private Vector3 _cachedSkewedDir;
     [HideInInspector] public bool isDodging;
     private bool _canDodge;
     private bool _calledDodge;
@@ -109,7 +116,7 @@ public class PlayerController : MonoBehaviour
 
     public void IncreaseMaxSpeed(float speedIncrease)
     {
-        Speed += speedIncrease;
+        MaxSpeed += speedIncrease;
     }
 
     // Created Methods
@@ -119,9 +126,39 @@ public class PlayerController : MonoBehaviour
         // Rotating Axis to Up
         _skewedMoveDir = _matrixRot.MultiplyPoint3x4(_movementDir).normalized;
 
+        if (_movementDir != Vector3.zero)
+        {
+            _lastSkewedMoveDir = _skewedMoveDir;
+        }
 
         // Move, Normalise and make Vector proportional to the Speed per second.
-        _charCon.Move(_skewedMoveDir * Speed * Time.deltaTime);
+
+        if (_movementDir != Vector3.zero)
+        {
+            if (_currentSpeed < MaxSpeed)
+            {
+                _currentSpeed += _acceleration * Time.deltaTime;
+            }
+            else if (_currentSpeed >= MaxSpeed)
+            {
+                _currentSpeed = MaxSpeed;
+            }
+        }
+        else
+        {
+            if (_currentSpeed > 0)
+            {
+                _currentSpeed -= _deceleration * Time.deltaTime;
+            }
+            else
+            {
+                _currentSpeed = 0;
+            }
+        }
+
+        _charCon.Move(_lastSkewedMoveDir * _currentSpeed * Time.deltaTime);
+
+        _moveAngleDelta = (int)(Mathf.Atan2(_lastSkewedMoveDir.x, _lastSkewedMoveDir.z) * Mathf.Rad2Deg) + 180;
     }
 
     private void RotateToCursor()
@@ -140,6 +177,10 @@ public class PlayerController : MonoBehaviour
                 target.y = transform.position.y;
                 transform.LookAt(target);
             }
+
+            _mousePosDelta = new Vector3((mousePos.x - Screen.width / 2) / (Screen.width / 2), 0, (mousePos.y - Screen.height / 2) / (Screen.height / 2)).normalized;
+            _mousePosDelta = _matrixRot.MultiplyPoint3x4(_mousePosDelta);
+            _mouseAngleDelta = (int)(Mathf.Atan2(_mousePosDelta.x, _mousePosDelta.z) * Mathf.Rad2Deg) + 180;
         }
         else
         {
@@ -150,8 +191,12 @@ public class PlayerController : MonoBehaviour
             {
                 float angles = Mathf.Atan2(delta.x, delta.z) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.Euler(0, angles, 0);
+
+                _mouseAngleDelta = (int)angles + 180;
             }
         }
+
+        _mouseMoveAngleDelta = _mouseAngleDelta - _moveAngleDelta;
     }
 
     void MovementManager()
@@ -202,12 +247,6 @@ public class PlayerController : MonoBehaviour
             _dodgeCooldownTimer += Time.deltaTime;
         }
 
-        //Gets a direction for the dodge when player stands still
-        if (_movementDir.magnitude != 0)
-        {
-            _cachedSkewedDir = _skewedMoveDir;
-        }
-
         // Dodging Code
         if (_canDodge && _calledDodge)
         {
@@ -215,9 +254,9 @@ public class PlayerController : MonoBehaviour
             Vector3 dodgeDir;
             if (dashType == DodgeType.ToMoveDirection) //Sets Dodge direction to movement direction
             {
-                if (_cachedSkewedDir != Vector3.zero)
+                if (_lastSkewedMoveDir != Vector3.zero)
                 {
-                    dodgeDir = _cachedSkewedDir;
+                    dodgeDir = _lastSkewedMoveDir;
                 }
                 else
                 {
@@ -301,7 +340,43 @@ public class PlayerController : MonoBehaviour
         if (_playerAnimator)
         {
             // Idle & Movement
-            _playerAnimator.SetFloat("Speed", _movementDir.normalized.magnitude);
+            _playerAnimator.SetFloat("Speed", _currentSpeed / MaxSpeed);
+
+            // Move Direction
+            if (MoveType == MovementType.WorldPos)
+            {
+                _playerAnimator.SetFloat("MoveX", 0);
+                _playerAnimator.SetFloat("MoveZ", 1);
+            }
+            else
+            {
+                if ((_mouseMoveAngleDelta <= 45 && _mouseMoveAngleDelta >= -45))
+                {
+                    _playerAnimator.SetFloat("MoveZ", 1);
+                }
+                else if (_mouseMoveAngleDelta <= 225 && _mouseMoveAngleDelta >= 135 || _mouseMoveAngleDelta <= -135 && _mouseMoveAngleDelta >= -225)
+                {
+                    _playerAnimator.SetFloat("MoveZ", -1);
+                }
+                //else
+                //{
+                //    _playerAnimator.SetFloat("MoveZ", 0);
+                //}
+
+                //if (_mouseMoveAngleDelta < -45 && _mouseMoveAngleDelta > -135)
+                //{
+                //    _playerAnimator.SetFloat("MoveX", 1);
+                //}
+                //else if (_mouseMoveAngleDelta < 135 && _mouseMoveAngleDelta > 45)
+                //{
+                //    _playerAnimator.SetFloat("MoveX", -1);
+                //}
+                //else
+                //{
+                //    _playerAnimator.SetFloat("MoveX", 0);
+                //}
+            }
+
 
             // Dodge
             _playerAnimator.SetBool("Dodge", _calledDodge);

@@ -11,7 +11,7 @@ public class SpeedAdderCollectable : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             PlayerController playerController = other.gameObject.GetComponent<PlayerController>();
-            playerController.Speed += speedToAdd;
+            playerController.MaxSpeed += speedToAdd;
             Destroy(gameObject);
         }
     }
