@@ -51,6 +51,10 @@ public class PlayerController : MonoBehaviour
     private Vector3 _movementDir;
     private Vector3 _skewedMoveDir;
     private Vector3 _lastSkewedMoveDir;
+    private Vector3 _mousePosDelta;
+    private int _mouseAngleDelta;
+    private int _moveAngleDelta;
+    private int _mouseMoveAngleDelta;
 
     [Header("Dodge")]
     public DodgeType dashType = DodgeType.ToMoveDirection;
@@ -153,6 +157,8 @@ public class PlayerController : MonoBehaviour
         }
 
         _charCon.Move(_lastSkewedMoveDir * _currentSpeed * Time.deltaTime);
+
+        _moveAngleDelta = (int)(Mathf.Atan2(_lastSkewedMoveDir.x, _lastSkewedMoveDir.z) * Mathf.Rad2Deg) + 180;
     }
 
     private void RotateToCursor()
@@ -171,6 +177,10 @@ public class PlayerController : MonoBehaviour
                 target.y = transform.position.y;
                 transform.LookAt(target);
             }
+
+            _mousePosDelta = new Vector3((mousePos.x - Screen.width / 2) / (Screen.width / 2), 0, (mousePos.y - Screen.height / 2) / (Screen.height / 2)).normalized;
+            _mousePosDelta = _matrixRot.MultiplyPoint3x4(_mousePosDelta);
+            _mouseAngleDelta = (int)(Mathf.Atan2(_mousePosDelta.x, _mousePosDelta.z) * Mathf.Rad2Deg) + 180;
         }
         else
         {
@@ -181,8 +191,12 @@ public class PlayerController : MonoBehaviour
             {
                 float angles = Mathf.Atan2(delta.x, delta.z) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.Euler(0, angles, 0);
+
+                _mouseAngleDelta = (int)angles + 180;
             }
         }
+
+        _mouseMoveAngleDelta = _mouseAngleDelta - _moveAngleDelta;
     }
 
     void MovementManager()
@@ -336,8 +350,31 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                _playerAnimator.SetFloat("MoveX", _movementDir.x);
-                _playerAnimator.SetFloat("MoveZ", _movementDir.z);
+                if ((_mouseMoveAngleDelta <= 45 && _mouseMoveAngleDelta >= -45))
+                {
+                    _playerAnimator.SetFloat("MoveZ", 1);
+                }
+                else if (_mouseMoveAngleDelta <= 225 && _mouseMoveAngleDelta >= 135 || _mouseMoveAngleDelta <= -135 && _mouseMoveAngleDelta >= -225)
+                {
+                    _playerAnimator.SetFloat("MoveZ", -1);
+                }
+                //else
+                //{
+                //    _playerAnimator.SetFloat("MoveZ", 0);
+                //}
+
+                //if (_mouseMoveAngleDelta < -45 && _mouseMoveAngleDelta > -135)
+                //{
+                //    _playerAnimator.SetFloat("MoveX", 1);
+                //}
+                //else if (_mouseMoveAngleDelta < 135 && _mouseMoveAngleDelta > 45)
+                //{
+                //    _playerAnimator.SetFloat("MoveX", -1);
+                //}
+                //else
+                //{
+                //    _playerAnimator.SetFloat("MoveX", 0);
+                //}
             }
 
 
