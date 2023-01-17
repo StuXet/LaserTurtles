@@ -8,8 +8,9 @@ public class HealthHandler : MonoBehaviour
 {
     public event EventHandler OnDeathOccured;
 
-    private HealthSystem _healthSystem;
-
+    public HealthSystem _healthSystem;
+    [SerializeField] private WeaknessResistance _weakness;
+    [SerializeField] private WeaknessResistance _resistance;
     [SerializeField] private HealthBar _healthBar;
     [SerializeField] private int _maxHP;
     [SerializeField] private int _currentHP;
@@ -76,7 +77,18 @@ public class HealthHandler : MonoBehaviour
                         {
                             Knockback(tempDamager, false);
                         }
-                        _healthSystem.Damage(tempDamager.LightDamageAmount);
+                        if (_weakness == tempDamager.weaknessResistance)
+                        {
+                            _healthSystem.Damage(tempDamager.LightDamageAmount * 2);
+                        }
+                        else if (_resistance == tempDamager.weaknessResistance)
+                        {
+                            _healthSystem.Damage(tempDamager.LightDamageAmount / 2);
+                        }
+                        else
+                        {
+                            _healthSystem.Damage(tempDamager.LightDamageAmount);
+                        }
                     }
                     else
                     {
@@ -84,7 +96,19 @@ public class HealthHandler : MonoBehaviour
                         {
                             Knockback(tempDamager, true);
                         }
-                        _healthSystem.Damage(tempDamager.HeavyDamageAmount);
+
+                        if (_weakness == tempDamager.weaknessResistance)
+                        {
+                            _healthSystem.Damage(tempDamager.HeavyDamageAmount * 2);
+                        }
+                        else if (_resistance == tempDamager.weaknessResistance)
+                        {
+                            _healthSystem.Damage(tempDamager.HeavyDamageAmount / 2);
+                        }
+                        else
+                        {
+                            _healthSystem.Damage(tempDamager.HeavyDamageAmount);
+                        }
                         tempDamager.UsingHeavy = false;
                     }
                 }
