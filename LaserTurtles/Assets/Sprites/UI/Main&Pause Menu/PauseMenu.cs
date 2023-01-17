@@ -10,6 +10,12 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject settingsMenu;
 
+    private void Start()
+    {
+        SaveGame();
+        Time.timeScale = 1;
+    }
+
     private void Update()
     {
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
