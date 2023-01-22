@@ -2,19 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
     public GameObject settingsMenu;
 
+    private void Start()
+    {
+        SaveGame();
+        Time.timeScale = 1;
+    }
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             if (settingsMenu.activeSelf)
             {
-                // Close the settings menu and show the pause menu
                 settingsMenu.SetActive(false);
                 pauseMenu.SetActive(true);
             }
@@ -44,7 +51,7 @@ public class PauseMenu : MonoBehaviour
     public void RestartGame()
     {
         Time.timeScale = 1;
-        // Add code here to restart the game
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void Settings()
@@ -58,6 +65,17 @@ public class PauseMenu : MonoBehaviour
         settingsMenu.SetActive(false);
 
         pauseMenu.SetActive(true);
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void SaveGame()
+    {
+        PlayerPrefs.SetInt("LastSceneIndex", SceneManager.GetActiveScene().buildIndex);
+        PlayerPrefs.Save();
     }
 
     public void QuitGame()
