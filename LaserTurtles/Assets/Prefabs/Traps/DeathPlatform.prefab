@@ -129,9 +129,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canAffect: 2
   _damagerType: 2
+  weaknessResistance: 0
   _lightDamageAmount: 0
   _heavyDamageAmount: 0
   UsingHeavy: 0
+  UsingSpecial: 0
   CanDamage: 1
   _knockbackPower: 2
   _knockbackHeight: 1
