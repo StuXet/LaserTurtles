@@ -50,6 +50,11 @@ PrefabInstance:
       propertyPath: _objToFollow
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8250697211932938710, guid: 4cd587ed70b22cb41ab277cdbfc7f51d,
+        type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8250697211932938711, guid: 4cd587ed70b22cb41ab277cdbfc7f51d,
         type: 3}
       propertyPath: m_RootOrder

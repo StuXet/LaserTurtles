@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public string playerTag;
+    public string playerTag = "Player";
     public List<GameObject> enemyPrefabs;
     public List<int> enemyCounts;
     public Vector3 range;
@@ -29,5 +30,11 @@ public class EnemySpawner : MonoBehaviour
             }
             spawned = true;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(transform.position, range);
     }
 }
