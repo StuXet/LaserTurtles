@@ -14,6 +14,12 @@ public class HealthHandler : MonoBehaviour
     [SerializeField] private HealthBar _healthBar;
     [SerializeField] private int _maxHP;
     [SerializeField] private int _currentHP;
+    [Header("Damage Popup")]
+    [SerializeField] private GameObject _dmgPopup;
+    [SerializeField] private int _dmgPopupYoffset;
+    [SerializeField] private Color _normalDmgColor;
+    [SerializeField] private Color _resDmgColor;
+    [SerializeField] private Color _weakDmgColor;
     [Header("Knockback")]
     [SerializeField] bool knockbackable = true;
     [SerializeField] float kbMass;
@@ -80,14 +86,17 @@ public class HealthHandler : MonoBehaviour
                         if (_weakness == tempDamager.weaknessResistance)
                         {
                             _healthSystem.Damage(tempDamager.LightDamageAmount * 2);
+                            EnemyDmgPopUp(tempDamager.LightDamageAmount * 2, _weakDmgColor, gameObject.tag);
                         }
                         else if (_resistance == tempDamager.weaknessResistance)
                         {
                             _healthSystem.Damage(tempDamager.LightDamageAmount / 2);
+                            EnemyDmgPopUp(tempDamager.LightDamageAmount / 2, _resDmgColor, gameObject.tag);
                         }
                         else
                         {
                             _healthSystem.Damage(tempDamager.LightDamageAmount);
+                            EnemyDmgPopUp(tempDamager.LightDamageAmount, _normalDmgColor, gameObject.tag);
                         }
                     }
                     else
@@ -100,14 +109,17 @@ public class HealthHandler : MonoBehaviour
                         if (_weakness == tempDamager.weaknessResistance)
                         {
                             _healthSystem.Damage(tempDamager.HeavyDamageAmount * 2);
+                            EnemyDmgPopUp(tempDamager.HeavyDamageAmount * 2, _weakDmgColor, gameObject.tag);
                         }
                         else if (_resistance == tempDamager.weaknessResistance)
                         {
                             _healthSystem.Damage(tempDamager.HeavyDamageAmount / 2);
+                            EnemyDmgPopUp(tempDamager.HeavyDamageAmount / 2, _resDmgColor, gameObject.tag);
                         }
                         else
                         {
                             _healthSystem.Damage(tempDamager.HeavyDamageAmount);
+                            EnemyDmgPopUp(tempDamager.HeavyDamageAmount, _normalDmgColor, gameObject.tag);
                         }
                         tempDamager.UsingHeavy = false;
                     }
@@ -217,6 +229,17 @@ public class HealthHandler : MonoBehaviour
                 navAgent.enabled = true;
                 isKnockedBack = false;
             }
+        }
+    }
+
+    private void EnemyDmgPopUp(int dmg, Color txtColor, string tag)
+    {
+        if (tag == "Enemy")
+        {
+            Instantiate(_dmgPopup, new Vector3(transform.position.x, transform.position.y + _dmgPopupYoffset, transform.position.z), Quaternion.identity, transform);
+            TextMesh dmgText = _dmgPopup.GetComponent<TextMesh>();
+            dmgText.text = dmg.ToString();
+            dmgText.color = txtColor;
         }
     }
 }

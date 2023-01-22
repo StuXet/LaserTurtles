@@ -6,7 +6,8 @@ public enum ItemType
 {
     Melee,
     Ranged,
-    Consumable
+    Consumable,
+    Coin
 }
 
 [CreateAssetMenu(menuName = "Scriptable Object/InventoryItemData")]

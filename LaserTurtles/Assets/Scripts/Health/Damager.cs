@@ -25,7 +25,8 @@ public enum WeaknessResistance
     normal,
     salty,
     spicy,
-    sweet
+    sweet,
+    none
 }
 
 

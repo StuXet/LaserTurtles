@@ -15,10 +15,17 @@ public class ItemObject : MonoBehaviour
         if (CanBePicked)
         {
             PlayerInventoryRef = inventoryRef;
-            if (!PlayerInventoryRef.CheckIfInInventory(ReferenceItem) || ReferenceItem.IsStackable)
+            if (ReferenceItem.Type != ItemType.Coin)
             {
-                PlayerInventoryRef.Add(ReferenceItem);
-                Destroy(gameObject);
+                if (!PlayerInventoryRef.CheckIfInInventory(ReferenceItem) || ReferenceItem.IsStackable)
+                {
+                    PlayerInventoryRef.Add(ReferenceItem);
+                    Destroy(gameObject);
+                }
+            }
+            else
+            {
+
             }
         }
     }
