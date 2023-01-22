@@ -7,7 +7,7 @@ public class ObjectivesContainer : MonoBehaviour
     public static ObjectivesContainer Instance;
     
     
-    [SerializeField] private List<ObjectiveBase> _objectivesList;
+    [SerializeField] private List<ObjectiveBase> _objectivesList = new List<ObjectiveBase>();
     public List<ObjectiveBase> ObjectivesList { get => _objectivesList;}
 
 
@@ -20,6 +20,13 @@ public class ObjectivesContainer : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+
+        ObjectiveBase[] tempList = GetComponentsInChildren<ObjectiveBase>();
+
+        foreach (ObjectiveBase obj in tempList)
+        {
+            ObjectivesList.Add(obj);
         }
     }
 }
