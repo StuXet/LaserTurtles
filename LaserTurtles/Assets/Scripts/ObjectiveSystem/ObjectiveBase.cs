@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ObjectiveBase : MonoBehaviour
 {
+    [SerializeField] private string _objectiveName;
+
     private bool _beganObjective;
     private bool _requirementMet;
     private bool _completedObjective;
-
-    [SerializeField] private string _objectiveName;
 
     public bool BeganObjective { get => _beganObjective;}
     public bool CompletedObjective { get => _completedObjective;}
