@@ -13,7 +13,6 @@ public class SettingsMenu : MonoBehaviour
     public Slider volumeSlider;
     Resolution[] resolutions;
 
-
     private void Start()
     {
         resolutions = Screen.resolutions;
@@ -33,39 +32,43 @@ public class SettingsMenu : MonoBehaviour
             }
         }
         resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentResolutionIndex;
+        resolutionDropdown.value = PlayerPrefs.GetInt("Resolution", currentResolutionIndex);
         resolutionDropdown.RefreshShownValue();
 
-        fullscreenToggle.isOn = true;
+        fullscreenToggle.isOn = PlayerPrefs.GetInt("Fullscreen", 1) == 1;
         Screen.fullScreen = fullscreenToggle.isOn;
 
         graphicsDropdown.ClearOptions();
         List<string> graphicsOptions = new List<string>() { "Low", "Medium", "High" };
         graphicsDropdown.AddOptions(graphicsOptions);
-        graphicsDropdown.value = QualitySettings.GetQualityLevel();
+        graphicsDropdown.value = PlayerPrefs.GetInt("Graphics", QualitySettings.GetQualityLevel());
         graphicsDropdown.RefreshShownValue();
 
-        volumeSlider.value = AudioListener.volume;
+        volumeSlider.value = PlayerPrefs.GetFloat("Volume", AudioListener.volume);
     }
 
     public void SetResolution(int resolutionIndex)
     {
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        PlayerPrefs.SetInt("Resolution", resolutionIndex);
     }
 
     public void SetFullscreen(bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;
+        PlayerPrefs.SetInt("Fullscreen", isFullscreen ? 1 : 0);
     }
 
     public void SetGraphics(int graphicsIndex)
     {
         QualitySettings.SetQualityLevel(graphicsIndex);
+        PlayerPrefs.SetInt("Graphics", graphicsIndex);
     }
 
     public void SetVolume(float volume)
     {
         AudioListener.volume = volume;
+        PlayerPrefs.SetFloat("Volume", volume);
     }
 }
