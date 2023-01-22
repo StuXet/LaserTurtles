@@ -25,7 +25,7 @@ public class ItemObject : MonoBehaviour
             }
             else
             {
-                PlayerInventoryRef.WalletRef.AddCoins(1);
+                PlayerInventoryRef.WalletRef.AddCoins(ReferenceItem.Value);
                 Destroy(gameObject);
             }
         }
