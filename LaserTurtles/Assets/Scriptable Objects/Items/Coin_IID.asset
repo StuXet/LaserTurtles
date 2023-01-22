@@ -18,4 +18,5 @@ MonoBehaviour:
   Prefab: {fileID: 154455731916256318, guid: ecbe748137f72a14396bbee4ebf88940, type: 3}
   Type: 3
   IsStackable: 1
+  Value: 1
   Description: Bling Bling!
