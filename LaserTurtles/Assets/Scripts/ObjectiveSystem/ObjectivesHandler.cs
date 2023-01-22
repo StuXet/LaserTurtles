@@ -8,8 +8,17 @@ public class ObjectivesHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _textUI;
     private string _currentObjectiveText;
 
-    private List<ObjectiveBase> _objectivesList;
+    private ObjectivesContainer _objectivesContainer;
+    private List<ObjectiveBase> _objectivesList = new List<ObjectiveBase>();
     private ObjectiveBase _currentObjective;
+    private int _currentObjectiveIndex;
+
+
+    private void Awake()
+    {
+        _objectivesContainer = FindObjectOfType<ObjectivesContainer>();
+        //_objectivesList = _objectivesContainer.ObjectivesList;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +29,7 @@ public class ObjectivesHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckStatus();
         RenewText();
     }
 
@@ -32,7 +42,7 @@ public class ObjectivesHandler : MonoBehaviour
 
         if (_currentObjective != null)
         {
-            _textUI.text = _currentObjectiveText;
+            _textUI.text = "Objective: " + _currentObjectiveText;
         }
         else
         {
@@ -40,28 +50,38 @@ public class ObjectivesHandler : MonoBehaviour
         }
     }
 
-    private bool CheckCurrentObjectiveCompletion()
+    private void CheckStatus()
     {
-        if (_currentObjective.CompletedObjective)
+        if (_objectivesList.Count > 0)
         {
-            _currentObjective = null;
-            return true;
+            if (_currentObjectiveIndex == 0)
+            {
+                _currentObjective = null;
+            }
+            else
+            {
+                _currentObjective = _objectivesList[_currentObjectiveIndex - 1];
+            }
+
+
+            if (_currentObjective != null)
+            {
+                if (_currentObjective.CompletedObjective)
+                {
+                    _currentObjectiveIndex--;
+                }
+            }
         }
-        return false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out ObjectiveBase objective))
         {
-            if (!_objectivesList.Contains(objective))
+            if (!objective.CompletedObjective && !_objectivesList.Contains(objective))
             {
                 _objectivesList.Add(objective);
-                if (_objectivesList.Count == 1)
-                {
-                    _currentObjective = _objectivesList[0];
-                    _currentObjective.BeginObjective();
-                }
+                _currentObjectiveIndex = _objectivesList.Count;
             }
         }
     }

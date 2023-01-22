@@ -10,28 +10,26 @@ public class ObjectiveBase : MonoBehaviour
 
     [SerializeField] private string _objectiveName;
 
+    public bool BeganObjective { get => _beganObjective;}
     public bool CompletedObjective { get => _completedObjective;}
+    public bool RequirementMet { get => _requirementMet;}
     public string ObjectiveName { get => _objectiveName;}
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void BeginObjective()
     {
         _beganObjective = true;
     }
 
-    private void FinishObjective()
+    public void ObjectiveRequirementMet()
+    {
+        if (_beganObjective)
+        {
+            _requirementMet = true;
+        }
+    }
+
+    public void FinishedObjective()
     {
         if (_beganObjective && _requirementMet)
         {
