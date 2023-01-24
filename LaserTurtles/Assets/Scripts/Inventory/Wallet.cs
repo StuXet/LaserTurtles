@@ -1,12 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Wallet : MonoBehaviour
 {
-    private int _coins;
+    [SerializeField] private TextMeshProUGUI _coinsText;
+
+    [SerializeField] private int _coins;
 
     public int Coins { get => _coins; }
+
+
+    private void Update()
+    {
+        _coinsText.text = _coins.ToString();
+    }
+
 
     public void AddCoins(int amount)
     {

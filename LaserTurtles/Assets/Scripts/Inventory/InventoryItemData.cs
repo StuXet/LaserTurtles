@@ -19,6 +19,7 @@ public class InventoryItemData : ScriptableObject
     public GameObject Prefab;
     public ItemType Type;
     public bool IsStackable;
+    public int Value;
     [TextArea(5,20)]
     public string Description;
 }

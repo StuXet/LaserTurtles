@@ -7,8 +7,6 @@ using UnityEngine.InputSystem;
 
 public class MainMenu : MonoBehaviour
 {
-    public string gameScene = "CandyLevel";
-
     public GameObject mainMenuPanel;
     public GameObject settingsPanel;
     public GameObject creditsPanel;
@@ -49,7 +47,7 @@ public class MainMenu : MonoBehaviour
 
     public void NewGame()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene(1);
     }
 
     public void Continue()

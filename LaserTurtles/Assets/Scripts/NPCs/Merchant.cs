@@ -31,7 +31,7 @@ public class Merchant : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        pWallet = player.GetComponent<Wallet>();
+        pWallet = player.GetComponentInChildren<Wallet>();
         inputManager = player.GetComponent<InputManager>();
         playerInputActions = inputManager.PlInputActions;
         playerInputActions.Player.Interact.performed += DialogueStartCheck;
