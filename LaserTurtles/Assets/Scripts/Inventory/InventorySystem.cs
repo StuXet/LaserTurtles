@@ -8,8 +8,12 @@ public class InventorySystem : MonoBehaviour
     [SerializeField] private InputManager _inputManagerRef;
     private PlayerInputActions _plInputActions;
 
-    private Dictionary<InventoryItemData, InventoryItem> m_itemDictionary;
+    [SerializeField] private Wallet _walletRef;
+    public Wallet WalletRef { get => _walletRef;}
+
     public List<InventoryItem> InventoryItems { get; private set; }
+
+    private Dictionary<InventoryItemData, InventoryItem> m_itemDictionary;
 
     private ItemObject _currentCollisionObj;
 

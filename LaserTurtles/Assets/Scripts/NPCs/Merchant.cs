@@ -31,7 +31,7 @@ public class Merchant : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        pWallet = player.GetComponent<Wallet>();
+        pWallet = player.GetComponentInChildren<Wallet>();
         inputManager = player.GetComponent<InputManager>();
         playerInputActions = inputManager.PlInputActions;
         playerInputActions.Player.Interact.performed += DialogueStartCheck;
@@ -102,11 +102,11 @@ public class Merchant : MonoBehaviour
 
     public void NextStage()
     {
-        if (dialogueText.text == stage1 && pWallet.coins >= swordPrice)
+        if (dialogueText.text == stage1 && pWallet.Coins >= swordPrice)
         {
             dialogueText.text = stage2t;
             //give sword
-            pWallet.coins -= swordPrice;
+            pWallet.DeductCoins(swordPrice);
         }
         else if (dialogueText.text == stage1)
         {
