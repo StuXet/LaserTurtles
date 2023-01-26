@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1938664024879654212}
   - component: {fileID: 482139829868331719}
   - component: {fileID: 4215423192701327064}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 3537023397517027731}
   - component: {fileID: 2834118846284172263}
   - component: {fileID: 1071617270546548093}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7684835299742258249}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CottonTree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
