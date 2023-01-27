@@ -9,6 +9,7 @@ public class HealthHandler : MonoBehaviour
     public event EventHandler OnDeathOccured;
 
     public HealthSystem _healthSystem;
+    [SerializeField] private Rigidbody _rb;
     [SerializeField] private WeaknessResistance _weakness;
     [SerializeField] private WeaknessResistance _resistance;
     [SerializeField] private HealthBar _healthBar;
@@ -154,14 +155,13 @@ public class HealthHandler : MonoBehaviour
     private void Knockback(Damager damager, bool isHeavy)
     {
         //Adds a rigidbody to the object if it does'nt have one
-        Rigidbody rb = GetComponent<Rigidbody>();
         EnemyAI eAI = GetComponent<EnemyAI>();
         NavMeshAgent navAgent = GetComponent<NavMeshAgent>();
         kbTimer = kbDelay;
-        if (!rb)
+        if (!_rb)
         {
             gameObject.AddComponent<Rigidbody>();
-            rb = GetComponent<Rigidbody>();
+            _rb = GetComponent<Rigidbody>();
         }
 
         if (eAI)
@@ -174,9 +174,9 @@ public class HealthHandler : MonoBehaviour
             navAgent.enabled = false;
         }
 
-        rb.isKinematic = false;
-        rb.detectCollisions = true;
-        rb.freezeRotation = true;
+        _rb.isKinematic = false;
+        _rb.detectCollisions = true;
+        _rb.freezeRotation = true;
         //rb.mass = kbMass;
 
         Vector3 knockBackDir = damager.KnockbackPower * (gameObject.transform.position - damager.transform.root.position).normalized;
@@ -184,11 +184,11 @@ public class HealthHandler : MonoBehaviour
         knockBackDir.y = damager.KnockbackHeight;
         if (isHeavy)
         {
-            rb.AddForce(knockBackDir * damager.KnockbackHeavyMultiplier, ForceMode.VelocityChange);
+            _rb.AddForce(knockBackDir * damager.KnockbackHeavyMultiplier, ForceMode.VelocityChange);
         }
         else
         {
-            rb.AddForce(knockBackDir, ForceMode.VelocityChange);
+            _rb.AddForce(knockBackDir, ForceMode.VelocityChange);
 
         }
         //StartCoroutine(ResetKnockback(damager.KnockbackStunTime));
@@ -199,14 +199,13 @@ public class HealthHandler : MonoBehaviour
     private IEnumerator ResetKnockback(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        Rigidbody rb = gameObject.GetComponent<Rigidbody>();
         NavMeshAgent navAgent = GetComponent<NavMeshAgent>();
         EnemyAI eAI = gameObject.GetComponent<EnemyAI>();
-        if (rb && eAI && navAgent)
+        if (_rb && eAI && navAgent)
         {
-            if (!rb.isKinematic && rb.detectCollisions && !eAI.enabled && rb.velocity == Vector3.zero)
+            if (!_rb.isKinematic && _rb.detectCollisions && !eAI.enabled && _rb.velocity == Vector3.zero)
             {
-                rb.isKinematic = true;
+                _rb.isKinematic = true;
 
                 eAI.enabled = true;
                 navAgent.enabled = true;
@@ -216,14 +215,13 @@ public class HealthHandler : MonoBehaviour
 
     private void ResetKB()
     {
-        Rigidbody rb = gameObject.GetComponent<Rigidbody>();
         NavMeshAgent navAgent = GetComponent<NavMeshAgent>();
         EnemyAI eAI = gameObject.GetComponent<EnemyAI>();
-        if (rb && eAI && navAgent)
+        if (_rb && eAI && navAgent)
         {
-            if (!rb.isKinematic && rb.detectCollisions && !eAI.enabled && rb.velocity == Vector3.zero)
+            if (!_rb.isKinematic && _rb.detectCollisions && !eAI.enabled && _rb.velocity == Vector3.zero)
             {
-                rb.isKinematic = true;
+                _rb.isKinematic = true;
 
                 eAI.enabled = true;
                 navAgent.enabled = true;
