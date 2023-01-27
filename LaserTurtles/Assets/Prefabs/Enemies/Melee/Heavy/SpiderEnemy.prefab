@@ -43,7 +43,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 603221281009302736}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 1.5
@@ -61,11 +61,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f23ecd1993a43c542995e99b9265a25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rb: {fileID: 0}
   _weakness: 0
   _resistance: 0
   _healthBar: {fileID: 2698481246451724336}
   _maxHP: 100
   _currentHP: 0
+  _dmgPopup: {fileID: 4823436943637356501, guid: 4e085fcee1859f042a0f4eff7a3538ea,
+    type: 3}
+  _dmgPopupYOffset: 2
+  _normalDmgColor: {r: 1, g: 1, b: 1, a: 1}
+  _resDmgColor: {r: 1, g: 0, b: 1, a: 1}
+  _weakDmgColor: {r: 1, g: 0, b: 0, a: 1}
   knockbackable: 1
   kbMass: 0
 --- !u!1 &1774903017516284688
@@ -180,7 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canAffect: 0
   _damagerType: 0
-  weaknessResistance: 0
+  _modifierType: 0
   _lightDamageAmount: 20
   _heavyDamageAmount: 0
   UsingHeavy: 0

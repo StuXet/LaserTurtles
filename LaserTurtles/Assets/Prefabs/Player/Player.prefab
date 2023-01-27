@@ -731,10 +731,10 @@ MonoBehaviour:
   _maxHP: 100
   _currentHP: 0
   _dmgPopup: {fileID: 0}
-  _dmgPopupYoffset: 0
-  _normalDmgColor: {r: 0, g: 0, b: 0, a: 0}
-  _resDmgColor: {r: 0, g: 0, b: 0, a: 0}
-  _weakDmgColor: {r: 0, g: 0, b: 0, a: 0}
+  _dmgPopupYOffset: 2
+  _normalDmgColor: {r: 1, g: 1, b: 1, a: 1}
+  _resDmgColor: {r: 1, g: 0, b: 1, a: 1}
+  _weakDmgColor: {r: 1, g: 0, b: 0, a: 1}
   knockbackable: 0
   kbMass: 0
 --- !u!114 &878156989

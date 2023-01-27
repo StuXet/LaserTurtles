@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -17,10 +18,10 @@ public class HealthHandler : MonoBehaviour
     [SerializeField] private int _currentHP;
     [Header("Damage Popup")]
     [SerializeField] private GameObject _dmgPopup;
-    [SerializeField] private int _dmgPopupYoffset;
-    [SerializeField] private Color _normalDmgColor;
-    [SerializeField] private Color _resDmgColor;
-    [SerializeField] private Color _weakDmgColor;
+    [SerializeField] private float _dmgPopupYOffset = 2;
+    [SerializeField] private Color _normalDmgColor = Color.white;
+    [SerializeField] private Color _resDmgColor = Color.magenta;
+    [SerializeField] private Color _weakDmgColor = Color.red;
     [Header("Knockback")]
     [SerializeField] bool knockbackable = true;
     [SerializeField] float kbMass;
@@ -173,45 +174,42 @@ public class HealthHandler : MonoBehaviour
     // --------------------
     private void Knockback(Damager damager, bool isHeavy)
     {
-        //Adds a rigidbody to the object if it does'nt have one
-        EnemyAI eAI = GetComponent<EnemyAI>();
-        NavMeshAgent navAgent = GetComponent<NavMeshAgent>();
-        kbTimer = kbDelay;
-        if (!_rb)
+        if (_rb)
         {
-            gameObject.AddComponent<Rigidbody>();
-            _rb = GetComponent<Rigidbody>();
-        }
+            EnemyAI eAI = GetComponent<EnemyAI>();
+            NavMeshAgent navAgent = GetComponent<NavMeshAgent>();
+            kbTimer = kbDelay;
 
-        if (eAI)
-        {
-            eAI.enabled = false;
-        }
+            if (eAI)
+            {
+                eAI.enabled = false;
+            }
 
-        if (navAgent)
-        {
-            navAgent.enabled = false;
-        }
+            if (navAgent)
+            {
+                navAgent.enabled = false;
+            }
 
-        _rb.isKinematic = false;
-        _rb.detectCollisions = true;
-        _rb.freezeRotation = true;
-        //rb.mass = kbMass;
+            _rb.isKinematic = false;
+            _rb.detectCollisions = true;
+            _rb.freezeRotation = true;
+            //rb.mass = kbMass;
 
-        Vector3 knockBackDir = damager.KnockbackPower * (gameObject.transform.position - damager.transform.root.position).normalized;
-        //knockBackDir *= strength;
-        knockBackDir.y = damager.KnockbackHeight;
-        if (isHeavy)
-        {
-            _rb.AddForce(knockBackDir * damager.KnockbackHeavyMultiplier, ForceMode.VelocityChange);
-        }
-        else
-        {
-            _rb.AddForce(knockBackDir, ForceMode.VelocityChange);
+            Vector3 knockBackDir = damager.KnockbackPower * (gameObject.transform.position - damager.transform.root.position).normalized;
+            //knockBackDir *= strength;
+            knockBackDir.y = damager.KnockbackHeight;
+            if (isHeavy)
+            {
+                _rb.AddForce(knockBackDir * damager.KnockbackHeavyMultiplier, ForceMode.VelocityChange);
+            }
+            else
+            {
+                _rb.AddForce(knockBackDir, ForceMode.VelocityChange);
 
+            }
+            //StartCoroutine(ResetKnockback(damager.KnockbackStunTime));
+            isKnockedBack = true;
         }
-        //StartCoroutine(ResetKnockback(damager.KnockbackStunTime));
-        isKnockedBack = true;
     }
 
     //Resets enemy AI and rigidbody to their origianl state if rigidbody's velocity reaches zero
@@ -251,10 +249,10 @@ public class HealthHandler : MonoBehaviour
 
     private void EnemyDmgPopUp(int dmg, Color txtColor, string tag)
     {
-        if (tag == "Enemy")
+        if (_dmgPopup)
         {
-            Instantiate(_dmgPopup, new Vector3(transform.position.x, transform.position.y + _dmgPopupYoffset, transform.position.z), Quaternion.identity, transform);
-            TextMesh dmgText = _dmgPopup.GetComponent<TextMesh>();
+            GameObject popup = Instantiate(_dmgPopup, new Vector3(transform.position.x, transform.position.y + _dmgPopupYOffset, transform.position.z), Quaternion.identity, transform);
+            TextMeshPro dmgText = popup.GetComponent<TextMeshPro>();
             dmgText.text = dmg.ToString();
             dmgText.color = txtColor;
         }
