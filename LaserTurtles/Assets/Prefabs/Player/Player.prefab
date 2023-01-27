@@ -1376,6 +1376,12 @@ PrefabInstance:
       objectReference: {fileID: 8909839886947764840}
     - target: {fileID: 7465424917666317894, guid: adddd2546efb5d24585c769d9392ffbb,
         type: 3}
+      propertyPath: _equippedItemData
+      value: 
+      objectReference: {fileID: 11400000, guid: e3586046bcdc3d5479541f34d224c60d,
+        type: 2}
+    - target: {fileID: 7465424917666317894, guid: adddd2546efb5d24585c769d9392ffbb,
+        type: 3}
       propertyPath: _inventorySystemRef
       value: 
       objectReference: {fileID: 2773289642886009211}
