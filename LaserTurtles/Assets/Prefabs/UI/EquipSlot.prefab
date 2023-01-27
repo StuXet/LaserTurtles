@@ -116,3 +116,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EquipType: 0
   _inventorySystemRef: {fileID: 0}
+  _equippedItemData: {fileID: 0}
+  _slotPrefab: {fileID: 622909744971911531, guid: 3823268b46aedc84da85ba6cef632521,
+    type: 3}

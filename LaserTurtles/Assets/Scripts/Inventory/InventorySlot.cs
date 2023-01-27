@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class InventorySlot : MonoBehaviour
 {
@@ -31,6 +32,16 @@ public class InventorySlot : MonoBehaviour
             m_stackObj.gameObject.SetActive(true);
         }
         m_stackLabel.text = item.StackSize.ToString();
+    }
+
+    public void Set(InventoryItemData itemData)
+    {
+        _itemData = itemData;
+
+        m_icon.sprite = itemData.Icon;
+        m_label.text = itemData.DisplayName;
+        m_stackObj.gameObject.SetActive(false);
+        m_stackLabel.text = 0.ToString();
     }
 
     public void SetTransparency(float aValue)
