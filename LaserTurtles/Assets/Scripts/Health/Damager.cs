@@ -22,11 +22,10 @@ enum DamagerType
 // 
 public enum WeaknessResistance
 {
-    normal,
+    none,
     salty,
     spicy,
     sweet,
-    none
 }
 
 
@@ -37,7 +36,7 @@ public class Damager : MonoBehaviour
     [Header("Damage")]
     [SerializeField] private CanAffect _canAffect;
     [SerializeField] private DamagerType _damagerType;
-    public WeaknessResistance weaknessResistance;
+    [SerializeField] private WeaknessResistance _modifierType;
     [SerializeField] private int _lightDamageAmount;
     [SerializeField] private int _heavyDamageAmount;
     public bool UsingHeavy = false;
@@ -55,6 +54,8 @@ public class Damager : MonoBehaviour
     // --------------------
     internal CanAffect CanAffect { get { return _canAffect; } }
     internal DamagerType DamagerType { get { return _damagerType; } }
+    public WeaknessResistance ModifierType { get { return _modifierType; } }
+
     public int LightDamageAmount { get { return _lightDamageAmount; } }
     public int HeavyDamageAmount { get { return _heavyDamageAmount; } }
     public float KnockbackPower { get { return _knockbackPower; } }

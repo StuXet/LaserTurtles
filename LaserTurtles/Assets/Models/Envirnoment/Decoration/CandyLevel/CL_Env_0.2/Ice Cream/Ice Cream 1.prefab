@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8136134924880631402}
   - component: {fileID: 5135933223421336015}
   - component: {fileID: 6963259124020096261}
+  - component: {fileID: 6551568693669216362}
   m_Layer: 8
   m_Name: Ice Cream 1
   m_TagString: Untagged
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6551568693669216362
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8908836085268253904}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4281854776163911308, guid: 9b59ee4ee4632f4498040bfee6740fe8, type: 3}

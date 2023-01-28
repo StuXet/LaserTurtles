@@ -51,7 +51,7 @@ public class PlayerCombatSystem : MonoBehaviour
         AttackTimer();
         Debug.DrawRay(transform.position, transform.forward * specialAttackLength, Color.red);
 
-        if (_equipmentSlots[_currentSlot-1].EquippedItemData == null)
+        if (_equipmentSlots[_currentSlot - 1].EquippedItemData == null)
         {
             if (_weaponHoldPoint.childCount != 0)
             {
@@ -240,7 +240,7 @@ public class PlayerCombatSystem : MonoBehaviour
 
     private void AttackTimer()
     {
-        if (isAttacking)
+        if (isAttacking && _equippedWeapon != null)
         {
             if (_timer >= _attackCooldown)
             {
@@ -260,6 +260,7 @@ public class PlayerCombatSystem : MonoBehaviour
         else
         {
             _timer = 0;
+            isAttacking = false;
         }
     }
 

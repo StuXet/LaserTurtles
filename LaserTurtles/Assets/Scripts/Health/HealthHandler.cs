@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -17,10 +18,10 @@ public class HealthHandler : MonoBehaviour
     [SerializeField] private int _currentHP;
     [Header("Damage Popup")]
     [SerializeField] private GameObject _dmgPopup;
-    [SerializeField] private int _dmgPopupYoffset;
-    [SerializeField] private Color _normalDmgColor;
-    [SerializeField] private Color _resDmgColor;
-    [SerializeField] private Color _weakDmgColor;
+    [SerializeField] private float _dmgPopupYOffset = 2;
+    [SerializeField] private Color _normalDmgColor = Color.white;
+    [SerializeField] private Color _resDmgColor = Color.magenta;
+    [SerializeField] private Color _weakDmgColor = Color.red;
     [Header("Knockback")]
     [SerializeField] bool knockbackable = true;
     [SerializeField] float kbMass;
@@ -78,52 +79,34 @@ public class HealthHandler : MonoBehaviour
                 // If Damager is One Hit
                 if (tempDamager.DamagerType == DamagerType.OneHit)
                 {
-                    if (!tempDamager.UsingHeavy)
+
+                    if (knockbackable)
                     {
-                        if (knockbackable)
-                        {
-                            Knockback(tempDamager, false);
-                        }
-                        if (_weakness == tempDamager.weaknessResistance)
-                        {
-                            _healthSystem.Damage(tempDamager.LightDamageAmount * 2);
-                            EnemyDmgPopUp(tempDamager.LightDamageAmount * 2, _weakDmgColor, gameObject.tag);
-                        }
-                        else if (_resistance == tempDamager.weaknessResistance)
-                        {
-                            _healthSystem.Damage(tempDamager.LightDamageAmount / 2);
-                            EnemyDmgPopUp(tempDamager.LightDamageAmount / 2, _resDmgColor, gameObject.tag);
-                        }
-                        else
-                        {
-                            _healthSystem.Damage(tempDamager.LightDamageAmount);
-                            EnemyDmgPopUp(tempDamager.LightDamageAmount, _normalDmgColor, gameObject.tag);
-                        }
+                        Knockback(tempDamager, tempDamager.UsingHeavy);
+                    }
+
+                    if (_weakness == WeaknessResistance.none && _resistance == WeaknessResistance.none)
+                    {
+                        HandleDamageModifierType(tempDamager, true, false, false);
+                    }
+                    else if (_weakness == _resistance)
+                    {
+                        HandleDamageModifierType(tempDamager, false, true, true);
+                    }
+                    else if (_weakness == tempDamager.ModifierType)
+                    {
+                        HandleDamageModifierType(tempDamager, false, true, false);
+                    }
+                    else if (_resistance == tempDamager.ModifierType)
+                    {
+                        HandleDamageModifierType(tempDamager, false, false, true);
                     }
                     else
                     {
-                        if (knockbackable)
-                        {
-                            Knockback(tempDamager, true);
-                        }
-
-                        if (_weakness == tempDamager.weaknessResistance)
-                        {
-                            _healthSystem.Damage(tempDamager.HeavyDamageAmount * 2);
-                            EnemyDmgPopUp(tempDamager.HeavyDamageAmount * 2, _weakDmgColor, gameObject.tag);
-                        }
-                        else if (_resistance == tempDamager.weaknessResistance)
-                        {
-                            _healthSystem.Damage(tempDamager.HeavyDamageAmount / 2);
-                            EnemyDmgPopUp(tempDamager.HeavyDamageAmount / 2, _resDmgColor, gameObject.tag);
-                        }
-                        else
-                        {
-                            _healthSystem.Damage(tempDamager.HeavyDamageAmount);
-                            EnemyDmgPopUp(tempDamager.HeavyDamageAmount, _normalDmgColor, gameObject.tag);
-                        }
-                        tempDamager.UsingHeavy = false;
+                        HandleDamageModifierType(tempDamager, false, false, false);
                     }
+
+                    tempDamager.UsingHeavy = false;
                 }
                 // If Damager is Over Time
                 else if (tempDamager.DamagerType == DamagerType.OverTime)
@@ -136,6 +119,43 @@ public class HealthHandler : MonoBehaviour
                     _healthSystem.Damage(_maxHP);
                 }
             }
+        }
+    }
+
+    private void HandleDamageModifierType(Damager _damager, bool _normalModifier, bool _weakness, bool _resistance)
+    {
+        float modVal;
+        Color modColor;
+        if (_normalModifier || (_weakness && _resistance))
+        {
+            modVal = 1;
+            modColor = _normalDmgColor;
+        }
+        else if (_weakness)
+        {
+            modVal = 2;
+            modColor = _weakDmgColor;
+        }
+        else if (_resistance)
+        {
+            modVal = 0.5f;
+            modColor = _resDmgColor;
+        }
+        else
+        {
+            modVal = 1;
+            modColor = _normalDmgColor;
+        }
+
+        if (!_damager.UsingHeavy)
+        {
+            _healthSystem.Damage((int)(_damager.LightDamageAmount * modVal));
+            EnemyDmgPopUp((int)(_damager.LightDamageAmount * modVal), modColor, gameObject.tag);
+        }
+        else
+        {
+            _healthSystem.Damage((int)(_damager.HeavyDamageAmount * modVal));
+            EnemyDmgPopUp((int)(_damager.HeavyDamageAmount * modVal), modColor, gameObject.tag);
         }
     }
 
@@ -154,45 +174,42 @@ public class HealthHandler : MonoBehaviour
     // --------------------
     private void Knockback(Damager damager, bool isHeavy)
     {
-        //Adds a rigidbody to the object if it does'nt have one
-        EnemyAI eAI = GetComponent<EnemyAI>();
-        NavMeshAgent navAgent = GetComponent<NavMeshAgent>();
-        kbTimer = kbDelay;
-        if (!_rb)
+        if (_rb)
         {
-            gameObject.AddComponent<Rigidbody>();
-            _rb = GetComponent<Rigidbody>();
-        }
+            EnemyAI eAI = GetComponent<EnemyAI>();
+            NavMeshAgent navAgent = GetComponent<NavMeshAgent>();
+            kbTimer = kbDelay;
 
-        if (eAI)
-        {
-            eAI.enabled = false;
-        }
+            if (eAI)
+            {
+                eAI.enabled = false;
+            }
 
-        if (navAgent)
-        {
-            navAgent.enabled = false;
-        }
+            if (navAgent)
+            {
+                navAgent.enabled = false;
+            }
 
-        _rb.isKinematic = false;
-        _rb.detectCollisions = true;
-        _rb.freezeRotation = true;
-        //rb.mass = kbMass;
+            _rb.isKinematic = false;
+            _rb.detectCollisions = true;
+            _rb.freezeRotation = true;
+            //rb.mass = kbMass;
 
-        Vector3 knockBackDir = damager.KnockbackPower * (gameObject.transform.position - damager.transform.root.position).normalized;
-        //knockBackDir *= strength;
-        knockBackDir.y = damager.KnockbackHeight;
-        if (isHeavy)
-        {
-            _rb.AddForce(knockBackDir * damager.KnockbackHeavyMultiplier, ForceMode.VelocityChange);
-        }
-        else
-        {
-            _rb.AddForce(knockBackDir, ForceMode.VelocityChange);
+            Vector3 knockBackDir = damager.KnockbackPower * (gameObject.transform.position - damager.transform.root.position).normalized;
+            //knockBackDir *= strength;
+            knockBackDir.y = damager.KnockbackHeight;
+            if (isHeavy)
+            {
+                _rb.AddForce(knockBackDir * damager.KnockbackHeavyMultiplier, ForceMode.VelocityChange);
+            }
+            else
+            {
+                _rb.AddForce(knockBackDir, ForceMode.VelocityChange);
 
+            }
+            //StartCoroutine(ResetKnockback(damager.KnockbackStunTime));
+            isKnockedBack = true;
         }
-        //StartCoroutine(ResetKnockback(damager.KnockbackStunTime));
-        isKnockedBack = true;
     }
 
     //Resets enemy AI and rigidbody to their origianl state if rigidbody's velocity reaches zero
@@ -232,10 +249,10 @@ public class HealthHandler : MonoBehaviour
 
     private void EnemyDmgPopUp(int dmg, Color txtColor, string tag)
     {
-        if (tag == "Enemy")
+        if (_dmgPopup)
         {
-            Instantiate(_dmgPopup, new Vector3(transform.position.x, transform.position.y + _dmgPopupYoffset, transform.position.z), Quaternion.identity, transform);
-            TextMesh dmgText = _dmgPopup.GetComponent<TextMesh>();
+            GameObject popup = Instantiate(_dmgPopup, new Vector3(transform.position.x, transform.position.y + _dmgPopupYOffset, transform.position.z), Quaternion.identity, transform);
+            TextMeshPro dmgText = popup.GetComponent<TextMeshPro>();
             dmgText.text = dmg.ToString();
             dmgText.color = txtColor;
         }
