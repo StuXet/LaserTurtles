@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemObject : MonoBehaviour
 {
+    public event EventHandler PickedUpItem;
+
     [SerializeField] private InventoryItemData ReferenceItem;
     private InventorySystem PlayerInventoryRef;
 
@@ -15,18 +18,25 @@ public class ItemObject : MonoBehaviour
         if (CanBePicked)
         {
             PlayerInventoryRef = inventoryRef;
-            if (ReferenceItem.Type != ItemType.Coin)
+            if (ReferenceItem.Type == ItemType.Coin)
             {
-                if (!PlayerInventoryRef.CheckIfInInventory(ReferenceItem) || ReferenceItem.IsStackable)
-                {
-                    PlayerInventoryRef.Add(ReferenceItem);
-                    Destroy(gameObject);
-                }
+                if (PickedUpItem != null) { PickedUpItem.Invoke(this, EventArgs.Empty); }
+                PlayerInventoryRef.WalletRef.AddCoins(ReferenceItem.Value);
+                Destroy(gameObject);
+            }
+            else if (ReferenceItem.Type == ItemType.Key)
+            {
+                if (PickedUpItem != null) { PickedUpItem.Invoke(this, EventArgs.Empty); }
+                Destroy(gameObject);
             }
             else
             {
-                PlayerInventoryRef.WalletRef.AddCoins(ReferenceItem.Value);
-                Destroy(gameObject);
+                if (!PlayerInventoryRef.CheckIfInInventory(ReferenceItem) || ReferenceItem.IsStackable)
+                {
+                    if (PickedUpItem != null) { PickedUpItem.Invoke(this, EventArgs.Empty); }
+                    PlayerInventoryRef.Add(ReferenceItem);
+                    Destroy(gameObject);
+                }
             }
         }
     }
