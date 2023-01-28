@@ -1,18 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class Destroyer : MonoBehaviour
 {
-    [SerializeField] float destroy = 2;
-    private void Awake()
+    public bool CanBeDestroyed;
+    [SerializeField] float _time = 5;
+    private bool _activated;
+
+    private void Update()
     {
-        StartCoroutine(WaitAndDestroy());
+        if (CanBeDestroyed && !_activated)
+        {
+            _activated = true;
+            Destroy(gameObject, _time);
+        }
     }
 
-    IEnumerator WaitAndDestroy()
+    private void OnTriggerEnter(Collider other)
     {
-        yield return new WaitForSeconds(destroy);
-        Destroy(gameObject);
+        if ((other.CompareTag("Enemy") || other.CompareTag("Environment")) && CanBeDestroyed)
+        {
+            _activated = true;
+            Destroy(gameObject);
+        }
     }
 }

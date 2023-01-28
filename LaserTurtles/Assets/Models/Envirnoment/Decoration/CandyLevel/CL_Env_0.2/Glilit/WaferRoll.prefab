@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 4271275243825400807}
   m_Layer: 8
   m_Name: WaferRoll
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
