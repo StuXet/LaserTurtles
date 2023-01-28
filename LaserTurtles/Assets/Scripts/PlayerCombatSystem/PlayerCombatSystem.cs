@@ -7,6 +7,7 @@ using UnityEngine.AI;
 
 public class PlayerCombatSystem : MonoBehaviour
 {
+    [SerializeField] private Animator _playerAnimator;
     [SerializeField] private InputManager _inputManagerRef;
     private PlayerInputActions _plInputActions;
 
@@ -22,6 +23,7 @@ public class PlayerCombatSystem : MonoBehaviour
     [Header("Attacking")]
     public bool isAttacking = false;
     public bool inDialogue = false;
+    private bool _isHeavy;
     [SerializeField] private float _attackCooldown = 1f;
     [SerializeField] private float _damageLength = 0.1f;
     private float _timer;
@@ -68,6 +70,8 @@ public class PlayerCombatSystem : MonoBehaviour
                 _equippedWeapon = weapon;
             }
         }
+
+        AnimationHandler();
     }
 
 
@@ -166,8 +170,9 @@ public class PlayerCombatSystem : MonoBehaviour
         {
             Debug.Log("Attack");
             isAttacking = true;
-            Animator anim = _equippedWeapon.GetComponent<Animator>();
-            anim.SetTrigger("Attack");
+            _isHeavy = false;
+            //Animator anim = _equippedWeapon.GetComponent<Animator>();
+            //anim.SetTrigger("Attack");
             //StartCoroutine(ResetAttackCooldown());
         }
     }
@@ -178,9 +183,10 @@ public class PlayerCombatSystem : MonoBehaviour
         {
             Debug.Log("Heavy Attack");
             isAttacking = true;
+            _isHeavy = true;
             _equippedWeapon.GetComponent<Damager>().UsingHeavy = true;
-            Animator anim = _equippedWeapon.GetComponent<Animator>();
-            anim.SetTrigger("HeavyAttack");
+            //Animator anim = _equippedWeapon.GetComponent<Animator>();
+            //anim.SetTrigger("HeavyAttack");
             //StartCoroutine(ResetAttackCooldown());
         }
     }
@@ -261,6 +267,22 @@ public class PlayerCombatSystem : MonoBehaviour
         {
             _timer = 0;
             isAttacking = false;
+        }
+    }
+
+    private void AnimationHandler()
+    {
+        if (_playerAnimator)
+        {
+            if (!_isHeavy)
+            {
+                _playerAnimator.SetBool("LightAttack", isAttacking);
+            }
+
+            if (_isHeavy)
+            {
+                _playerAnimator.SetBool("HeavyAttack", isAttacking);
+            }
         }
     }
 
