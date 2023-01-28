@@ -764,7 +764,8 @@ MonoBehaviour:
   isAttacking: 0
   inDialogue: 0
   _attackCooldown: 1
-  _damageLength: 0.3
+  _damageStart: 0.2
+  _damageEnd: 0.7
   poolForce: 2
   specialAttackLength: 10
 --- !u!114 &2104562432498233633

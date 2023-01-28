@@ -25,7 +25,8 @@ public class PlayerCombatSystem : MonoBehaviour
     public bool inDialogue = false;
     private bool _isHeavy;
     [SerializeField] private float _attackCooldown = 1f;
-    [SerializeField] private float _damageLength = 0.1f;
+    [SerializeField] private float _damageStart = 0.2f;
+    [SerializeField] private float _damageEnd = 0.7f;
     private float _timer;
     private float mouseHoldCounter;
     [SerializeField] float poolForce = 2f;
@@ -252,11 +253,11 @@ public class PlayerCombatSystem : MonoBehaviour
             {
                 isAttacking = false;
             }
-            else if (_timer <= _damageLength)
+            else if (_timer >= _damageStart && _timer <= _damageEnd)
             {
                 _equippedWeapon.GetComponent<Damager>().CanDamage = true;
             }
-            else if (_timer >= _damageLength)
+            else
             {
                 _equippedWeapon.GetComponent<Damager>().CanDamage = false;
             }
