@@ -8,7 +8,8 @@ public enum ItemType
     Ranged,
     Consumable,
     Coin,
-    Key
+    Key,
+    Ammo
 }
 
 [CreateAssetMenu(menuName = "Scriptable Object/InventoryItemData")]

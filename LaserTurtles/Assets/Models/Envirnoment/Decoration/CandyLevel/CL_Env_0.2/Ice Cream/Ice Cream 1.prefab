@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6551568693669216362}
   m_Layer: 8
   m_Name: Ice Cream 1
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

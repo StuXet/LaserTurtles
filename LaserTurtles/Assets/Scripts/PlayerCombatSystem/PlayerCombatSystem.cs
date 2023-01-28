@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class PlayerCombatSystem : MonoBehaviour
 {
+    [SerializeField] private Animator _playerAnimator;
     [SerializeField] private InputManager _inputManagerRef;
     private PlayerInputActions _plInputActions;
 
@@ -15,19 +17,30 @@ public class PlayerCombatSystem : MonoBehaviour
     private int _currentSlot = 1;
 
     [SerializeField] private GameObject _equippedWeapon;
-    [SerializeField] private GameObject fireBall;
+    [SerializeField] private GameObject _projectile;
     [SerializeField] private Transform shootingPoint;
     [SerializeField] private Transform _weaponHoldPoint;
 
     [Header("Attacking")]
     public bool isAttacking = false;
     public bool inDialogue = false;
+    private bool _isHeavy;
     [SerializeField] private float _attackCooldown = 1f;
-    [SerializeField] private float _damageLength = 0.1f;
+    [SerializeField] private float _damageStart = 0.2f;
+    [SerializeField] private float _damageEnd = 0.7f;
     private float _timer;
     private float mouseHoldCounter;
     [SerializeField] float poolForce = 2f;
     [SerializeField] float specialAttackLength = 10f;
+
+    [Header("Shooting")]
+    [SerializeField] private bool _isShooting;
+    [SerializeField] private float _shootForce = 25f;
+    [SerializeField] private float _fireRate = 0.5f;
+    private float _fireRateTimer;
+    public int CurrentAmmo;
+    [SerializeField] private TextMeshProUGUI _ammoText;
+
 
     private void Start()
     {
@@ -48,26 +61,15 @@ public class PlayerCombatSystem : MonoBehaviour
     {
         //MouseHoldCounter();
         //InputHandler();
-        AttackTimer();
         Debug.DrawRay(transform.position, transform.forward * specialAttackLength, Color.red);
 
-        if (_equipmentSlots[_currentSlot - 1].EquippedItemData == null)
-        {
-            if (_weaponHoldPoint.childCount != 0)
-            {
-                Destroy(_weaponHoldPoint.GetChild(0).gameObject);
-                _equippedWeapon = null;
-            }
-        }
-        else
-        {
-            if (_weaponHoldPoint.childCount == 0)
-            {
-                GameObject weapon = Instantiate(_equipmentSlots[_currentSlot - 1].EquippedItemData.Prefab, _weaponHoldPoint);
-                weapon.transform.localPosition = _weaponHoldPoint.transform.localPosition;
-                _equippedWeapon = weapon;
-            }
-        }
+        AttackTimer();
+        ShootTimer();
+        AmmoCountHandler();
+
+        LiveSlotUpdate();
+
+        AnimationHandler();
     }
 
 
@@ -134,6 +136,26 @@ public class PlayerCombatSystem : MonoBehaviour
         }
     }
 
+    private void LiveSlotUpdate()
+    {
+        if (_equipmentSlots[_currentSlot - 1].EquippedItemData == null)
+        {
+            if (_weaponHoldPoint.childCount != 0)
+            {
+                Destroy(_weaponHoldPoint.GetChild(0).gameObject);
+                _equippedWeapon = null;
+            }
+        }
+        else
+        {
+            if (_weaponHoldPoint.childCount == 0)
+            {
+                GameObject weapon = Instantiate(_equipmentSlots[_currentSlot - 1].EquippedItemData.Prefab, _weaponHoldPoint);
+                weapon.transform.localPosition = _weaponHoldPoint.transform.localPosition;
+                _equippedWeapon = weapon;
+            }
+        }
+    }
 
     private void ChangeWeapon(int slot)
     {
@@ -166,8 +188,9 @@ public class PlayerCombatSystem : MonoBehaviour
         {
             Debug.Log("Attack");
             isAttacking = true;
-            Animator anim = _equippedWeapon.GetComponent<Animator>();
-            anim.SetTrigger("Attack");
+            _isHeavy = false;
+            //Animator anim = _equippedWeapon.GetComponent<Animator>();
+            //anim.SetTrigger("Attack");
             //StartCoroutine(ResetAttackCooldown());
         }
     }
@@ -178,9 +201,10 @@ public class PlayerCombatSystem : MonoBehaviour
         {
             Debug.Log("Heavy Attack");
             isAttacking = true;
+            _isHeavy = true;
             _equippedWeapon.GetComponent<Damager>().UsingHeavy = true;
-            Animator anim = _equippedWeapon.GetComponent<Animator>();
-            anim.SetTrigger("HeavyAttack");
+            //Animator anim = _equippedWeapon.GetComponent<Animator>();
+            //anim.SetTrigger("HeavyAttack");
             //StartCoroutine(ResetAttackCooldown());
         }
     }
@@ -226,10 +250,23 @@ public class PlayerCombatSystem : MonoBehaviour
 
     void Shooting()
     {
-        if (_equippedWeapon != null && _currentSlot == 4)
+        if (!_isShooting && _equippedWeapon != null && _currentSlot == 4)
         {
-            Instantiate(fireBall, shootingPoint.position, shootingPoint.rotation);
+            if (CurrentAmmo > 0)
+            {
+                CurrentAmmo--;
+                _isShooting = true;
+                GameObject projectile = Instantiate(_projectile, shootingPoint.position, shootingPoint.rotation);
+                projectile.GetComponent<Damager>().CanDamage = true;
+                projectile.GetComponent<Destroyer>().CanBeDestroyed = true;
+                projectile.GetComponent<Rigidbody>().AddForce(projectile.transform.forward * _shootForce, ForceMode.Impulse);
+            }
         }
+    }
+
+    public void AddAmmo(int val)
+    {
+        CurrentAmmo += val;
     }
 
     //IEnumerator ResetAttackCooldown()
@@ -246,11 +283,11 @@ public class PlayerCombatSystem : MonoBehaviour
             {
                 isAttacking = false;
             }
-            else if (_timer <= _damageLength)
+            else if (_timer >= _damageStart && _timer <= _damageEnd)
             {
                 _equippedWeapon.GetComponent<Damager>().CanDamage = true;
             }
-            else if (_timer >= _damageLength)
+            else
             {
                 _equippedWeapon.GetComponent<Damager>().CanDamage = false;
             }
@@ -261,6 +298,53 @@ public class PlayerCombatSystem : MonoBehaviour
         {
             _timer = 0;
             isAttacking = false;
+        }
+    }
+
+    private void ShootTimer()
+    {
+        if (_isShooting && _equippedWeapon != null)
+        {
+            if (_fireRateTimer >= _fireRate)
+            {
+                _isShooting = false;
+            }
+
+            _fireRateTimer += Time.deltaTime;
+        }
+        else
+        {
+            _fireRateTimer = 0;
+            _isShooting = false;
+        }
+    }
+
+    private void AmmoCountHandler()
+    {
+        //if (CurrentAmmo == 0)
+        //{
+        //    _ammoText.enabled = false;
+        //}
+        //else 
+        //{ 
+        //    _ammoText.enabled = true;
+        _ammoText.text = CurrentAmmo.ToString();
+        //}
+    }
+
+    private void AnimationHandler()
+    {
+        if (_playerAnimator)
+        {
+            if (!_isHeavy)
+            {
+                _playerAnimator.SetBool("LightAttack", isAttacking);
+            }
+
+            if (_isHeavy)
+            {
+                _playerAnimator.SetBool("HeavyAttack", isAttacking);
+            }
         }
     }
 
