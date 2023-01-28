@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -32,6 +33,14 @@ public class PlayerCombatSystem : MonoBehaviour
     [SerializeField] float poolForce = 2f;
     [SerializeField] float specialAttackLength = 10f;
 
+    [Header("Shooting")]
+    [SerializeField] private bool _isShooting;
+    [SerializeField] private float _fireRate = 0.5f;
+    private float _fireRateTimer;
+    public int CurrentAmmo;
+    [SerializeField] private TextMeshProUGUI _ammoText;
+
+
     private void Start()
     {
         _plInputActions = _inputManagerRef.PlInputActions;
@@ -51,26 +60,13 @@ public class PlayerCombatSystem : MonoBehaviour
     {
         //MouseHoldCounter();
         //InputHandler();
-        AttackTimer();
         Debug.DrawRay(transform.position, transform.forward * specialAttackLength, Color.red);
 
-        if (_equipmentSlots[_currentSlot - 1].EquippedItemData == null)
-        {
-            if (_weaponHoldPoint.childCount != 0)
-            {
-                Destroy(_weaponHoldPoint.GetChild(0).gameObject);
-                _equippedWeapon = null;
-            }
-        }
-        else
-        {
-            if (_weaponHoldPoint.childCount == 0)
-            {
-                GameObject weapon = Instantiate(_equipmentSlots[_currentSlot - 1].EquippedItemData.Prefab, _weaponHoldPoint);
-                weapon.transform.localPosition = _weaponHoldPoint.transform.localPosition;
-                _equippedWeapon = weapon;
-            }
-        }
+        AttackTimer();
+        ShootTimer();
+        AmmoCountHandler();
+
+        LiveSlotUpdate();
 
         AnimationHandler();
     }
@@ -139,6 +135,26 @@ public class PlayerCombatSystem : MonoBehaviour
         }
     }
 
+    private void LiveSlotUpdate()
+    {
+        if (_equipmentSlots[_currentSlot - 1].EquippedItemData == null)
+        {
+            if (_weaponHoldPoint.childCount != 0)
+            {
+                Destroy(_weaponHoldPoint.GetChild(0).gameObject);
+                _equippedWeapon = null;
+            }
+        }
+        else
+        {
+            if (_weaponHoldPoint.childCount == 0)
+            {
+                GameObject weapon = Instantiate(_equipmentSlots[_currentSlot - 1].EquippedItemData.Prefab, _weaponHoldPoint);
+                weapon.transform.localPosition = _weaponHoldPoint.transform.localPosition;
+                _equippedWeapon = weapon;
+            }
+        }
+    }
 
     private void ChangeWeapon(int slot)
     {
@@ -233,9 +249,14 @@ public class PlayerCombatSystem : MonoBehaviour
 
     void Shooting()
     {
-        if (_equippedWeapon != null && _currentSlot == 4)
+        if (!_isShooting && _equippedWeapon != null && _currentSlot == 4)
         {
-            Instantiate(fireBall, shootingPoint.position, shootingPoint.rotation);
+            if (CurrentAmmo > 0)
+            {
+                CurrentAmmo--;
+                _isShooting = true;
+                Instantiate(fireBall, shootingPoint.position, shootingPoint.rotation);
+            }
         }
     }
 
@@ -269,6 +290,29 @@ public class PlayerCombatSystem : MonoBehaviour
             _timer = 0;
             isAttacking = false;
         }
+    }
+
+    private void ShootTimer()
+    {
+        if (_isShooting && _equippedWeapon != null)
+        {
+            if (_fireRateTimer >= _fireRate)
+            {
+                _isShooting = false;
+            }
+
+            _fireRateTimer += Time.deltaTime;
+        }
+        else
+        {
+            _fireRateTimer = 0;
+            _isShooting = false;
+        }
+    }
+
+    private void AmmoCountHandler()
+    {
+        _ammoText.text = CurrentAmmo.ToString();
     }
 
     private void AnimationHandler()
