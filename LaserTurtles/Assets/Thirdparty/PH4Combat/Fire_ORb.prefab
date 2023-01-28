@@ -9712,10 +9712,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canAffect: 1
   _damagerType: 0
+  _modifierType: 0
   _lightDamageAmount: 10
   _heavyDamageAmount: 0
   UsingHeavy: 0
+  UsingSpecial: 0
   CanDamage: 1
+  _knockbackPower: 2
+  _knockbackHeight: 1
+  _knockbackHeavyMultiplier: 2
+  _knockbackStunTime: 2
+  _canKnockback: 0
 --- !u!1 &1778532940123825965
 GameObject:
   m_ObjectHideFlags: 0

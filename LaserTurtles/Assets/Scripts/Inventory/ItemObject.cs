@@ -45,6 +45,12 @@ public class ItemObject : MonoBehaviour
                 if (PickedUpItem != null) { PickedUpItem.Invoke(this, EventArgs.Empty); }
                 Destroy(gameObject);
             }
+            else if (ReferenceItem.Type == ItemType.Ammo)
+            {
+                if (PickedUpItem != null) { PickedUpItem.Invoke(this, EventArgs.Empty); }
+                PlayerInventoryRef.CombatSystem.AddAmmo(ReferenceItem.Value);
+                Destroy(gameObject);
+            }
             else
             {
                 if (!PlayerInventoryRef.CheckIfInInventory(ReferenceItem) || ReferenceItem.IsStackable)

@@ -9,7 +9,9 @@ public class InventorySystem : MonoBehaviour
     private PlayerInputActions _plInputActions;
 
     [SerializeField] private Wallet _walletRef;
+    [SerializeField] private PlayerCombatSystem _combatSystem;
     public Wallet WalletRef { get => _walletRef;}
+    public PlayerCombatSystem CombatSystem { get => _combatSystem; }
 
     public List<InventoryItem> InventoryItems { get; private set; }
 

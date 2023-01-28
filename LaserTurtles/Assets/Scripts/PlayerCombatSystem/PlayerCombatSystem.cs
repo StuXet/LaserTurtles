@@ -17,7 +17,7 @@ public class PlayerCombatSystem : MonoBehaviour
     private int _currentSlot = 1;
 
     [SerializeField] private GameObject _equippedWeapon;
-    [SerializeField] private GameObject fireBall;
+    [SerializeField] private GameObject _projectile;
     [SerializeField] private Transform shootingPoint;
     [SerializeField] private Transform _weaponHoldPoint;
 
@@ -35,6 +35,7 @@ public class PlayerCombatSystem : MonoBehaviour
 
     [Header("Shooting")]
     [SerializeField] private bool _isShooting;
+    [SerializeField] private float _shootForce = 25f;
     [SerializeField] private float _fireRate = 0.5f;
     private float _fireRateTimer;
     public int CurrentAmmo;
@@ -255,9 +256,17 @@ public class PlayerCombatSystem : MonoBehaviour
             {
                 CurrentAmmo--;
                 _isShooting = true;
-                Instantiate(fireBall, shootingPoint.position, shootingPoint.rotation);
+                GameObject projectile = Instantiate(_projectile, shootingPoint.position, shootingPoint.rotation);
+                projectile.GetComponent<Damager>().CanDamage = true;
+                projectile.GetComponent<Destroyer>().CanBeDestroyed = true;
+                projectile.GetComponent<Rigidbody>().AddForce(projectile.transform.forward * _shootForce, ForceMode.Impulse);
             }
         }
+    }
+
+    public void AddAmmo(int val)
+    {
+        CurrentAmmo += val;
     }
 
     //IEnumerator ResetAttackCooldown()
@@ -312,7 +321,15 @@ public class PlayerCombatSystem : MonoBehaviour
 
     private void AmmoCountHandler()
     {
+        //if (CurrentAmmo == 0)
+        //{
+        //    _ammoText.enabled = false;
+        //}
+        //else 
+        //{ 
+        //    _ammoText.enabled = true;
         _ammoText.text = CurrentAmmo.ToString();
+        //}
     }
 
     private void AnimationHandler()
