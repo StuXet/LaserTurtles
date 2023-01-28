@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ReferenceItem: {fileID: 11400000, guid: 160038ff8115a714a90c1a5a78a275cd, type: 2}
+  ItemAnimator: {fileID: 1063937407393102613}
   CanBePicked: 1
   RequiresInteraction: 0
 --- !u!1 &4886158861649928075

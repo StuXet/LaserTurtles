@@ -8,10 +8,26 @@ public class ItemObject : MonoBehaviour
     public event EventHandler PickedUpItem;
 
     [SerializeField] private InventoryItemData ReferenceItem;
+    [SerializeField] private Animator ItemAnimator;
     private InventorySystem PlayerInventoryRef;
 
     public bool CanBePicked;
     public bool RequiresInteraction;
+
+    private void Awake()
+    {
+        if (ItemAnimator)
+        {
+            if (CanBePicked)
+            {
+                ItemAnimator.enabled = true;
+            }
+            else
+            {
+                ItemAnimator.enabled = false;
+            }
+        }
+    }
 
     public void OnHandlePickupItem(InventorySystem inventoryRef)
     {
