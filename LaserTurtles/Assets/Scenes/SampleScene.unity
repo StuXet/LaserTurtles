@@ -8457,9 +8457,6 @@ MonoBehaviour:
   - {fileID: 5585892860136655844, guid: 09a1ebadf2959ff4faa7f6d1a6df864d, type: 3}
   - {fileID: 5020083631397628060, guid: 0ae5e709f45fb9b40b40cdaca7ee12eb, type: 3}
   - {fileID: 5790805365666765218, guid: 0d3255f39efeb694bac98e23e8f27a5a, type: 3}
-  - {fileID: 5790805365666765218, guid: 0d3255f39efeb694bac98e23e8f27a5a, type: 3}
-  - {fileID: 5790805365666765218, guid: 0d3255f39efeb694bac98e23e8f27a5a, type: 3}
-  - {fileID: 5790805365666765218, guid: 0d3255f39efeb694bac98e23e8f27a5a, type: 3}
   enemyCounts: 010000000100000001000000
   range: {x: 10, y: 0, z: 10}
   numberOfWaves: 3
