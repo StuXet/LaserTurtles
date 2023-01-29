@@ -18,7 +18,7 @@ public class ObjectivePickUpItem : ObjectiveBase
     }
 
 
-    private void _item_PickedUpItem(object sender, System.EventArgs e)
+    private void _item_PickedUpItem(GameObject player)
     {
         BeginObjective();
         ObjectiveRequirementMet();

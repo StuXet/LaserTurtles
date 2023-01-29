@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthDrop : DropCollectible
+public class HealthDrop : MonoBehaviour
 {
     [Header("Effect Settings")]
     [SerializeField] bool isRandom;
@@ -10,26 +10,23 @@ public class HealthDrop : DropCollectible
     [SerializeField] int randHealAmountMin = 5;
     [SerializeField] int randHealAmountMax = 10;
 
-    // Start is called before the first frame update
-    void Start()
+    private ItemObject _itemObjectRef;
+
+    private void Awake()
     {
-        Launch();
+        _itemObjectRef = GetComponent<ItemObject>();
+        _itemObjectRef.PickedUpItem += _itemObjectRef_PickedUpItem;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void _itemObjectRef_PickedUpItem(GameObject player)
     {
-        if (other.gameObject.tag == "Player")
+        if (isRandom)
         {
-            HealthHandler healthHandler = other.gameObject.GetComponent<HealthHandler>();
-            if (isRandom)
-            {
-                healthHandler.IncreaseMaxHP(Random.Range(randHealAmountMin, randHealAmountMax)); //heal random amount from range
-            }
-            else
-            {
-                healthHandler.IncreaseMaxHP(healAmount); //heals specific amount
-            }
-            Destroy(gameObject);
+            player.GetComponent<HealthHandler>().HealHP(Random.Range(randHealAmountMin, randHealAmountMax)); //heal random amount from range
+        }
+        else
+        {
+            player.GetComponent<HealthHandler>().HealHP(healAmount); //heals specific amount
         }
     }
 }

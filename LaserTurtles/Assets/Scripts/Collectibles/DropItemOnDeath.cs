@@ -10,12 +10,15 @@ public class DropItemOnDeath : MonoBehaviour
     [System.Serializable]
     public class DropItem
     {
+        [Range(0,100)]
         public int dropChance = 1;
         public GameObject dropObject;
     }
 
     [SerializeField] List<DropItem> itemsToDrop;
     HealthHandler healthHandler;
+
+    public List<DropItem> ItemsToDrop { get => itemsToDrop;}
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +43,11 @@ public class DropItemOnDeath : MonoBehaviour
             sum += item.dropChance;
             if (value <= sum)
             {
-                Instantiate(item.dropObject, transform.position, transform.rotation);
+                if (item.dropObject != null)
+                {
+                    GameObject drop = Instantiate(item.dropObject, transform.position, transform.rotation);
+                    drop.GetComponent<ItemObject>().CanBePicked = true;
+                }
                 break;
             }
         }
