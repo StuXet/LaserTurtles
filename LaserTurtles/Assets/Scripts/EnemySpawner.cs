@@ -9,12 +9,23 @@ public class EnemySpawner : MonoBehaviour
     public List<GameObject> enemyPrefabs;
     public List<int> enemyCounts;
     public Vector3 range;
+    public int numberOfWaves = 1;
 
+    private int waveCounter = 0;
     private bool spawned = false;
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == playerTag && !spawned)
+        {
+            StartCoroutine(SpawnEnemyWaves());
+            spawned = true;
+        }
+    }
+
+    IEnumerator SpawnEnemyWaves()
+    {
+        while (waveCounter < numberOfWaves)
         {
             for (int i = 0; i < enemyPrefabs.Count; i++)
             {
@@ -28,8 +39,15 @@ public class EnemySpawner : MonoBehaviour
                     GameObject enemy = Instantiate(enemyPrefabs[i], randomPos, Quaternion.identity);
                 }
             }
-            spawned = true;
+            waveCounter++;
+            yield return new WaitUntil(AllEnemiesDead);
         }
+    }
+
+    bool AllEnemiesDead()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        return enemies.Length == 0;
     }
 
     private void OnDrawGizmos()
