@@ -43,7 +43,7 @@ public class DropItemOnDeath : MonoBehaviour
             sum += item.dropChance;
             if (value <= sum)
             {
-                if (item != null)
+                if (item.dropObject != null)
                 {
                     GameObject drop = Instantiate(item.dropObject, transform.position, transform.rotation);
                     drop.GetComponent<ItemObject>().CanBePicked = true;
