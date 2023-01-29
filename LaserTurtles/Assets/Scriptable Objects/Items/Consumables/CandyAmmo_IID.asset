@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemID: Item_CandyAmmo
   DisplayName: Candy Ammo
-  Icon: {fileID: 21300000, guid: 64d3278e26679cb4891234cce0430264, type: 3}
+  Icon: {fileID: 21300000, guid: 7a74ad6a16b4d2749a7d577f89d33eca, type: 3}
   Prefab: {fileID: 5601993761966769206, guid: 5fb94eb5dcb7e4243b59fb099ed614a0, type: 3}
   Type: 5
   IsStackable: 1
