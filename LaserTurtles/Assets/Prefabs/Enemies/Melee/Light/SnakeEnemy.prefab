@@ -150,6 +150,7 @@ GameObject:
   - component: {fileID: 2823755554478180613}
   - component: {fileID: 789426621821286975}
   - component: {fileID: 6474340841305229197}
+  - component: {fileID: 5176659846816423724}
   m_Layer: 0
   m_Name: EnemyGFX
   m_TagString: Enemy
@@ -204,7 +205,7 @@ MonoBehaviour:
   _weakness: 0
   _resistance: 0
   _healthBar: {fileID: 5719574608732324761}
-  _maxHP: 100
+  _maxHP: 10
   _currentHP: 0
   _dmgPopup: {fileID: 4823436943637356501, guid: 4e085fcee1859f042a0f4eff7a3538ea,
     type: 3}
@@ -214,6 +215,30 @@ MonoBehaviour:
   _weakDmgColor: {r: 1, g: 0, b: 0, a: 1}
   knockbackable: 1
   kbMass: 0
+--- !u!114 &5176659846816423724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7083597236467699577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f67ec6f9e178b9f4795524eaad3a2755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemsToDrop:
+  - dropChance: 25
+    dropObject: {fileID: 5280703483451785595, guid: c597b884fee341b4c8d730a666aedfca,
+      type: 3}
+  - dropChance: 25
+    dropObject: {fileID: 5601993761966769206, guid: 5fb94eb5dcb7e4243b59fb099ed614a0,
+      type: 3}
+  - dropChance: 25
+    dropObject: {fileID: 154455731916256318, guid: f801f7dc61d28c1489074033a2a4df0c,
+      type: 3}
+  - dropChance: 25
+    dropObject: {fileID: 0}
 --- !u!1 &8196570028939564467
 GameObject:
   m_ObjectHideFlags: 0
