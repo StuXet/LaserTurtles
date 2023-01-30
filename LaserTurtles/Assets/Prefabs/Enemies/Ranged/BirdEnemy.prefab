@@ -133,11 +133,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e8f1661cee43f4a85498679949f043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectile: {fileID: 1778532939917248221, guid: 23ac6c36e2c2f5e41b6771a76c3836ee,
+  _projectile: {fileID: 5601993761966769206, guid: 3ecc2802b0f7bc8489296b4cce6ba2fc,
     type: 3}
   _firePoint: {fileID: 7644431126201349979}
   _target: {fileID: 0}
   _projectileSpeed: 15
+  _startDelay: 0.25
 --- !u!1 &7594543226852021194
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,7 +386,7 @@ MonoBehaviour:
   _weakness: 0
   _resistance: 0
   _healthBar: {fileID: 6324513056659785184}
-  _maxHP: 100
+  _maxHP: 40
   _currentHP: 0
   _dmgPopup: {fileID: 4823436943637356501, guid: 4e085fcee1859f042a0f4eff7a3538ea,
     type: 3}

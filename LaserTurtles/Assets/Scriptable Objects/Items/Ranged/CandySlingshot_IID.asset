@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemID: Item_CandySlingshot
   DisplayName: Candy Slingshot
-  Icon: {fileID: 21300000, guid: f580884cef9122044905e1b5d8235717, type: 3}
+  Icon: {fileID: 21300000, guid: fc7520a980375ec469f75647992bdeec, type: 3}
   Prefab: {fileID: 4075626481022974206, guid: 1b848b5b25d9e1f41b7bd419e171a8c9, type: 3}
   Type: 1
   IsStackable: 0

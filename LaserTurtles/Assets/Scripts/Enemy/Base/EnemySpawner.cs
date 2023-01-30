@@ -1,11 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public string playerTag = "Player";
+    public event EventHandler BeatWaves;
+
     public List<GameObject> enemyPrefabs;
     public List<int> enemyCounts;
     public Vector3 range;
@@ -16,7 +19,16 @@ public class EnemySpawner : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == playerTag && !spawned)
+        if (other.CompareTag("Player") && !spawned)
+        {
+            StartCoroutine(SpawnEnemyWaves());
+            spawned = true;
+        }
+    }
+
+    IEnumerator SpawnEnemyWaves()
+    {
+        while (waveCounter < numberOfWaves)
         {
             StartCoroutine(SpawnEnemyWaves());
             spawned = true;
@@ -42,6 +54,13 @@ public class EnemySpawner : MonoBehaviour
             waveCounter++;
             yield return new WaitUntil(AllEnemiesDead);
         }
+        if (BeatWaves != null) { BeatWaves.Invoke(this, EventArgs.Empty); }
+    }
+
+    bool AllEnemiesDead()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        return enemies.Length == 0;
     }
 
     bool AllEnemiesDead()
