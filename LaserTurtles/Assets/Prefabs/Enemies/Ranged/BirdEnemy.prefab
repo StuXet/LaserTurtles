@@ -133,11 +133,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e8f1661cee43f4a85498679949f043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectile: {fileID: 1778532939917248221, guid: 23ac6c36e2c2f5e41b6771a76c3836ee,
+  _projectile: {fileID: 5601993761966769206, guid: 3ecc2802b0f7bc8489296b4cce6ba2fc,
     type: 3}
   _firePoint: {fileID: 7644431126201349979}
   _target: {fileID: 0}
   _projectileSpeed: 15
+  _startDelay: 0.25
 --- !u!1 &7594543226852021194
 GameObject:
   m_ObjectHideFlags: 0

@@ -58,9 +58,11 @@ public class ShootProjectile : MonoBehaviour
     }
     void InstantiateProjectile(Transform firePoint)
     {
-        var projectile = Instantiate(_projectile, _firePoint.position, _firePoint.rotation) as GameObject;
+        var projectile = Instantiate(_projectile, _firePoint.position, _firePoint.rotation);
         projectile.transform.SetParent(null);
         projectile.SetActive(true);
-        projectile.GetComponent<Rigidbody>().velocity = projectile.transform.forward * _projectileSpeed;
+        projectile.GetComponent<Damager>().CanDamage = true;
+        projectile.GetComponent<Destroyer>().CanBeDestroyed = true;
+        projectile.GetComponent<Rigidbody>().AddForce(projectile.transform.forward * _projectileSpeed, ForceMode.Impulse);
     }
 }
