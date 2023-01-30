@@ -49,7 +49,7 @@ MonoBehaviour:
   enemyCounts: 
   range: {x: 5, y: 1, z: 5}
   numberOfWaves: 1
-  SpawnMaxDelay: 0.2
+  SpawnMaxDelay: 1
 --- !u!65 &3643287684683410413
 BoxCollider:
   m_ObjectHideFlags: 0
