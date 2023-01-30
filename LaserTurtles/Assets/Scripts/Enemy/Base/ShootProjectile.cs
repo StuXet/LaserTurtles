@@ -11,6 +11,10 @@ public class ShootProjectile : MonoBehaviour
     //[SerializeField] private LayerMask _layerToHit;
     //[SerializeField] private float _attackRange;
     [SerializeField] private float _projectileSpeed = 15f;
+    [SerializeField] private float _startDelay = 0.25f;
+    private float _delayTimer;
+    private bool _firing;
+
 
     // Start is called before the first frame update
     void Start()
@@ -20,13 +24,33 @@ public class ShootProjectile : MonoBehaviour
 
     void Update()
     {
+        DelayShoot();
+    }
 
+    private void DelayShoot()
+    {
+        if (_firing)
+        {
+            if (_delayTimer >= _startDelay)
+            {
+                _firing = false;
+                SetTargetDestination();
+                InstantiateProjectile(_firePoint);
+            }
+            else
+            {
+                _delayTimer += Time.deltaTime;
+            }
+        }
+        else
+        {
+            _delayTimer = 0;
+        }
     }
 
     public void Shoot()
     {
-        SetTargetDestination();
-        InstantiateProjectile(_firePoint);
+        _firing = true;
     }
     void SetTargetDestination()
     {
