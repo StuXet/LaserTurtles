@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public string playerTag = "Player";
     public List<GameObject> enemyPrefabs;
     public List<int> enemyCounts;
     public Vector3 range;
@@ -13,10 +12,13 @@ public class EnemySpawner : MonoBehaviour
 
     private int waveCounter = 0;
     private bool spawned = false;
+    private bool _beatWave = false;
+
+    public bool BeatWave { get => _beatWave;}
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == playerTag && !spawned)
+        if (other.CompareTag("Player") && !spawned)
         {
             StartCoroutine(SpawnEnemyWaves());
             spawned = true;
