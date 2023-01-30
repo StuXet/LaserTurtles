@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectiveName: Beat Thy Enemies!
+  _spawner: {fileID: 824944940722374630}
 --- !u!1001 &4178572810989300744
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -213,6 +214,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9681145015773644970b94d4da2dbf0, type: 3}
+--- !u!114 &824944940722374630 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3643287684683410414, guid: c9681145015773644970b94d4da2dbf0,
+    type: 3}
+  m_PrefabInstance: {fileID: 4178572810989300744}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb9339b5ef8a6b644a9516c9db413e7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &824944940722374631 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3643287684683410415, guid: c9681145015773644970b94d4da2dbf0,

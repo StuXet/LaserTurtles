@@ -149,6 +149,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5601993760582912978}
+  - component: {fileID: 1666709056245522884}
   m_Layer: 0
   m_Name: GFX
   m_TagString: Untagged
@@ -173,6 +174,26 @@ Transform:
   m_Father: {fileID: 5601993761966769202}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1666709056245522884
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5601993760582912977}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2c7b0a02b65b54e4785387369788b8e8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5601993761564952645
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,7 +381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ReferenceItem: {fileID: 11400000, guid: 5058f71a139b5f0449c3d2e03144beb4, type: 2}
-  ItemAnimator: {fileID: 0}
+  ItemAnimator: {fileID: 1666709056245522884}
   CanBePicked: 0
   RequiresInteraction: 0
 --- !u!114 &884752471402075366

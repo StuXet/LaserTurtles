@@ -386,7 +386,7 @@ MonoBehaviour:
   _weakness: 0
   _resistance: 0
   _healthBar: {fileID: 6324513056659785184}
-  _maxHP: 100
+  _maxHP: 40
   _currentHP: 0
   _dmgPopup: {fileID: 4823436943637356501, guid: 4e085fcee1859f042a0f4eff7a3538ea,
     type: 3}

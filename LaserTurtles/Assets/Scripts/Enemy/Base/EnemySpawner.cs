@@ -1,10 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public event EventHandler BeatWaves;
+
     public List<GameObject> enemyPrefabs;
     public List<int> enemyCounts;
     public Vector3 range;
@@ -12,9 +16,6 @@ public class EnemySpawner : MonoBehaviour
 
     private int waveCounter = 0;
     private bool spawned = false;
-    private bool _beatWave = false;
-
-    public bool BeatWave { get => _beatWave;}
 
     void OnTriggerEnter(Collider other)
     {
@@ -44,6 +45,7 @@ public class EnemySpawner : MonoBehaviour
             waveCounter++;
             yield return new WaitUntil(AllEnemiesDead);
         }
+        if (BeatWaves != null) { BeatWaves.Invoke(this, EventArgs.Empty); }
     }
 
     bool AllEnemiesDead()
