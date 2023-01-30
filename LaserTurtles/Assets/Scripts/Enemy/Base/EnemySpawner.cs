@@ -13,7 +13,9 @@ public class EnemySpawner : MonoBehaviour
     public List<int> enemyCounts;
     public Vector3 range;
     public int numberOfWaves = 1;
+    //public float SpawnMaxDelay = 0.2f;
 
+    private List<GameObject> _enemyInstances = new List<GameObject>();
     private int waveCounter = 0;
     private bool spawned = false;
 
@@ -49,6 +51,10 @@ public class EnemySpawner : MonoBehaviour
                     Vector3 randomPos = transform.position + new Vector3(x, y, z);
 
                     GameObject enemy = Instantiate(enemyPrefabs[i], randomPos, Quaternion.identity);
+                    _enemyInstances.Add(enemy);
+
+                    //float randNum = Random.Range(0, SpawnMaxDelay);
+                    //StartCoroutine(SpawnWithDelay(randNum, enemyPrefabs[i], randomPos));
                 }
             }
             waveCounter++;
@@ -57,10 +63,23 @@ public class EnemySpawner : MonoBehaviour
         if (BeatWaves != null) { BeatWaves.Invoke(this, EventArgs.Empty); }
     }
 
+    IEnumerator SpawnWithDelay(float delay, GameObject enemyPref, Vector3 spawnPos)
+    {
+        yield return new WaitForSeconds(delay);
+        GameObject enemy = Instantiate(enemyPref, spawnPos, Quaternion.identity);
+        _enemyInstances.Add(enemy);
+    }
+
     bool AllEnemiesDead()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        return enemies.Length == 0;
+        for (int i = 0; i < _enemyInstances.Count; i++)
+        {
+            if (_enemyInstances[i] == null)
+            {
+                _enemyInstances.RemoveAt(i);
+            }
+        }
+        return _enemyInstances.Count == 0;
     }
 
     bool AllEnemiesDead()
