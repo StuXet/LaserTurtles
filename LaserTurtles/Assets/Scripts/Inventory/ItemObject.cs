@@ -15,7 +15,7 @@ public class ItemObject : MonoBehaviour
     public bool CanBePicked;
     public bool RequiresInteraction;
 
-    private void Awake()
+    private void Update()
     {
         if (ItemAnimator)
         {

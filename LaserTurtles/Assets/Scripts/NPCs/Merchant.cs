@@ -9,6 +9,7 @@ public class Merchant : MonoBehaviour
     GameObject player;
     InputManager inputManager;
     PlayerInputActions playerInputActions;
+    [SerializeField] private UIMediator _uIMediator;
     [SerializeField] float interactionRange;
     [SerializeField] GameObject dialoguePanel;
     [SerializeField] Button dialogueButton;
@@ -36,15 +37,15 @@ public class Merchant : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        GameObject dialogueUI = player.transform.Find("DialogueUI").gameObject;
-        dialogueText = dialogueUI.GetComponentInChildren<TextMeshProUGUI>();
-        dialogueButton = dialogueUI.GetComponentInChildren<Button>();
-        dialoguePanel = dialogueUI.transform.Find("DialoguePanel").gameObject;
-
+        _uIMediator = FindObjectOfType<UIMediator>();
         pWallet = player.GetComponentInChildren<Wallet>();
         inputManager = player.GetComponent<InputManager>();
         playerInputActions = inputManager.PlInputActions;
         playerInputActions.Player.Interact.performed += DialogueStartCheck;
+
+        dialogueText = _uIMediator.DialougeUI.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>();
+        dialoguePanel = _uIMediator.DialougeUI.transform.GetChild(1).gameObject;
+        dialogueButton = _uIMediator.DialougeUI.transform.GetChild(2).GetComponentInChildren<Button>();
     }
 
     // Update is called once per frame
@@ -58,13 +59,20 @@ public class Merchant : MonoBehaviour
         if (Vector3.Distance(transform.position, player.transform.position) <= interactionRange && !inDialogue)
         {
             interactTip.SetActive(true); //shows tip if player is in right range 
-            dialogueButton.onClick.AddListener(delegate { NextStage(); });
         }
         else
         {
             interactTip.SetActive(false);
         }
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            dialogueButton.onClick.AddListener(delegate { NextStage(); });
+        }
     }
 
     private void OnTriggerExit(Collider other)
