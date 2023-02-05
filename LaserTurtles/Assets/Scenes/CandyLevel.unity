@@ -283,6 +283,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1938473887}
     m_Modifications:
+    - target: {fileID: 824944940722374629, guid: fba7812a1ef19e441ac75d880f0a851e,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 824944940722374629, guid: fba7812a1ef19e441ac75d880f0a851e,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -10
+      objectReference: {fileID: 0}
     - target: {fileID: 824944940722374630, guid: fba7812a1ef19e441ac75d880f0a851e,
         type: 3}
       propertyPath: numberOfWaves
@@ -565,7 +575,7 @@ PrefabInstance:
     - target: {fileID: 824944940722374629, guid: fba7812a1ef19e441ac75d880f0a851e,
         type: 3}
       propertyPath: m_Size.x
-      value: 30
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 824944940722374629, guid: fba7812a1ef19e441ac75d880f0a851e,
         type: 3}
@@ -1482,7 +1492,7 @@ PrefabInstance:
     - target: {fileID: 824944940722374629, guid: fba7812a1ef19e441ac75d880f0a851e,
         type: 3}
       propertyPath: m_Size.x
-      value: 20
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 824944940722374629, guid: fba7812a1ef19e441ac75d880f0a851e,
         type: 3}

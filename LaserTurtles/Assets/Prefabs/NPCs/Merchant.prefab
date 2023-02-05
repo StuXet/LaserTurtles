@@ -402,7 +402,7 @@ MonoBehaviour:
   dialogueText: {fileID: 0}
   interactTip: {fileID: 8777943013194476442}
   exclamationMark: {fileID: 8777943013202856056}
-  swordPrice: 10
+  swordPrice: 5
   reward: {fileID: 0}
   rewardSpawnPos: {fileID: 3339971508261952920}
   inDialogue: 0
