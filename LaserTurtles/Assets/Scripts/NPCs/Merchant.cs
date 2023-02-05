@@ -11,11 +11,16 @@ public class Merchant : MonoBehaviour
     PlayerInputActions playerInputActions;
     [SerializeField] float interactionRange;
     [SerializeField] GameObject dialoguePanel;
-    [SerializeField] GameObject dialogueButton;
+    [SerializeField] Button dialogueButton;
+    [SerializeField] TextMeshProUGUI dialogueText;
     [SerializeField] GameObject interactTip;
     [SerializeField] GameObject exclamationMark;
-    [SerializeField] TextMeshProUGUI dialogueText;
     [SerializeField] int swordPrice = 10;
+
+    [Header("Reward Setting")]
+    [SerializeField] GameObject reward;
+    [SerializeField] Transform rewardSpawnPos;
+
     [HideInInspector] public bool inDialogue;
     bool isComplete;
     bool isFirstTime = true;
@@ -31,6 +36,11 @@ public class Merchant : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        GameObject dialogueUI = player.transform.Find("DialogueUI").gameObject;
+        dialogueText = dialogueUI.GetComponentInChildren<TextMeshProUGUI>();
+        dialogueButton = dialogueUI.GetComponentInChildren<Button>();
+        dialoguePanel = dialogueUI.transform.Find("DialoguePanel").gameObject;
+
         pWallet = player.GetComponentInChildren<Wallet>();
         inputManager = player.GetComponent<InputManager>();
         playerInputActions = inputManager.PlInputActions;
@@ -40,7 +50,7 @@ public class Merchant : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(transform.position, player.transform.position) > interactionRange && inDialogue)
+        if (Vector3.Distance(transform.position, player.transform.position) > interactionRange && inDialogue) //player gets out of range while in dialogue 
         {
             EndDialogue();
         }
@@ -48,6 +58,7 @@ public class Merchant : MonoBehaviour
         if (Vector3.Distance(transform.position, player.transform.position) <= interactionRange && !inDialogue)
         {
             interactTip.SetActive(true); //shows tip if player is in right range 
+            dialogueButton.onClick.AddListener(delegate { NextStage(); });
         }
         else
         {
@@ -56,7 +67,15 @@ public class Merchant : MonoBehaviour
 
     }
 
-    void DialogueStartCheck(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            dialogueButton.onClick.RemoveAllListeners();
+        }
+    }
+
+        void DialogueStartCheck(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         if (Vector3.Distance(transform.position, player.transform.position) <= interactionRange && !inDialogue)
         {
@@ -72,7 +91,7 @@ public class Merchant : MonoBehaviour
     {
         dialoguePanel.SetActive(false);
         dialogueText.gameObject.SetActive(false);
-        dialogueButton.SetActive(false);
+        dialogueButton.gameObject.SetActive(false);
         inDialogue = false;
         player.GetComponent<PlayerCombatSystem>().inDialogue = false;
         isFirstTime = false;
@@ -84,7 +103,7 @@ public class Merchant : MonoBehaviour
         player.GetComponent<PlayerCombatSystem>().inDialogue = true;
         dialoguePanel.SetActive(true);
         dialogueText.gameObject.SetActive(true);
-        dialogueButton.SetActive(true);
+        dialogueButton.gameObject.SetActive(true);
         interactTip.SetActive(false);
         exclamationMark.SetActive(false);
 
@@ -102,10 +121,12 @@ public class Merchant : MonoBehaviour
 
     public void NextStage()
     {
+        print("checkcheck");
         if (dialogueText.text == stage1 && pWallet.Coins >= swordPrice)
         {
             dialogueText.text = stage2t;
-            //give sword
+            GameObject weapon = Instantiate(reward, rewardSpawnPos.position, rewardSpawnPos.rotation);
+            weapon.GetComponent<ItemObject>().CanBePicked = true;
             pWallet.DeductCoins(swordPrice);
         }
         else if (dialogueText.text == stage1)
