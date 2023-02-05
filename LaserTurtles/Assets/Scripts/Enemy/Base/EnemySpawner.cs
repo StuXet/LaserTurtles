@@ -32,15 +32,6 @@ public class EnemySpawner : MonoBehaviour
     {
         while (waveCounter < numberOfWaves)
         {
-            StartCoroutine(SpawnEnemyWaves());
-            spawned = true;
-        }
-    }
-
-    IEnumerator SpawnEnemyWaves()
-    {
-        while (waveCounter < numberOfWaves)
-        {
             for (int i = 0; i < enemyPrefabs.Count; i++)
             {
                 for (int j = 0; j < enemyCounts[i]; j++)
@@ -98,12 +89,6 @@ public class EnemySpawner : MonoBehaviour
         }
 
         return _enemyInstances.Count == 0;
-    }
-
-    bool AllEnemiesDead()
-    {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        return enemies.Length == 0;
     }
 
     private void OnDrawGizmos()
