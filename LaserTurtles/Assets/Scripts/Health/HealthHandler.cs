@@ -56,6 +56,11 @@ public class HealthHandler : MonoBehaviour
         _currentHP = _healthSystem.CurrentHealth;
     }
 
+    public void HealHP(int hp)
+    {
+        _healthSystem.Heal(hp);
+    }
+
     public void IncreaseMaxHP(int addHealth)
     {
         _maxHP += addHealth;

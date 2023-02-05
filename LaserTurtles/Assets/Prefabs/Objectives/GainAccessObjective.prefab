@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5779501204708947656}
   - component: {fileID: 5659799564359486907}
   - component: {fileID: 8250741381537367356}
+  - component: {fileID: 7898262584223411348}
   m_Layer: 0
   m_Name: CounterText
   m_TagString: Untagged
@@ -172,6 +173,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 5659799564359486907}
   m_maskType: 0
+--- !u!114 &7898262584223411348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682095466006265714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b76514c4450d2f4688d0f5c956c4943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2586889088013342809
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,6 +231,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4550635122521590026}
   - component: {fileID: 4503165416767561965}
+  - component: {fileID: 7655137273581420513}
   m_Layer: 0
   m_Name: DoorLockBoss
   m_TagString: Untagged
@@ -292,6 +306,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7655137273581420513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3373631209616090128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b76514c4450d2f4688d0f5c956c4943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6414739760505591907
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,6 +361,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1890647020248793848}
   - component: {fileID: 117415615897193581}
+  - component: {fileID: 2777052967101342150}
   m_Layer: 0
   m_Name: DoorLockCandy
   m_TagString: Untagged
@@ -409,6 +436,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2777052967101342150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7712945461268276910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b76514c4450d2f4688d0f5c956c4943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7922340073619815951
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,7 +527,7 @@ GameObject:
   - component: {fileID: 7922340074326025680}
   m_Layer: 0
   m_Name: Door
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

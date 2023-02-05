@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 267697418768930472}
   m_Layer: 8
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 7886257498774675740}
   m_Layer: 8
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
