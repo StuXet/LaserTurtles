@@ -5,10 +5,14 @@ using UnityEngine.UI;
 using TMPro;
 public class Merchant : MonoBehaviour
 {
+    public delegate void SoldItem(InventoryItemData itemData);
+    public event SoldItem OnSoldItem;
+
     Wallet pWallet;
     GameObject player;
     InputManager inputManager;
     PlayerInputActions playerInputActions;
+    [SerializeField] private UIMediator _uIMediator;
     [SerializeField] float interactionRange;
     [SerializeField] GameObject dialoguePanel;
     [SerializeField] Button dialogueButton;
@@ -24,27 +28,27 @@ public class Merchant : MonoBehaviour
     [HideInInspector] public bool inDialogue;
     bool isComplete;
     bool isFirstTime = true;
-    
+
 
     string stage1 = "Hello there! i got a super rad sword you can use to defeat the witch!";
     string stage2t = "Great! looks like you got enought shmekels for the sword, here you go...";
     string stage2f = "Damn, looks like youre a brokie my guy, come back when you got enough money";
     string stage3 = "Good luck homie";
 
-    
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        GameObject dialogueUI = player.transform.Find("DialogueUI").gameObject;
-        dialogueText = dialogueUI.GetComponentInChildren<TextMeshProUGUI>();
-        dialogueButton = dialogueUI.GetComponentInChildren<Button>();
-        dialoguePanel = dialogueUI.transform.Find("DialoguePanel").gameObject;
-
+        _uIMediator = FindObjectOfType<UIMediator>();
         pWallet = player.GetComponentInChildren<Wallet>();
         inputManager = player.GetComponent<InputManager>();
         playerInputActions = inputManager.PlInputActions;
         playerInputActions.Player.Interact.performed += DialogueStartCheck;
+
+        dialogueText = _uIMediator.DialougeUI.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>();
+        dialoguePanel = _uIMediator.DialougeUI.transform.GetChild(1).gameObject;
+        dialogueButton = _uIMediator.DialougeUI.transform.GetChild(2).GetComponentInChildren<Button>();
     }
 
     // Update is called once per frame
@@ -58,13 +62,20 @@ public class Merchant : MonoBehaviour
         if (Vector3.Distance(transform.position, player.transform.position) <= interactionRange && !inDialogue)
         {
             interactTip.SetActive(true); //shows tip if player is in right range 
-            dialogueButton.onClick.AddListener(delegate { NextStage(); });
         }
         else
         {
             interactTip.SetActive(false);
         }
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            dialogueButton.onClick.AddListener(delegate { NextStage(); });
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -75,7 +86,7 @@ public class Merchant : MonoBehaviour
         }
     }
 
-        void DialogueStartCheck(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    void DialogueStartCheck(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         if (Vector3.Distance(transform.position, player.transform.position) <= interactionRange && !inDialogue)
         {
@@ -126,8 +137,10 @@ public class Merchant : MonoBehaviour
         {
             dialogueText.text = stage2t;
             GameObject weapon = Instantiate(reward, rewardSpawnPos.position, rewardSpawnPos.rotation);
-            weapon.GetComponent<ItemObject>().CanBePicked = true;
+            ItemObject tempItem = weapon.GetComponent<ItemObject>();
+            tempItem.CanBePicked = true;
             pWallet.DeductCoins(swordPrice);
+            if (OnSoldItem != null) { OnSoldItem.Invoke(tempItem.ReferenceItem); };
         }
         else if (dialogueText.text == stage1)
         {
