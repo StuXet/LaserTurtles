@@ -5,6 +5,9 @@ using UnityEngine.UI;
 using TMPro;
 public class Merchant : MonoBehaviour
 {
+    public delegate void SoldItem(InventoryItemData itemData);
+    public event SoldItem OnSoldItem;
+
     Wallet pWallet;
     GameObject player;
     InputManager inputManager;
@@ -25,14 +28,14 @@ public class Merchant : MonoBehaviour
     [HideInInspector] public bool inDialogue;
     bool isComplete;
     bool isFirstTime = true;
-    
+
 
     string stage1 = "Hello there! i got a super rad sword you can use to defeat the witch!";
     string stage2t = "Great! looks like you got enought shmekels for the sword, here you go...";
     string stage2f = "Damn, looks like youre a brokie my guy, come back when you got enough money";
     string stage3 = "Good luck homie";
 
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -83,7 +86,7 @@ public class Merchant : MonoBehaviour
         }
     }
 
-        void DialogueStartCheck(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    void DialogueStartCheck(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         if (Vector3.Distance(transform.position, player.transform.position) <= interactionRange && !inDialogue)
         {
@@ -134,8 +137,10 @@ public class Merchant : MonoBehaviour
         {
             dialogueText.text = stage2t;
             GameObject weapon = Instantiate(reward, rewardSpawnPos.position, rewardSpawnPos.rotation);
-            weapon.GetComponent<ItemObject>().CanBePicked = true;
+            ItemObject tempItem = weapon.GetComponent<ItemObject>();
+            tempItem.CanBePicked = true;
             pWallet.DeductCoins(swordPrice);
+            if (OnSoldItem != null) { OnSoldItem.Invoke(tempItem.ReferenceItem); };
         }
         else if (dialogueText.text == stage1)
         {

@@ -8,12 +8,14 @@ public class ItemObject : MonoBehaviour
     public delegate void PickedUp(GameObject player);
     public event PickedUp PickedUpItem;
 
-    [SerializeField] private InventoryItemData ReferenceItem;
+    [SerializeField] private InventoryItemData _referenceItem;
     [SerializeField] private Animator ItemAnimator;
     private InventorySystem PlayerInventoryRef;
 
     public bool CanBePicked;
     public bool RequiresInteraction;
+
+    public InventoryItemData ReferenceItem { get => _referenceItem;}
 
     private void Update()
     {
@@ -35,34 +37,34 @@ public class ItemObject : MonoBehaviour
         if (CanBePicked)
         {
             PlayerInventoryRef = inventoryRef;
-            if (ReferenceItem.Type == ItemType.Coin)
+            if (_referenceItem.Type == ItemType.Coin)
             {
                 if (PickedUpItem != null) { PickedUpItem.Invoke(PlayerInventoryRef.transform.parent.gameObject); }
-                PlayerInventoryRef.WalletRef.AddCoins(ReferenceItem.Value);
+                PlayerInventoryRef.WalletRef.AddCoins(_referenceItem.Value);
                 Destroy(gameObject);
             }
-            else if (ReferenceItem.Type == ItemType.Key)
+            else if (_referenceItem.Type == ItemType.Key)
             {
                 if (PickedUpItem != null) { PickedUpItem.Invoke(PlayerInventoryRef.transform.parent.gameObject); }
                 Destroy(gameObject,0.1f);
             }
-            else if (ReferenceItem.Type == ItemType.Ammo)
+            else if (_referenceItem.Type == ItemType.Ammo)
             {
                 if (PickedUpItem != null) { PickedUpItem.Invoke(PlayerInventoryRef.transform.parent.gameObject); }
-                PlayerInventoryRef.CombatSystem.AddAmmo(ReferenceItem.Value);
+                PlayerInventoryRef.CombatSystem.AddAmmo(_referenceItem.Value);
                 Destroy(gameObject);
             }
-            else if (ReferenceItem.Type == ItemType.Consumable)
+            else if (_referenceItem.Type == ItemType.Consumable)
             {
                 if (PickedUpItem != null) { PickedUpItem.Invoke(PlayerInventoryRef.transform.parent.gameObject); }
                 Destroy(gameObject, 0.1f);
             }
             else
             {
-                if (!PlayerInventoryRef.CheckIfInInventory(ReferenceItem) || ReferenceItem.IsStackable)
+                if (!PlayerInventoryRef.CheckIfInInventory(_referenceItem) || _referenceItem.IsStackable)
                 {
                     if (PickedUpItem != null) { PickedUpItem.Invoke(PlayerInventoryRef.transform.parent.gameObject); }
-                    PlayerInventoryRef.Add(ReferenceItem);
+                    PlayerInventoryRef.Add(_referenceItem);
                     Destroy(gameObject);
                 }
             }
