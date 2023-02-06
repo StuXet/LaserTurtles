@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Rendering;
 
 public class SettingsMenu : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class SettingsMenu : MonoBehaviour
     public Toggle fullscreenToggle;
     public TMP_Dropdown graphicsDropdown;
     public Slider volumeSlider;
+    [SerializeField] private AudioMixer _audioMixer;
     Resolution[] resolutions;
 
     private void Start()
@@ -44,7 +46,14 @@ public class SettingsMenu : MonoBehaviour
         graphicsDropdown.value = PlayerPrefs.GetInt("Graphics", QualitySettings.GetQualityLevel());
         graphicsDropdown.RefreshShownValue();
 
-        volumeSlider.value = PlayerPrefs.GetFloat("Volume", AudioListener.volume);
+        //volumeSlider.value = PlayerPrefs.GetFloat("Volume", AudioListener.volume);
+        float tempVol;
+        bool tempVolBool = _audioMixer.GetFloat("Volume", out tempVol);
+        if (tempVolBool)
+        {
+            volumeSlider.value = PlayerPrefs.GetFloat("Volume", tempVol);
+            _audioMixer.SetFloat("Volume", volumeSlider.value);
+        }
     }
 
     public void SetResolution(int resolutionIndex)
@@ -68,7 +77,8 @@ public class SettingsMenu : MonoBehaviour
 
     public void SetVolume(float volume)
     {
-        AudioListener.volume = volume;
+        _audioMixer.SetFloat("Volume", volume);
+        //AudioListener.volume = volume;
         PlayerPrefs.SetFloat("Volume", volume);
     }
 }
