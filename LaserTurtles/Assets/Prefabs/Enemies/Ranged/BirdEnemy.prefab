@@ -44,6 +44,8 @@ GameObject:
   - component: {fileID: 1655155455741120438}
   - component: {fileID: 2770793692575537998}
   - component: {fileID: 1655155455741120437}
+  - component: {fileID: 5197772044173352012}
+  - component: {fileID: 3157836604774075552}
   m_Layer: 0
   m_Name: BirdEnemy
   m_TagString: Untagged
@@ -133,11 +135,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e8f1661cee43f4a85498679949f043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectile: {fileID: 1778532939917248221, guid: 23ac6c36e2c2f5e41b6771a76c3836ee,
+  _projectile: {fileID: 5601993761966769206, guid: 3ecc2802b0f7bc8489296b4cce6ba2fc,
     type: 3}
   _firePoint: {fileID: 7644431126201349979}
   _target: {fileID: 0}
   _projectileSpeed: 15
+  _startDelay: 0.5
+--- !u!54 &5197772044173352012
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2851740006274703717}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &3157836604774075552
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2851740006274703717}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
+  m_Center: {x: 0, y: -0.9, z: 0}
 --- !u!1 &7594543226852021194
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,6 +363,7 @@ GameObject:
   - component: {fileID: 1320036844615220294}
   - component: {fileID: 4718742583778345460}
   - component: {fileID: 8724689807990754746}
+  - component: {fileID: 4641116848848696039}
   m_Layer: 0
   m_Name: EnemyGFX
   m_TagString: Enemy
@@ -381,11 +414,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f23ecd1993a43c542995e99b9265a25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rb: {fileID: 0}
+  _rb: {fileID: 5197772044173352012}
+  _enemyAI: {fileID: 2770793692575537998}
+  _navAgent: {fileID: 1655155455741120438}
   _weakness: 0
   _resistance: 0
   _healthBar: {fileID: 6324513056659785184}
-  _maxHP: 100
+  _maxHP: 40
   _currentHP: 0
   _dmgPopup: {fileID: 4823436943637356501, guid: 4e085fcee1859f042a0f4eff7a3538ea,
     type: 3}
@@ -410,14 +445,27 @@ MonoBehaviour:
   itemsToDrop:
   - dropChance: 25
     dropObject: {fileID: 0}
-  - dropChance: 25
-    dropObject: {fileID: 154455731916256318, guid: f801f7dc61d28c1489074033a2a4df0c,
-      type: 3}
-  - dropChance: 25
+  - dropChance: 40
     dropObject: {fileID: 154455731916256318, guid: bdb3c85b7d1227c4dabf8be09449871b,
       type: 3}
-  - dropChance: 25
+  - dropChance: 35
     dropObject: {fileID: 5601993761966769206, guid: 5fb94eb5dcb7e4243b59fb099ed614a0,
+      type: 3}
+--- !u!114 &4641116848848696039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8856561727849613568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f67ec6f9e178b9f4795524eaad3a2755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemsToDrop:
+  - dropChance: 100
+    dropObject: {fileID: 154455731916256318, guid: f801f7dc61d28c1489074033a2a4df0c,
       type: 3}
 --- !u!1001 &6061655726421622828
 PrefabInstance:
@@ -426,6 +474,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2184747810313973160}
     m_Modifications:
+    - target: {fileID: 277671601230841292, guid: 5f7a17ec43f9dd54eb0c436ad679e0a8,
+        type: 3}
+      propertyPath: _characterName
+      value: Bird
+      objectReference: {fileID: 0}
     - target: {fileID: 3532866493787222704, guid: 5f7a17ec43f9dd54eb0c436ad679e0a8,
         type: 3}
       propertyPath: m_PresetInfoIsWorld

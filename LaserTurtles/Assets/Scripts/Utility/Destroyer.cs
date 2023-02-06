@@ -5,6 +5,7 @@ using UnityEngine.PlayerLoop;
 
 public class Destroyer : MonoBehaviour
 {
+    public bool ShootByPlayer;
     public bool CanBeDestroyed;
     [SerializeField] float _time = 5;
     private bool _activated;
@@ -20,7 +21,7 @@ public class Destroyer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if ((other.CompareTag("Enemy") || other.CompareTag("Environment")) && CanBeDestroyed)
+        if ((ShootByPlayer && other.CompareTag("Enemy")) || (!ShootByPlayer && other.CompareTag("Player")) || other.CompareTag("Environment") && CanBeDestroyed)
         {
             _activated = true;
             Destroy(gameObject);
