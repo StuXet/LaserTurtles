@@ -138,7 +138,7 @@ MonoBehaviour:
   _firePoint: {fileID: 7644431126201349979}
   _target: {fileID: 0}
   _projectileSpeed: 15
-  _startDelay: 0.25
+  _startDelay: 0.5
 --- !u!1 &7594543226852021194
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,6 +441,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2184747810313973160}
     m_Modifications:
+    - target: {fileID: 277671601230841292, guid: 5f7a17ec43f9dd54eb0c436ad679e0a8,
+        type: 3}
+      propertyPath: _characterName
+      value: Bird
+      objectReference: {fileID: 0}
     - target: {fileID: 3532866493787222704, guid: 5f7a17ec43f9dd54eb0c436ad679e0a8,
         type: 3}
       propertyPath: m_PresetInfoIsWorld

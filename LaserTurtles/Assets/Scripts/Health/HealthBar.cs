@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
+    [Header("Bars")]
     [SerializeField] private Image BGHealthBar;
     [SerializeField] private Image MaxHealthBar;
     [SerializeField] private Image CurrentHealthBar1;
@@ -13,21 +15,48 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private Image DamageHealthBar2;
     private HealthSystem _healthSystem;
 
+    [Header("Shrink")]
     [SerializeField] private float _shrinkTimerDelay = 1;
     [SerializeField] private float _shrinkSpeed = 1;
     private float _damagedHealthShrinkTimer;
 
+    [Header("Transparency")]
     [SerializeField] private float _hideSpeed = 1;
     private float _hideTimer;
     [SerializeField] private bool UseTransparency;
 
+    [Header("Name")]
+    [SerializeField] private TextMeshProUGUI _nameText;
+    [SerializeField] private string _characterName = "Character";
+    [SerializeField] private bool _displayName;
+    [SerializeField] private bool _alwaysVisible;
+    private Color _textOGColor;
+
     private void Awake()
     {
+        if (_nameText)
+        {
+            _nameText.text = _characterName;
+            _textOGColor = _nameText.color;
+        }
+
         SetTransparency(0);
     }
 
     private void Update()
     {
+        if (_nameText)
+        {
+            if (_displayName && _alwaysVisible)
+            {
+                _nameText.color = _textOGColor;
+            }
+            else if (!_displayName)
+            {
+                _nameText.color = Color.clear;
+            }
+        }
+
         ShrinkBar();
     }
 
@@ -100,6 +129,14 @@ public class HealthBar : MonoBehaviour
             tempCol = DamageHealthBar1.color;
             tempCol.a = a;
             DamageHealthBar1.color = tempCol;
+
+
+            if (_nameText && _displayName && !_alwaysVisible)
+            {
+                tempCol = _nameText.color;
+                tempCol.a = a;
+                _nameText.color = tempCol;
+            }
         }
     }
 }

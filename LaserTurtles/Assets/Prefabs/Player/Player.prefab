@@ -698,7 +698,7 @@ MonoBehaviour:
   _weakness: 0
   _resistance: 0
   _healthBar: {fileID: 8353132162002614410}
-  _maxHP: 100
+  _maxHP: 200
   _currentHP: 0
   _dmgPopup: {fileID: 0}
   _dmgPopupYOffset: 2
@@ -733,9 +733,12 @@ MonoBehaviour:
   _weaponHoldPoint: {fileID: 4850596892579114794}
   isAttacking: 0
   inDialogue: 0
-  _attackCooldown: 1
-  _damageStart: 0.2
-  _damageEnd: 0.7
+  _lightAttackCooldown: 1
+  _lightDamageStart: 0.2
+  _lightDamageEnd: 0.7
+  _heavyAttackCooldown: 1.5
+  _heavyDamageStart: 0.5
+  _heavyDamageEnd: 1
   poolForce: 2
   specialAttackLength: 10
   _isShooting: 0
