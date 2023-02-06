@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3119c7746239e54ab715db9046c02b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ReferenceItem: {fileID: 11400000, guid: 5bed7cb77eefb524ab6b84983ad6bbb8, type: 2}
+  _referenceItem: {fileID: 11400000, guid: 5bed7cb77eefb524ab6b84983ad6bbb8, type: 2}
   ItemAnimator: {fileID: 3432677507281443485}
   CanBePicked: 1
   RequiresInteraction: 0
