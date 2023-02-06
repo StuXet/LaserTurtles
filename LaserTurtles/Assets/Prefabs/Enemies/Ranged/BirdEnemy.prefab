@@ -44,6 +44,8 @@ GameObject:
   - component: {fileID: 1655155455741120438}
   - component: {fileID: 2770793692575537998}
   - component: {fileID: 1655155455741120437}
+  - component: {fileID: 5197772044173352012}
+  - component: {fileID: 3157836604774075552}
   m_Layer: 0
   m_Name: BirdEnemy
   m_TagString: Untagged
@@ -139,6 +141,35 @@ MonoBehaviour:
   _target: {fileID: 0}
   _projectileSpeed: 15
   _startDelay: 0.5
+--- !u!54 &5197772044173352012
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2851740006274703717}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &3157836604774075552
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2851740006274703717}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
+  m_Center: {x: 0, y: -0.9, z: 0}
 --- !u!1 &7594543226852021194
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,7 +414,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f23ecd1993a43c542995e99b9265a25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rb: {fileID: 0}
+  _rb: {fileID: 5197772044173352012}
+  _enemyAI: {fileID: 2770793692575537998}
+  _navAgent: {fileID: 1655155455741120438}
   _weakness: 0
   _resistance: 0
   _healthBar: {fileID: 6324513056659785184}
