@@ -318,10 +318,24 @@ public class PlayerCombatSystem : MonoBehaviour
                 }
             }
 
+            if (_equippedWeapon.TryGetComponent(out WeaponEffect effect))
+            {
+                effect.EffectState(true);
+            }
+
             _timer += Time.deltaTime;
+
         }
         else
         {
+            if (_equippedWeapon != null)
+            {
+                if (_equippedWeapon.TryGetComponent(out WeaponEffect effect))
+                {
+                    effect.EffectState(false);
+                }
+            }
+
             _timer = 0;
             isAttacking = false;
         }
