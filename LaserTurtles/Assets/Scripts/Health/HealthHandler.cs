@@ -11,6 +11,8 @@ public class HealthHandler : MonoBehaviour
 
     public HealthSystem _healthSystem;
     [SerializeField] private Rigidbody _rb;
+    [SerializeField] private EnemyAI _enemyAI;
+    [SerializeField] private NavMeshAgent _navAgent;
     [SerializeField] private WeaknessResistance _weakness;
     [SerializeField] private WeaknessResistance _resistance;
     [SerializeField] private HealthBar _healthBar;
@@ -181,18 +183,16 @@ public class HealthHandler : MonoBehaviour
     {
         if (_rb)
         {
-            EnemyAI eAI = GetComponent<EnemyAI>();
-            NavMeshAgent navAgent = GetComponent<NavMeshAgent>();
             kbTimer = kbDelay;
 
-            if (eAI)
+            if (_enemyAI)
             {
-                eAI.enabled = false;
+                _enemyAI.enabled = false;
             }
 
-            if (navAgent)
+            if (_navAgent)
             {
-                navAgent.enabled = false;
+                _navAgent.enabled = false;
             }
 
             _rb.isKinematic = false;
@@ -221,32 +221,28 @@ public class HealthHandler : MonoBehaviour
     private IEnumerator ResetKnockback(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        NavMeshAgent navAgent = GetComponent<NavMeshAgent>();
-        EnemyAI eAI = gameObject.GetComponent<EnemyAI>();
-        if (_rb && eAI && navAgent)
+        if (_rb && _enemyAI && _navAgent)
         {
-            if (!_rb.isKinematic && _rb.detectCollisions && !eAI.enabled && _rb.velocity == Vector3.zero)
+            if (!_rb.isKinematic && _rb.detectCollisions && !_enemyAI.enabled && _rb.velocity == Vector3.zero)
             {
                 _rb.isKinematic = true;
 
-                eAI.enabled = true;
-                navAgent.enabled = true;
+                _enemyAI.enabled = true;
+                _navAgent.enabled = true;
             }
         }
     }
 
     private void ResetKB()
     {
-        NavMeshAgent navAgent = GetComponent<NavMeshAgent>();
-        EnemyAI eAI = gameObject.GetComponent<EnemyAI>();
-        if (_rb && eAI && navAgent)
+        if (_rb && _enemyAI && _navAgent)
         {
-            if (!_rb.isKinematic && _rb.detectCollisions && !eAI.enabled && _rb.velocity == Vector3.zero)
+            if (!_rb.isKinematic && _rb.detectCollisions && !_enemyAI.enabled && _rb.velocity == Vector3.zero)
             {
                 _rb.isKinematic = true;
 
-                eAI.enabled = true;
-                navAgent.enabled = true;
+                _enemyAI.enabled = true;
+                _navAgent.enabled = true;
                 isKnockedBack = false;
             }
         }
