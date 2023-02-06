@@ -25,10 +25,14 @@ public class PlayerCombatSystem : MonoBehaviour
     public bool isAttacking = false;
     public bool inDialogue = false;
     private bool _isHeavy;
-    [SerializeField] private float _attackCooldown = 1f;
-    [SerializeField] private float _damageStart = 0.2f;
-    [SerializeField] private float _damageEnd = 0.7f;
+    [SerializeField] private float _lightAttackCooldown = 1f;
+    [SerializeField] private float _lightDamageStart = 0.2f;
+    [SerializeField] private float _lightDamageEnd = 0.7f;
+    [SerializeField] private float _heavyAttackCooldown = 1.5f;
+    [SerializeField] private float _heavyDamageStart = 0.5f;
+    [SerializeField] private float _heavyDamageEnd = 1f;
     private float _timer;
+    private bool _isDamaging;
     private float mouseHoldCounter;
     [SerializeField] float poolForce = 2f;
     [SerializeField] float specialAttackLength = 10f;
@@ -279,17 +283,39 @@ public class PlayerCombatSystem : MonoBehaviour
     {
         if (isAttacking && _equippedWeapon != null)
         {
-            if (_timer >= _attackCooldown)
+            if (!_isHeavy)
             {
-                isAttacking = false;
-            }
-            else if (_timer >= _damageStart && _timer <= _damageEnd)
-            {
-                _equippedWeapon.GetComponent<Damager>().CanDamage = true;
+                if (_timer >= _lightAttackCooldown)
+                {
+                    isAttacking = false;
+                }
+                else if (_timer >= _lightDamageStart && _timer <= _lightDamageEnd)
+                {
+                    _equippedWeapon.GetComponent<Damager>().CanDamage = true;
+                    _isDamaging = true;
+                }
+                else
+                {
+                    _equippedWeapon.GetComponent<Damager>().CanDamage = false;
+                    _isDamaging = false;
+                }
             }
             else
             {
-                _equippedWeapon.GetComponent<Damager>().CanDamage = false;
+                if (_timer >= _heavyAttackCooldown)
+                {
+                    isAttacking = false;
+                }
+                else if (_timer >= _heavyDamageStart && _timer <= _heavyDamageEnd)
+                {
+                    _equippedWeapon.GetComponent<Damager>().CanDamage = true;
+                    _isDamaging = true;
+                }
+                else
+                {
+                    _equippedWeapon.GetComponent<Damager>().CanDamage = false;
+                    _isDamaging = false;
+                }
             }
 
             _timer += Time.deltaTime;
