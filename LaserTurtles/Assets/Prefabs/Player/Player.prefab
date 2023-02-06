@@ -732,9 +732,12 @@ MonoBehaviour:
   _weaponHoldPoint: {fileID: 4850596892579114794}
   isAttacking: 0
   inDialogue: 0
-  _attackCooldown: 1
-  _damageStart: 0.2
-  _damageEnd: 0.7
+  _lightAttackCooldown: 1
+  _lightDamageStart: 0.2
+  _lightDamageEnd: 0.7
+  _heavyAttackCooldown: 1.5
+  _heavyDamageStart: 0.5
+  _heavyDamageEnd: 1
   poolForce: 2
   specialAttackLength: 10
   _isShooting: 0
