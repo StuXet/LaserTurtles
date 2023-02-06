@@ -77,10 +77,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47b85580978165f4c980572a0417fe50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isRandom: 0
-  healAmount: 5
-  randHealAmountMin: 5
-  randHealAmountMax: 10
+  isRandom: 1
+  healAmount: 10
+  randHealAmountMin: 10
+  randHealAmountMax: 25
 --- !u!114 &3831116493995791388
 MonoBehaviour:
   m_ObjectHideFlags: 0

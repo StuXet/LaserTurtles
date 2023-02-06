@@ -139,7 +139,7 @@ MonoBehaviour:
   _comboLength: 1
   ComboState: 1
   _activeDuration: 1
-  _startDelay: 0.25
+  _startDelay: 0.5
 --- !u!1 &7083597236467699577
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,6 +468,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 501277653416864721}
     m_Modifications:
+    - target: {fileID: 277671601230841292, guid: 5f7a17ec43f9dd54eb0c436ad679e0a8,
+        type: 3}
+      propertyPath: _characterName
+      value: Snake
+      objectReference: {fileID: 0}
     - target: {fileID: 3532866493787222704, guid: 5f7a17ec43f9dd54eb0c436ad679e0a8,
         type: 3}
       propertyPath: m_PresetInfoIsWorld
