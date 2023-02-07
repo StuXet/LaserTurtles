@@ -80,7 +80,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 2851740006274703717}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 1
   m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -398,7 +398,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5000001
+  m_Radius: 1
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
@@ -443,13 +443,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsToDrop:
-  - dropChance: 25
+  - dropChance: 24
     dropObject: {fileID: 0}
   - dropChance: 40
     dropObject: {fileID: 154455731916256318, guid: bdb3c85b7d1227c4dabf8be09449871b,
       type: 3}
   - dropChance: 35
     dropObject: {fileID: 5601993761966769206, guid: 5fb94eb5dcb7e4243b59fb099ed614a0,
+      type: 3}
+  - dropChance: 1
+    dropObject: {fileID: 5012736691022855372, guid: dbff69dd2a535dd49a1e9bc20651b60c,
       type: 3}
 --- !u!114 &4641116848848696039
 MonoBehaviour:
@@ -633,6 +636,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5357292787898612321, guid: f9d0e0a8541113b4ea16b3aab01fffc2,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5357292787898612321, guid: f9d0e0a8541113b4ea16b3aab01fffc2,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5357292787898612321, guid: f9d0e0a8541113b4ea16b3aab01fffc2,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5357292787898612321, guid: f9d0e0a8541113b4ea16b3aab01fffc2,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -680,6 +698,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5357292787898612321, guid: f9d0e0a8541113b4ea16b3aab01fffc2,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9d0e0a8541113b4ea16b3aab01fffc2, type: 3}

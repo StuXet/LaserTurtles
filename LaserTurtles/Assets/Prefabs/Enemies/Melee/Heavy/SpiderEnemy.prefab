@@ -47,7 +47,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5000001
+  m_Radius: 1.5
   m_Height: 1.5
   m_Direction: 1
   m_Center: {x: 0, y: 0.25, z: 0}
@@ -92,13 +92,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsToDrop:
-  - dropChance: 25
+  - dropChance: 24
     dropObject: {fileID: 0}
   - dropChance: 40
     dropObject: {fileID: 154455731916256318, guid: bdb3c85b7d1227c4dabf8be09449871b,
       type: 3}
   - dropChance: 35
     dropObject: {fileID: 5601993761966769206, guid: 5fb94eb5dcb7e4243b59fb099ed614a0,
+      type: 3}
+  - dropChance: 1
+    dropObject: {fileID: 5012736691022855372, guid: dbff69dd2a535dd49a1e9bc20651b60c,
       type: 3}
 --- !u!114 &7453140696285861752
 MonoBehaviour:
@@ -145,7 +148,7 @@ Transform:
   m_GameObject: {fileID: 1774903017516284688}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1.5}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 2}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5565624641691466412}
@@ -371,7 +374,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 6135216701375911093}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 1
   m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -380,8 +383,8 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 1.5
-  m_BaseOffset: 0.5
+  m_Height: 2
+  m_BaseOffset: 0.9
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &6135216701375911095
@@ -413,7 +416,7 @@ MonoBehaviour:
   AttackCoolDownTime: 2
   AlreadyAttacked: 0
   SightRange: 10
-  AttackRange: 1
+  AttackRange: 2
 --- !u!114 &7228148100382587493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -655,6 +658,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 228984592506059420, guid: e9e386a3a49742d4cbf163c7a5de1b7f,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 228984592506059420, guid: e9e386a3a49742d4cbf163c7a5de1b7f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 228984592506059420, guid: e9e386a3a49742d4cbf163c7a5de1b7f,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 228984592506059420, guid: e9e386a3a49742d4cbf163c7a5de1b7f,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -702,6 +720,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 228984592506059420, guid: e9e386a3a49742d4cbf163c7a5de1b7f,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 605264566442270758, guid: e9e386a3a49742d4cbf163c7a5de1b7f,
         type: 3}
