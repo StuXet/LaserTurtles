@@ -13,7 +13,6 @@ public class UIMediator : MonoBehaviour
 
     private void Awake()
     {
-        _dialougeUI.SetActive(false);
         _winUI.SetActive(false);
     }
 }

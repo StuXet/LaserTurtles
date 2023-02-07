@@ -735,9 +735,9 @@ MonoBehaviour:
   _weaponHoldPoint: {fileID: 4850596892579114794}
   isAttacking: 0
   inDialogue: 0
-  _lightAttackCooldown: 1
-  _lightDamageStart: 0.2
-  _lightDamageEnd: 0.7
+  _lightAttackCooldown: 0.8
+  _lightDamageStart: 0.1
+  _lightDamageEnd: 0.6
   _heavyAttackCooldown: 1.5
   _heavyDamageStart: 0.5
   _heavyDamageEnd: 1
@@ -2655,7 +2655,7 @@ PrefabInstance:
     - target: {fileID: 6730761568658922963, guid: 7ce4485d686cc5844b1721051a5a6a10,
         type: 3}
       propertyPath: m_Value
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7193563124739585624, guid: 7ce4485d686cc5844b1721051a5a6a10,
         type: 3}
