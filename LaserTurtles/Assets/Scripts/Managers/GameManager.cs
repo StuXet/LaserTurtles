@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [Range(0, 2)] public float TimeScale = 1;
+    //[Range(0, 2)] public float TimeScale = 1;
 
     private UIMediator _uIMediator;
     private GameObject _winTextRef;
@@ -25,7 +25,20 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (TimeScale != Time.timeScale) Time.timeScale = TimeScale;
+        //if (TimeScale != Time.timeScale) Time.timeScale = TimeScale;
+    }
+
+
+    public void YouWin()
+    {
+        _winTextRef.SetActive(true);
+        StartCoroutine(WinningSequence());
+    }
+
+    IEnumerator WinningSequence()
+    {
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene(0);
     }
 
 
