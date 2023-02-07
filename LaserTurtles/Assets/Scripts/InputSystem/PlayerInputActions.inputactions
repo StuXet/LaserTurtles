@@ -253,7 +253,7 @@
                 {
                     "name": "",
                     "id": "a2969ea5-b60b-483b-9ece-c7e5eb5317d6",
-                    "path": "<Gamepad>/leftStickPress",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -276,6 +276,17 @@
                     "name": "",
                     "id": "74ea7dad-0b81-4f24-acad-6ceb5ffa738c",
                     "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Map",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8dbe1d11-d67a-4d8a-adfd-50c5f2aaaa82",
+                    "path": "<DualShockGamepad>/touchpadButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -330,7 +341,7 @@
                 {
                     "name": "",
                     "id": "9faac1e6-e6cd-46bc-a03e-e4572d3ca6ae",
-                    "path": "<Gamepad>/leftTrigger",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -374,7 +385,7 @@
                 {
                     "name": "",
                     "id": "710c4372-0ee3-44d9-86fb-70a34d49ed51",
-                    "path": "<Gamepad>/dpad/down",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -417,11 +428,33 @@
                 },
                 {
                     "name": "",
+                    "id": "fc499ea4-1d79-47e7-af93-66a7592e51f2",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "WeaponSlot1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "a9a70b58-dcc0-45f9-a67d-16ff586243e0",
                     "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
+                    "action": "WeaponSlot2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a1be2cbc-7b5f-4499-8b1b-9abebf82ba81",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "WeaponSlot2",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -439,11 +472,33 @@
                 },
                 {
                     "name": "",
+                    "id": "62bec270-73e8-4fe4-8141-3f01863e0d46",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "WeaponSlot3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "0b8c425c-4160-4170-8470-5ce7f029cd73",
                     "path": "<Keyboard>/4",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
+                    "action": "WeaponSlot4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1f39566d-5f6c-4a67-8997-260d4b5ba8ab",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "WeaponSlot4",
                     "isComposite": false,
                     "isPartOfComposite": false

@@ -32,7 +32,7 @@ public class PlayerCombatSystem : MonoBehaviour
     [SerializeField] private float _heavyDamageStart = 0.5f;
     [SerializeField] private float _heavyDamageEnd = 1f;
     private float _timer;
-    private bool _isDamaging;
+    //private bool _isDamaging;
     private float mouseHoldCounter;
     [SerializeField] float poolForce = 2f;
     [SerializeField] float specialAttackLength = 10f;
@@ -292,12 +292,12 @@ public class PlayerCombatSystem : MonoBehaviour
                 else if (_timer >= _lightDamageStart && _timer <= _lightDamageEnd)
                 {
                     _equippedWeapon.GetComponent<Damager>().CanDamage = true;
-                    _isDamaging = true;
+                    //_isDamaging = true;
                 }
                 else
                 {
                     _equippedWeapon.GetComponent<Damager>().CanDamage = false;
-                    _isDamaging = false;
+                    //_isDamaging = false;
                 }
             }
             else
@@ -309,12 +309,12 @@ public class PlayerCombatSystem : MonoBehaviour
                 else if (_timer >= _heavyDamageStart && _timer <= _heavyDamageEnd)
                 {
                     _equippedWeapon.GetComponent<Damager>().CanDamage = true;
-                    _isDamaging = true;
+                    //_isDamaging = true;
                 }
                 else
                 {
                     _equippedWeapon.GetComponent<Damager>().CanDamage = false;
-                    _isDamaging = false;
+                    //_isDamaging = false;
                 }
             }
 
