@@ -384,7 +384,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0.9
+  m_BaseOffset: 0.8
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &6135216701375911095
@@ -416,7 +416,7 @@ MonoBehaviour:
   AttackCoolDownTime: 2
   AlreadyAttacked: 0
   SightRange: 10
-  AttackRange: 2
+  AttackRange: 1.5
 --- !u!114 &7228148100382587493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -659,17 +659,17 @@ PrefabInstance:
     - target: {fileID: 228984592506059420, guid: e9e386a3a49742d4cbf163c7a5de1b7f,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.5
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 228984592506059420, guid: e9e386a3a49742d4cbf163c7a5de1b7f,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.5
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 228984592506059420, guid: e9e386a3a49742d4cbf163c7a5de1b7f,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.5
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 228984592506059420, guid: e9e386a3a49742d4cbf163c7a5de1b7f,
         type: 3}
