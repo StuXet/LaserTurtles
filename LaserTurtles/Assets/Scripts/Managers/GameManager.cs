@@ -40,17 +40,4 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(5);
         SceneManager.LoadScene(0);
     }
-
-
-    public void YouWin()
-    {
-        _winTextRef.SetActive(true);
-        StartCoroutine(WinningSequence());
-    }
-
-    IEnumerator WinningSequence()
-    {
-        yield return new WaitForSeconds(5);
-        SceneManager.LoadScene(0);
-    }
 }
