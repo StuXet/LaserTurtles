@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class HitFlash : MonoBehaviour
 {
-    private HealthHandler _healthHandlerRef;
+    [SerializeField] private HealthHandler _healthHandlerRef;
 
     [SerializeField] private Material _hitEffect;
     [SerializeField] private Color _hitColor = Color.white;
@@ -22,7 +22,6 @@ public class HitFlash : MonoBehaviour
 
     private void Awake()
     {
-        _healthHandlerRef = GetComponent<EnemyAI>().HealthHandlerRef;
         _healthHandlerRef.OnDamageOccured += _healthHandlerRef_OnDamageOccured;
         Setup();
     }
