@@ -42,6 +42,7 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler
                 draggableItem.OriginalParent = icon.transform;
                 draggableItem.EquipIconRef = icon;
                 invSlot.SetTransparency(0);
+                icon.color= Color.white;
 
                 _equippedItemData = invSlot.ItemData;
                 draggableItem.EquipSlotRef = this;
