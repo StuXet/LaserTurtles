@@ -364,6 +364,7 @@ GameObject:
   - component: {fileID: 4718742583778345460}
   - component: {fileID: 8724689807990754746}
   - component: {fileID: 4641116848848696039}
+  - component: {fileID: 5158565155986016523}
   m_Layer: 0
   m_Name: EnemyGFX
   m_TagString: Enemy
@@ -470,6 +471,24 @@ MonoBehaviour:
   - dropChance: 100
     dropObject: {fileID: 154455731916256318, guid: f801f7dc61d28c1489074033a2a4df0c,
       type: 3}
+--- !u!114 &5158565155986016523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8856561727849613568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 4
+  outlineColor: {r: 1, g: 0, b: 0, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &6061655726421622828
 PrefabInstance:
   m_ObjectHideFlags: 0

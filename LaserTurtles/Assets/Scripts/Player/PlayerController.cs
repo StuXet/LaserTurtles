@@ -1,10 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using static UnityEngine.GraphicsBuffer;
 using UnityEngine.SceneManagement;
-using UnityEngine.InputSystem;
 
 
 // Movement Type Enum
@@ -164,7 +161,6 @@ public class PlayerController : MonoBehaviour
     private void RotateToCursor()
     {
         //player looks at the mouse LookCursor position
-        //Ray ray = _playerCam.ScreenPointToRay(Input.mousePosition);
 
         if (_plInputActions.Player.MouseMovement.IsInProgress())
         {

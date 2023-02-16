@@ -22,13 +22,13 @@ public class WallVision : MonoBehaviour
         if (Physics.Raycast(transform.position, dir, out hit, 1000, _playerLayer, QueryTriggerInteraction.UseGlobal))
         {
             Debug.DrawRay(transform.position, dir * hit.distance, Color.green);
-            Debug.Log("PLayer Visible");
+            //Debug.Log("PLayer Visible");
             _wallVisionUI.SetActive(false);
         }
         else
         {
             Debug.DrawRay(transform.position, dir * 1000, Color.red);
-            Debug.Log("Player Blocked");
+            //Debug.Log("Player Blocked");
             _wallVisionUI.SetActive(true);
         }
     }
