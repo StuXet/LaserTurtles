@@ -28,6 +28,7 @@ public class EnemyAI : MonoBehaviour
     public float SightRange, AttackRange;
     private bool PlayerInSightRange, PlayerInAttackRange;
 
+    public HealthHandler HealthHandlerRef { get => _healthHandlerRef; set => _healthHandlerRef = value; }
 
     private void Awake()
     {

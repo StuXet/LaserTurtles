@@ -8,6 +8,7 @@ using UnityEngine.AI;
 public class HealthHandler : MonoBehaviour
 {
     public event EventHandler OnDeathOccured;
+    public event EventHandler OnDamageOccured;
 
     public HealthSystem _healthSystem;
     [SerializeField] private Rigidbody _rb;
@@ -36,6 +37,7 @@ public class HealthHandler : MonoBehaviour
         _healthSystem = new HealthSystem(_maxHP);
         if (_healthBar != null) _healthBar.Setup(_healthSystem);
         _healthSystem.OnDeath += _healthSystem_OnDeath;
+        _healthSystem.OnDamaged += _healthSystem_OnDamaged;
     }
 
     private void FixedUpdate()
@@ -45,6 +47,11 @@ public class HealthHandler : MonoBehaviour
         {
             ResetKB();
         }
+    }
+
+    private void _healthSystem_OnDamaged(object sender, EventArgs e)
+    {
+        if (OnDamageOccured != null) OnDamageOccured(this, EventArgs.Empty);
     }
 
     private void _healthSystem_OnDeath(object sender, System.EventArgs e)
