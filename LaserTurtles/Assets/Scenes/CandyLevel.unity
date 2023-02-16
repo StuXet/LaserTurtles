@@ -6079,12 +6079,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1893790383418335807, guid: 57c39bb9fb681c744bd561c7f5fa733a,
-        type: 3}
-      propertyPath: _equippedItemData
-      value: 
-      objectReference: {fileID: 11400000, guid: 6e753aa5962f40a45bef3985d1bb4805,
-        type: 2}
     - target: {fileID: 2993719425511638292, guid: 57c39bb9fb681c744bd561c7f5fa733a,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -6158,7 +6152,7 @@ PrefabInstance:
     - target: {fileID: 8835234193362461441, guid: 57c39bb9fb681c744bd561c7f5fa733a,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.00018310547
+      value: -0.35476685
       objectReference: {fileID: 0}
     - target: {fileID: 9160621757711531547, guid: 57c39bb9fb681c744bd561c7f5fa733a,
         type: 3}
@@ -6169,11 +6163,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 24.48855
-      objectReference: {fileID: 0}
-    - target: {fileID: 9160621758664768927, guid: 57c39bb9fb681c744bd561c7f5fa733a,
-        type: 3}
-      propertyPath: CurrentAmmo
-      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 9160621758708108032, guid: 57c39bb9fb681c744bd561c7f5fa733a,
         type: 3}
