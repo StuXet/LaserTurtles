@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class InventorySlot : MonoBehaviour
 {
@@ -46,9 +45,11 @@ public class InventorySlot : MonoBehaviour
 
     public void SetTransparency(float aValue)
     {
-        Color tempCol = m_itemSlot.color;
-        tempCol.a = aValue;
-        m_itemSlot.color = tempCol;
+        Color tempCol;
+
+        //Color tempCol = m_itemSlot.color;
+        //tempCol.a = aValue;
+        //m_itemSlot.color = tempCol;
 
         tempCol = m_icon.color;
         tempCol.a = aValue;

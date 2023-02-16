@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7725048213435948103}
   - component: {fileID: 1250003625586011748}
   - component: {fileID: 5609083525479066215}
+  - component: {fileID: 6488114023808855350}
   m_Layer: 0
   m_Name: PopsicleBat
   m_TagString: Damager
@@ -106,6 +107,19 @@ MonoBehaviour:
   ItemAnimator: {fileID: 806246763852308259}
   CanBePicked: 0
   RequiresInteraction: 1
+--- !u!114 &6488114023808855350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5012736691022855372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f80ce3def7e8e44cbb2df96a2b7de30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponParticle: {fileID: 7133256797945068897}
 --- !u!1 &6746138501094538976
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,6 +245,12 @@ PrefabInstance:
 --- !u!4 &2868415492027066593 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3953367492724704334, guid: 2a26df082561f7d4bba7c8e809ad4c6c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1230474975990705327}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7133256797945068897 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8353593722403361230, guid: 2a26df082561f7d4bba7c8e809ad4c6c,
     type: 3}
   m_PrefabInstance: {fileID: 1230474975990705327}
   m_PrefabAsset: {fileID: 0}
