@@ -78,9 +78,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRandom: 1
-  healAmount: 10
-  randHealAmountMin: 10
-  randHealAmountMax: 25
+  healAmount: 25
+  randHealAmountMin: 25
+  randHealAmountMax: 50
 --- !u!114 &3831116493995791388
 MonoBehaviour:
   m_ObjectHideFlags: 0
