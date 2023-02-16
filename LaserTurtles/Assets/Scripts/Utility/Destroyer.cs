@@ -21,7 +21,7 @@ public class Destroyer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if ((ShootByPlayer && other.CompareTag("Enemy")) || (!ShootByPlayer && other.CompareTag("Player")) || other.CompareTag("Environment") && CanBeDestroyed)
+        if (CanBeDestroyed && ((ShootByPlayer && other.CompareTag("Enemy")) || (!ShootByPlayer && other.CompareTag("Player")) || other.CompareTag("Environment") || other.CompareTag("Ground")))
         {
             _activated = true;
             Destroy(gameObject);
