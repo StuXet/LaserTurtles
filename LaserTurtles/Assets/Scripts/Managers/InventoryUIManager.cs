@@ -16,16 +16,19 @@ public class InventoryUIManager : MonoBehaviour
     [SerializeField] private GameObject _slotPrefab;
     [SerializeField] private Transform _contentBar;
     [SerializeField] private Transform _canvas;
+    [SerializeField] private GameObject _itemAddedIcon;
     [SerializeField] private InventoryFilter _currentFilter;
 
     public InventorySystem PlayerInventoryRefrence { get => PlayerInventoryRef;}
     public Transform ContentBar { get => _contentBar;}
+    public GameObject ItemAddedIcon { get => _itemAddedIcon;}
 
 
     // Start is called before the first frame update
     void Start()
     {
         PlayerInventoryRef.OnInventoryChanged += OnUpdateInventory;
+        _itemAddedIcon.SetActive(false);
     }
 
 

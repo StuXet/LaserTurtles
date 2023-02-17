@@ -847,7 +847,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inputManagerRef: {fileID: 39110088067695669}
   LargeMapOverlay: {fileID: 2565370255680769995}
-  InventoryOverlay: {fileID: 7796445778917279002}
+  InventoryOverlay: {fileID: 9053707344131515673}
 --- !u!1 &5986399918260106865
 GameObject:
   m_ObjectHideFlags: 0
@@ -1012,6 +1012,7 @@ MonoBehaviour:
   _inputManagerRef: {fileID: 39110088067695669}
   _walletRef: {fileID: 6618692398221945656}
   _combatSystem: {fileID: 878156989}
+  _inventoryUIManager: {fileID: 8909839886947764840}
 --- !u!114 &6618692398221945656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2820,24 +2821,24 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 8867461881153419403}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7796445778917279002 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1674503130680802705, guid: 7ce4485d686cc5844b1721051a5a6a10,
-    type: 3}
-  m_PrefabInstance: {fileID: 8867461881153419403}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8909839886947764840 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 47729468618814179, guid: 7ce4485d686cc5844b1721051a5a6a10,
     type: 3}
   m_PrefabInstance: {fileID: 8867461881153419403}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7796445778917279002}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56d8a90e90a3f804399db4b976320cbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &9053707344131515673 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 480397818293034386, guid: 7ce4485d686cc5844b1721051a5a6a10,
+    type: 3}
+  m_PrefabInstance: {fileID: 8867461881153419403}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9178791640648043207
 PrefabInstance:
   m_ObjectHideFlags: 0

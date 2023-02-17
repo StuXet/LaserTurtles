@@ -10,6 +10,7 @@ public class InventorySystem : MonoBehaviour
 
     [SerializeField] private Wallet _walletRef;
     [SerializeField] private PlayerCombatSystem _combatSystem;
+    [SerializeField] private InventoryUIManager _inventoryUIManager;
     public Wallet WalletRef { get => _walletRef;}
     public PlayerCombatSystem CombatSystem { get => _combatSystem; }
 
@@ -64,7 +65,16 @@ public class InventorySystem : MonoBehaviour
             m_itemDictionary.Add(referenceData, newItem);
         }
 
+        _inventoryUIManager.ItemAddedIcon.SetActive(true);
+        StartCoroutine(ItemAddedPopup());
+
         if (OnInventoryChanged != null) OnInventoryChanged(this, EventArgs.Empty);
+    }
+
+    IEnumerator ItemAddedPopup()
+    {
+        yield return new WaitForSeconds(1.5f);
+        _inventoryUIManager.ItemAddedIcon.SetActive(false);
     }
 
     public void Remove(InventoryItemData referenceData)
