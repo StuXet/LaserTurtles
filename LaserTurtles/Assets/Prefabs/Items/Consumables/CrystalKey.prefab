@@ -165,6 +165,7 @@ GameObject:
   m_Component:
   - component: {fileID: 218195987286709729}
   - component: {fileID: 4081395017839113244}
+  - component: {fileID: 2631312146032494921}
   m_Layer: 0
   m_Name: Hud_Press_E
   m_TagString: Untagged
@@ -239,6 +240,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2631312146032494921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7736983163420492702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b76514c4450d2f4688d0f5c956c4943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7030793302277554214
 PrefabInstance:
   m_ObjectHideFlags: 0
