@@ -58,6 +58,8 @@ public class PlayerCombatSystem : MonoBehaviour
         _plInputActions.Player.WeaponSlot2.performed += WeaponSlot2;
         _plInputActions.Player.WeaponSlot3.performed += WeaponSlot3;
         _plInputActions.Player.WeaponSlot4.performed += WeaponSlot4;
+
+        SelectedSlotIcons();
     }
 
 
@@ -215,8 +217,24 @@ public class PlayerCombatSystem : MonoBehaviour
         {
             _equippedWeapon = null;
         }
+
+        SelectedSlotIcons();
     }
 
+    private void SelectedSlotIcons()
+    {
+        for (int i = 0; i < _equipmentSlots.Count; i++)
+        {
+            if (_currentSlot == i + 1)
+            {
+                _equipmentSlots[i].SlotSelectIcon.SetActive(true);
+            }
+            else
+            {
+                _equipmentSlots[i].SlotSelectIcon.SetActive(false);
+            }
+        }
+    }
 
     void Attack()
     {

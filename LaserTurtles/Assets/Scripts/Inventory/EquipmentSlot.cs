@@ -12,10 +12,13 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler
     [SerializeField] private InventoryItemData _equippedItemData;
     [SerializeField] private GameObject _slotPrefab;
     [SerializeField] private GameObject _slotTypeIcon;
+    [SerializeField] private GameObject _slotSelectIcon;
     [SerializeField] private Transform _canvas;
     [SerializeField] private InventoryUIManager _inventoryUIRef;
 
     public InventoryItemData EquippedItemData { get => _equippedItemData; set => _equippedItemData = value; }
+    public GameObject SlotSelectIcon { get => _slotSelectIcon;}
+
 
     private void Awake()
     {
