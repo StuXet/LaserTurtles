@@ -1,10 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using static UnityEngine.GraphicsBuffer;
 using UnityEngine.SceneManagement;
-using UnityEngine.InputSystem;
 
 
 // Movement Type Enum
@@ -76,6 +73,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 _velocity;
     private bool _isGrounded;
     public bool GravityEnabled = true;
+
+    public bool IsDead { get => _isDead;}
 
 
     // Default Methods
@@ -164,7 +163,6 @@ public class PlayerController : MonoBehaviour
     private void RotateToCursor()
     {
         //player looks at the mouse LookCursor position
-        //Ray ray = _playerCam.ScreenPointToRay(Input.mousePosition);
 
         if (_plInputActions.Player.MouseMovement.IsInProgress())
         {

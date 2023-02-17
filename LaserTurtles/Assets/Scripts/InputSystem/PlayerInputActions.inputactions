@@ -141,6 +141,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "ScrollWeapons",
+                    "type": "Value",
+                    "id": "5b574061-b3bb-4c5c-b8ae-4505bb9197bd",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "ESC",
                     "type": "Button",
                     "id": "c492679b-8eff-4463-9f29-f9195d9466b0",
@@ -522,6 +531,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "ESC",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dddc8981-f581-4f8f-8fb0-6cc92db67d28",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ScrollWeapons",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

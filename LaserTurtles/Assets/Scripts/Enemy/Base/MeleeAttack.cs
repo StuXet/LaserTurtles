@@ -25,6 +25,8 @@ public class MeleeAttack : MonoBehaviour
     private bool _isActive;
     private bool _wasActive;
 
+    [SerializeField] private GameObject _prepAttackIcon, _attackingIcon;
+
 
     // Update is called once per frame
     void Update()
@@ -79,11 +81,14 @@ public class MeleeAttack : MonoBehaviour
                         }
                     }
                     _timer += Time.deltaTime;
+                    _prepAttackIcon.SetActive(false);
+                    _attackingIcon.SetActive(true);
                 }
             }
             else
             {
                 _delayTimer += Time.deltaTime;
+                _prepAttackIcon.SetActive(true);
             }
         }
         else
@@ -101,6 +106,8 @@ public class MeleeAttack : MonoBehaviour
             _delayTimer = 0;
             _weaponCollider1.enabled = false;
             if (_weaponCollider2 != null) _weaponCollider2.enabled = false;
+            _prepAttackIcon.SetActive(false);
+            _attackingIcon.SetActive(false);
         }
     }
 }
