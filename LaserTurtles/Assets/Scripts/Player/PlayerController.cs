@@ -74,6 +74,8 @@ public class PlayerController : MonoBehaviour
     private bool _isGrounded;
     public bool GravityEnabled = true;
 
+    public bool IsDead { get => _isDead;}
+
 
     // Default Methods
     // --------------------
