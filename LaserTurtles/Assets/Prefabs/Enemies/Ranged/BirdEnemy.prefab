@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 1655155455741120438}
   - component: {fileID: 2770793692575537998}
   - component: {fileID: 1655155455741120437}
+  - component: {fileID: 6252398344140077569}
   - component: {fileID: 5197772044173352012}
   - component: {fileID: 3157836604774075552}
   m_Layer: 0
@@ -141,6 +142,27 @@ MonoBehaviour:
   _target: {fileID: 0}
   _projectileSpeed: 15
   _startDelay: 0.5
+--- !u!114 &6252398344140077569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2851740006274703717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8be361dd1645f324bb6d1eb5abb250b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthHandlerRef: {fileID: 4718742583778345460}
+  _hitEffect: {fileID: 2100000, guid: ae21f653dff354b4e90155b5de096e12, type: 2}
+  _hitColor: {r: 1, g: 1, b: 1, a: 1}
+  _skinedMeshRenderers:
+  - {fileID: 6172380504312242137}
+  - {fileID: 6137494212197627613}
+  - {fileID: 4291109151698982391}
+  _effectStrenght: 0.25
+  _flashDuration: 0.1
 --- !u!54 &5197772044173352012
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -365,7 +387,6 @@ GameObject:
   - component: {fileID: 8724689807990754746}
   - component: {fileID: 4641116848848696039}
   - component: {fileID: 5158565155986016523}
-  - component: {fileID: 5445361690498174295}
   m_Layer: 0
   m_Name: EnemyGFX
   m_TagString: Enemy
@@ -490,26 +511,6 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &5445361690498174295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8856561727849613568}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8be361dd1645f324bb6d1eb5abb250b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _healthHandlerRef: {fileID: 4718742583778345460}
-  _hitEffect: {fileID: 2100000, guid: ae21f653dff354b4e90155b5de096e12, type: 2}
-  _hitColor: {r: 1, g: 1, b: 1, a: 1}
-  _skinedMeshRenderers:
-  - {fileID: 6172380504312242137}
-  - {fileID: 4291109151698982391}
-  _effectStrenght: 0.25
-  _flashDuration: 0.1
 --- !u!1001 &6061655726421622828
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -674,6 +675,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: ae21f653dff354b4e90155b5de096e12, type: 2}
+    - target: {fileID: 3516573900710591705, guid: f9d0e0a8541113b4ea16b3aab01fffc2,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3516573900710591705, guid: f9d0e0a8541113b4ea16b3aab01fffc2,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: ae21f653dff354b4e90155b5de096e12, type: 2}
     - target: {fileID: 4689159551575204059, guid: f9d0e0a8541113b4ea16b3aab01fffc2,
         type: 3}
       propertyPath: m_Name
@@ -775,6 +786,12 @@ Transform:
 --- !u!23 &4291109151698982391 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 6804013432250015731, guid: f9d0e0a8541113b4ea16b3aab01fffc2,
+    type: 3}
+  m_PrefabInstance: {fileID: 7341328238767868420}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6137494212197627613 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3516573900710591705, guid: f9d0e0a8541113b4ea16b3aab01fffc2,
     type: 3}
   m_PrefabInstance: {fileID: 7341328238767868420}
   m_PrefabAsset: {fileID: 0}

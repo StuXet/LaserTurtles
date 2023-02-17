@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 5168271363645760439}
   - component: {fileID: 7453140696285861752}
   - component: {fileID: 5901095183870106318}
-  - component: {fileID: 5314953026775038966}
   m_Layer: 0
   m_Name: EnemyGFX
   m_TagString: Enemy
@@ -139,26 +138,6 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &5314953026775038966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 603221281009302736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8be361dd1645f324bb6d1eb5abb250b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _healthHandlerRef: {fileID: 3732241753493091364}
-  _hitEffect: {fileID: 2100000, guid: ae21f653dff354b4e90155b5de096e12, type: 2}
-  _hitColor: {r: 1, g: 1, b: 1, a: 1}
-  _skinedMeshRenderers:
-  - {fileID: 6497308886463556934}
-  - {fileID: 5211750136317105255}
-  _effectStrenght: 0.25
-  _flashDuration: 0.1
 --- !u!1 &1774903017516284688
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,6 +357,7 @@ GameObject:
   - component: {fileID: 7228148100382587494}
   - component: {fileID: 6135216701375911095}
   - component: {fileID: 7228148100382587493}
+  - component: {fileID: 2644558523111022368}
   - component: {fileID: 4792080552470358112}
   - component: {fileID: 7061644897650365255}
   m_Layer: 0
@@ -476,6 +456,26 @@ MonoBehaviour:
   ComboState: 1
   _activeDuration: 1
   _startDelay: 0.5
+--- !u!114 &2644558523111022368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6135216701375911093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8be361dd1645f324bb6d1eb5abb250b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthHandlerRef: {fileID: 3732241753493091364}
+  _hitEffect: {fileID: 2100000, guid: ae21f653dff354b4e90155b5de096e12, type: 2}
+  _hitColor: {r: 1, g: 1, b: 1, a: 1}
+  _skinedMeshRenderers:
+  - {fileID: 6497308886463556934}
+  - {fileID: 5211750136317105255}
+  _effectStrenght: 0.25
+  _flashDuration: 0.1
 --- !u!54 &4792080552470358112
 Rigidbody:
   m_ObjectHideFlags: 0
