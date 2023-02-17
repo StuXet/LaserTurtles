@@ -15,6 +15,7 @@ public class PlayerCombatSystem : MonoBehaviour
     [Header("Equipping")]
     [SerializeField] private List<EquipmentSlot> _equipmentSlots = new List<EquipmentSlot>();
     private int _currentSlot = 1;
+    private float _scrollVal;
 
     [SerializeField] private GameObject _equippedWeapon;
     [SerializeField] private GameObject _projectile;
@@ -71,6 +72,7 @@ public class PlayerCombatSystem : MonoBehaviour
         ShootTimer();
         AmmoCountHandler();
 
+        ScrollThroughWeapons();
         LiveSlotUpdate();
 
         AnimationHandler();
@@ -140,6 +142,36 @@ public class PlayerCombatSystem : MonoBehaviour
         }
     }
 
+    private void ScrollThroughWeapons()
+    {
+        _scrollVal = _plInputActions.Player.ScrollWeapons.ReadValue<Vector2>().y;
+
+        if (_scrollVal > 0)
+        {
+            if (_currentSlot == _equipmentSlots.Count)
+            {
+                _currentSlot = 1;
+            }
+            else
+            {
+                _currentSlot++;
+            }
+            ChangeWeapon(_currentSlot);
+        }
+        else if (_scrollVal < 0)
+        {
+            if (_currentSlot == 1)
+            {
+                _currentSlot = 4;
+            }
+            else
+            {
+                _currentSlot--;
+            }
+            ChangeWeapon(_currentSlot);
+        }
+    }
+
     private void LiveSlotUpdate()
     {
         if (_equipmentSlots[_currentSlot - 1].EquippedItemData == null)
@@ -166,22 +198,22 @@ public class PlayerCombatSystem : MonoBehaviour
         if (_currentSlot != slot && slot <= _equipmentSlots.Count)
         {
             _currentSlot = slot;
+        }
 
-            if (_weaponHoldPoint.childCount != 0)
-            {
-                Destroy(_weaponHoldPoint.GetChild(0).gameObject);
-            }
+        if (_weaponHoldPoint.childCount != 0)
+        {
+            Destroy(_weaponHoldPoint.GetChild(0).gameObject);
+        }
 
-            if (_equipmentSlots[slot - 1].EquippedItemData != null)
-            {
-                GameObject weapon = Instantiate(_equipmentSlots[slot - 1].EquippedItemData.Prefab, _weaponHoldPoint);
-                weapon.transform.localPosition = _weaponHoldPoint.transform.localPosition;
-                _equippedWeapon = weapon;
-            }
-            else
-            {
-                _equippedWeapon = null;
-            }
+        if (_equipmentSlots[slot - 1].EquippedItemData != null)
+        {
+            GameObject weapon = Instantiate(_equipmentSlots[slot - 1].EquippedItemData.Prefab, _weaponHoldPoint);
+            weapon.transform.localPosition = _weaponHoldPoint.transform.localPosition;
+            _equippedWeapon = weapon;
+        }
+        else
+        {
+            _equippedWeapon = null;
         }
     }
 
