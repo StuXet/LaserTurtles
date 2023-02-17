@@ -608,7 +608,6 @@ GameObject:
   - component: {fileID: 8980513415885741700}
   - component: {fileID: 878156989}
   - component: {fileID: 2104562432498233633}
-  - component: {fileID: 602387662450551167}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -781,25 +780,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _textUI: {fileID: 1682299860912897801}
---- !u!114 &602387662450551167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4800407385372773092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8be361dd1645f324bb6d1eb5abb250b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _healthHandlerRef: {fileID: 8980513415885741700}
-  _hitEffect: {fileID: 2100000, guid: ae21f653dff354b4e90155b5de096e12, type: 2}
-  _hitColor: {r: 1, g: 1, b: 1, a: 1}
-  _skinedMeshRenderers:
-  - {fileID: 4109568157560752005}
-  _effectStrenght: 0.25
-  _flashDuration: 0.1
 --- !u!1 &5195345205009075710
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,7 +827,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inputManagerRef: {fileID: 39110088067695669}
   LargeMapOverlay: {fileID: 2565370255680769995}
-  InventoryOverlay: {fileID: 7796445778917279002}
+  InventoryOverlay: {fileID: 9053707344131515673}
 --- !u!1 &5986399918260106865
 GameObject:
   m_ObjectHideFlags: 0
@@ -1012,6 +992,7 @@ MonoBehaviour:
   _inputManagerRef: {fileID: 39110088067695669}
   _walletRef: {fileID: 6618692398221945656}
   _combatSystem: {fileID: 878156989}
+  _inventoryUIManager: {fileID: 8909839886947764840}
 --- !u!114 &6618692398221945656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2247,7 +2228,7 @@ PrefabInstance:
     - target: {fileID: 9074015860810649920, guid: 761e0d37319a2b64da502b2e3f4dc540,
         type: 3}
       propertyPath: m_Materials.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9074015860810649920, guid: 761e0d37319a2b64da502b2e3f4dc540,
         type: 3}
@@ -2256,12 +2237,6 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: ae21f653dff354b4e90155b5de096e12, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 761e0d37319a2b64da502b2e3f4dc540, type: 3}
---- !u!137 &4109568157560752005 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 9074015860810649920, guid: 761e0d37319a2b64da502b2e3f4dc540,
-    type: 3}
-  m_PrefabInstance: {fileID: 4964514000433534661}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &4976644559587137402 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 141275090180964799, guid: 761e0d37319a2b64da502b2e3f4dc540,
@@ -2820,24 +2795,24 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 8867461881153419403}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7796445778917279002 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1674503130680802705, guid: 7ce4485d686cc5844b1721051a5a6a10,
-    type: 3}
-  m_PrefabInstance: {fileID: 8867461881153419403}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8909839886947764840 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 47729468618814179, guid: 7ce4485d686cc5844b1721051a5a6a10,
     type: 3}
   m_PrefabInstance: {fileID: 8867461881153419403}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7796445778917279002}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56d8a90e90a3f804399db4b976320cbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &9053707344131515673 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 480397818293034386, guid: 7ce4485d686cc5844b1721051a5a6a10,
+    type: 3}
+  m_PrefabInstance: {fileID: 8867461881153419403}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9178791640648043207
 PrefabInstance:
   m_ObjectHideFlags: 0
