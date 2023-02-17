@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5168271363645760439}
   - component: {fileID: 7453140696285861752}
   - component: {fileID: 5901095183870106318}
+  - component: {fileID: 5314953026775038966}
   m_Layer: 0
   m_Name: EnemyGFX
   m_TagString: Enemy
@@ -138,6 +139,26 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &5314953026775038966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603221281009302736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8be361dd1645f324bb6d1eb5abb250b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthHandlerRef: {fileID: 3732241753493091364}
+  _hitEffect: {fileID: 2100000, guid: ae21f653dff354b4e90155b5de096e12, type: 2}
+  _hitColor: {r: 1, g: 1, b: 1, a: 1}
+  _skinedMeshRenderers:
+  - {fileID: 6497308886463556934}
+  - {fileID: 5211750136317105255}
+  _effectStrenght: 0.25
+  _flashDuration: 0.1
 --- !u!1 &1774903017516284688
 GameObject:
   m_ObjectHideFlags: 0
@@ -750,11 +771,43 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cupcake_NME
       objectReference: {fileID: 0}
+    - target: {fileID: 7177498282484473578, guid: e9e386a3a49742d4cbf163c7a5de1b7f,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7177498282484473578, guid: e9e386a3a49742d4cbf163c7a5de1b7f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: ae21f653dff354b4e90155b5de096e12, type: 2}
+    - target: {fileID: 8206499188424763339, guid: e9e386a3a49742d4cbf163c7a5de1b7f,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8206499188424763339, guid: e9e386a3a49742d4cbf163c7a5de1b7f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: ae21f653dff354b4e90155b5de096e12, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9e386a3a49742d4cbf163c7a5de1b7f, type: 3}
 --- !u!4 &2946981210933211153 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 228984592506059420, guid: e9e386a3a49742d4cbf163c7a5de1b7f,
+    type: 3}
+  m_PrefabInstance: {fileID: 3154845799531203213}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &5211750136317105255 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7177498282484473578, guid: e9e386a3a49742d4cbf163c7a5de1b7f,
+    type: 3}
+  m_PrefabInstance: {fileID: 3154845799531203213}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6497308886463556934 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8206499188424763339, guid: e9e386a3a49742d4cbf163c7a5de1b7f,
     type: 3}
   m_PrefabInstance: {fileID: 3154845799531203213}
   m_PrefabAsset: {fileID: 0}

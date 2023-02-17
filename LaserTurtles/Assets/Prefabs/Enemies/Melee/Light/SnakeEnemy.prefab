@@ -185,6 +185,7 @@ GameObject:
   - component: {fileID: 5176659846816423724}
   - component: {fileID: 2420716186076657005}
   - component: {fileID: 2492364665275687076}
+  - component: {fileID: 9068330692483977509}
   m_Layer: 0
   m_Name: EnemyGFX
   m_TagString: Enemy
@@ -309,6 +310,25 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &9068330692483977509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7083597236467699577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8be361dd1645f324bb6d1eb5abb250b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthHandlerRef: {fileID: 6474340841305229197}
+  _hitEffect: {fileID: 2100000, guid: ae21f653dff354b4e90155b5de096e12, type: 2}
+  _hitColor: {r: 1, g: 1, b: 1, a: 1}
+  _skinedMeshRenderers:
+  - {fileID: 8993058786697091516}
+  _effectStrenght: 0.25
+  _flashDuration: 0.1
 --- !u!1 &8196570028939564467
 GameObject:
   m_ObjectHideFlags: 0
@@ -670,6 +690,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2823755554478180613}
     m_Modifications:
+    - target: {fileID: 1424685651810473551, guid: 9e3d777dd3972ed40a05044b49ab7a0d,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1424685651810473551, guid: 9e3d777dd3972ed40a05044b49ab7a0d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: ae21f653dff354b4e90155b5de096e12, type: 2}
     - target: {fileID: 4027339656839874178, guid: 9e3d777dd3972ed40a05044b49ab7a0d,
         type: 3}
       propertyPath: m_RootOrder
@@ -755,6 +785,12 @@ PrefabInstance:
 --- !u!4 &6407425212606024049 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4027339656839874178, guid: 9e3d777dd3972ed40a05044b49ab7a0d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8000718804357959667}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &8993058786697091516 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1424685651810473551, guid: 9e3d777dd3972ed40a05044b49ab7a0d,
     type: 3}
   m_PrefabInstance: {fileID: 8000718804357959667}
   m_PrefabAsset: {fileID: 0}

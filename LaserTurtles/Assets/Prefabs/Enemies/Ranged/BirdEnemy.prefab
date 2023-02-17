@@ -365,6 +365,7 @@ GameObject:
   - component: {fileID: 8724689807990754746}
   - component: {fileID: 4641116848848696039}
   - component: {fileID: 5158565155986016523}
+  - component: {fileID: 5445361690498174295}
   m_Layer: 0
   m_Name: EnemyGFX
   m_TagString: Enemy
@@ -489,6 +490,26 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &5445361690498174295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8856561727849613568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8be361dd1645f324bb6d1eb5abb250b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthHandlerRef: {fileID: 4718742583778345460}
+  _hitEffect: {fileID: 2100000, guid: ae21f653dff354b4e90155b5de096e12, type: 2}
+  _hitColor: {r: 1, g: 1, b: 1, a: 1}
+  _skinedMeshRenderers:
+  - {fileID: 6172380504312242137}
+  - {fileID: 4291109151698982391}
+  _effectStrenght: 0.25
+  _flashDuration: 0.1
 --- !u!1001 &6061655726421622828
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -643,6 +664,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4578704410802524028}
     m_Modifications:
+    - target: {fileID: 3479330323313874397, guid: f9d0e0a8541113b4ea16b3aab01fffc2,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3479330323313874397, guid: f9d0e0a8541113b4ea16b3aab01fffc2,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: ae21f653dff354b4e90155b5de096e12, type: 2}
     - target: {fileID: 4689159551575204059, guid: f9d0e0a8541113b4ea16b3aab01fffc2,
         type: 3}
       propertyPath: m_Name
@@ -723,11 +754,33 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6804013432250015731, guid: f9d0e0a8541113b4ea16b3aab01fffc2,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6804013432250015731, guid: f9d0e0a8541113b4ea16b3aab01fffc2,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: ae21f653dff354b4e90155b5de096e12, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9d0e0a8541113b4ea16b3aab01fffc2, type: 3}
 --- !u!4 &3438865874893205605 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5357292787898612321, guid: f9d0e0a8541113b4ea16b3aab01fffc2,
+    type: 3}
+  m_PrefabInstance: {fileID: 7341328238767868420}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &4291109151698982391 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6804013432250015731, guid: f9d0e0a8541113b4ea16b3aab01fffc2,
+    type: 3}
+  m_PrefabInstance: {fileID: 7341328238767868420}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6172380504312242137 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3479330323313874397, guid: f9d0e0a8541113b4ea16b3aab01fffc2,
     type: 3}
   m_PrefabInstance: {fileID: 7341328238767868420}
   m_PrefabAsset: {fileID: 0}
