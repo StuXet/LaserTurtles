@@ -11,6 +11,7 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler
     [SerializeField] private InventorySystem _inventorySystemRef;
     [SerializeField] private InventoryItemData _equippedItemData;
     [SerializeField] private GameObject _slotPrefab;
+    [SerializeField] private GameObject _slotTypeIcon;
     [SerializeField] private Transform _canvas;
     [SerializeField] private InventoryUIManager _inventoryUIRef;
 
@@ -19,6 +20,18 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler
     private void Awake()
     {
         SetupPreEquipped();
+    }
+
+    private void Update()
+    {
+        if (_equippedItemData)
+        {
+            _slotTypeIcon.SetActive(false);
+        }
+        else
+        {
+            _slotTypeIcon.SetActive(true);
+        }
     }
 
     public void OnDrop(PointerEventData eventData)
