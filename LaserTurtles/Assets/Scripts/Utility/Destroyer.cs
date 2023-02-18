@@ -26,8 +26,11 @@ public class Destroyer : MonoBehaviour
         if (CanBeDestroyed && ((ShootByPlayer && other.CompareTag("Enemy")) || (!ShootByPlayer && other.CompareTag("Player")) || other.CompareTag("Environment") || other.CompareTag("Ground")))
         {
             _activated = true;
-            GameObject vfx = Instantiate(_hitVFX, transform.position, transform.rotation,null);
-            Destroy(vfx,0.5f);
+            if (_hitVFX != null)
+            {
+                GameObject vfx = Instantiate(_hitVFX, transform.position, transform.rotation, null);
+                Destroy(vfx, 0.5f);
+            }
             Destroy(gameObject);
         }
     }

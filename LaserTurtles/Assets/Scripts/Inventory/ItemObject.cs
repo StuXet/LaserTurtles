@@ -11,6 +11,7 @@ public class ItemObject : MonoBehaviour
     [SerializeField] private InventoryItemData _referenceItem;
     [SerializeField] private Animator ItemAnimator;
     [SerializeField] private GameObject PickupPressIcon;
+    [SerializeField] private Outline _outline;
     private InventorySystem PlayerInventoryRef;
 
     public bool CanBePicked;
@@ -35,10 +36,12 @@ public class ItemObject : MonoBehaviour
             if (CanBePicked)
             {
                 ItemAnimator.enabled = true;
+                if (_outline != null) _outline.OutlineMode = Outline.Mode.OutlineAndSilhouette;
             }
             else
             {
                 ItemAnimator.enabled = false;
+                if (_outline != null) _outline.OutlineMode = Outline.Mode.SilhouetteOnly;
             }
         }
 

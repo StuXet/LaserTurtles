@@ -95,6 +95,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _referenceItem: {fileID: 11400000, guid: 8b2593a2b24491243882b10212fd614d, type: 2}
   ItemAnimator: {fileID: 6955723994651839279}
+  PickupPressIcon: {fileID: 0}
+  _outline: {fileID: 4277876923972739635}
   CanBePicked: 1
   RequiresInteraction: 0
 --- !u!1 &2016069287870240702
