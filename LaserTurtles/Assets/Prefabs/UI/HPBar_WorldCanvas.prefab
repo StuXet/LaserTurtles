@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1501019030431267320}
   - component: {fileID: 4196725140107184599}
   - component: {fileID: 3170529403710328006}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: HPBar_Current
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 4344884912354825972}
   - component: {fileID: 8048301254751095091}
   - component: {fileID: 3264132441190399499}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: HPBar_Damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 9100233661286752543}
   - component: {fileID: 6689237920225992682}
   - component: {fileID: 2981526687441287706}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: HPBar_BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 9120079834312020871}
   - component: {fileID: 2823826710141070277}
   - component: {fileID: 938125548101250546}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: HPBar_Max
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -319,7 +319,7 @@ GameObject:
   - component: {fileID: 3905179613305984689}
   - component: {fileID: 277671601230841292}
   - component: {fileID: 2996607905930068776}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: HPBar_Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -396,7 +396,7 @@ GameObject:
   - component: {fileID: 3470285802629604313}
   - component: {fileID: 4942194372548700394}
   - component: {fileID: 2673142254713718950}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CharacterNameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
