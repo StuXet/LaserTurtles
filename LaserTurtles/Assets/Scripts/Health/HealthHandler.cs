@@ -31,7 +31,6 @@ public class HealthHandler : MonoBehaviour
     private bool isKnockedBack;
     private float kbDelay = 0.2f;
     private float kbTimer;
-    private bool canBeDamaged = true;
 
     private void Awake()
     {
@@ -162,30 +161,16 @@ public class HealthHandler : MonoBehaviour
             modColor = _normalDmgColor;
         }
 
-        bool damaged = false;
 
-        if (canBeDamaged)
+        if (!_damager.UsingHeavy)
         {
-            if (!_damager.UsingHeavy)
-            {
-                _healthSystem.Damage((int)(_damager.LightDamageAmount * modVal));
-                //EnemyDmgPopUp((int)(_damager.LightDamageAmount * modVal), modColor, gameObject.tag);
-            }
-            else
-            {
-                _healthSystem.Damage((int)(_damager.HeavyDamageAmount * modVal));
-                //EnemyDmgPopUp((int)(_damager.HeavyDamageAmount * modVal), modColor, gameObject.tag);
-            }
-            
-            damaged = true;
-        }
-        if (damaged)
-        {
-            canBeDamaged = false;
+            _healthSystem.Damage((int)(_damager.LightDamageAmount * modVal));
+            //EnemyDmgPopUp((int)(_damager.LightDamageAmount * modVal), modColor, gameObject.tag);
         }
         else
         {
-            canBeDamaged = true;
+            _healthSystem.Damage((int)(_damager.HeavyDamageAmount * modVal));
+            //EnemyDmgPopUp((int)(_damager.HeavyDamageAmount * modVal), modColor, gameObject.tag);
         }
     }
 
