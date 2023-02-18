@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class ObjectivesHandler : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _textUI;
+    [SerializeField] private GameObject _compassTracker, _objectiveIndicator;
     private string _currentObjectiveText;
 
     private ObjectivesContainer _objectivesContainer;
     private List<ObjectiveBase> _objectivesList = new List<ObjectiveBase>();
     private ObjectiveBase _currentObjective;
     private int _currentObjectiveIndex;
+
 
 
     private void Awake()
@@ -31,6 +34,31 @@ public class ObjectivesHandler : MonoBehaviour
     {
         CheckStatus();
         RenewText();
+        Compass();
+    }
+
+    private void Compass()
+    {
+        if (_currentObjective != null)
+        {
+            _compassTracker.SetActive(true);
+            Vector3 objectivePos = _currentObjective.transform.position;
+            objectivePos.y = transform.position.y;
+            _compassTracker.transform.LookAt(objectivePos);
+
+            if (Mathf.Abs(Vector3.Distance(_compassTracker.transform.position, _currentObjective.transform.position)) >= 5)
+            {
+                _objectiveIndicator.transform.localPosition = new Vector3(0, -1, 5);
+            }
+            else
+            {
+                _objectiveIndicator.transform.localPosition = new Vector3(0, -1, Mathf.Abs(Vector3.Distance(_compassTracker.transform.position, _currentObjective.transform.position)));
+            }
+        }
+        else
+        {
+            _compassTracker.SetActive(false);
+        }
     }
 
     private void RenewText()
