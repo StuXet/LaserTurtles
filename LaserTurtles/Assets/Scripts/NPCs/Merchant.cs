@@ -28,7 +28,6 @@ public class Merchant : MonoBehaviour
     [HideInInspector] public bool inDialogue;
     bool isComplete;
     bool isFirstTime = true;
-    bool canInteract = true;
 
 
     string stage1 = "Hello there! i got a super rad sword you can use to defeat the witch!";
@@ -55,18 +54,22 @@ public class Merchant : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(transform.position, player.transform.position) > interactionRange && inDialogue) //player gets out of range while in dialogue 
+        if (!isComplete)
         {
-            EndDialogue();
-        }
 
-        if (Vector3.Distance(transform.position, player.transform.position) <= interactionRange && !inDialogue && canInteract)
-        {
-            interactTip.SetActive(true); //shows tip if player is in right range 
-        }
-        else
-        {
-            interactTip.SetActive(false);
+            if (Vector3.Distance(transform.position, player.transform.position) > interactionRange && inDialogue) //player gets out of range while in dialogue 
+            {
+                EndDialogue();
+            }
+
+            if (Vector3.Distance(transform.position, player.transform.position) <= interactionRange && !inDialogue)
+            {
+                interactTip.SetActive(true); //shows tip if player is in right range 
+            }
+            else
+            {
+                interactTip.SetActive(false);
+            }
         }
 
     }
@@ -89,7 +92,7 @@ public class Merchant : MonoBehaviour
 
     void DialogueStartCheck(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        if (Vector3.Distance(transform.position, player.transform.position) <= interactionRange && !inDialogue && canInteract)
+        if (Vector3.Distance(transform.position, player.transform.position) <= interactionRange && !inDialogue && !isComplete)
         {
             StartDialogue();
         }
@@ -158,7 +161,6 @@ public class Merchant : MonoBehaviour
         else if (dialogueText.text == stage3)
         {
             isComplete = true;
-            canInteract = false;
             EndDialogue();
         }
     }
