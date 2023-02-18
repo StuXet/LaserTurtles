@@ -10,6 +10,8 @@ public class Destroyer : MonoBehaviour
     [SerializeField] float _time = 5;
     private bool _activated;
 
+    [SerializeField] private GameObject _hitVFX;
+
     private void Update()
     {
         if (CanBeDestroyed && !_activated)
@@ -24,6 +26,8 @@ public class Destroyer : MonoBehaviour
         if (CanBeDestroyed && ((ShootByPlayer && other.CompareTag("Enemy")) || (!ShootByPlayer && other.CompareTag("Player")) || other.CompareTag("Environment") || other.CompareTag("Ground")))
         {
             _activated = true;
+            GameObject vfx = Instantiate(_hitVFX, transform.position, transform.rotation,null);
+            Destroy(vfx,0.5f);
             Destroy(gameObject);
         }
     }
