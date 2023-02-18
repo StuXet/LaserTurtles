@@ -93,6 +93,16 @@ public class PlayerController : MonoBehaviour
 
         _matrixRot = Matrix4x4.Rotate(Quaternion.Euler(0, _controlsSkewAngle, 0));
         _dodgeCooldownTimer = dodgeCooldown;
+
+        int option = PlayerPrefs.GetInt("CursorLook");
+        if (option == 0)
+        {
+            MoveType = MovementType.WorldPos;
+        }
+        else
+        {
+            MoveType = MovementType.WorldPosTrackLook;
+        }
     }
 
     private void Update()
