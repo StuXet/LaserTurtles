@@ -204,6 +204,7 @@ MonoBehaviour:
   _referenceItem: {fileID: 11400000, guid: e3586046bcdc3d5479541f34d224c60d, type: 2}
   ItemAnimator: {fileID: 806246763852308259}
   PickupPressIcon: {fileID: 592426290682069475}
+  _outline: {fileID: 2683001080127666688}
   CanBePicked: 0
   RequiresInteraction: 1
 --- !u!114 &4350786206496017777

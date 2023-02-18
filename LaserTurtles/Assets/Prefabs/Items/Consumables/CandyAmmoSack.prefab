@@ -151,6 +151,7 @@ MonoBehaviour:
   _referenceItem: {fileID: 11400000, guid: 1b97a631350859042be55a535cbe64cd, type: 2}
   ItemAnimator: {fileID: 1666709056245522884}
   PickupPressIcon: {fileID: 0}
+  _outline: {fileID: 2455012481643412115}
   CanBePicked: 1
   RequiresInteraction: 0
 --- !u!1001 &9156341989174431786
