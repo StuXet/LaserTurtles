@@ -11,14 +11,30 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler
     [SerializeField] private InventorySystem _inventorySystemRef;
     [SerializeField] private InventoryItemData _equippedItemData;
     [SerializeField] private GameObject _slotPrefab;
+    [SerializeField] private GameObject _slotTypeIcon;
+    [SerializeField] private GameObject _slotSelectIcon;
     [SerializeField] private Transform _canvas;
     [SerializeField] private InventoryUIManager _inventoryUIRef;
 
     public InventoryItemData EquippedItemData { get => _equippedItemData; set => _equippedItemData = value; }
+    public GameObject SlotSelectIcon { get => _slotSelectIcon;}
+
 
     private void Awake()
     {
         SetupPreEquipped();
+    }
+
+    private void Update()
+    {
+        if (_equippedItemData)
+        {
+            _slotTypeIcon.SetActive(false);
+        }
+        else
+        {
+            _slotTypeIcon.SetActive(true);
+        }
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -42,6 +58,7 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler
                 draggableItem.OriginalParent = icon.transform;
                 draggableItem.EquipIconRef = icon;
                 invSlot.SetTransparency(0);
+                icon.color= Color.white;
 
                 _equippedItemData = invSlot.ItemData;
                 draggableItem.EquipSlotRef = this;

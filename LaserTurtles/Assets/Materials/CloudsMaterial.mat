@@ -52,7 +52,7 @@ Material:
     - _Fresnel_Opacity: 0.55
     - _Fresnel_Power: -0.12
     - _Noise_Edge_1: -2
-    - _Noise_Edge_2: 4
+    - _Noise_Edge_2: 8.87
     - _Noise_Height: 12.5
     - _Noise_Power: 2
     - _Noise_Scale: 0.2

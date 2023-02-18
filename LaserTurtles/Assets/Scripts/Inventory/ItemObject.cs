@@ -10,12 +10,23 @@ public class ItemObject : MonoBehaviour
 
     [SerializeField] private InventoryItemData _referenceItem;
     [SerializeField] private Animator ItemAnimator;
+    [SerializeField] private GameObject PickupPressIcon;
     private InventorySystem PlayerInventoryRef;
 
     public bool CanBePicked;
     public bool RequiresInteraction;
 
-    public InventoryItemData ReferenceItem { get => _referenceItem;}
+    private bool _colliding;
+
+    public InventoryItemData ReferenceItem { get => _referenceItem; }
+
+    private void OnEnable()
+    {
+        if (PickupPressIcon)
+        {
+            PickupPressIcon.SetActive(false);
+        }
+    }
 
     private void Update()
     {
@@ -28,6 +39,25 @@ public class ItemObject : MonoBehaviour
             else
             {
                 ItemAnimator.enabled = false;
+            }
+        }
+
+        if (PickupPressIcon)
+        {
+            if (CanBePicked)
+            {
+                if (RequiresInteraction && _colliding)
+                {
+                    PickupPressIcon.SetActive(true);
+                }
+                else
+                {
+                    PickupPressIcon.SetActive(false);
+                }
+            }
+            else
+            {
+                PickupPressIcon.SetActive(false);
             }
         }
     }
@@ -46,7 +76,7 @@ public class ItemObject : MonoBehaviour
             else if (_referenceItem.Type == ItemType.Key)
             {
                 if (PickedUpItem != null) { PickedUpItem.Invoke(PlayerInventoryRef.transform.parent.gameObject); }
-                Destroy(gameObject,0.1f);
+                Destroy(gameObject, 0.1f);
             }
             else if (_referenceItem.Type == ItemType.Ammo)
             {
@@ -67,6 +97,30 @@ public class ItemObject : MonoBehaviour
                     PlayerInventoryRef.Add(_referenceItem);
                     Destroy(gameObject);
                 }
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            _colliding = true;
+            if (PickupPressIcon && CanBePicked && RequiresInteraction)
+            {
+                PickupPressIcon.SetActive(true);
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            _colliding = false;
+            if (PickupPressIcon && CanBePicked && RequiresInteraction)
+            {
+                PickupPressIcon.SetActive(false);
             }
         }
     }

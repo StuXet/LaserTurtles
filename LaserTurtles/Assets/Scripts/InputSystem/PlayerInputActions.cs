@@ -163,6 +163,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""ScrollWeapons"",
+                    ""type"": ""Value"",
+                    ""id"": ""5b574061-b3bb-4c5c-b8ae-4505bb9197bd"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""ESC"",
                     ""type"": ""Button"",
                     ""id"": ""c492679b-8eff-4463-9f29-f9195d9466b0"",
@@ -544,6 +553,17 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""ESC"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dddc8981-f581-4f8f-8fb0-6cc92db67d28"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""ScrollWeapons"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1146,6 +1166,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player_WeaponSlot2 = m_Player.FindAction("WeaponSlot2", throwIfNotFound: true);
         m_Player_WeaponSlot3 = m_Player.FindAction("WeaponSlot3", throwIfNotFound: true);
         m_Player_WeaponSlot4 = m_Player.FindAction("WeaponSlot4", throwIfNotFound: true);
+        m_Player_ScrollWeapons = m_Player.FindAction("ScrollWeapons", throwIfNotFound: true);
         m_Player_ESC = m_Player.FindAction("ESC", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -1233,6 +1254,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_WeaponSlot2;
     private readonly InputAction m_Player_WeaponSlot3;
     private readonly InputAction m_Player_WeaponSlot4;
+    private readonly InputAction m_Player_ScrollWeapons;
     private readonly InputAction m_Player_ESC;
     public struct PlayerActions
     {
@@ -1253,6 +1275,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @WeaponSlot2 => m_Wrapper.m_Player_WeaponSlot2;
         public InputAction @WeaponSlot3 => m_Wrapper.m_Player_WeaponSlot3;
         public InputAction @WeaponSlot4 => m_Wrapper.m_Player_WeaponSlot4;
+        public InputAction @ScrollWeapons => m_Wrapper.m_Player_ScrollWeapons;
         public InputAction @ESC => m_Wrapper.m_Player_ESC;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -1308,6 +1331,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @WeaponSlot4.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponSlot4;
                 @WeaponSlot4.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponSlot4;
                 @WeaponSlot4.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponSlot4;
+                @ScrollWeapons.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScrollWeapons;
+                @ScrollWeapons.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScrollWeapons;
+                @ScrollWeapons.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScrollWeapons;
                 @ESC.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnESC;
                 @ESC.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnESC;
                 @ESC.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnESC;
@@ -1360,6 +1386,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @WeaponSlot4.started += instance.OnWeaponSlot4;
                 @WeaponSlot4.performed += instance.OnWeaponSlot4;
                 @WeaponSlot4.canceled += instance.OnWeaponSlot4;
+                @ScrollWeapons.started += instance.OnScrollWeapons;
+                @ScrollWeapons.performed += instance.OnScrollWeapons;
+                @ScrollWeapons.canceled += instance.OnScrollWeapons;
                 @ESC.started += instance.OnESC;
                 @ESC.performed += instance.OnESC;
                 @ESC.canceled += instance.OnESC;
@@ -1534,6 +1563,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnWeaponSlot2(InputAction.CallbackContext context);
         void OnWeaponSlot3(InputAction.CallbackContext context);
         void OnWeaponSlot4(InputAction.CallbackContext context);
+        void OnScrollWeapons(InputAction.CallbackContext context);
         void OnESC(InputAction.CallbackContext context);
     }
     public interface IUIActions

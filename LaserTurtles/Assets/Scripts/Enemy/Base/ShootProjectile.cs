@@ -15,6 +15,8 @@ public class ShootProjectile : MonoBehaviour
     private float _delayTimer;
     private bool _firing;
 
+    [SerializeField] private GameObject _prepAttackIcon, _attackingIcon;
+
 
     // Start is called before the first frame update
     void Start()
@@ -36,15 +38,20 @@ public class ShootProjectile : MonoBehaviour
                 _firing = false;
                 SetTargetDestination();
                 InstantiateProjectile(_firePoint);
+                _prepAttackIcon.SetActive(false);
+                _attackingIcon.SetActive(true);
             }
             else
             {
                 _delayTimer += Time.deltaTime;
+                _prepAttackIcon.SetActive(true);
             }
         }
         else
         {
             _delayTimer = 0;
+            _prepAttackIcon.SetActive(false);
+            _attackingIcon.SetActive(false);
         }
     }
 
