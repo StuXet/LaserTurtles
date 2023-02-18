@@ -30,10 +30,10 @@ public class Merchant : MonoBehaviour
     bool isFirstTime = true;
 
 
-    string stage1 = "Hello there! i got a super rad sword you can use to defeat the witch!";
-    string stage2t = "Great! looks like you got enought shmekels for the sword, here you go...";
-    string stage2f = "Damn, looks like youre a brokie my guy, come back when you got enough money";
-    string stage3 = "Good luck homie";
+    string stage1 = "I've been waiting for you kid! i got a special weapon you can use to defeat the witch!";
+    string stage2t = "Great! looks like you got enough crystals, here you go...";
+    string stage2f = "Hmmm, I might be your father but i still need something in return, come back when you got enough crystals";
+    string stage3 = "Good luck kid";
 
 
     // Start is called before the first frame update
@@ -46,26 +46,30 @@ public class Merchant : MonoBehaviour
         playerInputActions = inputManager.PlInputActions;
         playerInputActions.Player.Interact.performed += DialogueStartCheck;
 
-        dialogueText = _uIMediator.DialougeUI.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>();
-        dialoguePanel = _uIMediator.DialougeUI.transform.GetChild(1).gameObject;
+        dialoguePanel = _uIMediator.DialougeUI.transform.GetChild(0).gameObject;
+        dialogueText = _uIMediator.DialougeUI.transform.GetChild(1).GetComponentInChildren<TextMeshProUGUI>();
         dialogueButton = _uIMediator.DialougeUI.transform.GetChild(2).GetComponentInChildren<Button>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(transform.position, player.transform.position) > interactionRange && inDialogue) //player gets out of range while in dialogue 
+        if (!isComplete)
         {
-            EndDialogue();
-        }
 
-        if (Vector3.Distance(transform.position, player.transform.position) <= interactionRange && !inDialogue)
-        {
-            interactTip.SetActive(true); //shows tip if player is in right range 
-        }
-        else
-        {
-            interactTip.SetActive(false);
+            if (Vector3.Distance(transform.position, player.transform.position) > interactionRange && inDialogue) //player gets out of range while in dialogue 
+            {
+                EndDialogue();
+            }
+
+            if (Vector3.Distance(transform.position, player.transform.position) <= interactionRange && !inDialogue)
+            {
+                interactTip.SetActive(true); //shows tip if player is in right range 
+            }
+            else
+            {
+                interactTip.SetActive(false);
+            }
         }
 
     }
@@ -88,7 +92,7 @@ public class Merchant : MonoBehaviour
 
     void DialogueStartCheck(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        if (Vector3.Distance(transform.position, player.transform.position) <= interactionRange && !inDialogue)
+        if (Vector3.Distance(transform.position, player.transform.position) <= interactionRange && !inDialogue && !isComplete)
         {
             StartDialogue();
         }
@@ -120,11 +124,8 @@ public class Merchant : MonoBehaviour
 
         dialogueText.text = stage1;
 
-        if (isComplete)
-        {
-            dialogueText.text = stage3;
-        }
-        else if (!isFirstTime)
+        
+        if (!isFirstTime)
         {
             NextStage();
         }
