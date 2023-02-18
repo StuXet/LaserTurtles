@@ -28,6 +28,7 @@ public class Merchant : MonoBehaviour
     [HideInInspector] public bool inDialogue;
     bool isComplete;
     bool isFirstTime = true;
+    bool canInteract = true;
 
 
     string stage1 = "Hello there! i got a super rad sword you can use to defeat the witch!";
@@ -59,7 +60,7 @@ public class Merchant : MonoBehaviour
             EndDialogue();
         }
 
-        if (Vector3.Distance(transform.position, player.transform.position) <= interactionRange && !inDialogue)
+        if (Vector3.Distance(transform.position, player.transform.position) <= interactionRange && !inDialogue && canInteract)
         {
             interactTip.SetActive(true); //shows tip if player is in right range 
         }
@@ -88,7 +89,7 @@ public class Merchant : MonoBehaviour
 
     void DialogueStartCheck(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        if (Vector3.Distance(transform.position, player.transform.position) <= interactionRange && !inDialogue)
+        if (Vector3.Distance(transform.position, player.transform.position) <= interactionRange && !inDialogue && canInteract)
         {
             StartDialogue();
         }
@@ -157,6 +158,7 @@ public class Merchant : MonoBehaviour
         else if (dialogueText.text == stage3)
         {
             isComplete = true;
+            canInteract = false;
             EndDialogue();
         }
     }
