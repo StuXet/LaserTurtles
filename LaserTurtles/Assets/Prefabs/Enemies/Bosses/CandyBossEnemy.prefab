@@ -93,15 +93,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsToDrop:
-  - dropChance: 24
+  - dropChance: 0
     dropObject: {fileID: 0}
-  - dropChance: 40
+  - dropChance: 50
     dropObject: {fileID: 154455731916256318, guid: bdb3c85b7d1227c4dabf8be09449871b,
       type: 3}
-  - dropChance: 35
+  - dropChance: 20
     dropObject: {fileID: 5601993761966769206, guid: 5fb94eb5dcb7e4243b59fb099ed614a0,
       type: 3}
-  - dropChance: 1
+  - dropChance: 25
+    dropObject: {fileID: 5601993761966769206, guid: b2af89b984d17e7428ee13ae40b15f31,
+      type: 3}
+  - dropChance: 5
     dropObject: {fileID: 5012736691022855372, guid: dbff69dd2a535dd49a1e9bc20651b60c,
       type: 3}
 --- !u!114 &7453140696285861752
@@ -394,7 +397,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 2.5
-  m_Speed: 5
+  m_Speed: 8
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 240
