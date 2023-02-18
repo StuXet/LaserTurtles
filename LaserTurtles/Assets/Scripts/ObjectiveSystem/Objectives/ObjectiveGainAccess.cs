@@ -16,6 +16,8 @@ public class ObjectiveGainAccess : ObjectiveBase
     private Material _doorMat;
     private int _keyObjectivesCounter = 0;
 
+    public List<ObjectiveBase> KeyObjectives { get => keyObjectives;}
+
     private void Awake()
     {
         if (_door)

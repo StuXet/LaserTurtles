@@ -90,5 +90,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1d552f9ae948ff4aa8d49b56beb552c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectiveName: Pickup Item.
+  _objectiveName: Pickup Item
   _item: {fileID: 0}
