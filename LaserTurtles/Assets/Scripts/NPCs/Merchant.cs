@@ -15,8 +15,8 @@ public class Merchant : MonoBehaviour
     [SerializeField] private UIMediator _uIMediator;
     [SerializeField] float interactionRange;
     [SerializeField] GameObject dialoguePanel;
-    [SerializeField] TextMeshProUGUI dialogueText;
     [SerializeField] Button dialogueButton;
+    [SerializeField] TextMeshProUGUI dialogueText;
     [SerializeField] GameObject interactTip;
     [SerializeField] GameObject exclamationMark;
     [SerializeField] int swordPrice = 10;
@@ -30,10 +30,10 @@ public class Merchant : MonoBehaviour
     bool isFirstTime = true;
 
 
-    string stage1 = "I've been waiting for you son! i got a special weapon you can use to defeat the witch!";
+    string stage1 = "I've been waiting for you kid! i got a special weapon you can use to defeat the witch!";
     string stage2t = "Great! looks like you got enough crystals, here you go...";
     string stage2f = "Hmmm, I might be your father but i still need something in return, come back when you got enough crystals";
-    string stage3 = "Good luck son";
+    string stage3 = "Good luck kid";
 
 
     // Start is called before the first frame update
@@ -46,8 +46,8 @@ public class Merchant : MonoBehaviour
         playerInputActions = inputManager.PlInputActions;
         playerInputActions.Player.Interact.performed += DialogueStartCheck;
 
-        dialogueText = _uIMediator.DialougeUI.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>();
-        dialoguePanel = _uIMediator.DialougeUI.transform.GetChild(1).gameObject;
+        dialoguePanel = _uIMediator.DialougeUI.transform.GetChild(0).gameObject;
+        dialogueText = _uIMediator.DialougeUI.transform.GetChild(1).GetComponentInChildren<TextMeshProUGUI>();
         dialogueButton = _uIMediator.DialougeUI.transform.GetChild(2).GetComponentInChildren<Button>();
     }
 
@@ -117,8 +117,8 @@ public class Merchant : MonoBehaviour
         inDialogue = true;
         player.GetComponent<PlayerCombatSystem>().inDialogue = true;
         dialoguePanel.SetActive(true);
-        dialogueButton.gameObject.SetActive(true);
         dialogueText.gameObject.SetActive(true);
+        dialogueButton.gameObject.SetActive(true);
         interactTip.SetActive(false);
         exclamationMark.SetActive(false);
 
