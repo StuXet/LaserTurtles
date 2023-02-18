@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 // Movement Type Enum
@@ -54,6 +55,7 @@ public class PlayerController : MonoBehaviour
     private int _mouseMoveAngleDelta;
 
     [Header("Dodge")]
+    [SerializeField] private Image _dodgeCooldownUI;
     public DodgeType dashType = DodgeType.ToMoveDirection;
     [SerializeField] GameObject _dodgeEffect;
     [SerializeField] float dodgeCooldown = 2f;
@@ -74,7 +76,7 @@ public class PlayerController : MonoBehaviour
     private bool _isGrounded;
     public bool GravityEnabled = true;
 
-    public bool IsDead { get => _isDead;}
+    public bool IsDead { get => _isDead; }
 
 
     // Default Methods
@@ -93,6 +95,16 @@ public class PlayerController : MonoBehaviour
 
         _matrixRot = Matrix4x4.Rotate(Quaternion.Euler(0, _controlsSkewAngle, 0));
         _dodgeCooldownTimer = dodgeCooldown;
+
+        int option = PlayerPrefs.GetInt("CursorLook");
+        if (option == 0)
+        {
+            MoveType = MovementType.WorldPos;
+        }
+        else
+        {
+            MoveType = MovementType.WorldPosTrackLook;
+        }
     }
 
     private void Update()
@@ -237,17 +249,21 @@ public class PlayerController : MonoBehaviour
         if (_dodgeCooldownTimer >= dodgeCooldown)
         {
             _canDodge = true;
+            _dodgeCooldownUI.fillAmount = 1;
         }
         else
         {
             _canDodge = false;
             _calledDodge = false;
             _dodgeCooldownTimer += Time.deltaTime;
+
+            _dodgeCooldownUI.fillAmount = _dodgeCooldownTimer / dodgeCooldown;
         }
 
         // Dodging Code
         if (_canDodge && _calledDodge)
         {
+            _dodgeCooldownUI.fillAmount = 0;
             dodgeDurationTimer += Time.deltaTime;
             Vector3 dodgeDir;
             if (dashType == DodgeType.ToMoveDirection) //Sets Dodge direction to movement direction

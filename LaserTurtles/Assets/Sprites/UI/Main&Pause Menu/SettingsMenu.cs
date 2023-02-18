@@ -5,18 +5,32 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class SettingsMenu : MonoBehaviour
 {
+    PlayerController playerController;
+
     public TMP_Dropdown resolutionDropdown;
     public Toggle fullscreenToggle;
+    public Toggle cursorLookToggle;
     public TMP_Dropdown graphicsDropdown;
     public Slider volumeSlider;
     [SerializeField] private AudioMixer _audioMixer;
     Resolution[] resolutions;
 
+    private void Awake()
+    {
+        if (playerController == null && SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            playerController = FindObjectOfType<PlayerController>();
+        }
+    }
+
     private void Start()
     {
+        cursorLookToggle.isOn = PlayerPrefs.GetInt("CursorLook", 1) == 1;
+
         resolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();
 
@@ -80,5 +94,25 @@ public class SettingsMenu : MonoBehaviour
         _audioMixer.SetFloat("Volume", volume);
         //AudioListener.volume = volume;
         PlayerPrefs.SetFloat("Volume", volume);
+    }
+
+    public void CursorLook(bool cursor)
+    {
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            if (playerController == null)
+            {
+                playerController = FindObjectOfType<PlayerController>();
+            }
+            if (cursor)
+            {
+                playerController.MoveType = MovementType.WorldPosTrackLook;
+            }
+            else
+            {
+                playerController.MoveType = MovementType.WorldPos;
+            }
+        }
+        PlayerPrefs.SetInt("CursorLook", cursor ? 1 : 0);
     }
 }
