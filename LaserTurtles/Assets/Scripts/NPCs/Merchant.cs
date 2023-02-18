@@ -124,11 +124,8 @@ public class Merchant : MonoBehaviour
 
         dialogueText.text = stage1;
 
-        if (isComplete)
-        {
-            dialogueText.text = stage3;
-        }
-        else if (!isFirstTime)
+        
+        if (!isFirstTime)
         {
             NextStage();
         }
