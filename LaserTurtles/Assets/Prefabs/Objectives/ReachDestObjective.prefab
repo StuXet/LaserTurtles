@@ -221,5 +221,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06aa95dafffd5394a816097115afcfac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectiveName: Reach Destination.
+  _objectiveName: Reach Destination
   _destination: {fileID: 2888541502770112105}

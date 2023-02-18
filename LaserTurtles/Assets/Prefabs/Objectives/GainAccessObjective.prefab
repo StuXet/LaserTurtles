@@ -507,7 +507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7ccb334e3e49a145b7f4e1457d6bf5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectiveName: Gain Access.
+  _objectiveName: Gain Access
   _useFade: 1
   _door: {fileID: 7922340074326025686}
   _doorLockIcon: {fileID: 6414739760505591907}
