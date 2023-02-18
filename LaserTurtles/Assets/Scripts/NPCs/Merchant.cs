@@ -15,8 +15,8 @@ public class Merchant : MonoBehaviour
     [SerializeField] private UIMediator _uIMediator;
     [SerializeField] float interactionRange;
     [SerializeField] GameObject dialoguePanel;
-    [SerializeField] Button dialogueButton;
     [SerializeField] TextMeshProUGUI dialogueText;
+    [SerializeField] Button dialogueButton;
     [SerializeField] GameObject interactTip;
     [SerializeField] GameObject exclamationMark;
     [SerializeField] int swordPrice = 10;
@@ -30,10 +30,10 @@ public class Merchant : MonoBehaviour
     bool isFirstTime = true;
 
 
-    string stage1 = "Hello there! i got a super rad sword you can use to defeat the witch!";
-    string stage2t = "Great! looks like you got enought shmekels for the sword, here you go...";
-    string stage2f = "Damn, looks like youre a brokie my guy, come back when you got enough money";
-    string stage3 = "Good luck homie";
+    string stage1 = "I've been waiting for you son! i got a special weapon you can use to defeat the witch!";
+    string stage2t = "Great! looks like you got enough crystals, here you go...";
+    string stage2f = "Hmmm, I might be your father but i still need something in return, come back when you got enough crystals";
+    string stage3 = "Good luck son";
 
 
     // Start is called before the first frame update
@@ -117,8 +117,8 @@ public class Merchant : MonoBehaviour
         inDialogue = true;
         player.GetComponent<PlayerCombatSystem>().inDialogue = true;
         dialoguePanel.SetActive(true);
-        dialogueText.gameObject.SetActive(true);
         dialogueButton.gameObject.SetActive(true);
+        dialogueText.gameObject.SetActive(true);
         interactTip.SetActive(false);
         exclamationMark.SetActive(false);
 
