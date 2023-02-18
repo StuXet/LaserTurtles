@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -42,17 +43,33 @@ public class ObjectivesHandler : MonoBehaviour
         if (_currentObjective != null)
         {
             _compassTracker.SetActive(true);
-            Vector3 objectivePos = _currentObjective.transform.position;
+
+            Vector3 objectivePos;
+            if (_currentObjective is ObjectiveGainAccess)
+            {
+                if ((_currentObjective as ObjectiveGainAccess).KeyObjectives.Count <= 1)
+                {
+                    objectivePos = (_currentObjective as ObjectiveGainAccess).KeyObjectives[0].transform.position;
+                }
+                else
+                {
+                    objectivePos = _currentObjective.transform.position;
+                }
+            }
+            else
+            {
+                objectivePos = _currentObjective.transform.position;
+            }
             objectivePos.y = transform.position.y;
             _compassTracker.transform.LookAt(objectivePos);
 
-            if (Mathf.Abs(Vector3.Distance(_compassTracker.transform.position, _currentObjective.transform.position)) >= 5)
+            if (Mathf.Abs(Vector3.Distance(_compassTracker.transform.position, objectivePos)) >= 5)
             {
                 _objectiveIndicator.transform.localPosition = new Vector3(0, -1, 5);
             }
             else
             {
-                _objectiveIndicator.transform.localPosition = new Vector3(0, -1, Mathf.Abs(Vector3.Distance(_compassTracker.transform.position, _currentObjective.transform.position)));
+                _objectiveIndicator.transform.localPosition = new Vector3(0, -1, Mathf.Abs(Vector3.Distance(_compassTracker.transform.position, objectivePos)));
             }
         }
         else
