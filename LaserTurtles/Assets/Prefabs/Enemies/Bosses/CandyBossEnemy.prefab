@@ -64,22 +64,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f23ecd1993a43c542995e99b9265a25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rb: {fileID: 0}
   _enemyAI: {fileID: 0}
-  _navAgent: {fileID: 0}
   _weakness: 0
   _resistance: 0
   _healthBar: {fileID: 2698481246451724336}
   _maxHP: 250
   _currentHP: 0
-  _dmgPopup: {fileID: 4823436943637356501, guid: 4e085fcee1859f042a0f4eff7a3538ea,
-    type: 3}
-  _dmgPopupYOffset: 5
-  _normalDmgColor: {r: 1, g: 1, b: 1, a: 1}
-  _resDmgColor: {r: 1, g: 0, b: 1, a: 1}
-  _weakDmgColor: {r: 1, g: 0, b: 0, a: 1}
   knockbackable: 0
-  kbMass: 0
 --- !u!114 &5168271363645760439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,7 +251,6 @@ MonoBehaviour:
   UsingSpecial: 0
   CanDamage: 1
   _knockbackPower: 2
-  _knockbackHeight: 1
   _knockbackHeavyMultiplier: 2
   _knockbackStunTime: 2
   _canKnockback: 0
@@ -441,7 +431,7 @@ MonoBehaviour:
   SightRange: 20
   AttackRange: 2.25
   _gravityEnabled: 1
-  _groundCheckOffset: {x: 0, y: -0.9, z: 0}
+  _groundCheckOffset: {x: 0, y: -1, z: 0}
   _groundRadius: 0.5
   _gravityModifier: 10
 --- !u!114 &7228148100382587493

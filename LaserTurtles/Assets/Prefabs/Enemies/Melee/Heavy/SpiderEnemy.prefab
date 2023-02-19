@@ -71,7 +71,6 @@ MonoBehaviour:
   _maxHP: 80
   _currentHP: 0
   knockbackable: 1
-  _knockbackForceModifier: 0.5
 --- !u!114 &5168271363645760439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,7 +431,7 @@ MonoBehaviour:
   SightRange: 10
   AttackRange: 1.5
   _gravityEnabled: 1
-  _groundCheckOffset: {x: 0, y: -0.5, z: 0}
+  _groundCheckOffset: {x: 0, y: -0.8, z: 0}
   _groundRadius: 0.5
   _gravityModifier: 10
 --- !u!114 &7228148100382587493
