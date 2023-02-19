@@ -240,7 +240,7 @@ public class PlayerCombatSystem : MonoBehaviour
     {
         if (!isAttacking && _equippedWeapon != null && _currentSlot != 4)
         {
-            Debug.Log("Attack");
+            //Debug.Log("Attack");
             isAttacking = true;
             _isHeavy = false;
             //Animator anim = _equippedWeapon.GetComponent<Animator>();
@@ -253,7 +253,7 @@ public class PlayerCombatSystem : MonoBehaviour
     {
         if (!isAttacking && _equippedWeapon != null && _currentSlot != 4)
         {
-            Debug.Log("Heavy Attack");
+            //Debug.Log("Heavy Attack");
             isAttacking = true;
             _isHeavy = true;
             _equippedWeapon.GetComponent<Damager>().UsingHeavy = true;

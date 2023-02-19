@@ -45,7 +45,7 @@ public class Damager : MonoBehaviour
 
     [Header("Knockback")]
     [SerializeField] private float _knockbackPower = 2;
-    [SerializeField] private float _knockbackHeight = 1;
+    //[SerializeField] private float _knockbackHeight = 1;
     [SerializeField] private float _knockbackHeavyMultiplier = 2;
     [SerializeField] private float _knockbackStunTime = 2;
     [SerializeField] private bool _canKnockback;
@@ -59,7 +59,7 @@ public class Damager : MonoBehaviour
     public int LightDamageAmount { get { return _lightDamageAmount; } }
     public int HeavyDamageAmount { get { return _heavyDamageAmount; } }
     public float KnockbackPower { get { return _knockbackPower; } }
-    public float KnockbackHeight { get { return _knockbackHeight; } }
+    //public float KnockbackHeight { get { return _knockbackHeight; } }
     public float KnockbackHeavyMultiplier { get { return _knockbackHeavyMultiplier; } }
     public float KnockbackStunTime { get { return _knockbackStunTime; } }
     public bool CanKnockback { get { return _canKnockback; } }

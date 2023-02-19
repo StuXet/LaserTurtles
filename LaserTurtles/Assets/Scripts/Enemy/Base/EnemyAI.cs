@@ -38,6 +38,13 @@ public class EnemyAI : MonoBehaviour
     private Vector3 _velocity;
     private bool _isGrounded;
 
+    // Knockback
+    private bool _knockbacked;
+    private float _knockbackForce;
+    private float _knockbackTimer;
+    private Vector3 _knockbackDirection;
+
+
     public HealthHandler HealthHandlerRef { get => _healthHandlerRef; set => _healthHandlerRef = value; }
 
     private void Awake()
@@ -74,6 +81,7 @@ public class EnemyAI : MonoBehaviour
         }
 
         Gravity();
+        HandleKnockback();
 
         AnimationHandler();
     }
@@ -186,6 +194,42 @@ public class EnemyAI : MonoBehaviour
                 _velocity.y -= _gravityModifier * Time.deltaTime;
                 transform.position += _velocity * Time.deltaTime;
             }
+        }
+    }
+
+    public void Knockback(float duration, float force, Vector3 dir)
+    {
+        if (!_knockbacked)
+        {
+            _knockbacked = true;
+            _knockbackForce = force;
+            _knockbackTimer = duration;
+            _knockbackDirection = dir;
+        }
+    }
+
+    private void HandleKnockback()
+    {
+        if (_knockbacked)
+        {
+            _inControl = false;
+            if (_knockbackTimer > 0)
+            {
+                _knockbackTimer -= Time.deltaTime;
+                Vector3 knockParams = _knockbackDirection * _knockbackForce * Time.deltaTime;
+                transform.position += knockParams;
+            }
+            else
+            {
+                _knockbacked = false;
+            }
+        }
+        else
+        {
+            _inControl = true;
+            _knockbackForce = 0;
+            _knockbackTimer = 0;
+            _knockbackDirection = Vector3.zero;
         }
     }
 
