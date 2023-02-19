@@ -184,9 +184,9 @@ MonoBehaviour:
   UsingHeavy: 0
   UsingSpecial: 0
   CanDamage: 0
-  _knockbackPower: 2.5
+  _knockbackPower: 3
   _knockbackHeavyMultiplier: 2
-  _knockbackStunTime: 0.25
+  _knockbackStunTime: 0.5
   _canKnockback: 1
 --- !u!114 &5609083525479066215
 MonoBehaviour:

@@ -25,7 +25,7 @@ public class HealthHandler : MonoBehaviour
     //[SerializeField] private Color _weakDmgColor = Color.red;
     [Header("Knockback")]
     [SerializeField] bool knockbackable = true;
-    [SerializeField] private float _knockbackForceModifier = 1f;
+    //[SerializeField] private float _knockbackForceModifier = 1f;
 
 
     private void Awake()
@@ -184,11 +184,11 @@ public class HealthHandler : MonoBehaviour
             knockBackDir = knockBackDir.normalized;
             if (isHeavy)
             {
-                _enemyAI.Knockback(damager.KnockbackStunTime, damager.KnockbackPower * damager.KnockbackHeavyMultiplier * _knockbackForceModifier, knockBackDir);
+                _enemyAI.Knockback(damager.KnockbackStunTime, damager.KnockbackPower * damager.KnockbackHeavyMultiplier /** _knockbackForceModifier*/, knockBackDir);
             }
             else
             {
-                _enemyAI.Knockback(damager.KnockbackStunTime, damager.KnockbackPower * _knockbackForceModifier, knockBackDir);
+                _enemyAI.Knockback(damager.KnockbackStunTime, damager.KnockbackPower /** _knockbackForceModifier*/, knockBackDir);
             }
         }
     }
