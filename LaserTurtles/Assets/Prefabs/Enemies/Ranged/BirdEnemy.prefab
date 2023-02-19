@@ -45,8 +45,6 @@ GameObject:
   - component: {fileID: 2770793692575537998}
   - component: {fileID: 1655155455741120437}
   - component: {fileID: 6252398344140077569}
-  - component: {fileID: 5197772044173352012}
-  - component: {fileID: 3157836604774075552}
   m_Layer: 0
   m_Name: BirdEnemy
   m_TagString: Untagged
@@ -123,8 +121,13 @@ MonoBehaviour:
   PatrolRange: 5
   AttackCoolDownTime: 2
   AlreadyAttacked: 0
+  _inControl: 1
   SightRange: 20
   AttackRange: 5
+  _gravityEnabled: 1
+  _groundCheckOffset: {x: 0, y: -0.75, z: 0}
+  _groundRadius: 0.5
+  _gravityModifier: 10
 --- !u!114 &1655155455741120437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,35 +169,6 @@ MonoBehaviour:
   - {fileID: 4291109151698982391}
   _effectStrenght: 0.25
   _flashDuration: 0.1
---- !u!54 &5197772044173352012
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2851740006274703717}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!65 &3157836604774075552
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2851740006274703717}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.1, z: 0.1}
-  m_Center: {x: 0, y: -0.9, z: 0}
 --- !u!1 &7594543226852021194
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,22 +414,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f23ecd1993a43c542995e99b9265a25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rb: {fileID: 5197772044173352012}
   _enemyAI: {fileID: 2770793692575537998}
-  _navAgent: {fileID: 1655155455741120438}
   _weakness: 0
   _resistance: 0
   _healthBar: {fileID: 6324513056659785184}
   _maxHP: 40
   _currentHP: 0
-  _dmgPopup: {fileID: 4823436943637356501, guid: 4e085fcee1859f042a0f4eff7a3538ea,
-    type: 3}
-  _dmgPopupYOffset: 2
-  _normalDmgColor: {r: 1, g: 1, b: 1, a: 1}
-  _resDmgColor: {r: 1, g: 0, b: 1, a: 1}
-  _weakDmgColor: {r: 1, g: 0, b: 0, a: 1}
-  knockbackable: 0
-  kbMass: 0
+  knockbackable: 1
+  _knockbackForceModifier: 1.25
 --- !u!114 &8724689807990754746
 MonoBehaviour:
   m_ObjectHideFlags: 0

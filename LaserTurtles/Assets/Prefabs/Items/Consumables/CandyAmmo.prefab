@@ -382,11 +382,10 @@ MonoBehaviour:
   UsingHeavy: 0
   UsingSpecial: 0
   CanDamage: 0
-  _knockbackPower: 2
-  _knockbackHeight: 1
-  _knockbackHeavyMultiplier: 2
-  _knockbackStunTime: 2
-  _canKnockback: 0
+  _knockbackPower: 5
+  _knockbackHeavyMultiplier: 1
+  _knockbackStunTime: 0.2
+  _canKnockback: 1
 --- !u!114 &1051837804488508042
 MonoBehaviour:
   m_ObjectHideFlags: 0

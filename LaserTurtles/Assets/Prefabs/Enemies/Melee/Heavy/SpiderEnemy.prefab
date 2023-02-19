@@ -64,22 +64,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f23ecd1993a43c542995e99b9265a25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rb: {fileID: 4792080552470358112}
   _enemyAI: {fileID: 6135216701375911095}
-  _navAgent: {fileID: 7228148100382587494}
   _weakness: 0
   _resistance: 0
   _healthBar: {fileID: 2698481246451724336}
   _maxHP: 80
   _currentHP: 0
-  _dmgPopup: {fileID: 4823436943637356501, guid: 4e085fcee1859f042a0f4eff7a3538ea,
-    type: 3}
-  _dmgPopupYOffset: 2
-  _normalDmgColor: {r: 1, g: 1, b: 1, a: 1}
-  _resDmgColor: {r: 1, g: 0, b: 1, a: 1}
-  _weakDmgColor: {r: 1, g: 0, b: 0, a: 1}
-  knockbackable: 0
-  kbMass: 0
+  knockbackable: 1
+  _knockbackForceModifier: 0.5
 --- !u!114 &5168271363645760439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,7 +252,6 @@ MonoBehaviour:
   UsingSpecial: 0
   CanDamage: 1
   _knockbackPower: 2
-  _knockbackHeight: 1
   _knockbackHeavyMultiplier: 2
   _knockbackStunTime: 2
   _canKnockback: 0
@@ -361,8 +352,6 @@ GameObject:
   - component: {fileID: 6135216701375911095}
   - component: {fileID: 7228148100382587493}
   - component: {fileID: 2644558523111022368}
-  - component: {fileID: 4792080552470358112}
-  - component: {fileID: 7061644897650365255}
   m_Layer: 0
   m_Name: SpiderEnemy
   m_TagString: Untagged
@@ -439,8 +428,13 @@ MonoBehaviour:
   PatrolRange: 5
   AttackCoolDownTime: 2
   AlreadyAttacked: 0
+  _inControl: 1
   SightRange: 10
   AttackRange: 1.5
+  _gravityEnabled: 1
+  _groundCheckOffset: {x: 0, y: -0.5, z: 0}
+  _groundRadius: 0.5
+  _gravityModifier: 10
 --- !u!114 &7228148100382587493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -482,35 +476,6 @@ MonoBehaviour:
   - {fileID: 5211750136317105255}
   _effectStrenght: 0.25
   _flashDuration: 0.1
---- !u!54 &4792080552470358112
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6135216701375911093}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!65 &7061644897650365255
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6135216701375911093}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.42893577, y: 0.15861726, z: 0.36868906}
-  m_Center: {x: 0.13398087, y: -0.48, z: 0.03889823}
 --- !u!1 &8600808412092051261
 GameObject:
   m_ObjectHideFlags: 0
