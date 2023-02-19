@@ -809,7 +809,6 @@ GameObject:
   - component: {fileID: 8980513415885741700}
   - component: {fileID: 878156989}
   - component: {fileID: 2104562432498233633}
-  - component: {fileID: 6055095005392634095}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -978,25 +977,6 @@ MonoBehaviour:
   _textUI: {fileID: 1682299860912897801}
   _compassTracker: {fileID: 2793087358602907508}
   _objectiveIndicator: {fileID: 4590417559797837118}
---- !u!114 &6055095005392634095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4800407385372773092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8be361dd1645f324bb6d1eb5abb250b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _healthHandlerRef: {fileID: 8980513415885741700}
-  _hitEffect: {fileID: 2100000, guid: ae21f653dff354b4e90155b5de096e12, type: 2}
-  _hitColor: {r: 1, g: 0, b: 0, a: 1}
-  _skinedMeshRenderers:
-  - {fileID: 4109568157560752005}
-  _effectStrenght: 0.5
-  _flashDuration: 0.2
 --- !u!1 &5195345205009075710
 GameObject:
   m_ObjectHideFlags: 0
@@ -2467,12 +2447,6 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: ae21f653dff354b4e90155b5de096e12, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 761e0d37319a2b64da502b2e3f4dc540, type: 3}
---- !u!137 &4109568157560752005 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 9074015860810649920, guid: 761e0d37319a2b64da502b2e3f4dc540,
-    type: 3}
-  m_PrefabInstance: {fileID: 4964514000433534661}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &4976644559587137402 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 141275090180964799, guid: 761e0d37319a2b64da502b2e3f4dc540,
