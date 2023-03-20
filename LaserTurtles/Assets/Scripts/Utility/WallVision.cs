@@ -6,7 +6,8 @@ public class WallVision : MonoBehaviour
 {
     [SerializeField] private GameObject _wallVisionUI;
     [SerializeField] private Transform _objectToZone;
-    [SerializeField] private LayerMask _playerLayer, _environmentLayer;
+    [SerializeField] private bool _useWallVision;
+    private bool _isWallVision;
 
     // Start is called before the first frame update
     void Start()
@@ -17,19 +18,32 @@ public class WallVision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit hit;
-        Vector3 dir = (_objectToZone.position - transform.position).normalized;
-        if (Physics.Raycast(transform.position, dir, out hit, 1000, _playerLayer, QueryTriggerInteraction.UseGlobal))
+        if (_useWallVision)
         {
-            Debug.DrawRay(transform.position, dir * hit.distance, Color.green);
-            //Debug.Log("PLayer Visible");
-            _wallVisionUI.SetActive(false);
+            RaycastHit hit;
+            Vector3 dir = (_objectToZone.position - transform.position).normalized;
+            if (Physics.Raycast(transform.position, dir, out hit, 1000))
+            {
+                //Debug.Log(hit.transform.name);
+                if (hit.transform.CompareTag("Player"))
+                {
+                    Debug.DrawRay(transform.position, dir * hit.distance, Color.green);
+                    //Debug.Log("PLayer Visible");
+                    _isWallVision = false;
+                }
+                else
+                {
+                    Debug.DrawRay(transform.position, dir * 1000, Color.red);
+                    //Debug.Log("Player Blocked");
+                    _isWallVision = true;
+                }
+            }
+
+            _wallVisionUI.SetActive(_isWallVision);
         }
         else
         {
-            Debug.DrawRay(transform.position, dir * 1000, Color.red);
-            //Debug.Log("Player Blocked");
-            _wallVisionUI.SetActive(true);
+            _wallVisionUI.SetActive(false);
         }
     }
 }

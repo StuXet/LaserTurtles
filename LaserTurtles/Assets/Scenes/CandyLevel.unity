@@ -489,6 +489,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1147018930}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &264839332 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4449391372842347456, guid: 57c39bb9fb681c744bd561c7f5fa733a,
+    type: 3}
+  m_PrefabInstance: {fileID: 9160621758114388411}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &359081503
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2850,6 +2856,12 @@ Transform:
   m_Father: {fileID: 1922370944}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1309495360 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7427615196623622414, guid: 57c39bb9fb681c744bd561c7f5fa733a,
+    type: 3}
+  m_PrefabInstance: {fileID: 9160621758114388411}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1349399289
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5614,6 +5626,16 @@ PrefabInstance:
       propertyPath: m_Value
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8195977028463862938, guid: 57c39bb9fb681c744bd561c7f5fa733a,
+        type: 3}
+      propertyPath: _objectToZone
+      value: 
+      objectReference: {fileID: 264839332}
+    - target: {fileID: 8195977028463862938, guid: 57c39bb9fb681c744bd561c7f5fa733a,
+        type: 3}
+      propertyPath: _wallVisionUI
+      value: 
+      objectReference: {fileID: 1309495360}
     - target: {fileID: 8835234193362461441, guid: 57c39bb9fb681c744bd561c7f5fa733a,
         type: 3}
       propertyPath: m_AnchoredPosition.y
