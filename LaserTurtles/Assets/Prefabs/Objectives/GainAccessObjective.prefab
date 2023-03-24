@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5659799564359486907}
   - component: {fileID: 8250741381537367356}
   - component: {fileID: 7898262584223411348}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CounterText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 4550635122521590026}
   - component: {fileID: 4503165416767561965}
   - component: {fileID: 7655137273581420513}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: DoorLockBoss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,7 +327,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 214018373900158107}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: DoorLockIcons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -362,7 +362,7 @@ GameObject:
   - component: {fileID: 1890647020248793848}
   - component: {fileID: 117415615897193581}
   - component: {fileID: 2777052967101342150}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: DoorLockCandy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -507,7 +507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7ccb334e3e49a145b7f4e1457d6bf5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectiveName: Gain Access.
+  _objectiveName: Gain Access
   _useFade: 1
   _door: {fileID: 7922340074326025686}
   _doorLockIcon: {fileID: 6414739760505591907}

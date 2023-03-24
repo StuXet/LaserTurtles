@@ -8,6 +8,7 @@ TagManager:
   - Damager
   - Environment
   - Ground
+  - Item
   layers:
   - Default
   - TransparentFX

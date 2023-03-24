@@ -64,22 +64,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f23ecd1993a43c542995e99b9265a25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rb: {fileID: 0}
   _enemyAI: {fileID: 0}
-  _navAgent: {fileID: 0}
   _weakness: 0
   _resistance: 0
   _healthBar: {fileID: 2698481246451724336}
-  _maxHP: 200
+  _maxHP: 250
   _currentHP: 0
-  _dmgPopup: {fileID: 4823436943637356501, guid: 4e085fcee1859f042a0f4eff7a3538ea,
-    type: 3}
-  _dmgPopupYOffset: 5
-  _normalDmgColor: {r: 1, g: 1, b: 1, a: 1}
-  _resDmgColor: {r: 1, g: 0, b: 1, a: 1}
-  _weakDmgColor: {r: 1, g: 0, b: 0, a: 1}
   knockbackable: 0
-  kbMass: 0
 --- !u!114 &5168271363645760439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,15 +84,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsToDrop:
-  - dropChance: 24
+  - dropChance: 0
     dropObject: {fileID: 0}
-  - dropChance: 40
+  - dropChance: 50
     dropObject: {fileID: 154455731916256318, guid: bdb3c85b7d1227c4dabf8be09449871b,
       type: 3}
-  - dropChance: 35
+  - dropChance: 20
     dropObject: {fileID: 5601993761966769206, guid: 5fb94eb5dcb7e4243b59fb099ed614a0,
       type: 3}
-  - dropChance: 1
+  - dropChance: 25
+    dropObject: {fileID: 5601993761966769206, guid: b2af89b984d17e7428ee13ae40b15f31,
+      type: 3}
+  - dropChance: 5
     dropObject: {fileID: 5012736691022855372, guid: dbff69dd2a535dd49a1e9bc20651b60c,
       type: 3}
 --- !u!114 &7453140696285861752
@@ -257,7 +251,6 @@ MonoBehaviour:
   UsingSpecial: 0
   CanDamage: 1
   _knockbackPower: 2
-  _knockbackHeight: 1
   _knockbackHeavyMultiplier: 2
   _knockbackStunTime: 2
   _canKnockback: 0
@@ -394,7 +387,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 2.5
-  m_Speed: 5
+  m_Speed: 8
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 240
@@ -434,8 +427,13 @@ MonoBehaviour:
   PatrolRange: 0
   AttackCoolDownTime: 2
   AlreadyAttacked: 0
+  _inControl: 1
   SightRange: 20
   AttackRange: 2.25
+  _gravityEnabled: 1
+  _groundCheckOffset: {x: 0, y: -1, z: 0}
+  _groundRadius: 0.5
+  _gravityModifier: 10
 --- !u!114 &7228148100382587493
 MonoBehaviour:
   m_ObjectHideFlags: 0

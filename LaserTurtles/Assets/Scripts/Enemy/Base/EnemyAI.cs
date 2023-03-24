@@ -25,8 +25,25 @@ public class EnemyAI : MonoBehaviour
     public bool AlreadyAttacked;
 
     // States
+    [SerializeField] private bool _inControl = true;
     public float SightRange, AttackRange;
     private bool PlayerInSightRange, PlayerInAttackRange;
+
+    // Physics
+    [Header("Gravity")]
+    [SerializeField] private bool _gravityEnabled = true;
+    [SerializeField] private Vector3 _groundCheckOffset;
+    [SerializeField] private float _groundRadius = 0.5f;
+    [SerializeField] private float _gravityModifier = 10f;
+    private Vector3 _velocity;
+    private bool _isGrounded;
+
+    // Knockback
+    private bool _knockbacked;
+    private float _knockbackForce;
+    private float _knockbackTimer;
+    private Vector3 _knockbackDirection;
+
 
     public HealthHandler HealthHandlerRef { get => _healthHandlerRef; set => _healthHandlerRef = value; }
 
@@ -51,9 +68,20 @@ public class EnemyAI : MonoBehaviour
 
         //ToggleHPBarState();
 
-        if (!PlayerInSightRange && !PlayerInAttackRange) Patroling();
-        if (PlayerInSightRange && !PlayerInAttackRange) ChasePlayer();
-        if (PlayerInAttackRange && PlayerInSightRange) AttackPlayer(false);
+        if (_inControl && _isGrounded)
+        {
+            Agent.enabled = true;
+            if (!PlayerInSightRange && !PlayerInAttackRange) Patroling();
+            if (PlayerInSightRange && !PlayerInAttackRange) ChasePlayer();
+            if (PlayerInAttackRange && PlayerInSightRange) AttackPlayer(false);
+        }
+        else
+        {
+            Agent.enabled = false;
+        }
+
+        Gravity();
+        HandleKnockback();
 
         AnimationHandler();
     }
@@ -150,6 +178,61 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    private void Gravity()
+    {
+        _isGrounded = Physics.CheckSphere(transform.position + _groundCheckOffset, _groundRadius, GroundLayer);
+
+        if (_gravityEnabled)
+        {
+
+            if (_isGrounded && _velocity.y <= 0)
+            {
+                _velocity.y = 0;
+            }
+            else
+            {
+                _velocity.y -= _gravityModifier * Time.deltaTime;
+                transform.position += _velocity * Time.deltaTime;
+            }
+        }
+    }
+
+    public void Knockback(float duration, float force, Vector3 dir)
+    {
+        if (!_knockbacked)
+        {
+            _knockbacked = true;
+            _knockbackForce = force;
+            _knockbackTimer = duration;
+            _knockbackDirection = dir;
+        }
+    }
+
+    private void HandleKnockback()
+    {
+        if (_knockbacked)
+        {
+            _inControl = false;
+            if (_knockbackTimer > 0)
+            {
+                _knockbackTimer -= Time.deltaTime;
+                Vector3 knockParams = _knockbackDirection * _knockbackForce * Time.deltaTime;
+                transform.position += knockParams;
+            }
+            else
+            {
+                _knockbacked = false;
+            }
+        }
+        else
+        {
+            _inControl = true;
+            _knockbackForce = 0;
+            _knockbackTimer = 0;
+            _knockbackDirection = Vector3.zero;
+        }
+    }
+
     virtual public void AttackPlayer(bool changeAttack)
     {
         if (!gameObject.activeSelf)
@@ -221,9 +304,20 @@ public class EnemyAI : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
+        // Sight & Attack Ranges
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, AttackRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, SightRange);
+
+        // Grounded
+        Color transparentGreen = new Color(0.0f, 1.0f, 0.0f, 0.35f);
+        Color transparentRed = new Color(1.0f, 0.0f, 0.0f, 0.35f);
+
+        if (_isGrounded) Gizmos.color = transparentGreen;
+        else Gizmos.color = transparentRed;
+
+        // when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
+        Gizmos.DrawSphere(transform.position + _groundCheckOffset, _groundRadius);
     }
 }

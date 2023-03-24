@@ -16,6 +16,8 @@ public class ObjectiveGainAccess : ObjectiveBase
     private Material _doorMat;
     private int _keyObjectivesCounter = 0;
 
+    public List<ObjectiveBase> KeyObjectives { get => keyObjectives;}
+
     private void Awake()
     {
         if (_door)
@@ -31,13 +33,13 @@ public class ObjectiveGainAccess : ObjectiveBase
 
         if (keyObjectives.Count == 0)
         {
-            _doorLockIcon.SetActive(false);
-            _objectivesCounterText.gameObject.SetActive(false);
+            if (_doorLockIcon != null) _doorLockIcon.SetActive(false);
+            if (_objectivesCounterText != null) _objectivesCounterText.gameObject.SetActive(false);
         }
         else
         {
-            _doorLockIcon.SetActive(true);
-            _objectivesCounterText.gameObject.SetActive(true);
+            if (_doorLockIcon != null) _doorLockIcon.SetActive(true);
+            if (_objectivesCounterText != null) _objectivesCounterText.gameObject.SetActive(true);
         }
     }
 
@@ -54,7 +56,7 @@ public class ObjectiveGainAccess : ObjectiveBase
     private void OpenDoor()
     {
         _openDoor = true;
-        _objectivesCounterText.gameObject.SetActive(false);
+        if (_objectivesCounterText != null) _objectivesCounterText.gameObject.SetActive(false);
         if (!_useFade)
         {
             _door.SetActive(false);
@@ -112,9 +114,9 @@ public class ObjectiveGainAccess : ObjectiveBase
     {
         if (CompletedObjective)
         {
-            _doorLockIcon.SetActive(false);
+            if (_doorLockIcon != null) _doorLockIcon.SetActive(false);
         }
-        _objectivesCounterText.text = _keyObjectivesCounter.ToString() + "/" + keyObjectives.Count.ToString();
+        if (_objectivesCounterText != null) _objectivesCounterText.text = _keyObjectivesCounter.ToString() + "/" + keyObjectives.Count.ToString();
     }
 
     private void OnTriggerEnter(Collider other)

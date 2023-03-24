@@ -184,11 +184,10 @@ MonoBehaviour:
   UsingHeavy: 0
   UsingSpecial: 0
   CanDamage: 0
-  _knockbackPower: 2
-  _knockbackHeight: 1
+  _knockbackPower: 5
   _knockbackHeavyMultiplier: 2
-  _knockbackStunTime: 2
-  _canKnockback: 0
+  _knockbackStunTime: 1
+  _canKnockback: 1
 --- !u!114 &5609083525479066215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,6 +203,7 @@ MonoBehaviour:
   _referenceItem: {fileID: 11400000, guid: 015fa8ff8e8e8b1478699c55b796aede, type: 2}
   ItemAnimator: {fileID: 806246763852308259}
   PickupPressIcon: {fileID: 4348178112657744474}
+  _outline: {fileID: 6508359776270495905}
   CanBePicked: 0
   RequiresInteraction: 1
 --- !u!114 &6488114023808855350
@@ -219,6 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weaponParticle: {fileID: 7133256797945068897}
+  _hitVFX: {fileID: 4198303821216585862, guid: 3eebcc97faa4a03458fc1ba5666a3c1b, type: 3}
 --- !u!1 &6746138501094538976
 GameObject:
   m_ObjectHideFlags: 0

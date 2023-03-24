@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3831116493995791388}
   m_Layer: 0
   m_Name: Coin
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,6 +79,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _referenceItem: {fileID: 11400000, guid: 5284ac282a9479f459c20fbff623fb92, type: 2}
   ItemAnimator: {fileID: 0}
+  PickupPressIcon: {fileID: 0}
+  _outline: {fileID: 8264594052557784695}
   CanBePicked: 1
   RequiresInteraction: 0
 --- !u!1 &4886158861649928075

@@ -58,6 +58,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 642dd4014ee1caa4aac4fa94b847c786, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectiveName: Talk to the NPC.
+  _objectiveName: Talk to the NPC
   _merchant: {fileID: 0}
   _inventoryItemData: {fileID: 0}

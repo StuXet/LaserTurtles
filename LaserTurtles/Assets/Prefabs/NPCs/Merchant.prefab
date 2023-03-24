@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 8777943013194476440}
   - component: {fileID: 8777943013194476441}
   - component: {fileID: 5265092356048942965}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: InteractTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}

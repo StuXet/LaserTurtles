@@ -11,26 +11,22 @@ public class HealthHandler : MonoBehaviour
     public event EventHandler OnDamageOccured;
 
     public HealthSystem _healthSystem;
-    [SerializeField] private Rigidbody _rb;
     [SerializeField] private EnemyAI _enemyAI;
-    [SerializeField] private NavMeshAgent _navAgent;
     [SerializeField] private WeaknessResistance _weakness;
     [SerializeField] private WeaknessResistance _resistance;
     [SerializeField] private HealthBar _healthBar;
     [SerializeField] private int _maxHP;
     [SerializeField] private int _currentHP;
-    [Header("Damage Popup")]
-    [SerializeField] private GameObject _dmgPopup;
-    [SerializeField] private float _dmgPopupYOffset = 2;
-    [SerializeField] private Color _normalDmgColor = Color.white;
-    [SerializeField] private Color _resDmgColor = Color.magenta;
-    [SerializeField] private Color _weakDmgColor = Color.red;
+    //[Header("Damage Popup")]
+    //[SerializeField] private GameObject _dmgPopup;
+    //[SerializeField] private float _dmgPopupYOffset = 2;
+    //[SerializeField] private Color _normalDmgColor = Color.white;
+    //[SerializeField] private Color _resDmgColor = Color.magenta;
+    //[SerializeField] private Color _weakDmgColor = Color.red;
     [Header("Knockback")]
     [SerializeField] bool knockbackable = true;
-    [SerializeField] float kbMass;
-    private bool isKnockedBack;
-    private float kbDelay = 0.2f;
-    private float kbTimer;
+    //[SerializeField] private float _knockbackForceModifier = 1f;
+
 
     private void Awake()
     {
@@ -38,15 +34,6 @@ public class HealthHandler : MonoBehaviour
         if (_healthBar != null) _healthBar.Setup(_healthSystem);
         _healthSystem.OnDeath += _healthSystem_OnDeath;
         _healthSystem.OnDamaged += _healthSystem_OnDamaged;
-    }
-
-    private void FixedUpdate()
-    {
-        kbTimer -= Time.fixedDeltaTime;
-        if (isKnockedBack && kbTimer <= 0)
-        {
-            ResetKB();
-        }
     }
 
     private void _healthSystem_OnDamaged(object sender, EventArgs e)
@@ -94,7 +81,7 @@ public class HealthHandler : MonoBehaviour
                 if (tempDamager.DamagerType == DamagerType.OneHit)
                 {
 
-                    if (knockbackable)
+                    if (tempDamager.CanKnockback && knockbackable)
                     {
                         Knockback(tempDamager, tempDamager.UsingHeavy);
                     }
@@ -139,27 +126,28 @@ public class HealthHandler : MonoBehaviour
     private void HandleDamageModifierType(Damager _damager, bool _normalModifier, bool _weakness, bool _resistance)
     {
         float modVal;
-        Color modColor;
+        //Color modColor;
         if (_normalModifier || (_weakness && _resistance))
         {
             modVal = 1;
-            modColor = _normalDmgColor;
+            //modColor = _normalDmgColor;
         }
         else if (_weakness)
         {
             modVal = 2;
-            modColor = _weakDmgColor;
+            //modColor = _weakDmgColor;
         }
         else if (_resistance)
         {
             modVal = 0.5f;
-            modColor = _resDmgColor;
+            //modColor = _resDmgColor;
         }
         else
         {
             modVal = 1;
-            modColor = _normalDmgColor;
+            //modColor = _normalDmgColor;
         }
+
 
         if (!_damager.UsingHeavy)
         {
@@ -188,81 +176,33 @@ public class HealthHandler : MonoBehaviour
     // --------------------
     private void Knockback(Damager damager, bool isHeavy)
     {
-        if (_rb)
+        if (_enemyAI)
         {
-            kbTimer = kbDelay;
-
-            if (_enemyAI)
-            {
-                _enemyAI.enabled = false;
-            }
-
-            if (_navAgent)
-            {
-                _navAgent.enabled = false;
-            }
-
-            _rb.isKinematic = false;
-            _rb.detectCollisions = true;
-            _rb.freezeRotation = true;
-            //rb.mass = kbMass;
-
-            Vector3 knockBackDir = damager.KnockbackPower * (gameObject.transform.position - damager.transform.root.position).normalized;
-            //knockBackDir *= strength;
-            knockBackDir.y = damager.KnockbackHeight;
+            //_enemyAI.Knockback(1, 1, transform.forward * -1);
+            Vector3 knockBackDir = _enemyAI.transform.position - damager.transform.position;
+            knockBackDir.y = 0;
+            knockBackDir = knockBackDir.normalized;
             if (isHeavy)
             {
-                _rb.AddForce(knockBackDir * damager.KnockbackHeavyMultiplier, ForceMode.VelocityChange);
+                _enemyAI.Knockback(damager.KnockbackStunTime, damager.KnockbackPower * damager.KnockbackHeavyMultiplier /** _knockbackForceModifier*/, knockBackDir);
             }
             else
             {
-                _rb.AddForce(knockBackDir, ForceMode.VelocityChange);
-
-            }
-            //StartCoroutine(ResetKnockback(damager.KnockbackStunTime));
-            isKnockedBack = true;
-        }
-    }
-
-    //Resets enemy AI and rigidbody to their origianl state if rigidbody's velocity reaches zero
-    private IEnumerator ResetKnockback(float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-        if (_rb && _enemyAI && _navAgent)
-        {
-            if (!_rb.isKinematic && _rb.detectCollisions && !_enemyAI.enabled && _rb.velocity == Vector3.zero)
-            {
-                _rb.isKinematic = true;
-
-                _enemyAI.enabled = true;
-                _navAgent.enabled = true;
+                _enemyAI.Knockback(damager.KnockbackStunTime, damager.KnockbackPower /** _knockbackForceModifier*/, knockBackDir);
             }
         }
     }
 
-    private void ResetKB()
-    {
-        if (_rb && _enemyAI && _navAgent)
-        {
-            if (!_rb.isKinematic && _rb.detectCollisions && !_enemyAI.enabled && _rb.velocity == Vector3.zero)
-            {
-                _rb.isKinematic = true;
 
-                _enemyAI.enabled = true;
-                _navAgent.enabled = true;
-                isKnockedBack = false;
-            }
-        }
-    }
+    //private void EnemyDmgPopUp(int dmg, Color txtColor, string tag)
+    //{
+    //    if (_dmgPopup)
+    //    {
+    //        GameObject popup = Instantiate(_dmgPopup, new Vector3(transform.position.x, transform.position.y + _dmgPopupYOffset, transform.position.z), Quaternion.identity, transform);
+    //        TextMeshPro dmgText = popup.GetComponent<TextMeshPro>();
+    //        dmgText.text = dmg.ToString();
+    //        dmgText.color = txtColor;
+    //    }
+    //}
 
-    private void EnemyDmgPopUp(int dmg, Color txtColor, string tag)
-    {
-        if (_dmgPopup)
-        {
-            GameObject popup = Instantiate(_dmgPopup, new Vector3(transform.position.x, transform.position.y + _dmgPopupYOffset, transform.position.z), Quaternion.identity, transform);
-            TextMeshPro dmgText = popup.GetComponent<TextMeshPro>();
-            dmgText.text = dmg.ToString();
-            dmgText.color = txtColor;
-        }
-    }
 }

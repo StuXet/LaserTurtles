@@ -382,11 +382,10 @@ MonoBehaviour:
   UsingHeavy: 0
   UsingSpecial: 0
   CanDamage: 0
-  _knockbackPower: 2
-  _knockbackHeight: 1
-  _knockbackHeavyMultiplier: 2
-  _knockbackStunTime: 2
-  _canKnockback: 0
+  _knockbackPower: 5
+  _knockbackHeavyMultiplier: 1
+  _knockbackStunTime: 0.2
+  _canKnockback: 1
 --- !u!114 &1051837804488508042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,6 +400,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _referenceItem: {fileID: 11400000, guid: 5058f71a139b5f0449c3d2e03144beb4, type: 2}
   ItemAnimator: {fileID: 1666709056245522884}
+  PickupPressIcon: {fileID: 0}
+  _outline: {fileID: 2455012481643412115}
   CanBePicked: 0
   RequiresInteraction: 0
 --- !u!114 &884752471402075366
@@ -418,3 +419,4 @@ MonoBehaviour:
   ShootByPlayer: 1
   CanBeDestroyed: 0
   _time: 5
+  _hitVFX: {fileID: 4198303821216585862, guid: d0b8048ef7aa21b4fbd0a2aadece7aee, type: 3}
