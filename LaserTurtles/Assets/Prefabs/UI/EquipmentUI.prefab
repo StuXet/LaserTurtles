@@ -1382,6 +1382,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 153185733165878576, guid: 9d08791936bafba47a04f8c992b2be69,
         type: 3}
+      propertyPath: _equipType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 153185733165878576, guid: 9d08791936bafba47a04f8c992b2be69,
+        type: 3}
       propertyPath: _slotTypeIcon
       value: 
       objectReference: {fileID: 6702471579456451932}

@@ -31,7 +31,7 @@ public class InventoryPanel : MonoBehaviour, IDropHandler
             {
                 InventorySlot invSlot = droppedObj.GetComponent<InventorySlot>();
                 invSlot.SetTransparency(1);
-                _inventorySystemRef.Add(invSlot.ItemData);
+                _inventorySystemRef.Add(invSlot.ItemData, true);
                 Destroy(droppedObj);
 
                 Debug.Log("Added");

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class EquipmentSlot : MonoBehaviour, IDropHandler
 {
-    [SerializeField] private ItemType EquipType;
+    [SerializeField] private ItemType _equipType;
     [SerializeField] private InventorySystem _inventorySystemRef;
     [SerializeField] private InventoryItemData _equippedItemData;
     [SerializeField] private GameObject _slotPrefab;
@@ -16,9 +16,9 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler
     [SerializeField] private Transform _canvas;
     [SerializeField] private InventoryUIManager _inventoryUIRef;
 
+    public ItemType EquipType { get => _equipType; }
     public InventoryItemData EquippedItemData { get => _equippedItemData; set => _equippedItemData = value; }
-    public GameObject SlotSelectIcon { get => _slotSelectIcon;}
-
+    public GameObject SlotSelectIcon { get => _slotSelectIcon; }
 
     private void Awake()
     {
@@ -43,14 +43,14 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler
         {
             GameObject droppedObj = eventData.pointerDrag;
             InventorySlot invSlot = droppedObj.GetComponent<InventorySlot>();
-            if (EquipType == invSlot.ItemData.Type)
+            if (_equipType == invSlot.ItemData.Type)
             {
                 DraggableItem draggableItem = droppedObj.GetComponent<DraggableItem>();
                 if (draggableItem.EquipIconRef != null)
                 {
                     Destroy(draggableItem.EquipIconRef.gameObject);
                     draggableItem.EquipIconRef = null;
-                    draggableItem.EquipSlotRef.EquippedItemData = null;
+                    draggableItem.EquipSlotRef._equippedItemData = null;
                 }
 
                 var icon = Instantiate(invSlot.Icon, transform);
@@ -58,7 +58,7 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler
                 draggableItem.OriginalParent = icon.transform;
                 draggableItem.EquipIconRef = icon;
                 invSlot.SetTransparency(0);
-                icon.color= Color.white;
+                icon.color = Color.white;
 
                 _equippedItemData = invSlot.ItemData;
                 draggableItem.EquipSlotRef = this;
@@ -71,6 +71,12 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler
 
     private void SetupPreEquipped()
     {
+        SetupWeaponEquip();
+    }
+
+    [ContextMenu("Setup Weapon Equip")]
+    public void SetupWeaponEquip()
+    {
         if (_equippedItemData != null)
         {
             GameObject obj = Instantiate(_slotPrefab, null, false);
@@ -79,14 +85,14 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler
             obj.GetComponent<DraggableItem>().InventoryUIRef = _inventoryUIRef;
 
             InventorySlot invSlot = obj.GetComponent<InventorySlot>();
-            if (EquipType == invSlot.ItemData.Type)
+            if (_equipType == invSlot.ItemData.Type)
             {
                 DraggableItem draggableItem = obj.GetComponent<DraggableItem>();
                 if (draggableItem.EquipIconRef != null)
                 {
                     Destroy(draggableItem.EquipIconRef.gameObject);
                     draggableItem.EquipIconRef = null;
-                    draggableItem.EquipSlotRef.EquippedItemData = null;
+                    draggableItem.EquipSlotRef._equippedItemData = null;
                 }
 
                 var icon = Instantiate(invSlot.Icon, transform);
@@ -99,8 +105,6 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler
                 draggableItem.EquipSlotRef = this;
 
                 obj.transform.SetParent(icon.transform);
-
-                Debug.Log("Start Equipped");
             }
         }
     }
