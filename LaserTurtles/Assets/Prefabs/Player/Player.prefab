@@ -2583,6 +2583,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WallVisionUI
       objectReference: {fileID: 0}
+    - target: {fileID: 5666201421591849901, guid: 1eeb71b3042aac3449fd04e7f70db6ee,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1eeb71b3042aac3449fd04e7f70db6ee, type: 3}
 --- !u!224 &9191572576877548407 stripped
