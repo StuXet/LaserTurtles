@@ -51,7 +51,7 @@ public class PlayerCombatSystem : MonoBehaviour
     {
         _plInputActions = _inputManagerRef.PlInputActions;
         _plInputActions.Player.LightAttack.performed += LightAttack;
-        _plInputActions.Player.HeavyAttack.performed += HeavyAttack;
+        _plInputActions.Player.ShootAttack.performed += ShootAttack;
         _plInputActions.Player.SpecialAttack.performed += SpecialAttack;
 
         _plInputActions.Player.WeaponSlot1.performed += WeaponSlot1;
@@ -122,15 +122,16 @@ public class PlayerCombatSystem : MonoBehaviour
         if (!inDialogue)
         {
             Attack();
-            Shooting();
+            //Shooting();
         }
     }
 
-    private void HeavyAttack(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void ShootAttack(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         if (!inDialogue)
         {
-            HeavyAttack();
+            //HeavyAttack();
+            Shooting();
         }
     }
 
