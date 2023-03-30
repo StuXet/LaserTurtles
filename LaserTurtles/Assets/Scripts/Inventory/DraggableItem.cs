@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
+public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
     private InventoryUIManager _inventoryUIRef;
     private Transform _originalParent;
@@ -58,28 +58,39 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 _invSlot.SetTransparency(0);
             }
         }
+
+        _inventoryUIRef.UpdateSelectedItemData(null);
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        Debug.Log(name + " Hover Start!");
-    }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.clickCount >= 2)
+        if (eventData.clickCount == 1)
         {
-            _inventoryUIRef.UpdateSelectedItemData(null);
+            _inventoryUIRef.UpdateSelectedItemData(_invSlot.ItemData);
+            //Debug.Log(name + " Selected!");
         }
         else
         {
-            _inventoryUIRef.UpdateSelectedItemData(_invSlot.ItemData);
-        }
-        Debug.Log(name + " Clicked!");
-    }
+            if (_equipSlotRef == null)
+            {
+                if (_inventoryUIRef.PlayerInventoryRefrence.CombatSystem.AutoEquipWeapon(_invSlot.ItemData))
+                {
+                    _inventoryUIRef.PlayerInventoryRefrence.Remove(_invSlot.ItemData);
+                    //Debug.Log(name + " Equipped!");
+                }
+            }
+            else
+            {
+                Destroy(_equipIconRef.gameObject);
+                _equipIconRef = null;
+                _equipSlotRef.EquippedItemData = null;
+                _equipIconRef = null;
+                _inventoryUIRef.PlayerInventoryRefrence.Add(_invSlot.ItemData, true);
+                //Debug.Log(name + " DeEquipped!");
+            }
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        Debug.Log(name + " Hover End!");
+            _inventoryUIRef.UpdateSelectedItemData(null);
+        }
     }
 }

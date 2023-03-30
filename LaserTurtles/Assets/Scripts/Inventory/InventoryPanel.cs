@@ -34,6 +34,7 @@ public class InventoryPanel : MonoBehaviour, IDropHandler
                 _inventorySystemRef.Add(invSlot.ItemData, true);
                 Destroy(droppedObj);
 
+                draggableItem.InventoryUIRef.UpdateSelectedItemData(null);
                 Debug.Log("Added");
             }
         }
