@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public enum InventoryFilter
@@ -17,8 +18,9 @@ public class InventoryUIManager : MonoBehaviour
     [SerializeField] private Transform _contentBar;
     [SerializeField] private Transform _canvas;
     [SerializeField] private GameObject _itemAddedIcon;
+    [SerializeField] private ItemDescriptionView _descriptionPanel;
     [SerializeField] private InventoryFilter _currentFilter;
-
+    [SerializeField] private bool _openDescription;
     public InventorySystem PlayerInventoryRefrence { get => PlayerInventoryRef;}
     public Transform ContentBar { get => _contentBar;}
     public GameObject ItemAddedIcon { get => _itemAddedIcon;}
@@ -31,6 +33,10 @@ public class InventoryUIManager : MonoBehaviour
         _itemAddedIcon.SetActive(false);
     }
 
+    private void Update()
+    {
+        HandleDescriptionPanel();
+    }
 
     private void OnUpdateInventory(object sender, System.EventArgs e)
     {
@@ -83,5 +89,29 @@ public class InventoryUIManager : MonoBehaviour
     {
         _currentFilter = (InventoryFilter)filterVal;
         RedrawInventory();
+    }
+
+    private void HandleDescriptionPanel()
+    {
+        if (_openDescription)
+        {
+            _descriptionPanel.gameObject.SetActive(true);
+        }
+        else
+        {
+            _descriptionPanel.gameObject.SetActive(false);
+        }
+
+        if (!_descriptionPanel.gameObject.activeInHierarchy)
+        {
+            _descriptionPanel.ClearDescription();
+            _openDescription = false;
+        }
+    }
+
+    public void UpdateSelectedItemData(InventoryItemData data)
+    {
+        _descriptionPanel.UpdateDescriptionView(data);
+        _openDescription = true;
     }
 }

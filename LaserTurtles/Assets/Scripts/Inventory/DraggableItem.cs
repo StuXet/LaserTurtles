@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
 {
     private InventoryUIManager _inventoryUIRef;
     private Transform _originalParent;
@@ -30,7 +30,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("Begin Drag");
+        //Debug.Log("Begin Drag");
         _originalParent = transform.parent;
         //transform.SetParent(transform.parent.parent.parent.parent.parent);
         transform.SetParent(_canvasParent);
@@ -46,7 +46,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("End Drag");
+        //Debug.Log("End Drag");
         transform.SetParent(_originalParent);
         _img.raycastTarget = true;
         InventoryUIRef.RedrawInventory();
@@ -58,5 +58,28 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 _invSlot.SetTransparency(0);
             }
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Debug.Log(name + " Hover Start!");
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.clickCount >= 2)
+        {
+            _inventoryUIRef.UpdateSelectedItemData(null);
+        }
+        else
+        {
+            _inventoryUIRef.UpdateSelectedItemData(_invSlot.ItemData);
+        }
+        Debug.Log(name + " Clicked!");
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Debug.Log(name + " Hover End!");
     }
 }
