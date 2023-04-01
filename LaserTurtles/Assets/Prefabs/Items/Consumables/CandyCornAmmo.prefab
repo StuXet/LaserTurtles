@@ -278,7 +278,6 @@ MonoBehaviour:
   UsingSpecial: 0
   CanDamage: 0
   _knockbackPower: 2
-  _knockbackHeight: 1
   _knockbackHeavyMultiplier: 2
   _knockbackStunTime: 2
   _canKnockback: 0
@@ -297,6 +296,7 @@ MonoBehaviour:
   ShootByPlayer: 0
   CanBeDestroyed: 0
   _time: 5
+  _hitVFX: {fileID: 4198303821216585862, guid: d0b8048ef7aa21b4fbd0a2aadece7aee, type: 3}
 --- !u!1001 &6176478469935708858
 PrefabInstance:
   m_ObjectHideFlags: 0

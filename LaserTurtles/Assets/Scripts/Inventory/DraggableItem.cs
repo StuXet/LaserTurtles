@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
     private InventoryUIManager _inventoryUIRef;
     private Transform _originalParent;
@@ -30,7 +30,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("Begin Drag");
+        //Debug.Log("Begin Drag");
         _originalParent = transform.parent;
         //transform.SetParent(transform.parent.parent.parent.parent.parent);
         transform.SetParent(_canvasParent);
@@ -46,7 +46,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("End Drag");
+        //Debug.Log("End Drag");
         transform.SetParent(_originalParent);
         _img.raycastTarget = true;
         InventoryUIRef.RedrawInventory();
@@ -57,6 +57,40 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             {
                 _invSlot.SetTransparency(0);
             }
+        }
+
+        _inventoryUIRef.UpdateSelectedItemData(null);
+    }
+
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.clickCount == 1)
+        {
+            _inventoryUIRef.UpdateSelectedItemData(_invSlot.ItemData);
+            //Debug.Log(name + " Selected!");
+        }
+        else
+        {
+            if (_equipSlotRef == null)
+            {
+                if (_inventoryUIRef.PlayerInventoryRefrence.CombatSystem.AutoEquipWeapon(_invSlot.ItemData))
+                {
+                    _inventoryUIRef.PlayerInventoryRefrence.Remove(_invSlot.ItemData);
+                    //Debug.Log(name + " Equipped!");
+                }
+            }
+            else
+            {
+                Destroy(_equipIconRef.gameObject);
+                _equipIconRef = null;
+                _equipSlotRef.EquippedItemData = null;
+                _equipIconRef = null;
+                _inventoryUIRef.PlayerInventoryRefrence.Add(_invSlot.ItemData, true);
+                //Debug.Log(name + " DeEquipped!");
+            }
+
+            _inventoryUIRef.UpdateSelectedItemData(null);
         }
     }
 }

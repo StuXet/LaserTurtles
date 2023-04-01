@@ -275,6 +275,31 @@ public class PlayerCombatSystem : MonoBehaviour
         }
     }
 
+    public bool AutoEquipWeapon(InventoryItemData itemData)
+    {
+        foreach (var slot in _equipmentSlots)
+        {
+            if (slot.EquippedItemData != null)
+            {
+                if (slot.EquippedItemData == itemData)
+                {
+                    return false;
+                }
+            }
+        }
+
+        for (int i = 0; i < _equipmentSlots.Count; i++)
+        {
+            if (_equipmentSlots[i].EquippedItemData == null && _equipmentSlots[i].EquipType == itemData.Type)
+            {
+                _equipmentSlots[i].EquippedItemData = itemData;
+                _equipmentSlots[i].SetupWeaponEquip();
+                return true;
+            }
+        }
+        return false;
+    }
+
     void Attack()
     {
         if (!isAttacking && _equippedWeapon != null && _currentSlot != 4)

@@ -114,8 +114,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eed6addc6027fd544bbd69e70689d464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EquipType: 0
+  _equipType: 0
   _inventorySystemRef: {fileID: 0}
   _equippedItemData: {fileID: 0}
   _slotPrefab: {fileID: 622909744971911531, guid: 3823268b46aedc84da85ba6cef632521,
     type: 3}
+  _slotTypeIcon: {fileID: 0}
+  _slotSelectIcon: {fileID: 0}
+  _canvas: {fileID: 0}
+  _inventoryUIRef: {fileID: 0}
