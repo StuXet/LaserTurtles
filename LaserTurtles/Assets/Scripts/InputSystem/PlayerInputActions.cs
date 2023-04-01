@@ -64,21 +64,21 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""LightAttack"",
+                    ""name"": ""MeleeAttack"",
                     ""type"": ""Button"",
                     ""id"": ""d4e13ef3-b511-410c-b401-da350c6a83e1"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold(duration=0.4)"",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""HeavyAttack"",
+                    ""name"": ""ShootAttack"",
                     ""type"": ""Button"",
                     ""id"": ""231a30d7-6f4a-4f76-aada-b14cf39f027d"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold(duration=0.4)"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -255,7 +255,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""LightAttack"",
+                    ""action"": ""MeleeAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -266,7 +266,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""LightAttack"",
+                    ""action"": ""MeleeAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -365,7 +365,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""HeavyAttack"",
+                    ""action"": ""ShootAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -376,7 +376,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""HeavyAttack"",
+                    ""action"": ""ShootAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1155,8 +1155,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player_MouseMovement = m_Player.FindAction("MouseMovement", throwIfNotFound: true);
         m_Player_MouseLook = m_Player.FindAction("MouseLook", throwIfNotFound: true);
         m_Player_StickLook = m_Player.FindAction("StickLook", throwIfNotFound: true);
-        m_Player_LightAttack = m_Player.FindAction("LightAttack", throwIfNotFound: true);
-        m_Player_HeavyAttack = m_Player.FindAction("HeavyAttack", throwIfNotFound: true);
+        m_Player_MeleeAttack = m_Player.FindAction("MeleeAttack", throwIfNotFound: true);
+        m_Player_ShootAttack = m_Player.FindAction("ShootAttack", throwIfNotFound: true);
         m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
         m_Player_Map = m_Player.FindAction("Map", throwIfNotFound: true);
         m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
@@ -1243,8 +1243,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_MouseMovement;
     private readonly InputAction m_Player_MouseLook;
     private readonly InputAction m_Player_StickLook;
-    private readonly InputAction m_Player_LightAttack;
-    private readonly InputAction m_Player_HeavyAttack;
+    private readonly InputAction m_Player_MeleeAttack;
+    private readonly InputAction m_Player_ShootAttack;
     private readonly InputAction m_Player_Dodge;
     private readonly InputAction m_Player_Map;
     private readonly InputAction m_Player_Inventory;
@@ -1264,8 +1264,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @MouseMovement => m_Wrapper.m_Player_MouseMovement;
         public InputAction @MouseLook => m_Wrapper.m_Player_MouseLook;
         public InputAction @StickLook => m_Wrapper.m_Player_StickLook;
-        public InputAction @LightAttack => m_Wrapper.m_Player_LightAttack;
-        public InputAction @HeavyAttack => m_Wrapper.m_Player_HeavyAttack;
+        public InputAction @MeleeAttack => m_Wrapper.m_Player_MeleeAttack;
+        public InputAction @ShootAttack => m_Wrapper.m_Player_ShootAttack;
         public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
         public InputAction @Map => m_Wrapper.m_Player_Map;
         public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
@@ -1298,12 +1298,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @StickLook.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStickLook;
                 @StickLook.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStickLook;
                 @StickLook.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStickLook;
-                @LightAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLightAttack;
-                @LightAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLightAttack;
-                @LightAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLightAttack;
-                @HeavyAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHeavyAttack;
-                @HeavyAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHeavyAttack;
-                @HeavyAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHeavyAttack;
+                @MeleeAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMeleeAttack;
+                @MeleeAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMeleeAttack;
+                @MeleeAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMeleeAttack;
+                @ShootAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShootAttack;
+                @ShootAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShootAttack;
+                @ShootAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShootAttack;
                 @Dodge.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
                 @Dodge.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
                 @Dodge.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
@@ -1353,12 +1353,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @StickLook.started += instance.OnStickLook;
                 @StickLook.performed += instance.OnStickLook;
                 @StickLook.canceled += instance.OnStickLook;
-                @LightAttack.started += instance.OnLightAttack;
-                @LightAttack.performed += instance.OnLightAttack;
-                @LightAttack.canceled += instance.OnLightAttack;
-                @HeavyAttack.started += instance.OnHeavyAttack;
-                @HeavyAttack.performed += instance.OnHeavyAttack;
-                @HeavyAttack.canceled += instance.OnHeavyAttack;
+                @MeleeAttack.started += instance.OnMeleeAttack;
+                @MeleeAttack.performed += instance.OnMeleeAttack;
+                @MeleeAttack.canceled += instance.OnMeleeAttack;
+                @ShootAttack.started += instance.OnShootAttack;
+                @ShootAttack.performed += instance.OnShootAttack;
+                @ShootAttack.canceled += instance.OnShootAttack;
                 @Dodge.started += instance.OnDodge;
                 @Dodge.performed += instance.OnDodge;
                 @Dodge.canceled += instance.OnDodge;
@@ -1552,8 +1552,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnMouseMovement(InputAction.CallbackContext context);
         void OnMouseLook(InputAction.CallbackContext context);
         void OnStickLook(InputAction.CallbackContext context);
-        void OnLightAttack(InputAction.CallbackContext context);
-        void OnHeavyAttack(InputAction.CallbackContext context);
+        void OnMeleeAttack(InputAction.CallbackContext context);
+        void OnShootAttack(InputAction.CallbackContext context);
         void OnDodge(InputAction.CallbackContext context);
         void OnMap(InputAction.CallbackContext context);
         void OnInventory(InputAction.CallbackContext context);
