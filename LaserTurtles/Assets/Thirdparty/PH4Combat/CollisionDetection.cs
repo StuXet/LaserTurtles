@@ -9,7 +9,7 @@ public class CollisionDetection : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy" && playerCombatSystem.isAttacking)
+        if (other.gameObject.tag == "Enemy" && playerCombatSystem.isLightAttacking)
         {
             Debug.Log("Hit");
             Instantiate(HitParticle, other.transform.position, Quaternion.identity);
