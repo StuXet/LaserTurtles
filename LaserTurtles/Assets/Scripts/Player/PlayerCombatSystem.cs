@@ -24,6 +24,7 @@ public class PlayerCombatSystem : MonoBehaviour
 
     [Header("Attacking")]
     public bool isAttacking = false;
+    public bool isHeavyAttacking = false;
     public bool inDialogue = false;
     private bool _isHeavy;
     [SerializeField] private float _lightAttackCooldown = 1f;
@@ -50,10 +51,16 @@ public class PlayerCombatSystem : MonoBehaviour
     private void Start()
     {
         _plInputActions = _inputManagerRef.PlInputActions;
-        _plInputActions.Player.LightAttack.performed += LightAttack;
-        _plInputActions.Player.HeavyAttack.performed += HeavyAttack;
-        _plInputActions.Player.SpecialAttack.performed += SpecialAttack;
 
+        _plInputActions.Player.MeleeAttack.started += LightAttack;
+        _plInputActions.Player.MeleeAttack.performed += HeavyAttack;
+        _plInputActions.Player.MeleeAttack.canceled += ReleaseMelee;
+
+        _plInputActions.Player.ShootAttack.started += ShootAttackStarted;
+        //_plInputActions.Player.ShootAttack.performed += ShootAttackPerformed;
+        _plInputActions.Player.ShootAttack.canceled += ShootAttackCancel;
+
+        _plInputActions.Player.SpecialAttack.performed += SpecialAttack;
         _plInputActions.Player.WeaponSlot1.performed += WeaponSlot1;
         _plInputActions.Player.WeaponSlot2.performed += WeaponSlot2;
         _plInputActions.Player.WeaponSlot3.performed += WeaponSlot3;
@@ -121,16 +128,48 @@ public class PlayerCombatSystem : MonoBehaviour
     {
         if (!inDialogue)
         {
+            Debug.Log("Started melee");
             Attack();
-            Shooting();
         }
     }
-
     private void HeavyAttack(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         if (!inDialogue)
         {
+            Debug.Log("Performed melee");
             HeavyAttack();
+        }
+    }
+    private void ReleaseMelee(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        if (!inDialogue)
+        {
+            Debug.Log("Release melee");
+            //isAttacking = false;
+            isHeavyAttacking = false;
+        }
+    }
+
+    private void ShootAttackStarted(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        if (!inDialogue)
+        {
+            Debug.Log("Shoot pressed");
+        }
+    }
+    //private void ShootAttackPerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    //{
+    //    if (!inDialogue)
+    //    {
+    //        Debug.Log("Shoot performed");
+    //    }
+    //}
+    private void ShootAttackCancel(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        if (!inDialogue)
+        {
+            Debug.Log("shooooooooooooooot");
+            Shooting();
         }
     }
 
@@ -276,12 +315,12 @@ public class PlayerCombatSystem : MonoBehaviour
 
     void HeavyAttack()
     {
-        if (!isAttacking && _equippedWeapon != null && _currentSlot != 4)
+        if (isAttacking && !isHeavyAttacking && _equippedWeapon != null && _currentSlot != 4)
         {
             //Debug.Log("Heavy Attack");
-            isAttacking = true;
-            _isHeavy = true;
-            _equippedWeapon.GetComponent<Damager>().UsingHeavy = true;
+            isHeavyAttacking = true;
+            //_isHeavy = true;
+            //_equippedWeapon.GetComponent<Damager>().UsingHeavy = true;
             //Animator anim = _equippedWeapon.GetComponent<Animator>();
             //anim.SetTrigger("HeavyAttack");
             //StartCoroutine(ResetAttackCooldown());
@@ -358,39 +397,20 @@ public class PlayerCombatSystem : MonoBehaviour
     {
         if (isAttacking && _equippedWeapon != null)
         {
-            if (!_isHeavy)
+            if (_timer >= _lightAttackCooldown)
             {
-                if (_timer >= _lightAttackCooldown)
-                {
-                    isAttacking = false;
-                }
-                else if (_timer >= _lightDamageStart && _timer <= _lightDamageEnd)
-                {
-                    _equippedWeapon.GetComponent<Damager>().CanDamage = true;
-                    //_isDamaging = true;
-                }
-                else
-                {
-                    _equippedWeapon.GetComponent<Damager>().CanDamage = false;
-                    //_isDamaging = false;
-                }
+                isAttacking = false;
+                _timer = 0;
+            }
+            else if (_timer >= _lightDamageStart && _timer <= _lightDamageEnd)
+            {
+                _equippedWeapon.GetComponent<Damager>().CanDamage = true;
+                //_isDamaging = true;
             }
             else
             {
-                if (_timer >= _heavyAttackCooldown)
-                {
-                    isAttacking = false;
-                }
-                else if (_timer >= _heavyDamageStart && _timer <= _heavyDamageEnd)
-                {
-                    _equippedWeapon.GetComponent<Damager>().CanDamage = true;
-                    //_isDamaging = true;
-                }
-                else
-                {
-                    _equippedWeapon.GetComponent<Damager>().CanDamage = false;
-                    //_isDamaging = false;
-                }
+                _equippedWeapon.GetComponent<Damager>().CanDamage = false;
+                //_isDamaging = false;
             }
 
             if (_equippedWeapon.TryGetComponent(out WeaponEffect effect))
@@ -400,6 +420,33 @@ public class PlayerCombatSystem : MonoBehaviour
 
             _timer += Time.deltaTime;
 
+        }
+        else if (!isAttacking && isHeavyAttacking && _equippedWeapon != null)
+        {
+            _isHeavy = true;
+
+            if (_timer >= _heavyAttackCooldown)
+            {
+                isHeavyAttacking = false;
+            }
+            else if (_timer >= _heavyDamageStart && _timer <= _heavyDamageEnd)
+            {
+                _equippedWeapon.GetComponent<Damager>().UsingHeavy = true;
+                _equippedWeapon.GetComponent<Damager>().CanDamage = true;
+                //_isDamaging = true;
+            }
+            else
+            {
+                _equippedWeapon.GetComponent<Damager>().CanDamage = false;
+                //_isDamaging = false;
+            }
+
+            if (_equippedWeapon.TryGetComponent(out WeaponEffect effect))
+            {
+                effect.EffectState(true);
+            }
+
+            _timer += Time.deltaTime;
         }
         else
         {
@@ -413,6 +460,7 @@ public class PlayerCombatSystem : MonoBehaviour
 
             _timer = 0;
             isAttacking = false;
+            isHeavyAttacking = false;
         }
     }
 
@@ -458,7 +506,7 @@ public class PlayerCombatSystem : MonoBehaviour
 
             if (_isHeavy)
             {
-                _playerAnimator.SetBool("HeavyAttack", isAttacking);
+                _playerAnimator.SetBool("HeavyAttack", isHeavyAttacking);
             }
         }
     }
