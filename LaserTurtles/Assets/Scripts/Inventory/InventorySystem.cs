@@ -11,7 +11,7 @@ public class InventorySystem : MonoBehaviour
     [SerializeField] private Wallet _walletRef;
     [SerializeField] private PlayerCombatSystem _combatSystem;
     [SerializeField] private InventoryUIManager _inventoryUIManager;
-    public Wallet WalletRef { get => _walletRef;}
+    public Wallet WalletRef { get => _walletRef; }
     public PlayerCombatSystem CombatSystem { get => _combatSystem; }
 
     public List<InventoryItem> InventoryItems { get; private set; }
@@ -52,27 +52,35 @@ public class InventorySystem : MonoBehaviour
         return false;
     }
 
-    public void Add(InventoryItemData referenceData)
+    public void Add(InventoryItemData referenceData, bool fromEquipped)
     {
-        if (m_itemDictionary.TryGetValue(referenceData, out InventoryItem value))
+        if (!fromEquipped && _combatSystem.AutoEquipWeapon(referenceData))
         {
-            value.AddToStack();
+            Debug.Log("SUCCESS AutoEquip");
         }
         else
         {
-            InventoryItem newItem = new InventoryItem(referenceData);
-            InventoryItems.Add(newItem);
-            m_itemDictionary.Add(referenceData, newItem);
+            if (m_itemDictionary.TryGetValue(referenceData, out InventoryItem value))
+            {
+                value.AddToStack();
+            }
+            else
+            {
+                InventoryItem newItem = new InventoryItem(referenceData);
+                InventoryItems.Add(newItem);
+                m_itemDictionary.Add(referenceData, newItem);
+            }
+            Debug.Log("FAIL AutoEquip");
         }
 
-        _inventoryUIManager.ItemAddedIcon.SetActive(true);
-        StartCoroutine(ItemAddedPopup());
+        if (!fromEquipped) StartCoroutine(ItemAddedPopup());
 
         if (OnInventoryChanged != null) OnInventoryChanged(this, EventArgs.Empty);
     }
 
     IEnumerator ItemAddedPopup()
     {
+        _inventoryUIManager.ItemAddedIcon.SetActive(true);
         yield return new WaitForSeconds(1.5f);
         _inventoryUIManager.ItemAddedIcon.SetActive(false);
     }

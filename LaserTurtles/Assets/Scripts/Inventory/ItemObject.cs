@@ -65,7 +65,7 @@ public class ItemObject : MonoBehaviour
         }
     }
 
-    public void OnHandlePickupItem(InventorySystem inventoryRef)
+    public InventoryItemData OnHandlePickupItem(InventorySystem inventoryRef)
     {
         if (CanBePicked)
         {
@@ -74,34 +74,42 @@ public class ItemObject : MonoBehaviour
             {
                 if (PickedUpItem != null) { PickedUpItem.Invoke(PlayerInventoryRef.transform.parent.gameObject); }
                 PlayerInventoryRef.WalletRef.AddCoins(_referenceItem.Value);
-                Destroy(gameObject);
+                StartCoroutine(Destroyer());
             }
             else if (_referenceItem.Type == ItemType.Key)
             {
                 if (PickedUpItem != null) { PickedUpItem.Invoke(PlayerInventoryRef.transform.parent.gameObject); }
-                Destroy(gameObject, 0.1f);
+                StartCoroutine(Destroyer());
             }
             else if (_referenceItem.Type == ItemType.Ammo)
             {
                 if (PickedUpItem != null) { PickedUpItem.Invoke(PlayerInventoryRef.transform.parent.gameObject); }
                 PlayerInventoryRef.CombatSystem.AddAmmo(_referenceItem.Value);
-                Destroy(gameObject);
+                StartCoroutine(Destroyer());
             }
             else if (_referenceItem.Type == ItemType.Consumable)
             {
                 if (PickedUpItem != null) { PickedUpItem.Invoke(PlayerInventoryRef.transform.parent.gameObject); }
-                Destroy(gameObject, 0.1f);
+                StartCoroutine(Destroyer());
             }
             else
             {
                 if (!PlayerInventoryRef.CheckIfInInventory(_referenceItem) || _referenceItem.IsStackable)
                 {
                     if (PickedUpItem != null) { PickedUpItem.Invoke(PlayerInventoryRef.transform.parent.gameObject); }
-                    PlayerInventoryRef.Add(_referenceItem);
-                    Destroy(gameObject);
+                    PlayerInventoryRef.Add(_referenceItem, false);
+                    StartCoroutine(Destroyer());
                 }
             }
+            return _referenceItem;
         }
+        return null;
+    }
+
+    IEnumerator Destroyer()
+    {
+        yield return new WaitForEndOfFrame();
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
