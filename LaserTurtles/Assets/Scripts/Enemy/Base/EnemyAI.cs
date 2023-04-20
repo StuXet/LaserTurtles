@@ -44,6 +44,14 @@ public class EnemyAI : MonoBehaviour
     private float _knockbackTimer;
     private Vector3 _knockbackDirection;
 
+    // Audio Sources
+    [Header("Audios")]
+    [SerializeField] private AudioSource _deathSFX;
+    [SerializeField] private AudioSource _attackSFX;
+    [SerializeField] private AudioSource _hurtSFX;
+    [SerializeField] private AudioSource _voiceSFX;
+    [SerializeField] private AudioSource _moveSFX;
+
 
     public HealthHandler HealthHandlerRef { get => _healthHandlerRef; set => _healthHandlerRef = value; }
 
@@ -292,14 +300,26 @@ public class EnemyAI : MonoBehaviour
     {
         if (DestroyOnDeath)
         {
+            _deathSFX.Play();
+            _deathSFX.transform.parent = null;
+            Destroy(_deathSFX.gameObject, 1f);
             Destroy(gameObject);
         }
         else
         {
+            _deathSFX.Play();
+            _deathSFX.transform.parent = null;
+            StartCoroutine(DeathSFX());
             gameObject.SetActive(false);
             _healthHandlerRef._healthSystem.RefillHealth();
             AlreadyAttacked = false;
         }
+    }
+
+    IEnumerator DeathSFX()
+    {
+        yield return new WaitForSeconds(1f);
+        _deathSFX.transform.parent = transform;
     }
 
     private void OnDrawGizmosSelected()
