@@ -27,7 +27,6 @@ public class HealthHandler : MonoBehaviour
     [SerializeField] bool knockbackable = true;
     //[SerializeField] private float _knockbackForceModifier = 1f;
 
-
     private void Awake()
     {
         _healthSystem = new HealthSystem(_maxHP);
@@ -44,6 +43,11 @@ public class HealthHandler : MonoBehaviour
     private void _healthSystem_OnDeath(object sender, System.EventArgs e)
     {
         if (OnDeathOccured != null) OnDeathOccured(this, EventArgs.Empty);
+        if (gameObject.CompareTag("Enemy"))
+        {
+            CombatHandler.Instance.killCounter++;
+            CombatHandler.Instance.OnKill.Invoke();
+        }
     }
 
     // Update is called once per frame
