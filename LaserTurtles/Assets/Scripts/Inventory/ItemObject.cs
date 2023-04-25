@@ -12,6 +12,7 @@ public class ItemObject : MonoBehaviour
     [SerializeField] private Animator ItemAnimator;
     [SerializeField] private GameObject PickupPressIcon;
     [SerializeField] private Outline _outline;
+    [SerializeField] private AudioSource _pickUpSFX;
     private InventorySystem PlayerInventoryRef;
 
     public bool CanBePicked;
@@ -109,6 +110,9 @@ public class ItemObject : MonoBehaviour
     IEnumerator Destroyer()
     {
         yield return new WaitForEndOfFrame();
+        _pickUpSFX.Play();
+        _pickUpSFX.transform.parent = null;
+        Destroy(_pickUpSFX.gameObject, 1f);
         Destroy(gameObject);
     }
 
