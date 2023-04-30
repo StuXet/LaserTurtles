@@ -55,7 +55,7 @@ public class EnemyAI : MonoBehaviour
 
 
     public HealthHandler HealthHandlerRef { get => _healthHandlerRef; set => _healthHandlerRef = value; }
-    public Animator AnimatorRef { get => _animatorRef;}
+    public Animator AnimatorRef { get => _animatorRef; }
 
     private void Awake()
     {
@@ -302,16 +302,22 @@ public class EnemyAI : MonoBehaviour
     {
         if (DestroyOnDeath)
         {
-            _deathSFX.Play();
-            _deathSFX.transform.parent = null;
-            Destroy(_deathSFX.gameObject, 1f);
+            if (_deathSFX != null)
+            {
+                _deathSFX.Play();
+                _deathSFX.transform.parent = null;
+                Destroy(_deathSFX.gameObject, 1f);
+            }
             Destroy(gameObject);
         }
         else
         {
-            _deathSFX.Play();
-            _deathSFX.transform.parent = null;
-            StartCoroutine(DeathSFX());
+            if (_deathSFX != null)
+            {
+                _deathSFX.Play();
+                _deathSFX.transform.parent = null;
+                StartCoroutine(DeathSFX());
+            }
             gameObject.SetActive(false);
             _healthHandlerRef._healthSystem.RefillHealth();
             AlreadyAttacked = false;

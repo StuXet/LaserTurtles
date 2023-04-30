@@ -110,9 +110,12 @@ public class ItemObject : MonoBehaviour
     IEnumerator Destroyer()
     {
         yield return new WaitForEndOfFrame();
-        _pickUpSFX.Play();
-        _pickUpSFX.transform.parent = null;
-        Destroy(_pickUpSFX.gameObject, 1f);
+        if (_pickUpSFX != null)
+        {
+            _pickUpSFX.Play();
+            _pickUpSFX.transform.parent = null;
+            Destroy(_pickUpSFX.gameObject, 1f);
+        }
         Destroy(gameObject);
     }
 
