@@ -10,6 +10,7 @@ public class EnemyAI : MonoBehaviour
     public NavMeshAgent Agent;
     [HideInInspector] public Transform Player;
     [SerializeField] private HealthHandler _healthHandlerRef;
+    [SerializeField] private Animator _animatorRef;
     public bool DestroyOnDeath;
 
     // Patroling
@@ -54,6 +55,7 @@ public class EnemyAI : MonoBehaviour
 
 
     public HealthHandler HealthHandlerRef { get => _healthHandlerRef; set => _healthHandlerRef = value; }
+    public Animator AnimatorRef { get => _animatorRef;}
 
     private void Awake()
     {
