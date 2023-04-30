@@ -15,7 +15,7 @@ public class SettingsMenu : MonoBehaviour
     public Toggle fullscreenToggle;
     public Toggle cursorLookToggle;
     public TMP_Dropdown graphicsDropdown;
-    public Slider volumeSlider;
+    public Slider masterVolumeSlider, musicVolumeSlider, sfxVolumeSlider, ambientVolumeSlider;
     [SerializeField] private AudioMixer _audioMixer;
     Resolution[] resolutions;
 
@@ -62,11 +62,17 @@ public class SettingsMenu : MonoBehaviour
 
         //volumeSlider.value = PlayerPrefs.GetFloat("Volume", AudioListener.volume);
         float tempVol;
-        bool tempVolBool = _audioMixer.GetFloat("Volume", out tempVol);
+        bool tempVolBool = _audioMixer.GetFloat("Master", out tempVol);
         if (tempVolBool)
         {
-            volumeSlider.value = PlayerPrefs.GetFloat("Volume", tempVol);
-            _audioMixer.SetFloat("Volume", volumeSlider.value);
+            masterVolumeSlider.value = PlayerPrefs.GetFloat("Master", tempVol);
+            _audioMixer.SetFloat("Master", masterVolumeSlider.value);   
+            musicVolumeSlider.value = PlayerPrefs.GetFloat("Music", tempVol);
+            _audioMixer.SetFloat("Music", musicVolumeSlider.value);
+            ambientVolumeSlider.value = PlayerPrefs.GetFloat("Ambient", tempVol);
+            _audioMixer.SetFloat("Ambient", ambientVolumeSlider.value);    
+            sfxVolumeSlider.value = PlayerPrefs.GetFloat("SFX", tempVol);
+            _audioMixer.SetFloat("SFX", sfxVolumeSlider.value);
         }
     }
 
@@ -89,11 +95,32 @@ public class SettingsMenu : MonoBehaviour
         PlayerPrefs.SetInt("Graphics", graphicsIndex);
     }
 
-    public void SetVolume(float volume)
+    public void SetVolumeMaster(float volume)
     {
-        _audioMixer.SetFloat("Volume", volume);
+        _audioMixer.SetFloat("Master", volume);
         //AudioListener.volume = volume;
-        PlayerPrefs.SetFloat("Volume", volume);
+        PlayerPrefs.SetFloat("Master", volume);
+    }
+
+    public void SetVolumeMusic(float volume)
+    {
+        _audioMixer.SetFloat("Music", volume);
+        //AudioListener.volume = volume;
+        PlayerPrefs.SetFloat("Music", volume);
+    }
+
+    public void SetVolumeSFX(float volume)
+    {
+        _audioMixer.SetFloat("SFX", volume);
+        //AudioListener.volume = volume;
+        PlayerPrefs.SetFloat("SFX", volume);
+    }
+
+    public void SetVolumeAmbient(float volume)
+    {
+        _audioMixer.SetFloat("Ambient", volume);
+        //AudioListener.volume = volume;
+        PlayerPrefs.SetFloat("Ambient", volume);
     }
 
     public void CursorLook(bool cursor)
