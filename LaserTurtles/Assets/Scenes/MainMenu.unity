@@ -296,6 +296,10 @@ MonoBehaviour:
   mainMenuPanel: {fileID: 208757305}
   settingsPanel: {fileID: 1334891392}
   creditsPanel: {fileID: 422565405}
+  _eventSystem: {fileID: 1074866679}
+  _mainMenuSelectedObj: {fileID: 1801712948}
+  _settingsSelectedObj: {fileID: 1661163152}
+  _creditsSelectedObj: {fileID: 2037262276}
 --- !u!1 &98772965
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,10 +353,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 655927162}
+    m_SelectOnDown: {fileID: 1801712950}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
@@ -368,7 +372,7 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 21300000, guid: 68bdd8b7f06cbaa47a95c5c88ec515d2,
       type: 3}
     m_PressedSprite: {fileID: 21300000, guid: 37d59be1ef18d464c88eb291e936ef6b, type: 3}
-    m_SelectedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 21300000, guid: 68bdd8b7f06cbaa47a95c5c88ec515d2, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -892,7 +896,7 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 21300000, guid: 1a3f2ac356356b444ada5dc944fd18fd,
       type: 3}
     m_PressedSprite: {fileID: 21300000, guid: 829600fab246f71469adc58abb901f98, type: 3}
-    m_SelectedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 21300000, guid: 1a3f2ac356356b444ada5dc944fd18fd, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -1134,7 +1138,7 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 21300000, guid: a20f816cd374687489ae392279f26268,
       type: 3}
     m_PressedSprite: {fileID: 21300000, guid: 93a56b72aa9e6df40aa6b63dd6fcb0cc, type: 3}
-    m_SelectedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 21300000, guid: a20f816cd374687489ae392279f26268, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -1629,7 +1633,7 @@ MonoBehaviour:
     type: 3}
   m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018,
     type: 3}
-  m_DeselectOnBackgroundClick: 1
+  m_DeselectOnBackgroundClick: 0
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
 --- !u!1 &1204638813
@@ -1852,6 +1856,12 @@ GameObject:
 --- !u!224 &1334891393 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 623391226362139705, guid: 1fbbe3460fa264243895d2b9ee930ab9,
+    type: 3}
+  m_PrefabInstance: {fileID: 623391225180440504}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1661163152 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 623391225963835518, guid: 1fbbe3460fa264243895d2b9ee930ab9,
     type: 3}
   m_PrefabInstance: {fileID: 623391225180440504}
   m_PrefabAsset: {fileID: 0}
@@ -2124,10 +2134,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 98772967}
+    m_SelectOnDown: {fileID: 1898766849}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
@@ -2143,7 +2153,7 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 21300000, guid: 308369722bfc06e4fa6537a3b09bbb89,
       type: 3}
     m_PressedSprite: {fileID: 21300000, guid: 5b9b6491a0eb5b942bca1a2a0d6a4bf4, type: 3}
-    m_SelectedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 21300000, guid: 308369722bfc06e4fa6537a3b09bbb89, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -2413,7 +2423,7 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 21300000, guid: 2a44dc6fe8282f84a8316686ff6a1a9d,
       type: 3}
     m_PressedSprite: {fileID: 21300000, guid: 68d147eb008c46c49b1f7c581916b350, type: 3}
-    m_SelectedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 21300000, guid: 2a44dc6fe8282f84a8316686ff6a1a9d, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -2758,6 +2768,81 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 623391226368144191, guid: 1fbbe3460fa264243895d2b9ee930ab9,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 932681004543179590, guid: 1fbbe3460fa264243895d2b9ee930ab9,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 932681004543179590, guid: 1fbbe3460fa264243895d2b9ee930ab9,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1145787925486353514, guid: 1fbbe3460fa264243895d2b9ee930ab9,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1145787925486353514, guid: 1fbbe3460fa264243895d2b9ee930ab9,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1145787925486353514, guid: 1fbbe3460fa264243895d2b9ee930ab9,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2565056309635888593, guid: 1fbbe3460fa264243895d2b9ee930ab9,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2565056309635888593, guid: 1fbbe3460fa264243895d2b9ee930ab9,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2565056309635888593, guid: 1fbbe3460fa264243895d2b9ee930ab9,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334781353957829101, guid: 1fbbe3460fa264243895d2b9ee930ab9,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334781353957829101, guid: 1fbbe3460fa264243895d2b9ee930ab9,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411104953528410796, guid: 1fbbe3460fa264243895d2b9ee930ab9,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411104953528410796, guid: 1fbbe3460fa264243895d2b9ee930ab9,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7346283619696306154, guid: 1fbbe3460fa264243895d2b9ee930ab9,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7346283619696306154, guid: 1fbbe3460fa264243895d2b9ee930ab9,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7346283619696306154, guid: 1fbbe3460fa264243895d2b9ee930ab9,
         type: 3}
       propertyPath: m_AnchorMin.x
       value: 1
