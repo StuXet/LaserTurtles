@@ -10,29 +10,36 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject settingsMenu;
 
+    [Header("Selection")]
+    public GameObject _pauseMenuSelectedObj;
+    public GameObject _settingsSelectedObj;
+
     private void Start()
     {
         SaveGame();
         Time.timeScale = 1;
+
+        GameManager.Instance.PlInputActions.UI.ESC.performed += ESC_performed;
     }
 
-    private void Update()
+    private void ESC_performed(InputAction.CallbackContext obj)
     {
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        PausingToggle();
+    }
+
+    private void PausingToggle()
+    {
+        if (settingsMenu.activeSelf)
         {
-            if (settingsMenu.activeSelf)
-            {
-                settingsMenu.SetActive(false);
-                pauseMenu.SetActive(true);
-            }
-            else if (pauseMenu.activeSelf)
-            {
-                ResumeGame();
-            }
-            else
-            {
-                PauseGame();
-            }
+            ClosePanel();
+        }
+        else if (pauseMenu.activeSelf)
+        {
+            ResumeGame();
+        }
+        else
+        {
+            PauseGame();
         }
     }
 
@@ -40,12 +47,15 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 0;
         pauseMenu.SetActive(true);
+        GameManager.Instance.RefreshSelectedUI(_pauseMenuSelectedObj);
+        GameManager.Instance.SetGamePauseBool(true);
     }
 
     public void ResumeGame()
     {
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
+        GameManager.Instance.SetGamePauseBool(false);
     }
 
     public void RestartGame()
@@ -58,6 +68,7 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(true);
+        GameManager.Instance.RefreshSelectedUI(_settingsSelectedObj);
     }
 
     public void ClosePanel()
@@ -65,6 +76,8 @@ public class PauseMenu : MonoBehaviour
         settingsMenu.SetActive(false);
 
         pauseMenu.SetActive(true);
+
+        GameManager.Instance.RefreshSelectedUI(_pauseMenuSelectedObj);
     }
 
     public void MainMenu()
