@@ -19,7 +19,7 @@ public class PauseMenu : MonoBehaviour
         SaveGame();
         Time.timeScale = 1;
 
-        GameManager.Instance.PlInputActions.Player.ESC.performed += ESC_performed;
+        GameManager.Instance.PlInputActions.UI.ESC.performed += ESC_performed;
     }
 
     private void ESC_performed(InputAction.CallbackContext obj)

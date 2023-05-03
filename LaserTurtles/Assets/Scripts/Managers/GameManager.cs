@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
     private UIMediator _uIMediator;
     private GameObject _winTextRef;
 
+    public event EventHandler OnPauseToggle;
     private bool _isGamePaused;
 
     public PlayerInputActions PlInputActions { get => _plInputActions; }
@@ -56,5 +58,6 @@ public class GameManager : MonoBehaviour
     public void SetGamePauseBool(bool state)
     {
         _isGamePaused = state;
+        if (OnPauseToggle != null) OnPauseToggle(this, EventArgs.Empty);
     }
 }
