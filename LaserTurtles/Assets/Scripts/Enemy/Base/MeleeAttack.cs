@@ -27,6 +27,8 @@ public class MeleeAttack : MonoBehaviour
 
     [SerializeField] private GameObject _prepAttackIcon, _attackingIcon;
 
+    public bool IsActive { get => _isActive; }
+
 
     // Update is called once per frame
     void Update()

@@ -21,4 +21,9 @@ public class SpiderEnemyAI : EnemyAI
     {
         _meleeAttackRef.DoAttack();
     }
+
+    public override void AnimationHandler()
+    {
+        if (AnimatorRef != null) AnimatorRef.SetBool("Attack", _meleeAttackRef.IsActive);
+    }
 }
