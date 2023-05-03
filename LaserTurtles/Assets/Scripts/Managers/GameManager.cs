@@ -7,14 +7,17 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    //[Range(0, 2)] public float TimeScale = 1;
 
     private EventSystem _eventSystem;
     private PlayerInputActions _plInputActions;
     private UIMediator _uIMediator;
     private GameObject _winTextRef;
 
+    private bool _isGamePaused;
+
     public PlayerInputActions PlInputActions { get => _plInputActions; }
+    public bool IsGamePaused { get => _isGamePaused; }
+
 
     private void Awake()
     {
@@ -48,5 +51,10 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
         SceneManager.LoadScene(0);
+    }
+
+    public void SetGamePauseBool(bool state)
+    {
+        _isGamePaused = state;
     }
 }

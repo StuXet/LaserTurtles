@@ -48,12 +48,14 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0;
         pauseMenu.SetActive(true);
         GameManager.Instance.RefreshSelectedUI(_pauseMenuSelectedObj);
+        GameManager.Instance.SetGamePauseBool(true);
     }
 
     public void ResumeGame()
     {
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
+        GameManager.Instance.SetGamePauseBool(false);
     }
 
     public void RestartGame()
