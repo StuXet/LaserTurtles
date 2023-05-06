@@ -1046,6 +1046,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 4976644559587137402}
   maxComboDelay: 2
+  comboTimers:
+  - _activeStart: 0.1
+    _activeEnd: 0.6
+    DamageMultiplier: 1
+  - _activeStart: 0.1
+    _activeEnd: 0.6
+    DamageMultiplier: 2
+  - _activeStart: 0.1
+    _activeEnd: 0.6
+    DamageMultiplier: 3
 --- !u!114 &2104562432498233633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3246,7 +3256,7 @@ PrefabInstance:
     - target: {fileID: 6730761568658922963, guid: 7ce4485d686cc5844b1721051a5a6a10,
         type: 3}
       propertyPath: m_Value
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7193563124739585624, guid: 7ce4485d686cc5844b1721051a5a6a10,
         type: 3}
