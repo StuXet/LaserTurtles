@@ -5,6 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class PlayerCombatSystem : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class PlayerCombatSystem : MonoBehaviour
     [SerializeField] private float _heavyAttackCooldown = 1.5f;
     [SerializeField] private float _heavyDamageStart = 0.5f;
     [SerializeField] private float _heavyDamageEnd = 1f;
+    [SerializeField] private PlayerCombo combo;
     private float _timer;
     //private bool _isDamaging;
     private float mouseHoldCounter;
@@ -50,6 +52,13 @@ public class PlayerCombatSystem : MonoBehaviour
     public int CurrentAmmo;
     [SerializeField] private TextMeshProUGUI _ammoText;
 
+    [Header("specialAttack")] 
+    public Slider specialAttackBar;
+    [SerializeField] private float _maxChargeBar = 100;
+    [SerializeField] private float _currentChargeBar;
+    [SerializeField] private float _chargeSpeedInSec = 1;
+    [SerializeField] private float _timeChargeAmount = 1;
+    [SerializeField] private float _killChargeAmount = 5;
 
     private void Start()
     {
@@ -70,6 +79,11 @@ public class PlayerCombatSystem : MonoBehaviour
         _plInputActions.Player.WeaponSlot4.performed += WeaponSlot4;
 
         SelectedSlotIcons();
+
+        specialAttackBar.maxValue = _maxChargeBar;
+        specialAttackBar.minValue = _currentChargeBar;
+        InvokeRepeating("RechargeSpecialAttackBar", 1f, _chargeSpeedInSec);
+        CombatHandler.Instance.OnKill.AddListener(KillRecharge);
     }
 
 
@@ -90,7 +104,22 @@ public class PlayerCombatSystem : MonoBehaviour
         AnimationHandler();
     }
 
-
+    void RechargeSpecialAttackBar()
+    {
+        if (_currentChargeBar < _maxChargeBar)
+        {
+            _currentChargeBar += _timeChargeAmount;
+            specialAttackBar.value = _currentChargeBar;
+        }
+    }
+    void KillRecharge()
+    {
+        if (_currentChargeBar < _maxChargeBar)
+        {
+            _currentChargeBar += _killChargeAmount;
+            specialAttackBar.value = _currentChargeBar;
+        }
+    }
     //void InputHandler()
     //{
     //    //if (Input.GetKeyUp(KeyCode.Mouse0))
@@ -180,9 +209,11 @@ public class PlayerCombatSystem : MonoBehaviour
     private void SpecialAttack(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
 
-        if (!inDialogue)
+        if (!inDialogue && _currentChargeBar == 100)
         {
+            Debug.Log("Special attack");
             SpecialAttack();
+            _currentChargeBar = 0;
         }
     }
 
@@ -226,7 +257,7 @@ public class PlayerCombatSystem : MonoBehaviour
                 Destroy(_meleeHoldPoint.GetChild(0).gameObject);
                 _equippedMeleeWeapon = null;
             }
-            
+
         }
         else
         {
@@ -339,11 +370,14 @@ public class PlayerCombatSystem : MonoBehaviour
 
     void Attack()
     {
-        if (!_isShooting && !isLightAttacking && _equippedMeleeWeapon != null && _currentSlot != 4)
+        if (!isLightAttacking && !_isShooting && _equippedMeleeWeapon != null && _currentSlot != 4)
         {
-            //Debug.Log("Attack");
             isLightAttacking = true;
             _isHeavy = false;
+            combo.OnClick();
+
+            //Debug.Log("Attack");
+
             //Animator anim = _equippedWeapon.GetComponent<Animator>();
             //anim.SetTrigger("Attack");
             //StartCoroutine(ResetAttackCooldown());
@@ -441,14 +475,20 @@ public class PlayerCombatSystem : MonoBehaviour
                 isLightAttacking = false;
                 _timer = 0;
             }
-            else if (_timer >= _lightDamageStart && _timer <= _lightDamageEnd)
+            else if (_timer >= combo.GetActiveStart() && _timer <= combo.GetActiveEnd())
             {
-                _equippedMeleeWeapon.GetComponent<Damager>().CanDamage = true;
+                //_equippedMeleeWeapon.GetComponent<Damager>().CanDamage = true;
+                Damager currentDamager = _equippedMeleeWeapon.GetComponent<Damager>();
+                currentDamager.CanDamage = true;
+                currentDamager.DamageModifier = combo.GetDamageMultiplier();
+
                 //_isDamaging = true;
             }
             else
             {
-                _equippedMeleeWeapon.GetComponent<Damager>().CanDamage = false;
+                //_equippedMeleeWeapon.GetComponent<Damager>().CanDamage = false;
+                Damager currentDamager = _equippedMeleeWeapon.GetComponent<Damager>();
+                currentDamager.CanDamage = false;
                 //_isDamaging = false;
             }
 
@@ -542,7 +582,7 @@ public class PlayerCombatSystem : MonoBehaviour
         {
             if (!_isHeavy)
             {
-                _playerAnimator.SetBool("LightAttack", isLightAttacking);
+                //_playerAnimator.SetBool("LightAttack", isLightAttacking);
             }
 
             if (_isHeavy)
