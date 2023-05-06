@@ -155,7 +155,7 @@ public class HealthHandler : MonoBehaviour
 
         if (!_damager.UsingHeavy)
         {
-            _healthSystem.Damage((int)(_damager.LightDamageAmount * modVal));
+            _healthSystem.Damage((int)(_damager.LightDamageAmount * modVal * _damager.DamageModifier));
             //EnemyDmgPopUp((int)(_damager.LightDamageAmount * modVal), modColor, gameObject.tag);
         }
         else
