@@ -872,6 +872,7 @@ GameObject:
   - component: {fileID: 4800407385372773094}
   - component: {fileID: 8980513415885741700}
   - component: {fileID: 878156989}
+  - component: {fileID: 5477559149360212607}
   - component: {fileID: 2104562432498233633}
   m_Layer: 6
   m_Name: Player
@@ -1014,6 +1015,7 @@ MonoBehaviour:
   _meleeHoldPoint: {fileID: 4850596892579114794}
   _rangedHoldPoint: {fileID: 3700855802432446184}
   isAttacking: 0
+  isLightAttacking: 0
   isHeavyAttacking: 0
   inDialogue: 0
   _lightAttackCooldown: 0.8
@@ -1022,6 +1024,7 @@ MonoBehaviour:
   _heavyAttackCooldown: 1.5
   _heavyDamageStart: 0.5
   _heavyDamageEnd: 1
+  combo: {fileID: 5477559149360212607}
   poolForce: 2
   specialAttackLength: 10
   _isShooting: 0
@@ -1029,6 +1032,30 @@ MonoBehaviour:
   _fireRate: 0.5
   CurrentAmmo: 0
   _ammoText: {fileID: 5033768480510584851}
+--- !u!114 &5477559149360212607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4800407385372773092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 381cf25d2a5f74b41b2b787feeaecb20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 4976644559587137402}
+  maxComboDelay: 2
+  comboTimers:
+  - _activeStart: 0.1
+    _activeEnd: 0.6
+    DamageMultiplier: 1
+  - _activeStart: 0.1
+    _activeEnd: 0.6
+    DamageMultiplier: 2
+  - _activeStart: 0.1
+    _activeEnd: 0.6
+    DamageMultiplier: 3
 --- !u!114 &2104562432498233633
 MonoBehaviour:
   m_ObjectHideFlags: 0

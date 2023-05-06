@@ -39,6 +39,7 @@ public class Damager : MonoBehaviour
     [SerializeField] private WeaknessResistance _modifierType;
     [SerializeField] private int _lightDamageAmount;
     [SerializeField] private int _heavyDamageAmount;
+    public float DamageModifier = 1;
     public bool UsingHeavy = false;
     public bool UsingSpecial = false;
     public bool CanDamage = false;

@@ -37,6 +37,7 @@ public class PlayerCombatSystem : MonoBehaviour
     [SerializeField] private float _heavyAttackCooldown = 1.5f;
     [SerializeField] private float _heavyDamageStart = 0.5f;
     [SerializeField] private float _heavyDamageEnd = 1f;
+    [SerializeField] private PlayerCombo combo;
     private float _timer;
     //private bool _isDamaging;
     private float mouseHoldCounter;
@@ -256,7 +257,7 @@ public class PlayerCombatSystem : MonoBehaviour
                 Destroy(_meleeHoldPoint.GetChild(0).gameObject);
                 _equippedMeleeWeapon = null;
             }
-            
+
         }
         else
         {
@@ -369,11 +370,14 @@ public class PlayerCombatSystem : MonoBehaviour
 
     void Attack()
     {
-        if (!_isShooting && !isLightAttacking && _equippedMeleeWeapon != null && _currentSlot != 4)
+        if (!isLightAttacking && !_isShooting && _equippedMeleeWeapon != null && _currentSlot != 4)
         {
-            //Debug.Log("Attack");
             isLightAttacking = true;
             _isHeavy = false;
+            combo.OnClick();
+
+            //Debug.Log("Attack");
+
             //Animator anim = _equippedWeapon.GetComponent<Animator>();
             //anim.SetTrigger("Attack");
             //StartCoroutine(ResetAttackCooldown());
@@ -471,14 +475,20 @@ public class PlayerCombatSystem : MonoBehaviour
                 isLightAttacking = false;
                 _timer = 0;
             }
-            else if (_timer >= _lightDamageStart && _timer <= _lightDamageEnd)
+            else if (_timer >= combo.GetActiveStart() && _timer <= combo.GetActiveEnd())
             {
-                _equippedMeleeWeapon.GetComponent<Damager>().CanDamage = true;
+                //_equippedMeleeWeapon.GetComponent<Damager>().CanDamage = true;
+                Damager currentDamager = _equippedMeleeWeapon.GetComponent<Damager>();
+                currentDamager.CanDamage = true;
+                currentDamager.DamageModifier = combo.GetDamageMultiplier();
+
                 //_isDamaging = true;
             }
             else
             {
-                _equippedMeleeWeapon.GetComponent<Damager>().CanDamage = false;
+                //_equippedMeleeWeapon.GetComponent<Damager>().CanDamage = false;
+                Damager currentDamager = _equippedMeleeWeapon.GetComponent<Damager>();
+                currentDamager.CanDamage = false;
                 //_isDamaging = false;
             }
 
@@ -572,7 +582,7 @@ public class PlayerCombatSystem : MonoBehaviour
         {
             if (!_isHeavy)
             {
-                _playerAnimator.SetBool("LightAttack", isLightAttacking);
+                //_playerAnimator.SetBool("LightAttack", isLightAttacking);
             }
 
             if (_isHeavy)
