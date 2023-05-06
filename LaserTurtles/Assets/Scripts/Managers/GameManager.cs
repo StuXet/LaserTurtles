@@ -1,33 +1,47 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    //[Range(0, 2)] public float TimeScale = 1;
+    public static GameManager Instance;
 
+    private EventSystem _eventSystem;
+    private PlayerInputActions _plInputActions;
     private UIMediator _uIMediator;
     private GameObject _winTextRef;
 
+    public event EventHandler OnPauseToggle;
+    private bool _isGamePaused;
+
+    public PlayerInputActions PlInputActions { get => _plInputActions; }
+    public bool IsGamePaused { get => _isGamePaused; }
+
+
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        _eventSystem = FindObjectOfType<EventSystem>();
+        _plInputActions = FindObjectOfType<InputManager>().PlInputActions;
         _uIMediator = FindObjectOfType<UIMediator>();
         _winTextRef = _uIMediator.WinUI;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void RefreshSelectedUI(GameObject selectedObj)
     {
-
+        _eventSystem.SetSelectedGameObject(selectedObj);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //if (TimeScale != Time.timeScale) Time.timeScale = TimeScale;
-    }
-
 
     public void YouWin()
     {
@@ -39,5 +53,11 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
         SceneManager.LoadScene(0);
+    }
+
+    public void SetGamePauseBool(bool state)
+    {
+        _isGamePaused = state;
+        if (OnPauseToggle != null) OnPauseToggle(this, EventArgs.Empty);
     }
 }

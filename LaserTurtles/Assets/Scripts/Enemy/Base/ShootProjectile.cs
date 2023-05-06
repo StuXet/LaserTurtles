@@ -11,11 +11,15 @@ public class ShootProjectile : MonoBehaviour
     //[SerializeField] private LayerMask _layerToHit;
     //[SerializeField] private float _attackRange;
     [SerializeField] private float _projectileSpeed = 15f;
-    [SerializeField] private float _startDelay = 0.25f;
+    [SerializeField] private float _startDelay = 0.75f;
+    [SerializeField] private float _cooldown = 1f;
     private float _delayTimer;
     private bool _firing;
+    private bool _fired;
 
     [SerializeField] private GameObject _prepAttackIcon, _attackingIcon;
+
+    public bool Firing { get => _firing; }
 
 
     // Start is called before the first frame update
@@ -33,9 +37,14 @@ public class ShootProjectile : MonoBehaviour
     {
         if (_firing)
         {
-            if (_delayTimer >= _startDelay)
+            if (_delayTimer >= _cooldown)
             {
                 _firing = false;
+                _fired = false;
+            }
+            else if (_delayTimer >= _startDelay && !_fired)
+            {
+                _fired = true;
                 SetTargetDestination();
                 InstantiateProjectile(_firePoint);
                 _prepAttackIcon.SetActive(false);
