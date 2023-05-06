@@ -5,6 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class PlayerCombatSystem : MonoBehaviour
 {
@@ -51,6 +52,13 @@ public class PlayerCombatSystem : MonoBehaviour
     public int CurrentAmmo;
     [SerializeField] private TextMeshProUGUI _ammoText;
 
+    [Header("specialAttack")] 
+    public Slider specialAttackBar;
+    [SerializeField] private float _maxChargeBar = 100;
+    [SerializeField] private float _currentChargeBar;
+    [SerializeField] private float _chargeSpeedInSec = 1;
+    [SerializeField] private float _timeChargeAmount = 1;
+    [SerializeField] private float _killChargeAmount = 5;
 
     private void Start()
     {
@@ -71,6 +79,11 @@ public class PlayerCombatSystem : MonoBehaviour
         _plInputActions.Player.WeaponSlot4.performed += WeaponSlot4;
 
         SelectedSlotIcons();
+
+        specialAttackBar.maxValue = _maxChargeBar;
+        specialAttackBar.minValue = _currentChargeBar;
+        InvokeRepeating("RechargeSpecialAttackBar", 1f, _chargeSpeedInSec);
+        CombatHandler.Instance.OnKill.AddListener(KillRecharge);
     }
 
 
@@ -91,7 +104,22 @@ public class PlayerCombatSystem : MonoBehaviour
         AnimationHandler();
     }
 
-
+    void RechargeSpecialAttackBar()
+    {
+        if (_currentChargeBar < _maxChargeBar)
+        {
+            _currentChargeBar += _timeChargeAmount;
+            specialAttackBar.value = _currentChargeBar;
+        }
+    }
+    void KillRecharge()
+    {
+        if (_currentChargeBar < _maxChargeBar)
+        {
+            _currentChargeBar += _killChargeAmount;
+            specialAttackBar.value = _currentChargeBar;
+        }
+    }
     //void InputHandler()
     //{
     //    //if (Input.GetKeyUp(KeyCode.Mouse0))
@@ -181,9 +209,11 @@ public class PlayerCombatSystem : MonoBehaviour
     private void SpecialAttack(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
 
-        if (!inDialogue)
+        if (!inDialogue && _currentChargeBar == 100)
         {
+            Debug.Log("Special attack");
             SpecialAttack();
+            _currentChargeBar = 0;
         }
     }
 
