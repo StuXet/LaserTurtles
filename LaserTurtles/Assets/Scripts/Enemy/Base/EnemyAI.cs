@@ -10,6 +10,7 @@ public class EnemyAI : MonoBehaviour
     public NavMeshAgent Agent;
     [HideInInspector] public Transform Player;
     [SerializeField] private HealthHandler _healthHandlerRef;
+    [SerializeField] private Animator _animatorRef;
     public bool DestroyOnDeath;
 
     // Patroling
@@ -44,8 +45,17 @@ public class EnemyAI : MonoBehaviour
     private float _knockbackTimer;
     private Vector3 _knockbackDirection;
 
+    // Audio Sources
+    [Header("Audios")]
+    [SerializeField] private AudioSource _deathSFX;
+    [SerializeField] private AudioSource _attackSFX;
+    [SerializeField] private AudioSource _hurtSFX;
+    [SerializeField] private AudioSource _voiceSFX;
+    [SerializeField] private AudioSource _moveSFX;
+
 
     public HealthHandler HealthHandlerRef { get => _healthHandlerRef; set => _healthHandlerRef = value; }
+    public Animator AnimatorRef { get => _animatorRef; }
 
     private void Awake()
     {
@@ -292,14 +302,32 @@ public class EnemyAI : MonoBehaviour
     {
         if (DestroyOnDeath)
         {
+            if (_deathSFX != null)
+            {
+                _deathSFX.Play();
+                _deathSFX.transform.parent = null;
+                Destroy(_deathSFX.gameObject, 1f);
+            }
             Destroy(gameObject);
         }
         else
         {
+            if (_deathSFX != null)
+            {
+                _deathSFX.Play();
+                _deathSFX.transform.parent = null;
+                StartCoroutine(DeathSFX());
+            }
             gameObject.SetActive(false);
             _healthHandlerRef._healthSystem.RefillHealth();
             AlreadyAttacked = false;
         }
+    }
+
+    IEnumerator DeathSFX()
+    {
+        yield return new WaitForSeconds(1f);
+        _deathSFX.transform.parent = transform;
     }
 
     private void OnDrawGizmosSelected()
