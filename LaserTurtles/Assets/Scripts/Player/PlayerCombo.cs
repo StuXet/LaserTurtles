@@ -8,10 +8,12 @@ public class PlayerCombo : MonoBehaviour
     [System.Serializable]
     public class ComboTimer
     {
-        [SerializeField] private float _activeStart;
-        [SerializeField] private float _activeEnd;
-        public float DamageMultiplier;
+        [SerializeField] private float _duration = 1;
+        [SerializeField] private float _activeStart = 0;
+        [SerializeField] private float _activeEnd = 1;
+        public float DamageMultiplier = 1;
 
+        public float Duration { get => _duration; }
         public float ActiveStart { get => _activeStart; }
         public float ActiveEnd { get => _activeEnd; }
     }
@@ -20,11 +22,13 @@ public class PlayerCombo : MonoBehaviour
     [SerializeField] private List<ComboTimer> comboTimers = new List<ComboTimer>();
     private float lastClickedTime;
     private int numOfClicks;
+    private bool _clicked;
 
 
     // Update is called once per frame
     void Update()
     {
+        ComboTimeHandler();
         ResetAnimations();
     }
 
@@ -33,11 +37,13 @@ public class PlayerCombo : MonoBehaviour
         numOfClicks++;
         numOfClicks = numOfClicks > 3 ? 1 : numOfClicks;
 
-        if (Time.time - lastClickedTime > maxComboDelay)
-        {
-            numOfClicks = 1;
-        }
-        lastClickedTime = Time.time;
+        _clicked = true;
+        lastClickedTime = 0;
+        //if (Time.time - lastClickedTime > maxComboDelay)
+        //{
+        //    numOfClicks = 1;
+        //}
+        //lastClickedTime = Time.time;
 
         switch (numOfClicks)
         {
@@ -68,6 +74,21 @@ public class PlayerCombo : MonoBehaviour
 
     }
 
+    private void ComboTimeHandler()
+    {
+        if (_clicked)
+        {
+            lastClickedTime += Time.deltaTime;
+            if (lastClickedTime > maxComboDelay)
+            {
+                numOfClicks = 0;
+
+                lastClickedTime = 0;
+                _clicked = false;
+            }
+        }
+    }
+
     private void ResetAnimations()
     {
         if (anim.GetCurrentAnimatorStateInfo(1).normalizedTime > 0.7f && anim.GetCurrentAnimatorStateInfo(1).IsName("LightAttack1"))
@@ -84,48 +105,23 @@ public class PlayerCombo : MonoBehaviour
         }
     }
 
+    public float GetDuration()
+    {
+        return comboTimers[numOfClicks - 1].Duration;
+    }    
+    
     public float GetActiveStart()
     {
-        switch (numOfClicks)
-        {
-            case 1:
-                return comboTimers[0].ActiveStart;
-            case 2:
-                return comboTimers[1].ActiveStart;
-            case 3:
-                return comboTimers[2].ActiveStart;
-            default:
-                return 0;
-        }
+        return comboTimers[numOfClicks - 1].ActiveStart;
     }
 
     public float GetActiveEnd()
     {
-        switch (numOfClicks)
-        {
-            case 1:
-                return comboTimers[0].ActiveEnd;
-            case 2:
-                return comboTimers[1].ActiveEnd;
-            case 3:
-                return comboTimers[2].ActiveEnd;
-            default:
-                return 2;
-        }
+        return comboTimers[numOfClicks - 1].ActiveEnd;
     }
 
     public float GetDamageMultiplier()
     {
-        switch (numOfClicks)
-        {
-            case 1:
-                return comboTimers[0].DamageMultiplier;
-            case 2:
-                return comboTimers[1].DamageMultiplier;
-            case 3:
-                return comboTimers[2].DamageMultiplier;
-            default:
-                return 1;
-        }
+        return comboTimers[numOfClicks - 1].DamageMultiplier;
     }
 }

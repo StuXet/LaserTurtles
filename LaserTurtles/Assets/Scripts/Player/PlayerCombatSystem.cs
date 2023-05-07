@@ -31,9 +31,9 @@ public class PlayerCombatSystem : MonoBehaviour
     public bool isHeavyAttacking = false;
     public bool inDialogue = false;
     private bool _isHeavy;
-    [SerializeField] private float _lightAttackCooldown = 1f;
-    [SerializeField] private float _lightDamageStart = 0.2f;
-    [SerializeField] private float _lightDamageEnd = 0.7f;
+    //[SerializeField] private float _lightAttackCooldown = 1f;
+    //[SerializeField] private float _lightDamageStart = 0.2f;
+    //[SerializeField] private float _lightDamageEnd = 0.7f;
     [SerializeField] private float _heavyAttackCooldown = 1.5f;
     [SerializeField] private float _heavyDamageStart = 0.5f;
     [SerializeField] private float _heavyDamageEnd = 1f;
@@ -470,7 +470,7 @@ public class PlayerCombatSystem : MonoBehaviour
         {
             isAttacking = true;
 
-            if (_timer >= _lightAttackCooldown)
+            if (_timer >= combo.GetDuration())
             {
                 isLightAttacking = false;
                 _timer = 0;
