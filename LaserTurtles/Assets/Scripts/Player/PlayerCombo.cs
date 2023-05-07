@@ -107,21 +107,37 @@ public class PlayerCombo : MonoBehaviour
 
     public float GetDuration()
     {
+        if (numOfClicks == 0)
+        {
+            return comboTimers[0].Duration;
+        }
         return comboTimers[numOfClicks - 1].Duration;
-    }    
-    
+    }
+
     public float GetActiveStart()
     {
+        if (numOfClicks == 0)
+        {
+            return comboTimers[0].Duration;
+        }
         return comboTimers[numOfClicks - 1].ActiveStart;
     }
 
     public float GetActiveEnd()
     {
+        if (numOfClicks == 0)
+        {
+            return comboTimers[0].Duration;
+        }
         return comboTimers[numOfClicks - 1].ActiveEnd;
     }
 
     public float GetDamageMultiplier()
     {
+        if (numOfClicks == 0)
+        {
+            return comboTimers[0].Duration;
+        }
         return comboTimers[numOfClicks - 1].DamageMultiplier;
     }
 }
