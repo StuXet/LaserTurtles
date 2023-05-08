@@ -382,6 +382,13 @@ public class PlayerCombatSystem : MonoBehaviour
             //anim.SetTrigger("Attack");
             //StartCoroutine(ResetAttackCooldown());
         }
+        else if ((combo.GetDuration()/100*75 <= _timer && combo.GetDuration() >= _timer) && (isLightAttacking && !_isShooting && _equippedMeleeWeapon != null && _currentSlot != 4))
+        {
+            combo.OnClick();
+            isLightAttacking = true;
+            _isHeavy = false;
+            _timer = 0;
+        }
     }
 
     void HeavyAttack()
@@ -480,6 +487,7 @@ public class PlayerCombatSystem : MonoBehaviour
                 //_equippedMeleeWeapon.GetComponent<Damager>().CanDamage = true;
                 Damager currentDamager = _equippedMeleeWeapon.GetComponent<Damager>();
                 currentDamager.CanDamage = true;
+                currentDamager.CanKnockback = combo.GetCanKnockback();
                 currentDamager.DamageModifier = combo.GetDamageMultiplier();
 
                 //_isDamaging = true;
@@ -511,8 +519,10 @@ public class PlayerCombatSystem : MonoBehaviour
             }
             else if (_timer >= _heavyDamageStart && _timer <= _heavyDamageEnd)
             {
-                _equippedMeleeWeapon.GetComponent<Damager>().UsingHeavy = true;
-                _equippedMeleeWeapon.GetComponent<Damager>().CanDamage = true;
+                Damager currentDamager = _equippedMeleeWeapon.GetComponent<Damager>();
+                currentDamager.UsingHeavy = true;
+                currentDamager.CanDamage = true;
+                currentDamager.CanKnockback = true;
                 //_isDamaging = true;
             }
             else
