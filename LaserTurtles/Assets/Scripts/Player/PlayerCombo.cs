@@ -12,11 +12,14 @@ public class PlayerCombo : MonoBehaviour
         [SerializeField] private float _activeStart = 0;
         [SerializeField] private float _activeEnd = 1;
         public float DamageMultiplier = 1;
+        [SerializeField] private bool _canKnockback;
 
         public float Duration { get => _duration; }
         public float ActiveStart { get => _activeStart; }
         public float ActiveEnd { get => _activeEnd; }
+        public bool CanKnockback { get => _canKnockback; }
     }
+
     [SerializeField] private Animator anim;
     [SerializeField] private float maxComboDelay = 2;
     [SerializeField] private List<ComboTimer> comboTimers = new List<ComboTimer>();
@@ -29,7 +32,7 @@ public class PlayerCombo : MonoBehaviour
     void Update()
     {
         ComboTimeHandler();
-        ResetAnimations();
+        //ResetAnimations();
     }
 
     public void OnClick()
@@ -48,13 +51,13 @@ public class PlayerCombo : MonoBehaviour
         switch (numOfClicks)
         {
             case 1:
-                anim.SetBool("LightAttack1", true);
+                anim.SetTrigger("LightAttack1");
                 break;
             case 2:
-                anim.SetBool("LightAttack2", true);
+                anim.SetTrigger("LightAttack2");
                 break;
             case 3:
-                anim.SetBool("LightAttack3", true);
+                anim.SetTrigger("LightAttack3");
                 break;
             default:
                 print("numOfClicks ERROR");
@@ -89,21 +92,21 @@ public class PlayerCombo : MonoBehaviour
         }
     }
 
-    private void ResetAnimations()
-    {
-        if (anim.GetCurrentAnimatorStateInfo(1).normalizedTime > 0.7f && anim.GetCurrentAnimatorStateInfo(1).IsName("LightAttack1"))
-        {
-            anim.SetBool("LightAttack1", false);
-        }
-        if (anim.GetCurrentAnimatorStateInfo(1).normalizedTime > 0.7f && anim.GetCurrentAnimatorStateInfo(1).IsName("LightAttack2"))
-        {
-            anim.SetBool("LightAttack2", false);
-        }
-        if (anim.GetCurrentAnimatorStateInfo(1).normalizedTime > 0.7f && anim.GetCurrentAnimatorStateInfo(1).IsName("LightAttack3"))
-        {
-            anim.SetBool("LightAttack3", false);
-        }
-    }
+    //private void ResetAnimations()
+    //{
+    //    if (anim.GetCurrentAnimatorStateInfo(1).normalizedTime > 0.7f && anim.GetCurrentAnimatorStateInfo(1).IsName("LightAttack1"))
+    //    {
+    //        anim.SetBool("LightAttack1", false);
+    //    }
+    //    if (anim.GetCurrentAnimatorStateInfo(1).normalizedTime > 0.7f && anim.GetCurrentAnimatorStateInfo(1).IsName("LightAttack2"))
+    //    {
+    //        anim.SetBool("LightAttack2", false);
+    //    }
+    //    if (anim.GetCurrentAnimatorStateInfo(1).normalizedTime > 0.7f && anim.GetCurrentAnimatorStateInfo(1).IsName("LightAttack3"))
+    //    {
+    //        anim.SetBool("LightAttack3", false);
+    //    }
+    //}
 
     public float GetDuration()
     {
@@ -130,8 +133,8 @@ public class PlayerCombo : MonoBehaviour
             return comboTimers[0].Duration;
         }
         return comboTimers[numOfClicks - 1].ActiveEnd;
-    }
-
+    }    
+    
     public float GetDamageMultiplier()
     {
         if (numOfClicks == 0)
@@ -139,5 +142,13 @@ public class PlayerCombo : MonoBehaviour
             return comboTimers[0].Duration;
         }
         return comboTimers[numOfClicks - 1].DamageMultiplier;
+    }
+    public bool GetCanKnockback()
+    {
+        if (numOfClicks == 0)
+        {
+            return comboTimers[0].CanKnockback;
+        }
+        return comboTimers[numOfClicks - 1].CanKnockback;
     }
 }

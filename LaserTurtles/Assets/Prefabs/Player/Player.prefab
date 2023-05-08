@@ -1284,9 +1284,6 @@ MonoBehaviour:
   isLightAttacking: 0
   isHeavyAttacking: 0
   inDialogue: 0
-  _lightAttackCooldown: 0.8
-  _lightDamageStart: 0.1
-  _lightDamageEnd: 0.6
   _heavyAttackCooldown: 1.5
   _heavyDamageStart: 0.5
   _heavyDamageEnd: 1
@@ -1317,17 +1314,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 4976644559587137402}
-  maxComboDelay: 2
+  maxComboDelay: 1.1
   comboTimers:
-  - _activeStart: 0.1
-    _activeEnd: 0.6
+  - _duration: 0.8
+    _activeStart: 0.1
+    _activeEnd: 0.8
     DamageMultiplier: 1
-  - _activeStart: 0.1
-    _activeEnd: 0.6
+    _canKnockback: 0
+  - _duration: 1
+    _activeStart: 0.1
+    _activeEnd: 0.7
+    DamageMultiplier: 1
+    _canKnockback: 0
+  - _duration: 1
+    _activeStart: 0.2
+    _activeEnd: 0.8
     DamageMultiplier: 2
-  - _activeStart: 0.1
-    _activeEnd: 0.6
-    DamageMultiplier: 3
+    _canKnockback: 1
 --- !u!114 &2104562432498233633
 MonoBehaviour:
   m_ObjectHideFlags: 0
