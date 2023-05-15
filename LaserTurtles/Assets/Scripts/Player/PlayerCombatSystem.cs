@@ -46,13 +46,14 @@ public class PlayerCombatSystem : MonoBehaviour
 
     [Header("Shooting")]
     [SerializeField] private bool _isShooting;
+    [SerializeField] private bool _isPrepShooting;
     [SerializeField] private float _shootForce = 25f;
     [SerializeField] private float _fireRate = 0.5f;
     private float _fireRateTimer;
     public int CurrentAmmo;
     [SerializeField] private TextMeshProUGUI _ammoText;
 
-    [Header("specialAttack")] 
+    [Header("specialAttack")]
     public Slider specialAttackBar;
     [SerializeField] private float _maxChargeBar = 100;
     [SerializeField] private float _currentChargeBar;
@@ -187,6 +188,7 @@ public class PlayerCombatSystem : MonoBehaviour
         if (!inDialogue)
         {
             Debug.Log("Shoot pressed");
+            _isPrepShooting = true;
         }
     }
     //private void ShootAttackPerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -202,6 +204,7 @@ public class PlayerCombatSystem : MonoBehaviour
         {
             Debug.Log("shooooooooooooooot");
             Shooting();
+            _isPrepShooting = false;
         }
     }
 
@@ -289,7 +292,7 @@ public class PlayerCombatSystem : MonoBehaviour
         }
 
         //Display used weapon
-        if (_isShooting)
+        if (_isPrepShooting || _isShooting)
         {
             _rangedHoldPoint.gameObject.SetActive(true);
             _meleeHoldPoint.gameObject.SetActive(false);
@@ -382,7 +385,7 @@ public class PlayerCombatSystem : MonoBehaviour
             //anim.SetTrigger("Attack");
             //StartCoroutine(ResetAttackCooldown());
         }
-        else if ((combo.GetDuration()/100*75 <= _timer && combo.GetDuration() >= _timer) && (isLightAttacking && !_isShooting && _equippedMeleeWeapon != null && _currentSlot != 4))
+        else if ((combo.GetDuration() / 100 * 75 <= _timer && combo.GetDuration() >= _timer) && (isLightAttacking && !_isShooting && _equippedMeleeWeapon != null && _currentSlot != 4))
         {
             combo.OnClick();
             isLightAttacking = true;
