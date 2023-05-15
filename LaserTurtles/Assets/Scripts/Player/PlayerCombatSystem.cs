@@ -31,9 +31,9 @@ public class PlayerCombatSystem : MonoBehaviour
     public bool isHeavyAttacking = false;
     public bool inDialogue = false;
     private bool _isHeavy;
-    [SerializeField] private float _lightAttackCooldown = 1f;
-    [SerializeField] private float _lightDamageStart = 0.2f;
-    [SerializeField] private float _lightDamageEnd = 0.7f;
+    //[SerializeField] private float _lightAttackCooldown = 1f;
+    //[SerializeField] private float _lightDamageStart = 0.2f;
+    //[SerializeField] private float _lightDamageEnd = 0.7f;
     [SerializeField] private float _heavyAttackCooldown = 1.5f;
     [SerializeField] private float _heavyDamageStart = 0.5f;
     [SerializeField] private float _heavyDamageEnd = 1f;
@@ -382,6 +382,13 @@ public class PlayerCombatSystem : MonoBehaviour
             //anim.SetTrigger("Attack");
             //StartCoroutine(ResetAttackCooldown());
         }
+        else if ((combo.GetDuration()/100*75 <= _timer && combo.GetDuration() >= _timer) && (isLightAttacking && !_isShooting && _equippedMeleeWeapon != null && _currentSlot != 4))
+        {
+            combo.OnClick();
+            isLightAttacking = true;
+            _isHeavy = false;
+            _timer = 0;
+        }
     }
 
     void HeavyAttack()
@@ -470,7 +477,7 @@ public class PlayerCombatSystem : MonoBehaviour
         {
             isAttacking = true;
 
-            if (_timer >= _lightAttackCooldown)
+            if (_timer >= combo.GetDuration())
             {
                 isLightAttacking = false;
                 _timer = 0;
@@ -480,6 +487,7 @@ public class PlayerCombatSystem : MonoBehaviour
                 //_equippedMeleeWeapon.GetComponent<Damager>().CanDamage = true;
                 Damager currentDamager = _equippedMeleeWeapon.GetComponent<Damager>();
                 currentDamager.CanDamage = true;
+                currentDamager.CanKnockback = combo.GetCanKnockback();
                 currentDamager.DamageModifier = combo.GetDamageMultiplier();
 
                 //_isDamaging = true;
@@ -511,8 +519,10 @@ public class PlayerCombatSystem : MonoBehaviour
             }
             else if (_timer >= _heavyDamageStart && _timer <= _heavyDamageEnd)
             {
-                _equippedMeleeWeapon.GetComponent<Damager>().UsingHeavy = true;
-                _equippedMeleeWeapon.GetComponent<Damager>().CanDamage = true;
+                Damager currentDamager = _equippedMeleeWeapon.GetComponent<Damager>();
+                currentDamager.UsingHeavy = true;
+                currentDamager.CanDamage = true;
+                currentDamager.CanKnockback = true;
                 //_isDamaging = true;
             }
             else
