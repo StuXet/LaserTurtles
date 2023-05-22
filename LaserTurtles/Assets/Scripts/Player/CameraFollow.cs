@@ -9,8 +9,11 @@ public class CameraFollow : MonoBehaviour
     private Camera _thisCamera;
     [SerializeField] private GameObject _objToFollow;
     public float OffsetDistance = 10;
+    public float SmoothTime = 0.25f;
     private Vector3 _camOffset;
+    private Vector3 _camVelocity = Vector3.zero;
     public bool Follow;
+    public bool SmoothDamp;
 
 
     // Default Methods
@@ -47,11 +50,14 @@ public class CameraFollow : MonoBehaviour
     {
         if (Follow && _objToFollow)
         {
-            transform.position = _camOffset + _objToFollow.transform.position;
-        }
-        else
-        {
-            transform.position = _camOffset;
+            if (!SmoothDamp)
+            {
+                transform.position = _camOffset + _objToFollow.transform.position;
+            }
+            else
+            {
+                transform.position = Vector3.SmoothDamp(transform.position, _camOffset + _objToFollow.transform.position, ref _camVelocity, SmoothTime);
+            }
         }
     }
 }
