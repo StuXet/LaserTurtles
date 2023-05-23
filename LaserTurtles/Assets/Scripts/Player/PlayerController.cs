@@ -350,7 +350,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_isDead)
         {
-            if (deathTempTimer > deathTimer)
+            if (deathTempTimer < deathTimer)
             {
                 deathTempTimer += Time.deltaTime;
             }
