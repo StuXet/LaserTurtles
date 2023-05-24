@@ -759,7 +759,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 466402c044a5e3f408ec03f32e179f59, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.4
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1348,7 +1348,6 @@ MonoBehaviour:
   deathTimer: 4
   InControl: 1
   MaxSpeed: 10
-  _acceleration: 40
   _deceleration: 40
   MoveType: 1
   _controlsSkewAngle: 45

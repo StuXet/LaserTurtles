@@ -173,6 +173,8 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        FootStepTimer();
+
         _charCon.Move(_lastSkewedMoveDir * _currentSpeed * Time.deltaTime);
 
         _moveAngleDelta = (int)(Mathf.Atan2(_lastSkewedMoveDir.x, _lastSkewedMoveDir.z) * Mathf.Rad2Deg) + 180;
@@ -180,16 +182,28 @@ public class PlayerController : MonoBehaviour
 
     private void FootStepTimer()
     {
-        _stepTimeLeft = (_currentSpeed / MaxSpeed) * 0.25f;
-
-        if (_stepTimer > _stepTimeLeft)
+        if (_currentSpeed > 0)
         {
-            PlayAudioWithPitch(_walkSFX);
-            _stepTimer = 0;
+            _stepTimeLeft = Mathf.Abs((_currentSpeed / MaxSpeed) - 1) / 2 + 0.4f;
+
+            if (_stepTimer == 0)
+            {
+                PlayAudioWithPitch(_walkSFX);
+                _stepTimer += Time.deltaTime;
+            }
+            else if (_stepTimer > _stepTimeLeft)
+            {
+                PlayAudioWithPitch(_walkSFX);
+                _stepTimer = 0;
+            }
+            else
+            {
+                _stepTimer += Time.deltaTime;
+            }
         }
         else
         {
-            _stepTimer += Time.deltaTime;
+            _stepTimer = 0;
         }
     }
 
