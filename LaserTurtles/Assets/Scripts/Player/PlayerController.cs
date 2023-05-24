@@ -43,8 +43,9 @@ public class PlayerController : MonoBehaviour
     [Header("Movement & Looking")]
     public float MaxSpeed = 10.0f;
     private float _currentSpeed;
-    [SerializeField] private float _acceleration = 40;
+    //[SerializeField] private float _acceleration = 40;
     [SerializeField] private float _deceleration = 40;
+    private float _stepTimer, _stepTimeLeft;
     public MovementType MoveType = MovementType.WorldPos;
     [Range(0, 359)]
     [SerializeField] int _controlsSkewAngle = 45;
@@ -78,6 +79,14 @@ public class PlayerController : MonoBehaviour
     private Vector3 _velocity;
     private bool _isGrounded;
     public bool GravityEnabled = true;
+
+    [Header("Sounds")]
+    [SerializeField] private AudioSource _walkSFX;
+    [SerializeField] private AudioSource _dodgeSFX;
+    [SerializeField] private AudioSource _deathSFX;
+    [SerializeField] private AudioSource _getHitSFX;
+    [Range(-3, 3)]
+    [SerializeField] private float _pitchLow = 0.8f, _pitchHigh = 1.2f;
 
     public bool IsDead { get => _isDead; }
 
@@ -139,7 +148,7 @@ public class PlayerController : MonoBehaviour
     private void MoveToWorldPos()
     {
         // Rotating Axis to Up
-        _skewedMoveDir = _matrixRot.MultiplyPoint3x4(_movementDir).normalized;
+        _skewedMoveDir = _matrixRot.MultiplyPoint3x4(_movementDir);
 
         if (_movementDir != Vector3.zero)
         {
@@ -150,14 +159,7 @@ public class PlayerController : MonoBehaviour
 
         if (_movementDir != Vector3.zero)
         {
-            if (_currentSpeed < MaxSpeed)
-            {
-                _currentSpeed += _acceleration * Time.deltaTime;
-            }
-            else if (_currentSpeed >= MaxSpeed)
-            {
-                _currentSpeed = MaxSpeed;
-            }
+            _currentSpeed = MaxSpeed * _movementDir.magnitude;
         }
         else
         {
@@ -174,6 +176,21 @@ public class PlayerController : MonoBehaviour
         _charCon.Move(_lastSkewedMoveDir * _currentSpeed * Time.deltaTime);
 
         _moveAngleDelta = (int)(Mathf.Atan2(_lastSkewedMoveDir.x, _lastSkewedMoveDir.z) * Mathf.Rad2Deg) + 180;
+    }
+
+    private void FootStepTimer()
+    {
+        _stepTimeLeft = (_currentSpeed / MaxSpeed) * 0.25f;
+
+        if (_stepTimer > _stepTimeLeft)
+        {
+            PlayAudioWithPitch(_walkSFX);
+            _stepTimer = 0;
+        }
+        else
+        {
+            _stepTimer += Time.deltaTime;
+        }
     }
 
     private void RotateToCursor()
@@ -288,6 +305,8 @@ public class PlayerController : MonoBehaviour
             if (dodgeDurationTimer <= dodgeDuration) //Sets Dodge direction to look/cursor direction
             {
                 _charCon.Move(dodgeDir * dodgeSpeed * Time.deltaTime);
+                if (!isDodging)
+                    PlayAudioWithPitch(_dodgeSFX);
                 isDodging = true;
             }
             else
@@ -299,7 +318,6 @@ public class PlayerController : MonoBehaviour
                 dodgeDurationTimer = 0;
             }
         }
-
         DodgeEffect();
     }
 
@@ -315,6 +333,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void PlayAudioWithPitch(AudioSource audio)
+    {
+        if (audio != null)
+        {
+            float pitch = Random.Range(_pitchLow, _pitchHigh);
+            audio.pitch = pitch;
+            audio.Play();
+        }
+    }
 
     private void Gravity()
     {
