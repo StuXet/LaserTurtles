@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ItemObject : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class ItemObject : MonoBehaviour
     [SerializeField] private GameObject PickupPressIcon;
     [SerializeField] private Outline _outline;
     [SerializeField] private AudioSource _pickUpSFX;
+    [Range(-3,3)]
+    [SerializeField] private float _pitchLow = 0.8f, _pitchHigh = 1.2f;
     private InventorySystem PlayerInventoryRef;
 
     public bool CanBePicked;
@@ -112,6 +115,8 @@ public class ItemObject : MonoBehaviour
         yield return new WaitForEndOfFrame();
         if (_pickUpSFX != null)
         {
+            float pitch = Random.Range(_pitchLow, _pitchHigh);
+            _pickUpSFX.pitch = pitch;
             _pickUpSFX.Play();
             _pickUpSFX.transform.parent = null;
             Destroy(_pickUpSFX.gameObject, 1f);
