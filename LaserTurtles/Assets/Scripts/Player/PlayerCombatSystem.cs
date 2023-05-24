@@ -482,6 +482,8 @@ public class PlayerCombatSystem : MonoBehaviour
 
             if (_timer >= combo.GetDuration())
             {
+                Damager currentDamager = _equippedMeleeWeapon.GetComponent<Damager>();
+                currentDamager.CanDamage = false;
                 isLightAttacking = false;
                 _timer = 0;
             }
