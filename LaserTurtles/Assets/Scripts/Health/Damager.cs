@@ -39,6 +39,7 @@ public class Damager : MonoBehaviour
     [SerializeField] private WeaknessResistance _modifierType;
     [SerializeField] private int _lightDamageAmount;
     [SerializeField] private int _heavyDamageAmount;
+    public float DamageModifier = 1;
     public bool UsingHeavy = false;
     public bool UsingSpecial = false;
     public bool CanDamage = false;
@@ -48,7 +49,7 @@ public class Damager : MonoBehaviour
     //[SerializeField] private float _knockbackHeight = 1;
     [SerializeField] private float _knockbackHeavyMultiplier = 2;
     [SerializeField] private float _knockbackStunTime = 2;
-    [SerializeField] private bool _canKnockback;
+    public bool CanKnockback;
 
     // Properties
     // --------------------
@@ -62,5 +63,4 @@ public class Damager : MonoBehaviour
     //public float KnockbackHeight { get { return _knockbackHeight; } }
     public float KnockbackHeavyMultiplier { get { return _knockbackHeavyMultiplier; } }
     public float KnockbackStunTime { get { return _knockbackStunTime; } }
-    public bool CanKnockback { get { return _canKnockback; } }
 }

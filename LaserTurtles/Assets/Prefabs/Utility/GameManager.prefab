@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3269352991758220293}
   - component: {fileID: 3269352991758220290}
+  - component: {fileID: 3087543856066017257}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -45,6 +46,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cb7a54a69481bb4197bae2f8b02991e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3087543856066017257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3269352991758220292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3da1362917230704cb21264a7c44ca2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  killCounter: 0
+  OnKill:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &739426873225489893
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -212,11 +229,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MenuCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 8312109915307667613, guid: 0b2bb2596e4f34646ab68268ff9a3265,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -116
-      objectReference: {fileID: 0}
     - target: {fileID: 8312109915385390254, guid: 0b2bb2596e4f34646ab68268ff9a3265,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -246,41 +258,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8312109915900391521, guid: 0b2bb2596e4f34646ab68268ff9a3265,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.7517488
-      objectReference: {fileID: 0}
-    - target: {fileID: 8312109915900391521, guid: 0b2bb2596e4f34646ab68268ff9a3265,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.7517488
-      objectReference: {fileID: 0}
-    - target: {fileID: 8312109915900391521, guid: 0b2bb2596e4f34646ab68268ff9a3265,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.7517488
-      objectReference: {fileID: 0}
-    - target: {fileID: 8312109915900391521, guid: 0b2bb2596e4f34646ab68268ff9a3265,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 688.86
-      objectReference: {fileID: 0}
-    - target: {fileID: 8312109915900391521, guid: 0b2bb2596e4f34646ab68268ff9a3265,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 102
-      objectReference: {fileID: 0}
-    - target: {fileID: 8312109915900391521, guid: 0b2bb2596e4f34646ab68268ff9a3265,
-        type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8312109916017361482, guid: 0b2bb2596e4f34646ab68268ff9a3265,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 92
       objectReference: {fileID: 0}
     - target: {fileID: 8366167369732841177, guid: 0b2bb2596e4f34646ab68268ff9a3265,
         type: 3}

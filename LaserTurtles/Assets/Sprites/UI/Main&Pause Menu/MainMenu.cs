@@ -4,12 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class MainMenu : MonoBehaviour
 {
+    [Header("Panels")]
     public GameObject mainMenuPanel;
     public GameObject settingsPanel;
     public GameObject creditsPanel;
+
+    [Header("Selection")]
+    public EventSystem _eventSystem;
+    public GameObject _mainMenuSelectedObj, _settingsSelectedObj, _creditsSelectedObj;
 
     private InputAction escapeAction;
     private int lastSceneIndex;
@@ -17,6 +23,7 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         lastSceneIndex = PlayerPrefs.GetInt("LastSceneIndex", 0);
+        _eventSystem.firstSelectedGameObject = _mainMenuSelectedObj;
     }
 
     private void Awake()
@@ -35,6 +42,11 @@ public class MainMenu : MonoBehaviour
         escapeAction.Disable();
     }
 
+    public void RefreshSelected(GameObject selectedObj)
+    {
+        _eventSystem.SetSelectedGameObject(selectedObj);
+    }
+
     private void OnEscape()
     {
         if (creditsPanel.activeSelf || settingsPanel.activeSelf)
@@ -42,6 +54,7 @@ public class MainMenu : MonoBehaviour
             creditsPanel.SetActive(false);
             settingsPanel.SetActive(false);
             mainMenuPanel.SetActive(true);
+            RefreshSelected(_mainMenuSelectedObj);
         }
     }
 
@@ -59,12 +72,14 @@ public class MainMenu : MonoBehaviour
     {
         mainMenuPanel.SetActive(false);
         settingsPanel.SetActive(true);
+        RefreshSelected(_settingsSelectedObj);
     }
 
     public void Credits()
     {
         mainMenuPanel.SetActive(false);
         creditsPanel.SetActive(true);
+        RefreshSelected(_creditsSelectedObj);
     }
 
     public void ClosePanel()
@@ -73,6 +88,7 @@ public class MainMenu : MonoBehaviour
         settingsPanel.SetActive(false);
 
         mainMenuPanel.SetActive(true);
+        RefreshSelected(_mainMenuSelectedObj);
     }
 
     private void OnDestroy()

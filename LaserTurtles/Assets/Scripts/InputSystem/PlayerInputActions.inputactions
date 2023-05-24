@@ -148,15 +148,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "ESC",
-                    "type": "Button",
-                    "id": "c492679b-8eff-4463-9f29-f9195d9466b0",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -514,28 +505,6 @@
                 },
                 {
                     "name": "",
-                    "id": "0028c04f-1ff3-4380-a79b-a4f8c49111a0",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "ESC",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7f606cfe-5af8-4867-91e7-cdcb0b3255ee",
-                    "path": "<Gamepad>/start",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "ESC",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "dddc8981-f581-4f8f-8fb0-6cc92db67d28",
                     "path": "<Mouse>/scroll",
                     "interactions": "",
@@ -637,6 +606,15 @@
                     "type": "PassThrough",
                     "id": "ed622448-e565-4253-bb3e-d87f47414c0f",
                     "expectedControlType": "Quaternion",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ESC",
+                    "type": "Button",
+                    "id": "ee746404-1293-4cdd-b2d1-2a34c88964aa",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -1058,6 +1036,28 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "TrackedDeviceOrientation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ad41032d-99e8-4deb-811c-a4bc30e1e003",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ESC",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "99c8a9a0-af9d-4819-bb98-d0308681b0f0",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "ESC",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

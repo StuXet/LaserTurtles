@@ -34,8 +34,11 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Animator _playerAnimator;
 
+    [SerializeField] float deathTimer = 4.0f;
+    float deathTempTimer;
     public bool InControl = true;
     private bool _isDead = false;
+    private int livesLeft = 3;
 
     [Header("Movement & Looking")]
     public float MaxSpeed = 10.0f;
@@ -115,6 +118,7 @@ public class PlayerController : MonoBehaviour
             DodgeManager();
             Gravity();
         }
+        DeathHandler();
         AnimationHandler();
     }
 
@@ -340,14 +344,35 @@ public class PlayerController : MonoBehaviour
     {
         _isDead = true;
         InControl = false;
-        StartCoroutine(DeathDelay());
     }
 
-    IEnumerator DeathDelay()
+    void DeathHandler()
     {
-        yield return new WaitForSeconds(4);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (_isDead)
+        {
+            if (deathTempTimer < deathTimer)
+            {
+                deathTempTimer += Time.deltaTime;
+            }
+            else
+            {
+                if (livesLeft > 0)
+                {
+                    livesLeft--;
+                    transform.position = CheckpointSystem.Instance.LatestCheckpoint.position + new Vector3(0, 2, 0);
+                    _healthHandlerRef._healthSystem.RefillHealth();
+                    _isDead = false;
+                    InControl = true;
+                    deathTempTimer = 0;
+                }
+                else if (livesLeft <= 0)
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                }
+            }
+        }
     }
+
 
     private void AnimationHandler()
     {
@@ -396,10 +421,7 @@ public class PlayerController : MonoBehaviour
             _playerAnimator.SetBool("Dodge", _calledDodge);
 
             // Death
-            if (_isDead)
-            {
-                _playerAnimator.SetTrigger("Death");
-            }
+            _playerAnimator.SetBool("Death", _isDead);
         }
     }
 

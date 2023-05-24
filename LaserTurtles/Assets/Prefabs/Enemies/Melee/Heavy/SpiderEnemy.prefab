@@ -420,7 +420,7 @@ MonoBehaviour:
   Agent: {fileID: 7228148100382587494}
   Player: {fileID: 0}
   _healthHandlerRef: {fileID: 3732241753493091364}
-  _animatorRef: {fileID: 0}
+  _animatorRef: {fileID: 6387273848593591875}
   DestroyOnDeath: 1
   CanPatrol: 1
   CanChase: 1
@@ -854,6 +854,12 @@ SkinnedMeshRenderer:
 --- !u!4 &3013424584843876151 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1707138954301225833, guid: c2fbf82e1e6b1b04fa467dcba889ec6a,
+    type: 3}
+  m_PrefabInstance: {fileID: 4494922712046070878}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6387273848593591875 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7405338207787106845, guid: c2fbf82e1e6b1b04fa467dcba889ec6a,
     type: 3}
   m_PrefabInstance: {fileID: 4494922712046070878}
   m_PrefabAsset: {fileID: 0}
