@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
     private float _currentSpeed;
     //[SerializeField] private float _acceleration = 40;
     [SerializeField] private float _deceleration = 40;
+    [SerializeField] private float _rotationSpeed = 5;
     private float _stepTimer, _stepTimeLeft;
     public MovementType MoveType = MovementType.WorldPos;
     [Range(0, 359)]
@@ -207,11 +208,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void RotateToCursor()
+    public void RotateToCursor()
     {
         //player looks at the mouse LookCursor position
 
-        if (_plInputActions.Player.MouseMovement.IsInProgress())
+        //if (_plInputActions.Player.MouseMovement.IsInProgress())
         {
             Vector2 mousePos = _plInputActions.Player.MouseLook.ReadValue<Vector2>();
             Ray ray = _playerCam.ScreenPointToRay(mousePos);
@@ -227,7 +228,7 @@ public class PlayerController : MonoBehaviour
             _mousePosDelta = _matrixRot.MultiplyPoint3x4(_mousePosDelta);
             _mouseAngleDelta = (int)(Mathf.Atan2(_mousePosDelta.x, _mousePosDelta.z) * Mathf.Rad2Deg) + 180;
         }
-        else
+        //else
         {
             Vector2 stickVec = _plInputActions.Player.StickLook.ReadValue<Vector2>();
             Vector3 tempRot = new Vector3(stickVec.x, 0, stickVec.y);
@@ -261,7 +262,9 @@ public class PlayerController : MonoBehaviour
             //rotate the game object with the direction of the movement
             if (_movementDir != Vector3.zero)
             {
-                transform.rotation = Quaternion.LookRotation(_skewedMoveDir);
+                Vector3 relative = (transform.position + _skewedMoveDir) - transform.position;
+                Quaternion rotation = Quaternion.LookRotation(relative, Vector3.up);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, _rotationSpeed * Time.deltaTime);
             }
         }
         else if (MoveType == MovementType.WorldPosTrackLook) // Moves Player With World's Axis & Rotates Towards Cursor Position
