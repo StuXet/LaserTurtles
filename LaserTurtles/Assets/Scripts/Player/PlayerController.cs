@@ -34,14 +34,18 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Animator _playerAnimator;
 
+    [SerializeField] float deathTimer = 4.0f;
+    float deathTempTimer;
     public bool InControl = true;
     private bool _isDead = false;
+    private int livesLeft = 3;
 
     [Header("Movement & Looking")]
     public float MaxSpeed = 10.0f;
     private float _currentSpeed;
-    [SerializeField] private float _acceleration = 40;
+    //[SerializeField] private float _acceleration = 40;
     [SerializeField] private float _deceleration = 40;
+    private float _stepTimer, _stepTimeLeft;
     public MovementType MoveType = MovementType.WorldPos;
     [Range(0, 359)]
     [SerializeField] int _controlsSkewAngle = 45;
@@ -75,6 +79,14 @@ public class PlayerController : MonoBehaviour
     private Vector3 _velocity;
     private bool _isGrounded;
     public bool GravityEnabled = true;
+
+    [Header("Sounds")]
+    [SerializeField] private AudioSource _walkSFX;
+    [SerializeField] private AudioSource _dodgeSFX;
+    [SerializeField] private AudioSource _deathSFX;
+    [SerializeField] private AudioSource _getHitSFX;
+    [Range(-3, 3)]
+    [SerializeField] private float _pitchLow = 0.8f, _pitchHigh = 1.2f;
 
     public bool IsDead { get => _isDead; }
 
@@ -115,6 +127,7 @@ public class PlayerController : MonoBehaviour
             DodgeManager();
             Gravity();
         }
+        DeathHandler();
         AnimationHandler();
     }
 
@@ -135,7 +148,7 @@ public class PlayerController : MonoBehaviour
     private void MoveToWorldPos()
     {
         // Rotating Axis to Up
-        _skewedMoveDir = _matrixRot.MultiplyPoint3x4(_movementDir).normalized;
+        _skewedMoveDir = _matrixRot.MultiplyPoint3x4(_movementDir);
 
         if (_movementDir != Vector3.zero)
         {
@@ -146,14 +159,7 @@ public class PlayerController : MonoBehaviour
 
         if (_movementDir != Vector3.zero)
         {
-            if (_currentSpeed < MaxSpeed)
-            {
-                _currentSpeed += _acceleration * Time.deltaTime;
-            }
-            else if (_currentSpeed >= MaxSpeed)
-            {
-                _currentSpeed = MaxSpeed;
-            }
+            _currentSpeed = MaxSpeed * _movementDir.magnitude;
         }
         else
         {
@@ -167,9 +173,38 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        FootStepTimer();
+
         _charCon.Move(_lastSkewedMoveDir * _currentSpeed * Time.deltaTime);
 
         _moveAngleDelta = (int)(Mathf.Atan2(_lastSkewedMoveDir.x, _lastSkewedMoveDir.z) * Mathf.Rad2Deg) + 180;
+    }
+
+    private void FootStepTimer()
+    {
+        if (_currentSpeed > 0)
+        {
+            _stepTimeLeft = Mathf.Abs((_currentSpeed / MaxSpeed) - 1) / 2 + 0.4f;
+
+            if (_stepTimer == 0)
+            {
+                PlayAudioWithPitch(_walkSFX);
+                _stepTimer += Time.deltaTime;
+            }
+            else if (_stepTimer > _stepTimeLeft)
+            {
+                PlayAudioWithPitch(_walkSFX);
+                _stepTimer = 0;
+            }
+            else
+            {
+                _stepTimer += Time.deltaTime;
+            }
+        }
+        else
+        {
+            _stepTimer = 0;
+        }
     }
 
     private void RotateToCursor()
@@ -284,6 +319,8 @@ public class PlayerController : MonoBehaviour
             if (dodgeDurationTimer <= dodgeDuration) //Sets Dodge direction to look/cursor direction
             {
                 _charCon.Move(dodgeDir * dodgeSpeed * Time.deltaTime);
+                if (!isDodging)
+                    PlayAudioWithPitch(_dodgeSFX);
                 isDodging = true;
             }
             else
@@ -295,7 +332,6 @@ public class PlayerController : MonoBehaviour
                 dodgeDurationTimer = 0;
             }
         }
-
         DodgeEffect();
     }
 
@@ -311,6 +347,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void PlayAudioWithPitch(AudioSource audio)
+    {
+        if (audio != null)
+        {
+            float pitch = Random.Range(_pitchLow, _pitchHigh);
+            audio.pitch = pitch;
+            audio.Play();
+        }
+    }
 
     private void Gravity()
     {
@@ -340,14 +385,35 @@ public class PlayerController : MonoBehaviour
     {
         _isDead = true;
         InControl = false;
-        StartCoroutine(DeathDelay());
     }
 
-    IEnumerator DeathDelay()
+    void DeathHandler()
     {
-        yield return new WaitForSeconds(4);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (_isDead)
+        {
+            if (deathTempTimer < deathTimer)
+            {
+                deathTempTimer += Time.deltaTime;
+            }
+            else
+            {
+                if (livesLeft > 0)
+                {
+                    livesLeft--;
+                    transform.position = CheckpointSystem.Instance.LatestCheckpoint.position + new Vector3(0, 2, 0);
+                    _healthHandlerRef._healthSystem.RefillHealth();
+                    _isDead = false;
+                    InControl = true;
+                    deathTempTimer = 0;
+                }
+                else if (livesLeft <= 0)
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                }
+            }
+        }
     }
+
 
     private void AnimationHandler()
     {
@@ -396,10 +462,7 @@ public class PlayerController : MonoBehaviour
             _playerAnimator.SetBool("Dodge", _calledDodge);
 
             // Death
-            if (_isDead)
-            {
-                _playerAnimator.SetTrigger("Death");
-            }
+            _playerAnimator.SetBool("Death", _isDead);
         }
     }
 
