@@ -156,7 +156,8 @@ public class PlayerCombatSystem : MonoBehaviour
     }
     private void WeaponSlot4(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        ChangeWeapon(4);
+        // To Be Replace with SwitchAmmoType
+        //ChangeWeapon(4);
     }
 
 
