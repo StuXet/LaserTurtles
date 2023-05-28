@@ -54,6 +54,7 @@ public class PlayerCombatSystem : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _ammoText;
 
     [Header("specialAttack")]
+    public bool AllowSpecial;
     public Slider specialAttackBar;
     [SerializeField] private float _maxChargeBar = 100;
     [SerializeField] private float _currentChargeBar;
@@ -83,7 +84,8 @@ public class PlayerCombatSystem : MonoBehaviour
 
         specialAttackBar.maxValue = _maxChargeBar;
         specialAttackBar.minValue = _currentChargeBar;
-        InvokeRepeating("RechargeSpecialAttackBar", 1f, _chargeSpeedInSec);
+        if (AllowSpecial) InvokeRepeating("RechargeSpecialAttackBar", 1f, _chargeSpeedInSec);
+        else specialAttackBar.gameObject.SetActive(false);
         CombatHandler.Instance.OnKill.AddListener(KillRecharge);
     }
 
@@ -212,7 +214,7 @@ public class PlayerCombatSystem : MonoBehaviour
     private void SpecialAttack(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
 
-        if (!inDialogue && _currentChargeBar == 100)
+        if (AllowSpecial && !inDialogue && _currentChargeBar == 100)
         {
             Debug.Log("Special attack");
             SpecialAttack();
