@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -34,11 +35,11 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Animator _playerAnimator;
 
+    [SerializeField] private int livesLeft = 3;
     [SerializeField] float deathTimer = 4.0f;
     float deathTempTimer;
     public bool InControl = true;
     private bool _isDead = false;
-    private int livesLeft = 3;
 
     [Header("Movement & Looking")]
     public float MaxSpeed = 10.0f;
@@ -89,6 +90,9 @@ public class PlayerController : MonoBehaviour
     [Range(-3, 3)]
     [SerializeField] private float _pitchLow = 0.8f, _pitchHigh = 1.2f;
 
+    [Header("UI")]
+    [SerializeField] private TextMeshProUGUI _livesLeftText;
+
     public bool IsDead { get => _isDead; }
 
 
@@ -130,6 +134,8 @@ public class PlayerController : MonoBehaviour
         }
         DeathHandler();
         AnimationHandler();
+
+        RefreshUI();
     }
 
 
@@ -465,6 +471,11 @@ public class PlayerController : MonoBehaviour
             // Death
             _playerAnimator.SetBool("Death", _isDead);
         }
+    }
+
+    private void RefreshUI()
+    {
+        _livesLeftText.text = livesLeft.ToString();
     }
 
 
