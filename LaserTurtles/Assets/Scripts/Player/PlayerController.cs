@@ -236,15 +236,28 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            Vector2 stickVec = _plInputActions.Player.StickLook.ReadValue<Vector2>();
-            Vector3 tempRot = new Vector3(stickVec.x, 0, stickVec.y);
-            Vector3 delta = _matrixRot.MultiplyPoint3x4(tempRot).normalized;
-            if (delta.magnitude != 0)
+            if (_plInputActions.Player.MoveStick.IsInProgress())
             {
-                float angles = Mathf.Atan2(delta.x, delta.z) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.Euler(0, angles, 0);
+                if (!_plInputActions.Player.StickLook.IsInProgress())
+                {
+                    if (_movementDir != Vector3.zero)
+                    {
+                        transform.rotation = Quaternion.LookRotation(_skewedMoveDir);
+                    }
+                }
+                else
+                {
+                    Vector2 stickVec = _plInputActions.Player.StickLook.ReadValue<Vector2>();
+                    Vector3 tempRot = new Vector3(stickVec.x, 0, stickVec.y);
+                    Vector3 delta = _matrixRot.MultiplyPoint3x4(tempRot).normalized;
+                    if (delta.magnitude != 0)
+                    {
+                        float angles = Mathf.Atan2(delta.x, delta.z) * Mathf.Rad2Deg;
+                        transform.rotation = Quaternion.Euler(0, angles, 0);
 
-                _mouseAngleDelta = (int)angles + 180;
+                        _mouseAngleDelta = (int)angles + 180;
+                    }
+                }
             }
         }
 

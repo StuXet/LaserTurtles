@@ -37,6 +37,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""MoveStick"",
+                    ""type"": ""Value"",
+                    ""id"": ""9a177f51-3108-4ecf-a569-b29afddb031c"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""MouseMovement"",
                     ""type"": ""Value"",
                     ""id"": ""669f5132-4da3-4bfc-bfee-5b8a04685db0"",
@@ -533,6 +542,17 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""ScrollWeapons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8e3b8c0c-89a6-443b-95b7-0079d095af97"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""MoveStick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1152,6 +1172,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
+        m_Player_MoveStick = m_Player.FindAction("MoveStick", throwIfNotFound: true);
         m_Player_MouseMovement = m_Player.FindAction("MouseMovement", throwIfNotFound: true);
         m_Player_MouseLook = m_Player.FindAction("MouseLook", throwIfNotFound: true);
         m_Player_StickLook = m_Player.FindAction("StickLook", throwIfNotFound: true);
@@ -1240,6 +1261,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Move;
+    private readonly InputAction m_Player_MoveStick;
     private readonly InputAction m_Player_MouseMovement;
     private readonly InputAction m_Player_MouseLook;
     private readonly InputAction m_Player_StickLook;
@@ -1260,6 +1282,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         private @PlayerInputActions m_Wrapper;
         public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
+        public InputAction @MoveStick => m_Wrapper.m_Player_MoveStick;
         public InputAction @MouseMovement => m_Wrapper.m_Player_MouseMovement;
         public InputAction @MouseLook => m_Wrapper.m_Player_MouseLook;
         public InputAction @StickLook => m_Wrapper.m_Player_StickLook;
@@ -1287,6 +1310,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
+                @MoveStick.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveStick;
+                @MoveStick.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveStick;
+                @MoveStick.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveStick;
                 @MouseMovement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseMovement;
                 @MouseMovement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseMovement;
                 @MouseMovement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseMovement;
@@ -1339,6 +1365,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @MoveStick.started += instance.OnMoveStick;
+                @MoveStick.performed += instance.OnMoveStick;
+                @MoveStick.canceled += instance.OnMoveStick;
                 @MouseMovement.started += instance.OnMouseMovement;
                 @MouseMovement.performed += instance.OnMouseMovement;
                 @MouseMovement.canceled += instance.OnMouseMovement;
@@ -1549,6 +1578,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnMoveStick(InputAction.CallbackContext context);
         void OnMouseMovement(InputAction.CallbackContext context);
         void OnMouseLook(InputAction.CallbackContext context);
         void OnStickLook(InputAction.CallbackContext context);
