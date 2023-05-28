@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2244829779302775500}
   - component: {fileID: 4090336652275191302}
   - component: {fileID: 511775726739274428}
+  - component: {fileID: 3902793457864320396}
   m_Layer: 8
   m_Name: Ice Cream 2
   m_TagString: Environment
@@ -98,3 +99,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -4281854776163911308, guid: b95297fed86217444b9d881c5ccb9c5b, type: 3}
+--- !u!114 &3902793457864320396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2576964931625693139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff

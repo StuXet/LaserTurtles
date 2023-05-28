@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _deceleration = 40;
     private float _stepTimer, _stepTimeLeft;
     public MovementType MoveType = MovementType.WorldPos;
+    public LayerMask MouseLookMask;
     [Range(0, 359)]
     [SerializeField] int _controlsSkewAngle = 45;
     private Matrix4x4 _matrixRot;
@@ -216,7 +217,7 @@ public class PlayerController : MonoBehaviour
             Vector2 mousePos = _plInputActions.Player.MouseLook.ReadValue<Vector2>();
             Ray ray = _playerCam.ScreenPointToRay(mousePos);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit, 100, MouseLookMask))
             {
                 Vector3 target = hit.point;
                 target.y = transform.position.y;
