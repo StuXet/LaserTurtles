@@ -509,6 +509,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectiveName: Gain Access
   _useFade: 1
+  _fadeSpeed: 5
   _door: {fileID: 7922340074326025686}
   _doorLockIcon: {fileID: 6414739760505591907}
   _objectivesCounterText: {fileID: 8250741381537367356}
@@ -575,7 +576,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 49b0096389aaa1349a445e602ab11c30, type: 2}
+  - {fileID: 2100000, guid: e4143aa84e0688b42a6a76933b6910fe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
