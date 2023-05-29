@@ -38,6 +38,11 @@ public class GameManager : MonoBehaviour
         _winTextRef = _uIMediator.WinUI;
     }
 
+    private void Start()
+    {
+        if (_plInputActions == null) _plInputActions = FindObjectOfType<InputManager>().PlInputActions;
+    }
+
     public void RefreshSelectedUI(GameObject selectedObj)
     {
         _eventSystem.SetSelectedGameObject(selectedObj);
