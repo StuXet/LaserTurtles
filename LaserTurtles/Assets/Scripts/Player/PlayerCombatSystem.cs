@@ -52,8 +52,10 @@ public class PlayerCombatSystem : MonoBehaviour
     private float _fireRateTimer;
     public int CurrentAmmo;
     [SerializeField] private TextMeshProUGUI _ammoText;
+    [SerializeField] private GameObject _aimingArrow;
 
     [Header("specialAttack")]
+    public bool AllowSpecial;
     public Slider specialAttackBar;
     [SerializeField] private float _maxChargeBar = 100;
     [SerializeField] private float _currentChargeBar;
@@ -83,7 +85,8 @@ public class PlayerCombatSystem : MonoBehaviour
 
         specialAttackBar.maxValue = _maxChargeBar;
         specialAttackBar.minValue = _currentChargeBar;
-        InvokeRepeating("RechargeSpecialAttackBar", 1f, _chargeSpeedInSec);
+        if (AllowSpecial) InvokeRepeating("RechargeSpecialAttackBar", 1f, _chargeSpeedInSec);
+        else specialAttackBar.gameObject.SetActive(false);
         CombatHandler.Instance.OnKill.AddListener(KillRecharge);
     }
 
@@ -97,11 +100,11 @@ public class PlayerCombatSystem : MonoBehaviour
 
         AttackTimer();
         ShootTimer();
-        AmmoCountHandler();
 
         ScrollThroughWeapons();
         LiveSlotUpdate();
 
+        RefreshUI();
         AnimationHandler();
     }
 
@@ -153,7 +156,8 @@ public class PlayerCombatSystem : MonoBehaviour
     }
     private void WeaponSlot4(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        ChangeWeapon(4);
+        // To Be Replace with SwitchAmmoType
+        //ChangeWeapon(4);
     }
 
 
@@ -185,7 +189,7 @@ public class PlayerCombatSystem : MonoBehaviour
 
     private void ShootAttackStarted(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        if (!inDialogue)
+        if (!inDialogue && _equippedRangedWeapon != null)
         {
             Debug.Log("Shoot pressed");
             _isPrepShooting = true;
@@ -200,7 +204,7 @@ public class PlayerCombatSystem : MonoBehaviour
     //}
     private void ShootAttackCancel(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        if (!inDialogue)
+        if (!inDialogue && _equippedRangedWeapon != null && _isPrepShooting)
         {
             Debug.Log("shooooooooooooooot");
             Shooting();
@@ -212,7 +216,7 @@ public class PlayerCombatSystem : MonoBehaviour
     private void SpecialAttack(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
 
-        if (!inDialogue && _currentChargeBar == 100)
+        if (AllowSpecial && !inDialogue && _currentChargeBar == 100)
         {
             Debug.Log("Special attack");
             SpecialAttack();
@@ -578,8 +582,9 @@ public class PlayerCombatSystem : MonoBehaviour
         }
     }
 
-    private void AmmoCountHandler()
+    private void RefreshUI()
     {
+        //// Ammo Counter UI
         //if (CurrentAmmo == 0)
         //{
         //    _ammoText.enabled = false;
@@ -589,6 +594,16 @@ public class PlayerCombatSystem : MonoBehaviour
         //    _ammoText.enabled = true;
         _ammoText.text = CurrentAmmo.ToString();
         //}
+
+        // Aiming Arrow UI
+        if (_isPrepShooting)
+        {
+            _aimingArrow.SetActive(true);
+        }
+        else
+        {
+            _aimingArrow.SetActive(false);
+        }
     }
 
     private void AnimationHandler()

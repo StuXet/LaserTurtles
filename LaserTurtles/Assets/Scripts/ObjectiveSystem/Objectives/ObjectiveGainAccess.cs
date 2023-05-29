@@ -6,6 +6,7 @@ using UnityEngine;
 public class ObjectiveGainAccess : ObjectiveBase
 {
     [SerializeField] private bool _useFade = true;
+    [SerializeField] private float _fadeSpeed = 1.0f;
     [SerializeField] private GameObject _door;
     [SerializeField] private GameObject _doorLockIcon;
     [SerializeField] private TextMeshPro _objectivesCounterText;
@@ -14,6 +15,8 @@ public class ObjectiveGainAccess : ObjectiveBase
     private bool _openDoor;
     private bool _doorOpened;
     private Material _doorMat;
+    private Color _doorColor;
+    private Color _tempColor;
     private int _keyObjectivesCounter = 0;
 
     public List<ObjectiveBase> KeyObjectives { get => keyObjectives;}
@@ -23,6 +26,8 @@ public class ObjectiveGainAccess : ObjectiveBase
         if (_door)
         {
             _doorMat = _door.GetComponent<MeshRenderer>().material;
+            _doorColor = _doorMat.color;
+            _tempColor = _doorColor;
         }
     }
 
@@ -68,16 +73,28 @@ public class ObjectiveGainAccess : ObjectiveBase
     {
         if (!_doorOpened && _useFade)
         {
+            //if (_openDoor)
+            //{
+            //    float fadeVal = _doorMat.GetFloat("_Fade_Depth");
+
+            //    fadeVal = Mathf.Lerp(fadeVal, 180, 2 * Time.deltaTime);
+
+            //    _doorMat.SetFloat("_Fade_Depth", fadeVal);
+            //}
+
+            //if (_doorMat.GetFloat("_Fade_Depth") >= 150)
+            //{
+            //    _door.SetActive(false);
+            //    _doorOpened = true;
+            //}
+
             if (_openDoor)
             {
-                float fadeVal = _doorMat.GetFloat("_Fade_Depth");
-
-                fadeVal = Mathf.Lerp(fadeVal, 180, 2 * Time.deltaTime);
-
-                _doorMat.SetFloat("_Fade_Depth", fadeVal);
+                _tempColor.a = Mathf.Lerp(_tempColor.a,0, _fadeSpeed * Time.deltaTime);
+                _doorMat.color = _tempColor;
             }
 
-            if (_doorMat.GetFloat("_Fade_Depth") >= 150)
+            if (_doorMat.color.a <= 0.1f)
             {
                 _door.SetActive(false);
                 _doorOpened = true;

@@ -15,6 +15,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "MoveStick",
+                    "type": "Value",
+                    "id": "9a177f51-3108-4ecf-a569-b29afddb031c",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "MouseMovement",
                     "type": "Value",
                     "id": "669f5132-4da3-4bfc-bfee-5b8a04685db0",
@@ -511,6 +520,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "ScrollWeapons",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8e3b8c0c-89a6-443b-95b7-0079d095af97",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "MoveStick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
