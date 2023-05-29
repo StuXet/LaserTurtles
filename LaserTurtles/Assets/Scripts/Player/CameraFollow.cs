@@ -25,6 +25,7 @@ public class CameraFollow : MonoBehaviour
 
     private void Awake()
     {
+        _thisCamera = GetComponent<Camera>();
     }
 
     void Update()
