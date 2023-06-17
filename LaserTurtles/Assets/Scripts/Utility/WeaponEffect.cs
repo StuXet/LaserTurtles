@@ -20,12 +20,13 @@ public class WeaponEffect : MonoBehaviour
         _weaponParticle.SetActive(state);
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (_damager.CanDamage && (other.CompareTag("Enemy") || other.CompareTag("Environment")))
-    //    {
-    //        GameObject vfx = Instantiate(_hitVFX, other.transform.position, other.transform.rotation, null);
-    //        Destroy(vfx, 0.5f);
-    //    }
-    //}
+    private void OnTriggerEnter(Collider other)
+    {
+        if (_damager.CanDamage && (other.CompareTag("Enemy") || other.CompareTag("Environment")))
+        {
+            Vector3 hitPosition = other.ClosestPoint(_boxCollider.bounds.center);
+            GameObject vfx = Instantiate(_hitVFX, hitPosition, Quaternion.identity, other.transform);
+            Destroy(vfx, 0.5f);
+        }
+    }
 }
