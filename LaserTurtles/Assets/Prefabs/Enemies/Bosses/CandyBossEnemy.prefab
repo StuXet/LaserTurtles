@@ -70,6 +70,7 @@ MonoBehaviour:
   _healthBar: {fileID: 2698481246451724336}
   _maxHP: 250
   _currentHP: 0
+  _invulnerable: 0
   knockbackable: 0
 --- !u!114 &5168271363645760439
 MonoBehaviour:
@@ -247,13 +248,14 @@ MonoBehaviour:
   _modifierType: 0
   _lightDamageAmount: 20
   _heavyDamageAmount: 0
+  DamageModifier: 1
   UsingHeavy: 0
   UsingSpecial: 0
   CanDamage: 1
   _knockbackPower: 2
   _knockbackHeavyMultiplier: 2
   _knockbackStunTime: 2
-  _canKnockback: 0
+  CanKnockback: 0
 --- !u!1 &2004943697087899162
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,6 +422,7 @@ MonoBehaviour:
   Agent: {fileID: 7228148100382587494}
   Player: {fileID: 0}
   _healthHandlerRef: {fileID: 3732241753493091364}
+  _animatorRef: {fileID: 0}
   DestroyOnDeath: 1
   CanPatrol: 0
   CanChase: 1
@@ -428,12 +431,17 @@ MonoBehaviour:
   AttackCoolDownTime: 2
   AlreadyAttacked: 0
   _inControl: 1
-  SightRange: 20
+  SightRange: 50
   AttackRange: 2.25
   _gravityEnabled: 1
   _groundCheckOffset: {x: 0, y: -1, z: 0}
   _groundRadius: 0.5
   _gravityModifier: 10
+  _deathSFX: {fileID: 0}
+  _attackSFX: {fileID: 0}
+  _hurtSFX: {fileID: 0}
+  _voiceSFX: {fileID: 0}
+  _moveSFX: {fileID: 0}
 --- !u!114 &7228148100382587493
 MonoBehaviour:
   m_ObjectHideFlags: 0
