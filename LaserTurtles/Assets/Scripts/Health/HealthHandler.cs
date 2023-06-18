@@ -81,6 +81,11 @@ public class HealthHandler : MonoBehaviour
             // Check if GameObject can be Affected by Damager
             if (gameObject.tag == "Player" && tempDamager.CanAffect == CanAffect.Player || gameObject.tag == "Enemy" && tempDamager.CanAffect == CanAffect.Enemy || tempDamager.CanAffect == CanAffect.Both)
             {
+                if (gameObject.tag == "Enemy")
+                {
+                    Shake.instance.ScreenShake(0.2f);
+                }
+
                 // If Damager is One Hit
                 if (tempDamager.DamagerType == DamagerType.OneHit)
                 {
