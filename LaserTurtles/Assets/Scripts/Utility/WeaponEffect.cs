@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WeaponEffect : MonoBehaviour
@@ -20,12 +21,25 @@ public class WeaponEffect : MonoBehaviour
         _weaponParticle.SetActive(state);
     }
 
-    //private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
+    {
+        if (_damager.CanDamage && (other.CompareTag("Enemy") || other.CompareTag("Environment")))
+        {
+            Vector3 hitPosition = other.ClosestPoint(_boxCollider.bounds.center);
+            GameObject vfx = Instantiate(_hitVFX, hitPosition, Quaternion.identity);
+            Destroy(vfx, 0.5f);
+        }
+    }
+
+    //void OnCollisionEnter(Collision collision)
     //{
-    //    if (_damager.CanDamage && (other.CompareTag("Enemy") || other.CompareTag("Environment")))
+    //    if (_damager.CanDamage && (collision.transform.CompareTag("Enemy") || collision.transform.CompareTag("Environment")))
     //    {
-    //        GameObject vfx = Instantiate(_hitVFX, other.transform.position, other.transform.rotation, null);
-    //        Destroy(vfx, 0.5f);
+    //        ContactPoint contact = collision.contacts[0];
+    //        Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
+    //        Vector3 pos = contact.point;
+    //        GameObject vfx = Instantiate(_hitVFX, pos, rot);
+    //        Destroy(vfx, 5f);
     //    }
     //}
 }
