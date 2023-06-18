@@ -354,6 +354,7 @@ public class PlayerController : MonoBehaviour
                 _charCon.Move(dodgeDir * dodgeSpeed * Time.deltaTime);
                 if (!isDodging)
                     PlayAudioWithPitch(_dodgeSFX);
+                    _healthHandlerRef.Invulnerable = true;
                 isDodging = true;
             }
             else
@@ -363,6 +364,8 @@ public class PlayerController : MonoBehaviour
                 _calledDodge = false;
                 _dodgeCooldownTimer = 0;
                 dodgeDurationTimer = 0;
+
+                _healthHandlerRef.Invulnerable = false;
             }
         }
         DodgeEffect();

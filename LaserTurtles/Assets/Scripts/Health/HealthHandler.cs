@@ -17,6 +17,7 @@ public class HealthHandler : MonoBehaviour
     [SerializeField] private HealthBar _healthBar;
     [SerializeField] private int _maxHP;
     [SerializeField] private int _currentHP;
+    [SerializeField] private bool _invulnerable = false;
     //[Header("Damage Popup")]
     //[SerializeField] private GameObject _dmgPopup;
     //[SerializeField] private float _dmgPopupYOffset = 2;
@@ -26,6 +27,9 @@ public class HealthHandler : MonoBehaviour
     [Header("Knockback")]
     [SerializeField] bool knockbackable = true;
     //[SerializeField] private float _knockbackForceModifier = 1f;
+
+    public bool Invulnerable { get => _invulnerable; set => _invulnerable = value; }
+
 
     private void Awake()
     {
@@ -170,9 +174,12 @@ public class HealthHandler : MonoBehaviour
     // --------------------
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Damager"))
+        if (!_invulnerable)
         {
-            TakeDamage(other.gameObject);
+            if (other.CompareTag("Damager"))
+            {
+                TakeDamage(other.gameObject);
+            }
         }
     }
 
