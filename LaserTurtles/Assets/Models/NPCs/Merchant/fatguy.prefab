@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 40787743568225580}
   - component: {fileID: 2842931854238159334}
   - component: {fileID: 5688647317900636833}
-  - component: {fileID: 7980085025085880447}
+  - component: {fileID: 3714969116566646590}
   m_Layer: 0
   m_Name: fatguy
   m_TagString: Untagged
@@ -105,8 +105,8 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!65 &7980085025085880447
-BoxCollider:
+--- !u!135 &3714969116566646590
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -116,5 +116,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.079121, y: 4.4752064, z: 2.76241}
-  m_Center: {x: 0, y: 2.2376032, z: -0.029497862}
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 1.5, z: 0}
