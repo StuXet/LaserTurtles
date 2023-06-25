@@ -87,7 +87,7 @@ public class HealthHandler : MonoBehaviour
             {
                 if (gameObject.tag == "Enemy")
                 {
-                    Shake.instance.ScreenShake(0.2f);
+                    Shake.instance.ScreenShake(0.2f,0.25f);
                 }
 
                 // If Damager is One Hit
