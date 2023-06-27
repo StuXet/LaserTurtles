@@ -3450,6 +3450,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Clouds Effect
       objectReference: {fileID: 0}
+    - target: {fileID: 5988329935820713689, guid: 8a8119a6221227b459517b64fde00d4d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a8119a6221227b459517b64fde00d4d, type: 3}
 --- !u!1001 &1093758608
