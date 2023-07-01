@@ -172,8 +172,8 @@ MonoBehaviour:
   _hitColor: {r: 1, g: 1, b: 1, a: 1}
   _skinedMeshRenderers:
   - {fileID: 8721026530711222499}
-  _effectStrenght: 0.25
-  _flashDuration: 0.1
+  _effectStrenght: 1
+  _flashDuration: 0.05
 --- !u!1 &7594543226852021194
 GameObject:
   m_ObjectHideFlags: 0
