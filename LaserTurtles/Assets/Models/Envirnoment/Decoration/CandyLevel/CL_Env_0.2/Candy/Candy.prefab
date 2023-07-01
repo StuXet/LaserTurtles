@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6445628130956469045}
   - component: {fileID: 9121917812191533055}
   - component: {fileID: 4486703036014096583}
+  - component: {fileID: 3179182929955567249}
   m_Layer: 8
   m_Name: Candy
   m_TagString: Environment
@@ -98,3 +99,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3928673688118766648, guid: 69b1fc080270c104ba8d80a5a3f1d096, type: 3}
+--- !u!114 &3179182929955567249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7320446831678436906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff

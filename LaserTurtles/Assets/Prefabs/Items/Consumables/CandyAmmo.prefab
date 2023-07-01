@@ -490,7 +490,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &5601993761966769207
 MonoBehaviour:
@@ -509,13 +509,14 @@ MonoBehaviour:
   _modifierType: 0
   _lightDamageAmount: 10
   _heavyDamageAmount: 0
+  DamageModifier: 1
   UsingHeavy: 0
   UsingSpecial: 0
   CanDamage: 0
   _knockbackPower: 5
   _knockbackHeavyMultiplier: 1
   _knockbackStunTime: 0.2
-  _canKnockback: 1
+  CanKnockback: 0
 --- !u!114 &1051837804488508042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -533,6 +534,8 @@ MonoBehaviour:
   PickupPressIcon: {fileID: 0}
   _outline: {fileID: 2455012481643412115}
   _pickUpSFX: {fileID: 3645374589910709376}
+  _pitchLow: 0.8
+  _pitchHigh: 1.2
   CanBePicked: 0
   RequiresInteraction: 0
 --- !u!114 &884752471402075366

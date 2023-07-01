@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -34,11 +35,11 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Animator _playerAnimator;
 
+    [SerializeField] private int livesLeft = 3;
     [SerializeField] float deathTimer = 4.0f;
     float deathTempTimer;
     public bool InControl = true;
     private bool _isDead = false;
-    private int livesLeft = 3;
 
     [Header("Movement & Looking")]
     public float MaxSpeed = 10.0f;
@@ -48,6 +49,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _rotationSpeed = 5;
     private float _stepTimer, _stepTimeLeft;
     public MovementType MoveType = MovementType.WorldPos;
+    public LayerMask MouseLookMask;
     [Range(0, 359)]
     [SerializeField] int _controlsSkewAngle = 45;
     private Matrix4x4 _matrixRot;
@@ -88,6 +90,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioSource _getHitSFX;
     [Range(-3, 3)]
     [SerializeField] private float _pitchLow = 0.8f, _pitchHigh = 1.2f;
+
+    [Header("UI")]
+    [SerializeField] private TextMeshProUGUI _livesLeftText;
 
     public bool IsDead { get => _isDead; }
 
@@ -130,6 +135,8 @@ public class PlayerController : MonoBehaviour
         }
         DeathHandler();
         AnimationHandler();
+
+        RefreshUI();
     }
 
 
@@ -217,7 +224,7 @@ public class PlayerController : MonoBehaviour
             Vector2 mousePos = _plInputActions.Player.MouseLook.ReadValue<Vector2>();
             Ray ray = _playerCam.ScreenPointToRay(mousePos);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit, 100, MouseLookMask))
             {
                 Vector3 target = hit.point;
                 target.y = transform.position.y;
@@ -230,15 +237,41 @@ public class PlayerController : MonoBehaviour
         }
         //else
         {
-            Vector2 stickVec = _plInputActions.Player.StickLook.ReadValue<Vector2>();
-            Vector3 tempRot = new Vector3(stickVec.x, 0, stickVec.y);
-            Vector3 delta = _matrixRot.MultiplyPoint3x4(tempRot).normalized;
-            if (delta.magnitude != 0)
+            if (_plInputActions.Player.MoveStick.IsInProgress())
             {
-                float angles = Mathf.Atan2(delta.x, delta.z) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.Euler(0, angles, 0);
+                if (!_plInputActions.Player.StickLook.IsInProgress())
+                {
+                    if (_movementDir != Vector3.zero)
+                    {
+                        transform.rotation = Quaternion.LookRotation(_skewedMoveDir);
+                    }
+                }
+                else
+                {
+                    Vector2 stickVec = _plInputActions.Player.StickLook.ReadValue<Vector2>();
+                    Vector3 tempRot = new Vector3(stickVec.x, 0, stickVec.y);
+                    Vector3 delta = _matrixRot.MultiplyPoint3x4(tempRot).normalized;
+                    if (delta.magnitude != 0)
+                    {
+                        float angles = Mathf.Atan2(delta.x, delta.z) * Mathf.Rad2Deg;
+                        transform.rotation = Quaternion.Euler(0, angles, 0);
 
-                _mouseAngleDelta = (int)angles + 180;
+                        _mouseAngleDelta = (int)angles + 180;
+                    }
+                }
+            }
+            else if (_plInputActions.Player.StickLook.IsInProgress())
+            {
+                Vector2 stickVec = _plInputActions.Player.StickLook.ReadValue<Vector2>();
+                Vector3 tempRot = new Vector3(stickVec.x, 0, stickVec.y);
+                Vector3 delta = _matrixRot.MultiplyPoint3x4(tempRot).normalized;
+                if (delta.magnitude != 0)
+                {
+                    float angles = Mathf.Atan2(delta.x, delta.z) * Mathf.Rad2Deg;
+                    transform.rotation = Quaternion.Euler(0, angles, 0);
+
+                    _mouseAngleDelta = (int)angles + 180;
+                }
             }
         }
 
@@ -324,6 +357,7 @@ public class PlayerController : MonoBehaviour
                 _charCon.Move(dodgeDir * dodgeSpeed * Time.deltaTime);
                 if (!isDodging)
                     PlayAudioWithPitch(_dodgeSFX);
+                    _healthHandlerRef.Invulnerable = true;
                 isDodging = true;
             }
             else
@@ -333,6 +367,8 @@ public class PlayerController : MonoBehaviour
                 _calledDodge = false;
                 _dodgeCooldownTimer = 0;
                 dodgeDurationTimer = 0;
+
+                _healthHandlerRef.Invulnerable = false;
             }
         }
         DodgeEffect();
@@ -467,6 +503,11 @@ public class PlayerController : MonoBehaviour
             // Death
             _playerAnimator.SetBool("Death", _isDead);
         }
+    }
+
+    private void RefreshUI()
+    {
+        _livesLeftText.text = livesLeft.ToString();
     }
 
 

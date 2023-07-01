@@ -17,6 +17,7 @@ public class HealthHandler : MonoBehaviour
     [SerializeField] private HealthBar _healthBar;
     [SerializeField] private int _maxHP;
     [SerializeField] private int _currentHP;
+    [SerializeField] private bool _invulnerable = false;
     //[Header("Damage Popup")]
     //[SerializeField] private GameObject _dmgPopup;
     //[SerializeField] private float _dmgPopupYOffset = 2;
@@ -26,6 +27,9 @@ public class HealthHandler : MonoBehaviour
     [Header("Knockback")]
     [SerializeField] bool knockbackable = true;
     //[SerializeField] private float _knockbackForceModifier = 1f;
+
+    public bool Invulnerable { get => _invulnerable; set => _invulnerable = value; }
+
 
     private void Awake()
     {
@@ -81,6 +85,11 @@ public class HealthHandler : MonoBehaviour
             // Check if GameObject can be Affected by Damager
             if (gameObject.tag == "Player" && tempDamager.CanAffect == CanAffect.Player || gameObject.tag == "Enemy" && tempDamager.CanAffect == CanAffect.Enemy || tempDamager.CanAffect == CanAffect.Both)
             {
+                if (gameObject.tag == "Enemy")
+                {
+                    Shake.instance.ScreenShake(0.2f,0.25f);
+                }
+
                 // If Damager is One Hit
                 if (tempDamager.DamagerType == DamagerType.OneHit)
                 {
@@ -170,9 +179,12 @@ public class HealthHandler : MonoBehaviour
     // --------------------
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Damager"))
+        if (!_invulnerable)
         {
-            TakeDamage(other.gameObject);
+            if (other.CompareTag("Damager"))
+            {
+                TakeDamage(other.gameObject);
+            }
         }
     }
 
