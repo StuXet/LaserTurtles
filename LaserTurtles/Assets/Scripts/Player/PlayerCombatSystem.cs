@@ -11,6 +11,7 @@ public class PlayerCombatSystem : MonoBehaviour
 {
     [SerializeField] private Animator _playerAnimator;
     [SerializeField] private InputManager _inputManagerRef;
+    private PlayerController _playerController;
     private PlayerInputActions _plInputActions;
 
     [Header("Equipping")]
@@ -66,6 +67,7 @@ public class PlayerCombatSystem : MonoBehaviour
     private void Start()
     {
         _plInputActions = _inputManagerRef.PlInputActions;
+        _playerController = GetComponent<PlayerController>();
 
         _plInputActions.Player.MeleeAttack.started += LightAttack;
         _plInputActions.Player.MeleeAttack.performed += HeavyAttack;
@@ -106,6 +108,8 @@ public class PlayerCombatSystem : MonoBehaviour
 
         RefreshUI();
         AnimationHandler();
+
+        DisableMovementOnAttack();
     }
 
     void RechargeSpecialAttackBar()
@@ -300,6 +304,7 @@ public class PlayerCombatSystem : MonoBehaviour
         {
             _rangedHoldPoint.gameObject.SetActive(true);
             _meleeHoldPoint.gameObject.SetActive(false);
+            _playerController.RotateToCursor();
         }
         else
         {
@@ -377,6 +382,7 @@ public class PlayerCombatSystem : MonoBehaviour
 
     void Attack()
     {
+        _playerController.RotateToCursor();
         if (!isLightAttacking && !_isShooting && _equippedMeleeWeapon != null && _currentSlot != 4)
         {
             isLightAttacking = true;
@@ -650,4 +656,21 @@ public class PlayerCombatSystem : MonoBehaviour
             }
         }
     }
+
+    private void DisableMovementOnAttack()
+    {
+        if (isAttacking || 
+            isHeavyAttacking || 
+            isLightAttacking || 
+            _isPrepShooting || 
+            _isPrepShooting & 
+            _playerController.InControl)
+        {
+            _playerController.InControl = false;
+        }
+        else
+        {
+            _playerController.InControl = true;
+        }
+    } 
 }
