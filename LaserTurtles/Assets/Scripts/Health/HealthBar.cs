@@ -21,6 +21,7 @@ public class HealthBar : MonoBehaviour
     private float _damagedHealthShrinkTimer;
 
     [Header("Transparency")]
+    [SerializeField] private bool _isBoss;
     [SerializeField] private float _hideSpeed = 1;
     private float _hideTimer;
     [SerializeField] private bool UseTransparency;
@@ -45,6 +46,22 @@ public class HealthBar : MonoBehaviour
 
     private void Update()
     {
+        if (_isBoss)
+        {
+            if (_healthSystem == null)
+            {
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                if (_healthSystem.CurrentHealth <= 0)
+                {
+                    gameObject.SetActive(false);
+                    _healthSystem = null;
+                }
+            }
+        }
+
         if (_nameText)
         {
             if (_displayName && _alwaysVisible)
@@ -89,13 +106,23 @@ public class HealthBar : MonoBehaviour
         }
     }
 
-    public void Setup(HealthSystem healthSystem)
+    public void Setup(HealthSystem healthSystem, string charName)
     {
         this._healthSystem = healthSystem;
         healthSystem.OnHealthChanged += HealthSystem_OnHealthChanged;
+
+        _characterName = charName;
+        if (_nameText) _nameText.text = _characterName;
+
+        RefreshHealthBars();
     }
 
     private void HealthSystem_OnHealthChanged(object sender, System.EventArgs e)
+    {
+        RefreshHealthBars();
+    }
+
+    private void RefreshHealthBars()
     {
         _damagedHealthShrinkTimer = _shrinkTimerDelay;
         CurrentHealthBar1.fillAmount = _healthSystem.GetHealthPercent();

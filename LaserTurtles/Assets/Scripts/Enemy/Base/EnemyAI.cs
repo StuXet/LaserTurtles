@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour
 {
     // Enemy Fields
+    public string EnemyName = "Default Enemy";
     public LayerMask GroundLayer, PlayerLayer;
     public NavMeshAgent Agent;
     [HideInInspector] public Transform Player;
@@ -17,6 +18,7 @@ public class EnemyAI : MonoBehaviour
     public bool CanPatrol = false;
     public bool CanChase = true;
     public bool CanFly = false;
+    public bool UseToggleHP = false;
     public float PatrolRange;
     private Vector3 WalkPoint;
     private bool _walkPointSet;
@@ -56,9 +58,13 @@ public class EnemyAI : MonoBehaviour
 
     public HealthHandler HealthHandlerRef { get => _healthHandlerRef; set => _healthHandlerRef = value; }
     public Animator AnimatorRef { get => _animatorRef; }
+    public bool GetPlayerInSightRange { get => PlayerInSightRange; }
+    public bool GetPlayerInAttackRange { get => PlayerInAttackRange; }
+
 
     private void Awake()
     {
+        _healthHandlerRef.CharacterName = EnemyName;
         Agent = GetComponent<NavMeshAgent>();
         Player = GameObject.FindGameObjectWithTag("Player").transform;
         _healthHandlerRef.OnDeathOccured += _healthHandlerRef_OnDeathOccured;
@@ -89,6 +95,8 @@ public class EnemyAI : MonoBehaviour
         {
             Agent.enabled = false;
         }
+
+        ToggleHPBarState();
 
         Gravity();
         HandleKnockback();
@@ -125,17 +133,20 @@ public class EnemyAI : MonoBehaviour
             _walkPointSet = true;
     }
 
-    //private void ToggleHPBarState()
-    //{
-    //    if (PlayerInSightRange)
-    //    {
-    //        _healthHandlerRef.ToggleHealthBar(true);
-    //    }
-    //    else
-    //    {
-    //        _healthHandlerRef.ToggleHealthBar(false);
-    //    }
-    //}
+    private void ToggleHPBarState()
+    {
+        if (UseToggleHP)
+        {
+            if (PlayerInSightRange)
+            {
+                _healthHandlerRef.ToggleHealthBar(true);
+            }
+            else
+            {
+                _healthHandlerRef.ToggleHealthBar(false);
+            }
+        }
+    }
 
     private bool CanSeePlayer()
     {
