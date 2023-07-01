@@ -11,7 +11,7 @@ public class PlayerCombatSystem : MonoBehaviour
 {
     [SerializeField] private Animator _playerAnimator;
     [SerializeField] private InputManager _inputManagerRef;
-    [SerializeField] private PlayerController _playerController;
+    private PlayerController _playerController;
     private PlayerInputActions _plInputActions;
 
     [Header("Equipping")]
@@ -67,6 +67,7 @@ public class PlayerCombatSystem : MonoBehaviour
     private void Start()
     {
         _plInputActions = _inputManagerRef.PlInputActions;
+        _playerController = GetComponent<PlayerController>();
 
         _plInputActions.Player.MeleeAttack.started += LightAttack;
         _plInputActions.Player.MeleeAttack.performed += HeavyAttack;
