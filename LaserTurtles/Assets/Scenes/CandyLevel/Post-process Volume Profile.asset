@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70afe9e12c7a7ed47911bb608a23a8ff, type: 3}
   m_Name: SplitToning
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   shadows:
     m_OverrideState: 1
-    m_Value: {r: 0.2174083, g: 0.2525305, b: 0.5849056, a: 1}
+    m_Value: {r: 0.654902, g: 0.8423217, b: 1, a: 1}
   highlights:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 0.6587542, b: 0.44716978, a: 1}
+    m_Value: {r: 0.78431374, g: 0.45490196, b: 0.5667971, a: 1}
   balance:
     m_OverrideState: 1
-    m_Value: 26
+    m_Value: 10
 --- !u!114 &-1983128065515393948
 MonoBehaviour:
   m_ObjectHideFlags: 3
