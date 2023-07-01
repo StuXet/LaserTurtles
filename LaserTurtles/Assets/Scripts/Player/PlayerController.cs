@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
     private float _currentSpeed;
     //[SerializeField] private float _acceleration = 40;
     [SerializeField] private float _deceleration = 40;
-    [SerializeField] private float _rotationSpeed = 5;
+    [SerializeField] private float _rotationSpeed = 500;
     private float _stepTimer, _stepTimeLeft;
     public MovementType MoveType = MovementType.WorldPos;
     public LayerMask MouseLookMask;
