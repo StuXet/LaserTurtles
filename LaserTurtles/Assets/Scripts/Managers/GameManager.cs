@@ -17,11 +17,9 @@ public class GameManager : MonoBehaviour
     public event EventHandler OnPauseToggle;
     private bool _isGamePaused;
 
-    private Transform _playerTransform;
-
     public PlayerInputActions PlInputActions { get => _plInputActions; }
     public bool IsGamePaused { get => _isGamePaused; }
-    public Transform PlayerTransform { get => _playerTransform; }
+
 
     private void Awake()
     {
@@ -38,8 +36,6 @@ public class GameManager : MonoBehaviour
         _plInputActions = FindObjectOfType<InputManager>().PlInputActions;
         _uIMediator = FindObjectOfType<UIMediator>();
         _winTextRef = _uIMediator.WinUI;
-
-        _playerTransform = FindObjectOfType<PlayerController>().transform;
     }
 
     private void Start()

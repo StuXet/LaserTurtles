@@ -14,16 +14,12 @@ public class ItemObject : MonoBehaviour
     [SerializeField] private GameObject PickupPressIcon;
     [SerializeField] private Outline _outline;
     [SerializeField] private AudioSource _pickUpSFX;
-    [Range(-3, 3)]
+    [Range(-3,3)]
     [SerializeField] private float _pitchLow = 0.8f, _pitchHigh = 1.2f;
-    [SerializeField] private float _magnetSpeed = 5f;
-    private float _magnetCurrentSpeed;
-
     private InventorySystem PlayerInventoryRef;
 
     public bool CanBePicked;
     public bool RequiresInteraction;
-    public bool Magnetize;
 
     private bool _colliding;
 
@@ -70,20 +66,6 @@ public class ItemObject : MonoBehaviour
             {
                 PickupPressIcon.SetActive(false);
             }
-        }
-
-        if (CanBePicked && Magnetize)
-        {
-            if (_magnetCurrentSpeed == 0)
-            {
-                _magnetCurrentSpeed = _magnetSpeed;
-            }
-            _magnetCurrentSpeed += Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, GameManager.Instance.PlayerTransform.position, _magnetCurrentSpeed * Time.deltaTime);
-        }
-        else if (!Magnetize)
-        {
-            _magnetCurrentSpeed = _magnetSpeed;
         }
     }
 
