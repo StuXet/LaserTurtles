@@ -42,8 +42,8 @@ public class PlayerCombatSystem : MonoBehaviour
     private float _timer;
     //private bool _isDamaging;
     private float mouseHoldCounter;
-    [SerializeField] float poolForce = 2f;
-    [SerializeField] float specialAttackLength = 10f;
+    //[SerializeField] float poolForce = 2f;
+    //[SerializeField] float specialAttackLength = 10f;
 
     [Header("Shooting")]
     [SerializeField] private bool _isShooting;
@@ -55,14 +55,20 @@ public class PlayerCombatSystem : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _ammoText;
     [SerializeField] private GameObject _aimingArrow;
 
-    [Header("specialAttack")]
+    [Header("SpecialAttack")]
     public bool AllowSpecial;
+    [SerializeField] private bool _specialKnockback;
+    [SerializeField] private float _specialAttackDuration = 2f;
+    [SerializeField] private float _specialDamageStart = 0f;
+    [SerializeField] private float _specialDamageEnd = 2f;
+    [SerializeField] private float _specialDamageModifier = 1f;
     public Slider specialAttackBar;
     [SerializeField] private float _maxChargeBar = 100;
     [SerializeField] private float _currentChargeBar;
     [SerializeField] private float _chargeSpeedInSec = 1;
     [SerializeField] private float _timeChargeAmount = 1;
     [SerializeField] private float _killChargeAmount = 5;
+    private bool _isUsingSpecial;
 
     private void Start()
     {
@@ -78,6 +84,7 @@ public class PlayerCombatSystem : MonoBehaviour
         _plInputActions.Player.ShootAttack.canceled += ShootAttackCancel;
 
         _plInputActions.Player.SpecialAttack.performed += SpecialAttack;
+
         _plInputActions.Player.WeaponSlot1.performed += WeaponSlot1;
         _plInputActions.Player.WeaponSlot2.performed += WeaponSlot2;
         _plInputActions.Player.WeaponSlot3.performed += WeaponSlot3;
@@ -98,7 +105,7 @@ public class PlayerCombatSystem : MonoBehaviour
     {
         //MouseHoldCounter();
         //InputHandler();
-        Debug.DrawRay(transform.position, transform.forward * specialAttackLength, Color.red);
+        //Debug.DrawRay(transform.position, transform.forward * specialAttackLength, Color.red);
 
         AttackTimer();
         ShootTimer();
@@ -220,7 +227,7 @@ public class PlayerCombatSystem : MonoBehaviour
     private void SpecialAttack(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
 
-        if (AllowSpecial && !inDialogue && _currentChargeBar == 100)
+        if (AllowSpecial && !inDialogue && _currentChargeBar >= _maxChargeBar)
         {
             Debug.Log("Special attack");
             SpecialAttack();
@@ -420,41 +427,46 @@ public class PlayerCombatSystem : MonoBehaviour
 
     void SpecialAttack()
     {
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, specialAttackLength))
+        if (!_isShooting && !isLightAttacking && !isHeavyAttacking && _equippedMeleeWeapon != null && _currentSlot != 4)
         {
-            if (hit.collider.tag == "Enemy")
-            {
-                //Adds a rigidbody to the object if it does'nt have one
-                Rigidbody rb = hit.collider.GetComponent<Rigidbody>();
-                EnemyAI eAI = hit.collider.GetComponent<EnemyAI>();
-                NavMeshAgent navAgent = hit.collider.GetComponent<NavMeshAgent>();
-                if (!rb)
-                {
-                    hit.collider.AddComponent<Rigidbody>();
-                    rb = hit.collider.GetComponent<Rigidbody>();
-                }
-
-                if (eAI)
-                {
-                    eAI.enabled = false;
-                }
-
-                if (navAgent)
-                {
-                    navAgent.enabled = false;
-                }
-
-                rb.isKinematic = false;
-                rb.detectCollisions = true;
-                rb.freezeRotation = true;
-
-                Vector3 dir = transform.position - hit.transform.position;
-                rb = hit.collider.GetComponent<Rigidbody>();
-                rb.AddForce(dir * poolForce, ForceMode.Impulse);
-                Debug.Log("Special Attack");
-                StartCoroutine(ResetAI(1.5f, hit.collider));
-            }
+            _isUsingSpecial = true;
         }
+
+        //if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, specialAttackLength))
+        //{
+        //    if (hit.collider.tag == "Enemy")
+        //    {
+        //        //Adds a rigidbody to the object if it does'nt have one
+        //        Rigidbody rb = hit.collider.GetComponent<Rigidbody>();
+        //        EnemyAI eAI = hit.collider.GetComponent<EnemyAI>();
+        //        NavMeshAgent navAgent = hit.collider.GetComponent<NavMeshAgent>();
+        //        if (!rb)
+        //        {
+        //            hit.collider.AddComponent<Rigidbody>();
+        //            rb = hit.collider.GetComponent<Rigidbody>();
+        //        }
+
+        //        if (eAI)
+        //        {
+        //            eAI.enabled = false;
+        //        }
+
+        //        if (navAgent)
+        //        {
+        //            navAgent.enabled = false;
+        //        }
+
+        //        rb.isKinematic = false;
+        //        rb.detectCollisions = true;
+        //        rb.freezeRotation = true;
+
+        //        Vector3 dir = transform.position - hit.transform.position;
+        //        rb = hit.collider.GetComponent<Rigidbody>();
+        //        rb.AddForce(dir * poolForce, ForceMode.Impulse);
+        //        Debug.Log("Special Attack");
+        //        StartCoroutine(ResetAI(1.5f, hit.collider));
+        //    }
+        //}
     }
 
     void Shooting()
@@ -486,7 +498,7 @@ public class PlayerCombatSystem : MonoBehaviour
 
     private void AttackTimer()
     {
-        if (isLightAttacking && _equippedMeleeWeapon != null)
+        if (isLightAttacking && !_isUsingSpecial && _equippedMeleeWeapon != null)
         {
             isAttacking = true;
 
@@ -523,7 +535,7 @@ public class PlayerCombatSystem : MonoBehaviour
             _timer += Time.deltaTime;
 
         }
-        else if (!isLightAttacking && isHeavyAttacking && _equippedMeleeWeapon != null)
+        else if (!isLightAttacking && isHeavyAttacking && !_isUsingSpecial && _equippedMeleeWeapon != null)
         {
             _isHeavy = true;
             isAttacking = true;
@@ -543,6 +555,42 @@ public class PlayerCombatSystem : MonoBehaviour
             else
             {
                 _equippedMeleeWeapon.GetComponent<Damager>().CanDamage = false;
+                //_isDamaging = false;
+            }
+
+            if (_equippedMeleeWeapon.TryGetComponent(out WeaponEffect effect))
+            {
+                effect.EffectState(true);
+            }
+
+            _timer += Time.deltaTime;
+        }
+        else if (_isUsingSpecial && !isLightAttacking && !isHeavyAttacking && _equippedMeleeWeapon != null)
+        {
+            isAttacking = true;
+
+            if (_timer >= _specialAttackDuration)
+            {
+                Damager currentDamager = _equippedMeleeWeapon.GetComponent<Damager>();
+                currentDamager.CanDamage = false;
+                _isUsingSpecial = false;
+                _timer = 0;
+            }
+            else if (_timer >= _specialDamageStart && _timer <= _specialDamageEnd)
+            {
+                //_equippedMeleeWeapon.GetComponent<Damager>().CanDamage = true;
+                Damager currentDamager = _equippedMeleeWeapon.GetComponent<Damager>();
+                currentDamager.CanDamage = true;
+                currentDamager.CanKnockback = _specialKnockback;
+                currentDamager.DamageModifier = _specialDamageModifier;
+
+                //_isDamaging = true;
+            }
+            else
+            {
+                //_equippedMeleeWeapon.GetComponent<Damager>().CanDamage = false;
+                Damager currentDamager = _equippedMeleeWeapon.GetComponent<Damager>();
+                currentDamager.CanDamage = false;
                 //_isDamaging = false;
             }
 
@@ -625,6 +673,11 @@ public class PlayerCombatSystem : MonoBehaviour
             {
                 _playerAnimator.SetBool("HeavyAttack", isHeavyAttacking);
             }
+
+            if (AllowSpecial)
+            {
+                _playerAnimator.SetBool("SpecialAttack", _isUsingSpecial);
+            }
         }
     }
 
@@ -659,11 +712,11 @@ public class PlayerCombatSystem : MonoBehaviour
 
     private void DisableMovementOnAttack()
     {
-        if (isAttacking || 
-            isHeavyAttacking || 
-            isLightAttacking || 
-            _isPrepShooting || 
-            _isPrepShooting & 
+        if (isAttacking ||
+            isHeavyAttacking ||
+            isLightAttacking ||
+            _isPrepShooting ||
+            _isPrepShooting &
             _playerController.InControl)
         {
             _playerController.InControl = false;
@@ -672,5 +725,5 @@ public class PlayerCombatSystem : MonoBehaviour
         {
             _playerController.InControl = true;
         }
-    } 
+    }
 }
