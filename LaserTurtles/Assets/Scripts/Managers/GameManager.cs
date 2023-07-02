@@ -34,8 +34,13 @@ public class GameManager : MonoBehaviour
 
         _eventSystem = FindObjectOfType<EventSystem>();
         _plInputActions = FindObjectOfType<InputManager>().PlInputActions;
-        _uIMediator = FindObjectOfType<UIMediator>();
+        _uIMediator = UIMediator.Instance;
         _winTextRef = _uIMediator.WinUI;
+    }
+
+    private void Start()
+    {
+        if (_plInputActions == null) _plInputActions = FindObjectOfType<InputManager>().PlInputActions;
     }
 
     public void RefreshSelectedUI(GameObject selectedObj)

@@ -21,10 +21,13 @@ public class RespawnHandler : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            _playerController = other.GetComponent<PlayerController>();
-            _colliding = true;
+            if (other.TryGetComponent(out PlayerController player))
+            {
+                _playerController = player;
+                _colliding = true;
 
-            StartCoroutine(RespawnDelay());
+                StartCoroutine(RespawnDelay());
+            }
         }
         else if (other.CompareTag("Item"))
         {

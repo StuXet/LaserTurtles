@@ -9,6 +9,7 @@ TagManager:
   - Environment
   - Ground
   - Item
+  - Inventory
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Player
   - MapView
   - Environment
-  - 
+  - MouseLookCollider
   - 
   - 
   - 

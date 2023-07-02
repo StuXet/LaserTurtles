@@ -11,6 +11,4 @@ public class DamagePopup : MonoBehaviour
     {
         Destroy(gameObject, _destroyTime);
     }
-
-   
 }

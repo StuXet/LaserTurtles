@@ -37,6 +37,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""MoveStick"",
+                    ""type"": ""Value"",
+                    ""id"": ""9a177f51-3108-4ecf-a569-b29afddb031c"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""MouseMovement"",
                     ""type"": ""Value"",
                     ""id"": ""669f5132-4da3-4bfc-bfee-5b8a04685db0"",
@@ -170,6 +179,24 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""AnyKeyKeyboardMouse"",
+                    ""type"": ""Button"",
+                    ""id"": ""13bbff17-7674-4b06-b22a-14ff8b4ba51e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AnyKeyController"",
+                    ""type"": ""Button"",
+                    ""id"": ""73ec1b63-98a1-4a43-8564-b8499a966c2d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -286,7 +313,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""1c8a3ebb-75f4-4d1c-95ba-28c1681490db"",
-                    ""path"": ""<Keyboard>/m"",
+                    ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -396,7 +423,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""c6fd4942-3558-4777-a5c6-68a8bbfcc2b9"",
-                    ""path"": ""<Keyboard>/tab"",
+                    ""path"": ""<Keyboard>/v"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -533,6 +560,226 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""ScrollWeapons"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8e3b8c0c-89a6-443b-95b7-0079d095af97"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""MoveStick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1322a1ea-8375-4ba7-b613-f5d0974053e3"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""AnyKeyKeyboardMouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5aad131b-c186-4fdd-8772-c5b1c2ee6b44"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""AnyKeyKeyboardMouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dc08fc9c-db7b-416b-afa5-cf97bf92a3ef"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""AnyKeyKeyboardMouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d3faec72-2215-44d3-a1bb-1c5a15a8e916"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""AnyKeyKeyboardMouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dbc9b456-e532-4b40-b853-a7e0afbe204e"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""AnyKeyKeyboardMouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""34f12eb7-43b1-4a92-a392-f958f7b66e68"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""AnyKeyKeyboardMouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6731f629-4ba1-4c8e-b470-587b1ed077cf"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""AnyKeyController"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a639d61a-6223-4f9b-aa76-0cfd4319b939"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""AnyKeyController"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8e624bad-af7b-40b1-9cf0-81f5f1c3ae9a"",
+                    ""path"": ""<Gamepad>/dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""AnyKeyController"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""89d7385e-bb86-41e8-9d7f-bdf8b0e23143"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""AnyKeyController"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""acfec2ab-1cc3-4e3d-8f03-93a67e6ef8c6"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""AnyKeyController"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d8c61d72-86e1-4b1f-923b-67a161c1a569"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""AnyKeyController"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1abb87dc-8615-4853-ac80-9a7447218487"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""AnyKeyController"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9966987e-ca5b-4198-8ae8-c43abb181c3d"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""AnyKeyController"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d55b2c88-74af-430b-8088-04633a578ec0"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""AnyKeyController"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""79c7f3e3-4aad-45a8-a814-e4d22c72dfa6"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""AnyKeyController"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2c670e2b-0ea9-4942-a0c5-cff8f6bfda94"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""AnyKeyController"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eea2ab69-e27e-4dc0-93b2-4b5228e5ab20"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""AnyKeyController"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f840a031-9c92-49cc-afd8-a465bf2cd9d8"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""AnyKeyController"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1152,6 +1399,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
+        m_Player_MoveStick = m_Player.FindAction("MoveStick", throwIfNotFound: true);
         m_Player_MouseMovement = m_Player.FindAction("MouseMovement", throwIfNotFound: true);
         m_Player_MouseLook = m_Player.FindAction("MouseLook", throwIfNotFound: true);
         m_Player_StickLook = m_Player.FindAction("StickLook", throwIfNotFound: true);
@@ -1167,6 +1415,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player_WeaponSlot3 = m_Player.FindAction("WeaponSlot3", throwIfNotFound: true);
         m_Player_WeaponSlot4 = m_Player.FindAction("WeaponSlot4", throwIfNotFound: true);
         m_Player_ScrollWeapons = m_Player.FindAction("ScrollWeapons", throwIfNotFound: true);
+        m_Player_AnyKeyKeyboardMouse = m_Player.FindAction("AnyKeyKeyboardMouse", throwIfNotFound: true);
+        m_Player_AnyKeyController = m_Player.FindAction("AnyKeyController", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1240,6 +1490,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Move;
+    private readonly InputAction m_Player_MoveStick;
     private readonly InputAction m_Player_MouseMovement;
     private readonly InputAction m_Player_MouseLook;
     private readonly InputAction m_Player_StickLook;
@@ -1255,11 +1506,14 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_WeaponSlot3;
     private readonly InputAction m_Player_WeaponSlot4;
     private readonly InputAction m_Player_ScrollWeapons;
+    private readonly InputAction m_Player_AnyKeyKeyboardMouse;
+    private readonly InputAction m_Player_AnyKeyController;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
         public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
+        public InputAction @MoveStick => m_Wrapper.m_Player_MoveStick;
         public InputAction @MouseMovement => m_Wrapper.m_Player_MouseMovement;
         public InputAction @MouseLook => m_Wrapper.m_Player_MouseLook;
         public InputAction @StickLook => m_Wrapper.m_Player_StickLook;
@@ -1275,6 +1529,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @WeaponSlot3 => m_Wrapper.m_Player_WeaponSlot3;
         public InputAction @WeaponSlot4 => m_Wrapper.m_Player_WeaponSlot4;
         public InputAction @ScrollWeapons => m_Wrapper.m_Player_ScrollWeapons;
+        public InputAction @AnyKeyKeyboardMouse => m_Wrapper.m_Player_AnyKeyKeyboardMouse;
+        public InputAction @AnyKeyController => m_Wrapper.m_Player_AnyKeyController;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1287,6 +1543,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
+                @MoveStick.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveStick;
+                @MoveStick.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveStick;
+                @MoveStick.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveStick;
                 @MouseMovement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseMovement;
                 @MouseMovement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseMovement;
                 @MouseMovement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseMovement;
@@ -1332,6 +1591,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @ScrollWeapons.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScrollWeapons;
                 @ScrollWeapons.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScrollWeapons;
                 @ScrollWeapons.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScrollWeapons;
+                @AnyKeyKeyboardMouse.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAnyKeyKeyboardMouse;
+                @AnyKeyKeyboardMouse.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAnyKeyKeyboardMouse;
+                @AnyKeyKeyboardMouse.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAnyKeyKeyboardMouse;
+                @AnyKeyController.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAnyKeyController;
+                @AnyKeyController.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAnyKeyController;
+                @AnyKeyController.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAnyKeyController;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1339,6 +1604,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @MoveStick.started += instance.OnMoveStick;
+                @MoveStick.performed += instance.OnMoveStick;
+                @MoveStick.canceled += instance.OnMoveStick;
                 @MouseMovement.started += instance.OnMouseMovement;
                 @MouseMovement.performed += instance.OnMouseMovement;
                 @MouseMovement.canceled += instance.OnMouseMovement;
@@ -1384,6 +1652,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @ScrollWeapons.started += instance.OnScrollWeapons;
                 @ScrollWeapons.performed += instance.OnScrollWeapons;
                 @ScrollWeapons.canceled += instance.OnScrollWeapons;
+                @AnyKeyKeyboardMouse.started += instance.OnAnyKeyKeyboardMouse;
+                @AnyKeyKeyboardMouse.performed += instance.OnAnyKeyKeyboardMouse;
+                @AnyKeyKeyboardMouse.canceled += instance.OnAnyKeyKeyboardMouse;
+                @AnyKeyController.started += instance.OnAnyKeyController;
+                @AnyKeyController.performed += instance.OnAnyKeyController;
+                @AnyKeyController.canceled += instance.OnAnyKeyController;
             }
         }
     }
@@ -1549,6 +1823,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnMoveStick(InputAction.CallbackContext context);
         void OnMouseMovement(InputAction.CallbackContext context);
         void OnMouseLook(InputAction.CallbackContext context);
         void OnStickLook(InputAction.CallbackContext context);
@@ -1564,6 +1839,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnWeaponSlot3(InputAction.CallbackContext context);
         void OnWeaponSlot4(InputAction.CallbackContext context);
         void OnScrollWeapons(InputAction.CallbackContext context);
+        void OnAnyKeyKeyboardMouse(InputAction.CallbackContext context);
+        void OnAnyKeyController(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

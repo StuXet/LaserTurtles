@@ -40,7 +40,7 @@ public class Merchant : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        _uIMediator = FindObjectOfType<UIMediator>();
+        _uIMediator = UIMediator.Instance;
         pWallet = player.GetComponentInChildren<Wallet>();
         inputManager = player.GetComponent<InputManager>();
         playerInputActions = inputManager.PlInputActions;

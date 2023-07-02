@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -34,19 +35,21 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Animator _playerAnimator;
 
+    [SerializeField] private int livesLeft = 3;
     [SerializeField] float deathTimer = 4.0f;
     float deathTempTimer;
     public bool InControl = true;
     private bool _isDead = false;
-    private int livesLeft = 3;
 
     [Header("Movement & Looking")]
     public float MaxSpeed = 10.0f;
     private float _currentSpeed;
     //[SerializeField] private float _acceleration = 40;
     [SerializeField] private float _deceleration = 40;
+    [SerializeField] private float _rotationSpeed = 500;
     private float _stepTimer, _stepTimeLeft;
     public MovementType MoveType = MovementType.WorldPos;
+    public LayerMask MouseLookMask;
     [Range(0, 359)]
     [SerializeField] int _controlsSkewAngle = 45;
     private Matrix4x4 _matrixRot;
@@ -57,6 +60,7 @@ public class PlayerController : MonoBehaviour
     private int _mouseAngleDelta;
     private int _moveAngleDelta;
     private int _mouseMoveAngleDelta;
+    private bool _usingController;
 
     [Header("Dodge")]
     [SerializeField] private Image _dodgeCooldownUI;
@@ -87,6 +91,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioSource _getHitSFX;
     [Range(-3, 3)]
     [SerializeField] private float _pitchLow = 0.8f, _pitchHigh = 1.2f;
+
+    [Header("UI")]
+    [SerializeField] private TextMeshProUGUI _livesLeftText;
 
     public bool IsDead { get => _isDead; }
 
@@ -123,12 +130,15 @@ public class PlayerController : MonoBehaviour
     {
         if (InControl)
         {
+            CheckUsingController();
             MovementManager();
             DodgeManager();
             Gravity();
         }
         DeathHandler();
         AnimationHandler();
+
+        RefreshUI();
     }
 
 
@@ -207,27 +217,38 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void RotateToCursor()
+    public void RotateToCursor()
     {
         //player looks at the mouse LookCursor position
 
-        if (_plInputActions.Player.MouseMovement.IsInProgress())
+        if (!_usingController)
         {
-            Vector2 mousePos = _plInputActions.Player.MouseLook.ReadValue<Vector2>();
-            Ray ray = _playerCam.ScreenPointToRay(mousePos);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
-                Vector3 target = hit.point;
-                target.y = transform.position.y;
-                transform.LookAt(target);
-            }
-
-            _mousePosDelta = new Vector3((mousePos.x - Screen.width / 2) / (Screen.width / 2), 0, (mousePos.y - Screen.height / 2) / (Screen.height / 2)).normalized;
-            _mousePosDelta = _matrixRot.MultiplyPoint3x4(_mousePosDelta);
-            _mouseAngleDelta = (int)(Mathf.Atan2(_mousePosDelta.x, _mousePosDelta.z) * Mathf.Rad2Deg) + 180;
+            DefineMouseMoveAngle();
         }
-        else
+        else if (_plInputActions.Player.MoveStick.IsInProgress())
+        {
+            if (!_plInputActions.Player.StickLook.IsInProgress())
+            {
+                if (_movementDir != Vector3.zero)
+                {
+                    transform.rotation = Quaternion.LookRotation(_skewedMoveDir);
+                }
+            }
+            else
+            {
+                Vector2 stickVec = _plInputActions.Player.StickLook.ReadValue<Vector2>();
+                Vector3 tempRot = new Vector3(stickVec.x, 0, stickVec.y);
+                Vector3 delta = _matrixRot.MultiplyPoint3x4(tempRot).normalized;
+                if (delta.magnitude != 0)
+                {
+                    float angles = Mathf.Atan2(delta.x, delta.z) * Mathf.Rad2Deg;
+                    transform.rotation = Quaternion.Euler(0, angles, 0);
+
+                    _mouseAngleDelta = (int)angles + 180;
+                }
+            }
+        }
+        else if (_plInputActions.Player.StickLook.IsInProgress())
         {
             Vector2 stickVec = _plInputActions.Player.StickLook.ReadValue<Vector2>();
             Vector3 tempRot = new Vector3(stickVec.x, 0, stickVec.y);
@@ -240,8 +261,30 @@ public class PlayerController : MonoBehaviour
                 _mouseAngleDelta = (int)angles + 180;
             }
         }
+        //else if (!_plInputActions.Player.MouseMovement.IsInProgress() && !_usingController)
+        //{
+        //    DefineMouseMoveAngle();
+        //}
+
 
         _mouseMoveAngleDelta = _mouseAngleDelta - _moveAngleDelta;
+    }
+
+    private void DefineMouseMoveAngle()
+    {
+        Vector2 mousePos = _plInputActions.Player.MouseLook.ReadValue<Vector2>();
+        Ray ray = _playerCam.ScreenPointToRay(mousePos);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 100, MouseLookMask))
+        {
+            Vector3 target = hit.point;
+            target.y = transform.position.y;
+            transform.LookAt(target);
+        }
+
+        _mousePosDelta = new Vector3((mousePos.x - Screen.width / 2) / (Screen.width / 2), 0, (mousePos.y - Screen.height / 2) / (Screen.height / 2)).normalized;
+        _mousePosDelta = _matrixRot.MultiplyPoint3x4(_mousePosDelta);
+        _mouseAngleDelta = (int)(Mathf.Atan2(_mousePosDelta.x, _mousePosDelta.z) * Mathf.Rad2Deg) + 180;
     }
 
     void MovementManager()
@@ -261,7 +304,9 @@ public class PlayerController : MonoBehaviour
             //rotate the game object with the direction of the movement
             if (_movementDir != Vector3.zero)
             {
-                transform.rotation = Quaternion.LookRotation(_skewedMoveDir);
+                Vector3 relative = (transform.position + _skewedMoveDir) - transform.position;
+                Quaternion rotation = Quaternion.LookRotation(relative, Vector3.up);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, _rotationSpeed * Time.deltaTime);
             }
         }
         else if (MoveType == MovementType.WorldPosTrackLook) // Moves Player With World's Axis & Rotates Towards Cursor Position
@@ -271,7 +316,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
+    private void CheckUsingController()
+    {
+        if (_plInputActions.Player.AnyKeyController.IsInProgress())
+        {
+            _usingController = true;
+        }
+        else if(_plInputActions.Player.AnyKeyKeyboardMouse.IsInProgress())
+        {
+            _usingController = false;
+        }
+    }
 
     private void Dodge(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
@@ -321,6 +376,7 @@ public class PlayerController : MonoBehaviour
                 _charCon.Move(dodgeDir * dodgeSpeed * Time.deltaTime);
                 if (!isDodging)
                     PlayAudioWithPitch(_dodgeSFX);
+                _healthHandlerRef.Invulnerable = true;
                 isDodging = true;
             }
             else
@@ -330,6 +386,8 @@ public class PlayerController : MonoBehaviour
                 _calledDodge = false;
                 _dodgeCooldownTimer = 0;
                 dodgeDurationTimer = 0;
+
+                _healthHandlerRef.Invulnerable = false;
             }
         }
         DodgeEffect();
@@ -464,6 +522,11 @@ public class PlayerController : MonoBehaviour
             // Death
             _playerAnimator.SetBool("Death", _isDead);
         }
+    }
+
+    private void RefreshUI()
+    {
+        _livesLeftText.text = livesLeft.ToString();
     }
 
 

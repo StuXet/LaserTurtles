@@ -47,6 +47,8 @@ public class DropItemOnDeath : MonoBehaviour
                 {
                     GameObject drop = Instantiate(item.dropObject, transform.position, transform.rotation);
                     drop.GetComponent<ItemObject>().CanBePicked = true;
+                    drop.GetComponent<Collider>().isTrigger = false;
+                    drop.GetComponent<Rigidbody>().useGravity = true;
                 }
                 break;
             }
