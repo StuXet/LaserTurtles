@@ -791,16 +791,23 @@ public class PlayerCombatSystem : MonoBehaviour
 
     private void DisableMovementOnAttack()
     {
-        if (isAttacking || isHeavyAttacking || isLightAttacking || _isPrepShooting || _isPrepShooting & _playerController.InControl)
+        if (!_isUsingSpecial)
         {
-            _playerController.InControl = false;
-        }
-        else
-        {
-            if (!_playerController.IsDead)
+            if (isAttacking || isHeavyAttacking || isLightAttacking || _isPrepShooting || _isPrepShooting & _playerController.InControl)
             {
-                _playerController.InControl = true;
+                _playerController.InControl = false;
             }
+            else
+            {
+                if (!_playerController.IsDead)
+                {
+                    _playerController.InControl = true;
+                }
+            }
+        }
+        else if (_isUsingSpecial)
+        {
+            _playerController.InControl = true;
         }
     }
 }
