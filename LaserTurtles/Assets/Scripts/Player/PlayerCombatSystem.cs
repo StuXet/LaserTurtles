@@ -26,6 +26,12 @@ public class PlayerCombatSystem : MonoBehaviour
     [SerializeField] private Transform _meleeHoldPoint;
     [SerializeField] private Transform _rangedHoldPoint;
 
+    [Header("EquippingCards")]
+    [SerializeField] private bool _usingCardView;
+    [SerializeField] private Transform _meleeCardsHolder;
+    [SerializeField] private List<Transform> _meleeCards = new List<Transform>();
+    private Vector3 _cardOGPos;
+
     [Header("Attacking")]
     public bool isAttacking = false;
     public bool isLightAttacking = false;
@@ -90,12 +96,18 @@ public class PlayerCombatSystem : MonoBehaviour
         _plInputActions.Player.WeaponSlot3.performed += WeaponSlot3;
         _plInputActions.Player.WeaponSlot4.performed += WeaponSlot4;
 
-        SelectedSlotIcons();
 
         specialAttackBar.fillAmount = _currentChargeBar / _maxChargeBar;
         if (AllowSpecial) InvokeRepeating("RechargeSpecialAttackBar", 1f, _chargeSpeedInSec);
         else specialAttackBar.gameObject.SetActive(false);
         CombatHandler.Instance.OnKill.AddListener(KillRecharge);
+
+        if (_meleeCardsHolder.childCount != 0)
+        {
+            _cardOGPos = _meleeCardsHolder.GetChild(_meleeCardsHolder.childCount - 1).localPosition;
+        }
+
+        SelectedSlotIcons();
     }
 
 
@@ -357,15 +369,66 @@ public class PlayerCombatSystem : MonoBehaviour
 
     private void SelectedSlotIcons()
     {
-        for (int i = 0; i < _equipmentSlots.Count; i++)
+        if (!_usingCardView)
         {
-            if (_currentSlot == i + 1)
+            for (int i = 0; i < _equipmentSlots.Count; i++)
             {
-                _equipmentSlots[i].SlotSelectIcon.SetActive(true);
+                if (_currentSlot == i + 1)
+                {
+                    _equipmentSlots[i].SlotSelectIcon.SetActive(true);
+                }
+                else
+                {
+                    _equipmentSlots[i].SlotSelectIcon.SetActive(false);
+                }
             }
-            else
+        }
+        else
+        {
+            if (_currentSlot > 0 && _currentSlot <= _meleeCards.Count)
             {
-                _equipmentSlots[i].SlotSelectIcon.SetActive(false);
+                if (_currentSlot == 1)
+                {
+                    _meleeCards[0].SetSiblingIndex(2);
+                    _meleeCards[1].SetSiblingIndex(1);
+                    _meleeCards[2].SetSiblingIndex(0);
+                }
+                else if (_currentSlot == 2)
+                {
+                    _meleeCards[0].SetSiblingIndex(0);
+                    _meleeCards[1].SetSiblingIndex(2);
+                    _meleeCards[2].SetSiblingIndex(1);
+                }
+                else if (_currentSlot == 3)
+                {
+                    _meleeCards[0].SetSiblingIndex(1);
+                    _meleeCards[1].SetSiblingIndex(0);
+                    _meleeCards[2].SetSiblingIndex(2);
+                }
+
+                // Center Card
+                Transform centerTransform = _meleeCardsHolder.GetChild(2);
+                Vector3 cardPosCent = new Vector3(0, _cardOGPos.y + 10, 0);
+                centerTransform.transform.localPosition = cardPosCent;
+                Vector3 cardRotCent = centerTransform.localRotation.eulerAngles;
+                cardRotCent.z = 0;
+                centerTransform.transform.localRotation = Quaternion.Euler(cardRotCent);
+
+                // Left Card
+                Transform leftTransform = _meleeCardsHolder.GetChild(1);
+                Vector3 cardPosLeft = new Vector3(75, _cardOGPos.y, 0);
+                leftTransform.localPosition = cardPosLeft;
+                Vector3 cardRotLeft = leftTransform.localRotation.eulerAngles;
+                cardRotLeft.z = -10;
+                leftTransform.localRotation = Quaternion.Euler(cardRotLeft);
+
+                // Right Card
+                Transform rightTransform = _meleeCardsHolder.GetChild(0);
+                Vector3 cardPosRight = new Vector3(-75, _cardOGPos.y, 0);
+                rightTransform.localPosition = cardPosRight;
+                Vector3 cardRotRight = rightTransform.localRotation.eulerAngles;
+                cardRotRight.z = 10;
+                rightTransform.localRotation = Quaternion.Euler(cardRotRight);
             }
         }
     }
@@ -655,6 +718,14 @@ public class PlayerCombatSystem : MonoBehaviour
         //{ 
         //    _ammoText.enabled = true;
         _ammoText.text = CurrentAmmo.ToString();
+        if (CurrentAmmo == 0)
+        {
+            _ammoText.color = Color.red;
+        }
+        else
+        {
+            _ammoText.color = Color.white;
+        }
         //}
 
         // Aiming Arrow UI
