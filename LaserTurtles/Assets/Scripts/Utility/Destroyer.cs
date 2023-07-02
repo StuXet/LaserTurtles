@@ -31,7 +31,7 @@ public class Destroyer : MonoBehaviour
                 GameObject vfx = Instantiate(_hitVFX, transform.position, transform.rotation, null);
                 Destroy(vfx, 0.5f);
             }
-            Destroy(gameObject);
+            Destroy(gameObject,0.01f);
         }
     }
 }

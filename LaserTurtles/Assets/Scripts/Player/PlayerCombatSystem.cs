@@ -62,7 +62,7 @@ public class PlayerCombatSystem : MonoBehaviour
     [SerializeField] private float _specialDamageStart = 0f;
     [SerializeField] private float _specialDamageEnd = 2f;
     [SerializeField] private float _specialDamageModifier = 1f;
-    public Slider specialAttackBar;
+    public Image specialAttackBar;
     [SerializeField] private float _maxChargeBar = 100;
     [SerializeField] private float _currentChargeBar;
     [SerializeField] private float _chargeSpeedInSec = 1;
@@ -92,8 +92,7 @@ public class PlayerCombatSystem : MonoBehaviour
 
         SelectedSlotIcons();
 
-        specialAttackBar.maxValue = _maxChargeBar;
-        specialAttackBar.minValue = _currentChargeBar;
+        specialAttackBar.fillAmount = _currentChargeBar / _maxChargeBar;
         if (AllowSpecial) InvokeRepeating("RechargeSpecialAttackBar", 1f, _chargeSpeedInSec);
         else specialAttackBar.gameObject.SetActive(false);
         CombatHandler.Instance.OnKill.AddListener(KillRecharge);
@@ -121,10 +120,19 @@ public class PlayerCombatSystem : MonoBehaviour
 
     void RechargeSpecialAttackBar()
     {
-        if (_currentChargeBar < _maxChargeBar)
+        if (_currentChargeBar < 0)
+        {
+            _currentChargeBar = 0;
+        }
+        else if (_currentChargeBar < _maxChargeBar)
         {
             _currentChargeBar += _timeChargeAmount;
-            specialAttackBar.value = _currentChargeBar;
+            specialAttackBar.fillAmount = _currentChargeBar / _maxChargeBar;
+        }
+        else if (_currentChargeBar >= _maxChargeBar)
+        {
+            _currentChargeBar = _maxChargeBar;
+            specialAttackBar.fillAmount = _currentChargeBar / _maxChargeBar;
         }
     }
     void KillRecharge()
@@ -132,7 +140,7 @@ public class PlayerCombatSystem : MonoBehaviour
         if (_currentChargeBar < _maxChargeBar)
         {
             _currentChargeBar += _killChargeAmount;
-            specialAttackBar.value = _currentChargeBar;
+            specialAttackBar.fillAmount = _currentChargeBar / _maxChargeBar;
         }
     }
     //void InputHandler()
