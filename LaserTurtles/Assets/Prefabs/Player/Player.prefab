@@ -1217,7 +1217,7 @@ MonoBehaviour:
   _aimingArrow: {fileID: 3074147219821367655}
   AllowSpecial: 1
   _specialKnockback: 1
-  _specialAttackDuration: 2
+  _specialAttackDuration: 3
   _specialDamageStart: 0
   _specialDamageEnd: 2
   _specialDamageModifier: 1

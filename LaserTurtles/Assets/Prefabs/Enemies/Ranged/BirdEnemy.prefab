@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa76939f0defc648a94d5e7341837fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnemyName: Default Enemy
   GroundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -119,6 +120,7 @@ MonoBehaviour:
   CanPatrol: 1
   CanChase: 1
   CanFly: 0
+  UseToggleHP: 0
   PatrolRange: 5
   AttackCoolDownTime: 2
   AlreadyAttacked: 0
@@ -350,7 +352,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7644431126201349956}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -419,6 +421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f23ecd1993a43c542995e99b9265a25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CharacterName: Someone
   _enemyAI: {fileID: 2770793692575537998}
   _weakness: 0
   _resistance: 0
