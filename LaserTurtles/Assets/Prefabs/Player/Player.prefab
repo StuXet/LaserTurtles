@@ -1386,6 +1386,7 @@ MonoBehaviour:
   InControl: 1
   MaxSpeed: 10
   _deceleration: 40
+  _rotationSpeed: 500
   MoveType: 1
   MouseLookMask:
     serializedVersion: 2
@@ -1424,6 +1425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f23ecd1993a43c542995e99b9265a25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CharacterName: Player
   _enemyAI: {fileID: 0}
   _weakness: 0
   _resistance: 0
@@ -1497,19 +1499,19 @@ MonoBehaviour:
   anim: {fileID: 4976644559587137402}
   maxComboDelay: 1.1
   comboTimers:
-  - _duration: 0.8
+  - _duration: 0.4
     _activeStart: 0.1
-    _activeEnd: 0.8
+    _activeEnd: 0.4
     DamageMultiplier: 1
     _canKnockback: 0
-  - _duration: 1
-    _activeStart: 0.1
-    _activeEnd: 0.7
+  - _duration: 0.5
+    _activeStart: 0.05
+    _activeEnd: 0.35
     DamageMultiplier: 1
     _canKnockback: 0
-  - _duration: 1
-    _activeStart: 0.2
-    _activeEnd: 0.8
+  - _duration: 0.75
+    _activeStart: 0.1
+    _activeEnd: 0.6
     DamageMultiplier: 2
     _canKnockback: 1
 --- !u!114 &2104562432498233633
