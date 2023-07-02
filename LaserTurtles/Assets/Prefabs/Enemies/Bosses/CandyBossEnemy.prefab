@@ -48,7 +48,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 2.5
+  m_Radius: 3
   m_Height: 1.5
   m_Direction: 1
   m_Center: {x: 0, y: 0.25, z: 0}
@@ -64,11 +64,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f23ecd1993a43c542995e99b9265a25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyAI: {fileID: 0}
+  CharacterName: Someone
+  _enemyAI: {fileID: 3652150714881463665}
   _weakness: 0
   _resistance: 0
   _healthBar: {fileID: 2698481246451724336}
-  _maxHP: 250
+  _maxHP: 400
   _currentHP: 0
   _invulnerable: 0
   knockbackable: 0
@@ -350,7 +351,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6135216701375911092}
   - component: {fileID: 7228148100382587494}
-  - component: {fileID: 6135216701375911095}
+  - component: {fileID: 3652150714881463665}
   - component: {fileID: 7228148100382587493}
   - component: {fileID: 1670963446090427153}
   m_Layer: 0
@@ -401,7 +402,7 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &6135216701375911095
+--- !u!114 &3652150714881463665
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -410,9 +411,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6135216701375911093}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e1cddc2e99acf74b830ff480be65608, type: 3}
+  m_Script: {fileID: 11500000, guid: 6869f09650b572e428f7c52318a34c18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnemyName: The Gingerbread Hag
   GroundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -427,6 +429,7 @@ MonoBehaviour:
   CanPatrol: 0
   CanChase: 1
   CanFly: 0
+  UseToggleHP: 1
   PatrolRange: 0
   AttackCoolDownTime: 2
   AlreadyAttacked: 0
@@ -498,7 +501,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7846970354480945272
 Transform:
   m_ObjectHideFlags: 0
@@ -580,12 +583,12 @@ PrefabInstance:
     - target: {fileID: 4417167636366729209, guid: 7105336187f2a0049bc9bea8753d5006,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 7530705415947255663, guid: 7105336187f2a0049bc9bea8753d5006,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 7674236470463256591, guid: 7105336187f2a0049bc9bea8753d5006,
         type: 3}
@@ -633,6 +636,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _characterName
       value: SpiCream
+      objectReference: {fileID: 0}
+    - target: {fileID: 3532866493787222704, guid: 5f7a17ec43f9dd54eb0c436ad679e0a8,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7223486762965681638, guid: 5f7a17ec43f9dd54eb0c436ad679e0a8,
         type: 3}

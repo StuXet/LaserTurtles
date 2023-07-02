@@ -11,6 +11,7 @@ public class HealthHandler : MonoBehaviour
     public event EventHandler OnDamageOccured;
 
     public HealthSystem _healthSystem;
+    public string CharacterName = "Someone";
     [SerializeField] private EnemyAI _enemyAI;
     [SerializeField] private WeaknessResistance _weakness;
     [SerializeField] private WeaknessResistance _resistance;
@@ -30,13 +31,18 @@ public class HealthHandler : MonoBehaviour
 
     public bool Invulnerable { get => _invulnerable; set => _invulnerable = value; }
 
-
     private void Awake()
     {
         _healthSystem = new HealthSystem(_maxHP);
-        if (_healthBar != null) _healthBar.Setup(_healthSystem);
+        if (_healthBar != null) _healthBar.Setup(_healthSystem, CharacterName);
         _healthSystem.OnDeath += _healthSystem_OnDeath;
         _healthSystem.OnDamaged += _healthSystem_OnDamaged;
+    }
+
+    public void AssignHealthBar(HealthBar hpBar)
+    {
+        _healthBar = hpBar;
+        if (_healthBar != null) _healthBar.Setup(_healthSystem, CharacterName);
     }
 
     private void _healthSystem_OnDamaged(object sender, EventArgs e)
@@ -85,9 +91,13 @@ public class HealthHandler : MonoBehaviour
             // Check if GameObject can be Affected by Damager
             if (gameObject.tag == "Player" && tempDamager.CanAffect == CanAffect.Player || gameObject.tag == "Enemy" && tempDamager.CanAffect == CanAffect.Enemy || tempDamager.CanAffect == CanAffect.Both)
             {
-                if (gameObject.tag == "Enemy")
+                if (gameObject.CompareTag("Enemy"))
                 {
-                    Shake.instance.ScreenShake(0.2f,0.25f);
+                    Shake.instance.ScreenShake(0.1f, 0.25f);
+                }
+                else if (gameObject.CompareTag("Player"))
+                {
+                    Shake.instance.ScreenShake(0.2f, 0.25f);
                 }
 
                 // If Damager is One Hit

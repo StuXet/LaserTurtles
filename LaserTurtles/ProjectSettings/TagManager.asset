@@ -9,6 +9,7 @@ TagManager:
   - Environment
   - Ground
   - Item
+  - Inventory
   layers:
   - Default
   - TransparentFX
