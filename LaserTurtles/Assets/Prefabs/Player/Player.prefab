@@ -1219,7 +1219,7 @@ MonoBehaviour:
   _specialKnockback: 1
   _specialAttackDuration: 3
   _specialDamageStart: 0
-  _specialDamageEnd: 2
+  _specialDamageEnd: 3
   _specialDamageModifier: 1
   specialAttackBar: {fileID: 689918575926828371}
   _maxChargeBar: 100
