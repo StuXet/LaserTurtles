@@ -144,7 +144,7 @@ public class ItemObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Inventory"))
         {
             _colliding = true;
             if (PickupPressIcon && CanBePicked && RequiresInteraction)
@@ -156,7 +156,7 @@ public class ItemObject : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Inventory"))
         {
             _colliding = false;
             if (PickupPressIcon && CanBePicked && RequiresInteraction)
