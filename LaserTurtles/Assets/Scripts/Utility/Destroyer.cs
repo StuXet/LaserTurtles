@@ -33,9 +33,11 @@ public class Destroyer : MonoBehaviour
             _activated = true;
             if (_hitSFX != null)
             {
-                float hitPitch = Random.Range(_pitchLow, _pitchHigh);
-                _hitSFX.pitch = hitPitch;
+                float pitch = Random.Range(_pitchLow, _pitchHigh);
+                _hitSFX.pitch = pitch;
                 _hitSFX.Play();
+                _hitSFX.transform.parent = null;
+                Destroy(_hitSFX.gameObject, 1f);
             }
             if (_hitVFX != null)
             {
