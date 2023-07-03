@@ -12,6 +12,11 @@ public class Destroyer : MonoBehaviour
 
     [SerializeField] private GameObject _hitVFX;
 
+    [SerializeField] private AudioSource _hitSFX;
+
+    [Range(-3, 3)]
+    [SerializeField] private float _pitchLow = 0.8f, _pitchHigh = 1.2f;
+
     private void Update()
     {
         if (CanBeDestroyed && !_activated)
@@ -26,6 +31,12 @@ public class Destroyer : MonoBehaviour
         if (CanBeDestroyed && ((ShootByPlayer && other.CompareTag("Enemy")) || (!ShootByPlayer && other.CompareTag("Player")) || other.CompareTag("Environment") || other.CompareTag("Ground")))
         {
             _activated = true;
+            if (_hitSFX != null)
+            {
+                float hitPitch = Random.Range(_pitchLow, _pitchHigh);
+                _hitSFX.pitch = hitPitch;
+                _hitSFX.Play();
+            }
             if (_hitVFX != null)
             {
                 GameObject vfx = Instantiate(_hitVFX, transform.position, transform.rotation, null);
