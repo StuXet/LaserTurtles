@@ -19,6 +19,13 @@ public class PauseMenu : MonoBehaviour
         SaveGame();
         Time.timeScale = 1;
 
+        //GameManager.Instance.PlInputActions.UI.ESC.performed += ESC_performed;
+        StartCoroutine(DelayedSub());
+    }
+
+    IEnumerator DelayedSub()
+    {
+        yield return new WaitForSeconds(0.5f);
         GameManager.Instance.PlInputActions.UI.ESC.performed += ESC_performed;
     }
 
