@@ -283,10 +283,12 @@ MonoBehaviour:
   PickupPressIcon: {fileID: 0}
   _outline: {fileID: 2455012481643412115}
   _pickUpSFX: {fileID: 2213680180175398694}
-  _pitchLow: -1.8
-  _pitchHigh: 2.2
+  _pitchLow: 0.8
+  _pitchHigh: 1.2
+  _magnetSpeed: 5
   CanBePicked: 1
   RequiresInteraction: 0
+  Magnetize: 0
 --- !u!1 &5957627607463652885
 GameObject:
   m_ObjectHideFlags: 0
