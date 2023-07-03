@@ -10,7 +10,7 @@ public class DropItemOnDeath : MonoBehaviour
     [System.Serializable]
     public class DropItem
     {
-        [Range(0,100)]
+        [Range(0, 100)]
         public int dropChance = 1;
         public GameObject dropObject;
     }
@@ -18,7 +18,7 @@ public class DropItemOnDeath : MonoBehaviour
     [SerializeField] List<DropItem> itemsToDrop;
     HealthHandler healthHandler;
 
-    public List<DropItem> ItemsToDrop { get => itemsToDrop;}
+    public List<DropItem> ItemsToDrop { get => itemsToDrop; }
 
     // Start is called before the first frame update
     void Start()
@@ -46,9 +46,23 @@ public class DropItemOnDeath : MonoBehaviour
                 if (item.dropObject != null)
                 {
                     GameObject drop = Instantiate(item.dropObject, transform.position, transform.rotation);
-                    drop.GetComponent<ItemObject>().CanBePicked = true;
-                    drop.GetComponent<Collider>().isTrigger = false;
-                    drop.GetComponent<Rigidbody>().useGravity = true;
+                    Collider collider = drop.GetComponent<Collider>();
+                    ItemObject itemObject = drop.GetComponent<ItemObject>();
+                    Rigidbody rigidbody = drop.GetComponent<Rigidbody>();
+                    collider.isTrigger = false;
+                    itemObject.CanBePicked = true;
+                    if (!itemObject.RequiresInteraction)
+                    {
+                        itemObject.Magnetize = true;
+                        rigidbody.useGravity = false;
+                    }
+                    else
+                    {
+                        itemObject.Magnetize = false;
+                        rigidbody.useGravity = true;
+                        rigidbody.isKinematic = false;
+                        rigidbody.freezeRotation = true;
+                    }
                 }
                 break;
             }
