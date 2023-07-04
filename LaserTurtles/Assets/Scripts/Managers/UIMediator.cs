@@ -5,14 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class UIMediator : MonoBehaviour
 {
-    [SerializeField] private GameObject _dialougeUI, _winUI;
+    public static UIMediator Instance;
 
-    public GameObject DialougeUI { get => _dialougeUI;}
+    [SerializeField] private GameObject _dialougeUI, _winUI, _bossHPUI;
+
+    public GameObject DialougeUI { get => _dialougeUI; }
     public GameObject WinUI { get => _winUI; }
+    public GameObject BossHPUI { get => _bossHPUI; }
 
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         _winUI.SetActive(false);
+        //_bossHPUI.SetActive(false);
     }
 }

@@ -3667,12 +3667,12 @@ PrefabInstance:
     - target: {fileID: 8777943013249060505, guid: 82196584b46613a489a2e46a3e4d2800,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.4979999
+      value: 0.4979999
       objectReference: {fileID: 0}
     - target: {fileID: 8777943013249060505, guid: 82196584b46613a489a2e46a3e4d2800,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 41.914368
+      value: 41.22
       objectReference: {fileID: 0}
     - target: {fileID: 8777943013249060505, guid: 82196584b46613a489a2e46a3e4d2800,
         type: 3}
@@ -5641,6 +5641,11 @@ PrefabInstance:
       propertyPath: m_Value
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7070086207890217746, guid: 57c39bb9fb681c744bd561c7f5fa733a,
+        type: 3}
+      propertyPath: m_fogOfWarPlane
+      value: 
+      objectReference: {fileID: 2203719189933687309}
     - target: {fileID: 8195977028463862938, guid: 57c39bb9fb681c744bd561c7f5fa733a,
         type: 3}
       propertyPath: _objectToZone
@@ -5654,7 +5659,7 @@ PrefabInstance:
     - target: {fileID: 8835234193362461441, guid: 57c39bb9fb681c744bd561c7f5fa733a,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 0.000091552734
       objectReference: {fileID: 0}
     - target: {fileID: 9160621757711531547, guid: 57c39bb9fb681c744bd561c7f5fa733a,
         type: 3}

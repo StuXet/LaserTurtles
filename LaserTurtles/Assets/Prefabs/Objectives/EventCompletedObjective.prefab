@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5001ac611cb79074095f45c7d07d91a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectiveName: Wake Up!
+  _objectiveName: Clear The Tale From Corruption!
   keyObjectives: []
   OnCompletion:
     m_PersistentCalls:

@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour
 {
     // Enemy Fields
+    public string EnemyName = "Default Enemy";
     public LayerMask GroundLayer, PlayerLayer;
     public NavMeshAgent Agent;
     [HideInInspector] public Transform Player;
@@ -17,6 +18,7 @@ public class EnemyAI : MonoBehaviour
     public bool CanPatrol = false;
     public bool CanChase = true;
     public bool CanFly = false;
+    public bool UseToggleHP = false;
     public float PatrolRange;
     private Vector3 WalkPoint;
     private bool _walkPointSet;
@@ -52,15 +54,24 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private AudioSource _hurtSFX;
     [SerializeField] private AudioSource _voiceSFX;
     [SerializeField] private AudioSource _moveSFX;
+    [Range(-3, 3)]
+    [SerializeField] private float _pitchLow = 0.8f, _pitchHigh = 1.2f;
+    private bool _voiceSFXActivated;
+    private bool _moveSFXActivated;
 
 
     public HealthHandler HealthHandlerRef { get => _healthHandlerRef; set => _healthHandlerRef = value; }
     public Animator AnimatorRef { get => _animatorRef; }
+    public bool GetPlayerInSightRange { get => PlayerInSightRange; }
+    public bool GetPlayerInAttackRange { get => PlayerInAttackRange; }
+
 
     private void Awake()
     {
+        _healthHandlerRef.CharacterName = EnemyName;
         Agent = GetComponent<NavMeshAgent>();
         Player = GameObject.FindGameObjectWithTag("Player").transform;
+        _healthHandlerRef.OnDamageOccured += _healthHandlerRef_OnDamageOccured;
         _healthHandlerRef.OnDeathOccured += _healthHandlerRef_OnDeathOccured;
     }
 
@@ -90,10 +101,33 @@ public class EnemyAI : MonoBehaviour
             Agent.enabled = false;
         }
 
+        ToggleHPBarState();
+
         Gravity();
         HandleKnockback();
 
         AnimationHandler();
+
+        SFXHandler();
+    }
+
+    private void SFXHandler()
+    {
+        // Voice SFX
+        if (!_voiceSFXActivated && PlayerInSightRange)
+        {
+            if (_voiceSFX != null)
+            {
+                float pitch = Random.Range(_pitchLow, _pitchHigh);
+                _voiceSFX.pitch = pitch;
+                _voiceSFX.Play();
+                _voiceSFXActivated = true;
+            }
+        }
+        else if (!PlayerInSightRange)
+        {
+            _voiceSFXActivated = false;
+        }
     }
 
     virtual public void Patroling()
@@ -125,17 +159,20 @@ public class EnemyAI : MonoBehaviour
             _walkPointSet = true;
     }
 
-    //private void ToggleHPBarState()
-    //{
-    //    if (PlayerInSightRange)
-    //    {
-    //        _healthHandlerRef.ToggleHealthBar(true);
-    //    }
-    //    else
-    //    {
-    //        _healthHandlerRef.ToggleHealthBar(false);
-    //    }
-    //}
+    private void ToggleHPBarState()
+    {
+        if (UseToggleHP)
+        {
+            if (PlayerInSightRange)
+            {
+                _healthHandlerRef.ToggleHealthBar(true);
+            }
+            else
+            {
+                _healthHandlerRef.ToggleHealthBar(false);
+            }
+        }
+    }
 
     private bool CanSeePlayer()
     {
@@ -264,6 +301,12 @@ public class EnemyAI : MonoBehaviour
             {
                 //Attack code here
                 AttackPatternController();
+                if (_attackSFX != null)
+                {
+                    float pitch = Random.Range(_pitchLow, _pitchHigh);
+                    _attackSFX.pitch = pitch;
+                    _attackSFX.Play();
+                }
                 //Debug.Log("Attacked");
                 //End of attack code
 
@@ -291,6 +334,16 @@ public class EnemyAI : MonoBehaviour
     virtual public void AnimationHandler()
     {
 
+    }
+
+    private void _healthHandlerRef_OnDamageOccured(object sender, System.EventArgs e)
+    {
+        if (_hurtSFX != null)
+        {
+            float pitch = Random.Range(_pitchLow, _pitchHigh);
+            _hurtSFX.pitch = pitch;
+            _hurtSFX.Play();
+        }
     }
 
     private void _healthHandlerRef_OnDeathOccured(object sender, System.EventArgs e)

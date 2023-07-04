@@ -9,6 +9,8 @@ public class ObjectivesHandler : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _textUI;
     [SerializeField] private GameObject _compassTracker, _objectiveIndicator;
+    [SerializeField] private bool _useCompass = true;
+    private float _objectiveIndicatorStartDist;
     private string _currentObjectiveText;
 
     private ObjectivesContainer _objectivesContainer;
@@ -27,7 +29,7 @@ public class ObjectivesHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        if (_objectiveIndicator) _objectiveIndicatorStartDist = _objectiveIndicator.transform.localPosition.z;
     }
 
     // Update is called once per frame
@@ -40,36 +42,53 @@ public class ObjectivesHandler : MonoBehaviour
 
     private void Compass()
     {
-        if (_currentObjective != null)
+        if (_useCompass)
         {
-            _compassTracker.SetActive(true);
-
-            Vector3 objectivePos;
-            if (_currentObjective is ObjectiveGainAccess)
+            if (_currentObjective != null)
             {
-                if ((_currentObjective as ObjectiveGainAccess).KeyObjectives.Count <= 1)
+                _compassTracker.SetActive(true);
+
+                Vector3 objectivePos;
+                if (_currentObjective is ObjectiveGainAccess)
                 {
-                    objectivePos = (_currentObjective as ObjectiveGainAccess).KeyObjectives[0].transform.position;
+                    if ((_currentObjective as ObjectiveGainAccess).KeyObjectives.Count <= 1)
+                    {
+                        objectivePos = (_currentObjective as ObjectiveGainAccess).KeyObjectives[0].transform.position;
+                    }
+                    else
+                    {
+                        objectivePos = _currentObjective.transform.position;
+                    }
                 }
                 else
                 {
                     objectivePos = _currentObjective.transform.position;
                 }
-            }
-            else
-            {
-                objectivePos = _currentObjective.transform.position;
-            }
-            objectivePos.y = transform.position.y;
-            _compassTracker.transform.LookAt(objectivePos);
+                objectivePos.y = transform.position.y;
+                _compassTracker.transform.LookAt(objectivePos);
 
-            if (Mathf.Abs(Vector3.Distance(_compassTracker.transform.position, objectivePos)) >= 5)
-            {
-                _objectiveIndicator.transform.localPosition = new Vector3(0, -1, 5);
+                float distFromObjective = Mathf.Abs(Vector3.Distance(_compassTracker.transform.position, objectivePos));
+
+                if (distFromObjective >= _objectiveIndicatorStartDist)
+                {
+                    _objectiveIndicator.SetActive(true);
+                    _objectiveIndicator.transform.localPosition = new Vector3(0, -1, _objectiveIndicatorStartDist);
+                    _objectiveIndicator.transform.localRotation = Quaternion.Euler(Vector3.zero);
+                }
+                else if (distFromObjective < _objectiveIndicatorStartDist && distFromObjective >= _objectiveIndicatorStartDist / 2)
+                {
+                    _objectiveIndicator.SetActive(true);
+                    _objectiveIndicator.transform.localPosition = new Vector3(0, -1, Mathf.Abs(Vector3.Distance(_compassTracker.transform.position, objectivePos)));
+                    _objectiveIndicator.transform.localRotation = Quaternion.Euler(new Vector3(90, 0, 0));
+                }
+                else
+                {
+                    _objectiveIndicator.SetActive(false);
+                }
             }
             else
             {
-                _objectiveIndicator.transform.localPosition = new Vector3(0, -1, Mathf.Abs(Vector3.Distance(_compassTracker.transform.position, objectivePos)));
+                _compassTracker.SetActive(false);
             }
         }
         else
