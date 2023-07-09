@@ -426,7 +426,7 @@ MonoBehaviour:
   Player: {fileID: 0}
   _healthHandlerRef: {fileID: 3732241753493091364}
   _animatorRef: {fileID: 0}
-  DestroyOnDeath: 1
+  DestroyOnDeath: 0
   CanPatrol: 0
   CanChase: 1
   CanFly: 0

@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 917d393bca3690b48b0af5259006e98c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnemyName: Default Enemy
   GroundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -116,10 +117,11 @@ MonoBehaviour:
   Player: {fileID: 0}
   _healthHandlerRef: {fileID: 6474340841305229197}
   _animatorRef: {fileID: 0}
-  DestroyOnDeath: 1
+  DestroyOnDeath: 0
   CanPatrol: 1
   CanChase: 1
   CanFly: 0
+  UseToggleHP: 0
   PatrolRange: 5
   AttackCoolDownTime: 2
   AlreadyAttacked: 0
@@ -135,6 +137,8 @@ MonoBehaviour:
   _hurtSFX: {fileID: 8794799356957153531}
   _voiceSFX: {fileID: 8570841328769305515}
   _moveSFX: {fileID: 3039654383670498352}
+  _pitchLow: 0.8
+  _pitchHigh: 1.2
 --- !u!114 &1035096525642697164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,6 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f23ecd1993a43c542995e99b9265a25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CharacterName: Someone
   _enemyAI: {fileID: 2600917390528916939}
   _weakness: 0
   _resistance: 0

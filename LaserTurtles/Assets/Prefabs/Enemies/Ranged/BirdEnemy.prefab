@@ -117,7 +117,7 @@ MonoBehaviour:
   Player: {fileID: 0}
   _healthHandlerRef: {fileID: 4718742583778345460}
   _animatorRef: {fileID: 1097917047486490807}
-  DestroyOnDeath: 1
+  DestroyOnDeath: 0
   CanPatrol: 1
   CanChase: 1
   CanFly: 0
@@ -137,6 +137,8 @@ MonoBehaviour:
   _hurtSFX: {fileID: 5431685787928165238}
   _voiceSFX: {fileID: 5160527992345405478}
   _moveSFX: {fileID: 1964514569046898621}
+  _pitchLow: 0.8
+  _pitchHigh: 1.2
 --- !u!114 &1655155455741120437
 MonoBehaviour:
   m_ObjectHideFlags: 0
