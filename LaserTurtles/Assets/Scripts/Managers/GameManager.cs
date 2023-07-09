@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
 
         _eventSystem = FindObjectOfType<EventSystem>();
         _plInputActions = FindObjectOfType<InputManager>().PlInputActions;
-        _uIMediator = UIMediator.Instance;
+        _uIMediator = FindObjectOfType<UIMediator>();
         _winTextRef = _uIMediator.WinUI;
 
         _playerTransform = FindObjectOfType<PlayerController>().transform;

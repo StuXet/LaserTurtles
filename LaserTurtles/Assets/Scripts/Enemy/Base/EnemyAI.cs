@@ -54,6 +54,10 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private AudioSource _hurtSFX;
     [SerializeField] private AudioSource _voiceSFX;
     [SerializeField] private AudioSource _moveSFX;
+    [Range(-3, 3)]
+    [SerializeField] private float _pitchLow = 0.8f, _pitchHigh = 1.2f;
+    private bool _voiceSFXActivated;
+    private bool _moveSFXActivated;
 
 
     public HealthHandler HealthHandlerRef { get => _healthHandlerRef; set => _healthHandlerRef = value; }
@@ -67,6 +71,7 @@ public class EnemyAI : MonoBehaviour
         _healthHandlerRef.CharacterName = EnemyName;
         Agent = GetComponent<NavMeshAgent>();
         Player = GameObject.FindGameObjectWithTag("Player").transform;
+        _healthHandlerRef.OnDamageOccured += _healthHandlerRef_OnDamageOccured;
         _healthHandlerRef.OnDeathOccured += _healthHandlerRef_OnDeathOccured;
     }
 
@@ -102,6 +107,27 @@ public class EnemyAI : MonoBehaviour
         HandleKnockback();
 
         AnimationHandler();
+
+        SFXHandler();
+    }
+
+    private void SFXHandler()
+    {
+        // Voice SFX
+        if (!_voiceSFXActivated && PlayerInSightRange)
+        {
+            if (_voiceSFX != null)
+            {
+                float pitch = Random.Range(_pitchLow, _pitchHigh);
+                _voiceSFX.pitch = pitch;
+                _voiceSFX.Play();
+                _voiceSFXActivated = true;
+            }
+        }
+        else if (!PlayerInSightRange)
+        {
+            _voiceSFXActivated = false;
+        }
     }
 
     virtual public void Patroling()
@@ -275,6 +301,12 @@ public class EnemyAI : MonoBehaviour
             {
                 //Attack code here
                 AttackPatternController();
+                if (_attackSFX != null)
+                {
+                    float pitch = Random.Range(_pitchLow, _pitchHigh);
+                    _attackSFX.pitch = pitch;
+                    _attackSFX.Play();
+                }
                 //Debug.Log("Attacked");
                 //End of attack code
 
@@ -302,6 +334,16 @@ public class EnemyAI : MonoBehaviour
     virtual public void AnimationHandler()
     {
 
+    }
+
+    private void _healthHandlerRef_OnDamageOccured(object sender, System.EventArgs e)
+    {
+        if (_hurtSFX != null)
+        {
+            float pitch = Random.Range(_pitchLow, _pitchHigh);
+            _hurtSFX.pitch = pitch;
+            _hurtSFX.Play();
+        }
     }
 
     private void _healthHandlerRef_OnDeathOccured(object sender, System.EventArgs e)
