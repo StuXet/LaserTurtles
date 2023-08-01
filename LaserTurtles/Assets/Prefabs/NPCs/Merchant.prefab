@@ -715,6 +715,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: fatguy
       objectReference: {fileID: 0}
+    - target: {fileID: 4356356351432962099, guid: 73ccb7015f8b3fd4b853c9f4f6d6433e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Environment
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73ccb7015f8b3fd4b853c9f4f6d6433e, type: 3}
 --- !u!4 &5844823292863923329 stripped

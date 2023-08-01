@@ -26,6 +26,12 @@ public class PlayerCombatSystem : MonoBehaviour
     [SerializeField] private Transform _meleeHoldPoint;
     [SerializeField] private Transform _rangedHoldPoint;
 
+    [Header("EquippingCards")]
+    [SerializeField] private bool _usingCardView;
+    [SerializeField] private Transform _meleeCardsHolder;
+    [SerializeField] private List<Transform> _meleeCards = new List<Transform>();
+    private Vector3 _cardOGPos;
+
     [Header("Attacking")]
     public bool isAttacking = false;
     public bool isLightAttacking = false;
@@ -42,8 +48,8 @@ public class PlayerCombatSystem : MonoBehaviour
     private float _timer;
     //private bool _isDamaging;
     private float mouseHoldCounter;
-    [SerializeField] float poolForce = 2f;
-    [SerializeField] float specialAttackLength = 10f;
+    //[SerializeField] float poolForce = 2f;
+    //[SerializeField] float specialAttackLength = 10f;
 
     [Header("Shooting")]
     [SerializeField] private bool _isShooting;
@@ -55,14 +61,20 @@ public class PlayerCombatSystem : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _ammoText;
     [SerializeField] private GameObject _aimingArrow;
 
-    [Header("specialAttack")]
+    [Header("SpecialAttack")]
     public bool AllowSpecial;
-    public Slider specialAttackBar;
+    [SerializeField] private bool _specialKnockback;
+    [SerializeField] private float _specialAttackDuration = 2f;
+    [SerializeField] private float _specialDamageStart = 0f;
+    [SerializeField] private float _specialDamageEnd = 2f;
+    [SerializeField] private float _specialDamageModifier = 1f;
+    public Image specialAttackBar;
     [SerializeField] private float _maxChargeBar = 100;
     [SerializeField] private float _currentChargeBar;
     [SerializeField] private float _chargeSpeedInSec = 1;
     [SerializeField] private float _timeChargeAmount = 1;
     [SerializeField] private float _killChargeAmount = 5;
+    private bool _isUsingSpecial;
 
     private void Start()
     {
@@ -78,18 +90,24 @@ public class PlayerCombatSystem : MonoBehaviour
         _plInputActions.Player.ShootAttack.canceled += ShootAttackCancel;
 
         _plInputActions.Player.SpecialAttack.performed += SpecialAttack;
+
         _plInputActions.Player.WeaponSlot1.performed += WeaponSlot1;
         _plInputActions.Player.WeaponSlot2.performed += WeaponSlot2;
         _plInputActions.Player.WeaponSlot3.performed += WeaponSlot3;
         _plInputActions.Player.WeaponSlot4.performed += WeaponSlot4;
 
-        SelectedSlotIcons();
 
-        specialAttackBar.maxValue = _maxChargeBar;
-        specialAttackBar.minValue = _currentChargeBar;
+        specialAttackBar.fillAmount = _currentChargeBar / _maxChargeBar;
         if (AllowSpecial) InvokeRepeating("RechargeSpecialAttackBar", 1f, _chargeSpeedInSec);
         else specialAttackBar.gameObject.SetActive(false);
         CombatHandler.Instance.OnKill.AddListener(KillRecharge);
+
+        if (_meleeCardsHolder.childCount != 0)
+        {
+            _cardOGPos = _meleeCardsHolder.GetChild(_meleeCardsHolder.childCount - 1).localPosition;
+        }
+
+        SelectedSlotIcons();
     }
 
 
@@ -98,7 +116,7 @@ public class PlayerCombatSystem : MonoBehaviour
     {
         //MouseHoldCounter();
         //InputHandler();
-        Debug.DrawRay(transform.position, transform.forward * specialAttackLength, Color.red);
+        //Debug.DrawRay(transform.position, transform.forward * specialAttackLength, Color.red);
 
         AttackTimer();
         ShootTimer();
@@ -114,10 +132,19 @@ public class PlayerCombatSystem : MonoBehaviour
 
     void RechargeSpecialAttackBar()
     {
-        if (_currentChargeBar < _maxChargeBar)
+        if (_currentChargeBar < 0)
+        {
+            _currentChargeBar = 0;
+        }
+        else if (_currentChargeBar < _maxChargeBar)
         {
             _currentChargeBar += _timeChargeAmount;
-            specialAttackBar.value = _currentChargeBar;
+            specialAttackBar.fillAmount = _currentChargeBar / _maxChargeBar;
+        }
+        else if (_currentChargeBar >= _maxChargeBar)
+        {
+            _currentChargeBar = _maxChargeBar;
+            specialAttackBar.fillAmount = _currentChargeBar / _maxChargeBar;
         }
     }
     void KillRecharge()
@@ -125,7 +152,7 @@ public class PlayerCombatSystem : MonoBehaviour
         if (_currentChargeBar < _maxChargeBar)
         {
             _currentChargeBar += _killChargeAmount;
-            specialAttackBar.value = _currentChargeBar;
+            specialAttackBar.fillAmount = _currentChargeBar / _maxChargeBar;
         }
     }
     //void InputHandler()
@@ -220,7 +247,7 @@ public class PlayerCombatSystem : MonoBehaviour
     private void SpecialAttack(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
 
-        if (AllowSpecial && !inDialogue && _currentChargeBar == 100)
+        if (AllowSpecial && !inDialogue && _currentChargeBar >= _maxChargeBar)
         {
             Debug.Log("Special attack");
             SpecialAttack();
@@ -342,15 +369,66 @@ public class PlayerCombatSystem : MonoBehaviour
 
     private void SelectedSlotIcons()
     {
-        for (int i = 0; i < _equipmentSlots.Count; i++)
+        if (!_usingCardView)
         {
-            if (_currentSlot == i + 1)
+            for (int i = 0; i < _equipmentSlots.Count; i++)
             {
-                _equipmentSlots[i].SlotSelectIcon.SetActive(true);
+                if (_currentSlot == i + 1)
+                {
+                    _equipmentSlots[i].SlotSelectIcon.SetActive(true);
+                }
+                else
+                {
+                    _equipmentSlots[i].SlotSelectIcon.SetActive(false);
+                }
             }
-            else
+        }
+        else
+        {
+            if (_currentSlot > 0 && _currentSlot <= _meleeCards.Count)
             {
-                _equipmentSlots[i].SlotSelectIcon.SetActive(false);
+                if (_currentSlot == 1)
+                {
+                    _meleeCards[0].SetSiblingIndex(2);
+                    _meleeCards[1].SetSiblingIndex(1);
+                    _meleeCards[2].SetSiblingIndex(0);
+                }
+                else if (_currentSlot == 2)
+                {
+                    _meleeCards[0].SetSiblingIndex(0);
+                    _meleeCards[1].SetSiblingIndex(2);
+                    _meleeCards[2].SetSiblingIndex(1);
+                }
+                else if (_currentSlot == 3)
+                {
+                    _meleeCards[0].SetSiblingIndex(1);
+                    _meleeCards[1].SetSiblingIndex(0);
+                    _meleeCards[2].SetSiblingIndex(2);
+                }
+
+                // Center Card
+                Transform centerTransform = _meleeCardsHolder.GetChild(2);
+                Vector3 cardPosCent = new Vector3(0, _cardOGPos.y + 10, 0);
+                centerTransform.transform.localPosition = cardPosCent;
+                Vector3 cardRotCent = centerTransform.localRotation.eulerAngles;
+                cardRotCent.z = 0;
+                centerTransform.transform.localRotation = Quaternion.Euler(cardRotCent);
+
+                // Left Card
+                Transform leftTransform = _meleeCardsHolder.GetChild(1);
+                Vector3 cardPosLeft = new Vector3(75, _cardOGPos.y, 0);
+                leftTransform.localPosition = cardPosLeft;
+                Vector3 cardRotLeft = leftTransform.localRotation.eulerAngles;
+                cardRotLeft.z = -10;
+                leftTransform.localRotation = Quaternion.Euler(cardRotLeft);
+
+                // Right Card
+                Transform rightTransform = _meleeCardsHolder.GetChild(0);
+                Vector3 cardPosRight = new Vector3(-75, _cardOGPos.y, 0);
+                rightTransform.localPosition = cardPosRight;
+                Vector3 cardRotRight = rightTransform.localRotation.eulerAngles;
+                cardRotRight.z = 10;
+                rightTransform.localRotation = Quaternion.Euler(cardRotRight);
             }
         }
     }
@@ -420,41 +498,46 @@ public class PlayerCombatSystem : MonoBehaviour
 
     void SpecialAttack()
     {
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, specialAttackLength))
+        if (!_isShooting && !isLightAttacking && !isHeavyAttacking && _equippedMeleeWeapon != null && _currentSlot != 4)
         {
-            if (hit.collider.tag == "Enemy")
-            {
-                //Adds a rigidbody to the object if it does'nt have one
-                Rigidbody rb = hit.collider.GetComponent<Rigidbody>();
-                EnemyAI eAI = hit.collider.GetComponent<EnemyAI>();
-                NavMeshAgent navAgent = hit.collider.GetComponent<NavMeshAgent>();
-                if (!rb)
-                {
-                    hit.collider.AddComponent<Rigidbody>();
-                    rb = hit.collider.GetComponent<Rigidbody>();
-                }
-
-                if (eAI)
-                {
-                    eAI.enabled = false;
-                }
-
-                if (navAgent)
-                {
-                    navAgent.enabled = false;
-                }
-
-                rb.isKinematic = false;
-                rb.detectCollisions = true;
-                rb.freezeRotation = true;
-
-                Vector3 dir = transform.position - hit.transform.position;
-                rb = hit.collider.GetComponent<Rigidbody>();
-                rb.AddForce(dir * poolForce, ForceMode.Impulse);
-                Debug.Log("Special Attack");
-                StartCoroutine(ResetAI(1.5f, hit.collider));
-            }
+            _isUsingSpecial = true;
         }
+
+        //if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, specialAttackLength))
+        //{
+        //    if (hit.collider.tag == "Enemy")
+        //    {
+        //        //Adds a rigidbody to the object if it does'nt have one
+        //        Rigidbody rb = hit.collider.GetComponent<Rigidbody>();
+        //        EnemyAI eAI = hit.collider.GetComponent<EnemyAI>();
+        //        NavMeshAgent navAgent = hit.collider.GetComponent<NavMeshAgent>();
+        //        if (!rb)
+        //        {
+        //            hit.collider.AddComponent<Rigidbody>();
+        //            rb = hit.collider.GetComponent<Rigidbody>();
+        //        }
+
+        //        if (eAI)
+        //        {
+        //            eAI.enabled = false;
+        //        }
+
+        //        if (navAgent)
+        //        {
+        //            navAgent.enabled = false;
+        //        }
+
+        //        rb.isKinematic = false;
+        //        rb.detectCollisions = true;
+        //        rb.freezeRotation = true;
+
+        //        Vector3 dir = transform.position - hit.transform.position;
+        //        rb = hit.collider.GetComponent<Rigidbody>();
+        //        rb.AddForce(dir * poolForce, ForceMode.Impulse);
+        //        Debug.Log("Special Attack");
+        //        StartCoroutine(ResetAI(1.5f, hit.collider));
+        //    }
+        //}
     }
 
     void Shooting()
@@ -486,7 +569,7 @@ public class PlayerCombatSystem : MonoBehaviour
 
     private void AttackTimer()
     {
-        if (isLightAttacking && _equippedMeleeWeapon != null)
+        if (isLightAttacking && !_isUsingSpecial && _equippedMeleeWeapon != null)
         {
             isAttacking = true;
 
@@ -523,7 +606,7 @@ public class PlayerCombatSystem : MonoBehaviour
             _timer += Time.deltaTime;
 
         }
-        else if (!isLightAttacking && isHeavyAttacking && _equippedMeleeWeapon != null)
+        else if (!isLightAttacking && isHeavyAttacking && !_isUsingSpecial && _equippedMeleeWeapon != null)
         {
             _isHeavy = true;
             isAttacking = true;
@@ -543,6 +626,42 @@ public class PlayerCombatSystem : MonoBehaviour
             else
             {
                 _equippedMeleeWeapon.GetComponent<Damager>().CanDamage = false;
+                //_isDamaging = false;
+            }
+
+            if (_equippedMeleeWeapon.TryGetComponent(out WeaponEffect effect))
+            {
+                effect.EffectState(true);
+            }
+
+            _timer += Time.deltaTime;
+        }
+        else if (_isUsingSpecial && !isLightAttacking && !isHeavyAttacking && _equippedMeleeWeapon != null)
+        {
+            isAttacking = true;
+
+            if (_timer >= _specialAttackDuration)
+            {
+                Damager currentDamager = _equippedMeleeWeapon.GetComponent<Damager>();
+                currentDamager.CanDamage = false;
+                _isUsingSpecial = false;
+                _timer = 0;
+            }
+            else if (_timer >= _specialDamageStart && _timer <= _specialDamageEnd)
+            {
+                //_equippedMeleeWeapon.GetComponent<Damager>().CanDamage = true;
+                Damager currentDamager = _equippedMeleeWeapon.GetComponent<Damager>();
+                currentDamager.CanDamage = true;
+                currentDamager.CanKnockback = _specialKnockback;
+                currentDamager.DamageModifier = _specialDamageModifier;
+
+                //_isDamaging = true;
+            }
+            else
+            {
+                //_equippedMeleeWeapon.GetComponent<Damager>().CanDamage = false;
+                Damager currentDamager = _equippedMeleeWeapon.GetComponent<Damager>();
+                currentDamager.CanDamage = false;
                 //_isDamaging = false;
             }
 
@@ -599,6 +718,14 @@ public class PlayerCombatSystem : MonoBehaviour
         //{ 
         //    _ammoText.enabled = true;
         _ammoText.text = CurrentAmmo.ToString();
+        if (CurrentAmmo == 0)
+        {
+            _ammoText.color = Color.red;
+        }
+        else
+        {
+            _ammoText.color = Color.white;
+        }
         //}
 
         // Aiming Arrow UI
@@ -624,6 +751,11 @@ public class PlayerCombatSystem : MonoBehaviour
             if (_isHeavy)
             {
                 _playerAnimator.SetBool("HeavyAttack", isHeavyAttacking);
+            }
+
+            if (AllowSpecial)
+            {
+                _playerAnimator.SetBool("SpecialAttack", _isUsingSpecial);
             }
         }
     }
@@ -659,18 +791,23 @@ public class PlayerCombatSystem : MonoBehaviour
 
     private void DisableMovementOnAttack()
     {
-        if (isAttacking || 
-            isHeavyAttacking || 
-            isLightAttacking || 
-            _isPrepShooting || 
-            _isPrepShooting & 
-            _playerController.InControl)
+        if (!_isUsingSpecial)
         {
-            _playerController.InControl = false;
+            if (isAttacking || isHeavyAttacking || isLightAttacking || _isPrepShooting || _isPrepShooting & _playerController.InControl)
+            {
+                _playerController.InControl = false;
+            }
+            else
+            {
+                if (!_playerController.IsDead)
+                {
+                    _playerController.InControl = true;
+                }
+            }
         }
-        else
+        else if (_isUsingSpecial)
         {
             _playerController.InControl = true;
         }
-    } 
+    }
 }

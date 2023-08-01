@@ -9,6 +9,12 @@ public class WeaponEffect : MonoBehaviour
     private BoxCollider _boxCollider;
 
     [SerializeField] private GameObject _weaponParticle, _hitVFX;
+    [SerializeField] private AudioSource _attackSFX, _hitSFX;
+
+    [Range(-3, 3)]
+    [SerializeField] private float _pitchLow = 0.8f, _pitchHigh = 1.2f;
+
+    private bool _isAttacking = false;
 
     private void Awake()
     {
@@ -19,6 +25,23 @@ public class WeaponEffect : MonoBehaviour
     public void EffectState(bool state)
     {
         _weaponParticle.SetActive(state);
+        if (state)
+        {
+            if (!_isAttacking)
+            {
+                if (_attackSFX != null)
+                {
+                    _isAttacking = true;
+                    float attackPitch = Random.Range(_pitchLow, _pitchHigh);
+                    _attackSFX.pitch = attackPitch;
+                    _attackSFX.Play();
+                }
+            }
+        }
+        else
+        {
+            _isAttacking = false;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -28,6 +51,12 @@ public class WeaponEffect : MonoBehaviour
             Vector3 hitPosition = other.ClosestPoint(_boxCollider.bounds.center);
             GameObject vfx = Instantiate(_hitVFX, hitPosition, Quaternion.identity);
             Destroy(vfx, 0.5f);
+            if (_hitSFX != null)
+            {
+                float hitPitch = Random.Range(_pitchLow, _pitchHigh);
+                _hitSFX.pitch = hitPitch;
+                _hitSFX.Play();
+            }
         }
     }
 
