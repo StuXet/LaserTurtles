@@ -43,7 +43,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 0.64
+    - _Alpha: 0.7
     - _Clouds_Offset: 0.005
     - _Clouds_Tiling: 2.94
     - _QueueControl: 0
