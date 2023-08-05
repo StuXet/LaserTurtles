@@ -35,11 +35,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Texture_1:
-        m_Texture: {fileID: 2800000, guid: 12e54d166c72a65479169088a677c389, type: 3}
+        m_Texture: {fileID: 2800000, guid: a9735d9fa3a74224fbf863a05cf96b78, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture_2:
-        m_Texture: {fileID: 2800000, guid: 06a42dd8e2b3e97439ec1d69d64bb1f2, type: 3}
+        m_Texture: {fileID: 2800000, guid: 368fdb12cc43b1648b1bcb1adb4c8b85, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -56,13 +56,20 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 0.67
+    - _Alpha: 0.16
+    - _Blending: 0.52
     - _Clouds_Offset: 0.05
     - _Clouds_Tiling: 14.85
     - _Clouds_Visibility: 0.47
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Texture_1_Alpha: 0.31
+    - _Texture_1_Offset: 0.1
+    - _Texture_1_Smoothness: 0.79
+    - _Texture_1_Tiling: 1
+    - _Texture_2_Alpha: 0.66
     - _Texture_2_Offet: 0.002
+    - _Texture_2_Smoothness: 0
     - _Texture_2_Tiling: 2.72
     m_Colors: []
   m_BuildTextureStacks: []

@@ -528,6 +528,7 @@ GameObject:
   - component: {fileID: 1879684802230851546}
   - component: {fileID: 3294982134038829183}
   - component: {fileID: 747271545607711925}
+  - component: {fileID: 967530413040216085}
   m_Layer: 0
   m_Name: Chocolate Bar (29)
   m_TagString: Untagged
@@ -600,6 +601,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &967530413040216085
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251486068127812960}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2105976954179722371, guid: 345b23e564bd8e149ac62637a09986ac, type: 3}
 --- !u!1 &1429225303548394470
 GameObject:
   m_ObjectHideFlags: 0
@@ -5358,6 +5373,7 @@ GameObject:
   - component: {fileID: 4683320703860158004}
   - component: {fileID: 8597834345427640721}
   - component: {fileID: 5815646308522710363}
+  - component: {fileID: 2594539209074365918}
   m_Layer: 0
   m_Name: Chocolate Bar (29)
   m_TagString: Untagged
@@ -5430,6 +5446,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2594539209074365918
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5455459975136638094}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2105976954179722371, guid: 345b23e564bd8e149ac62637a09986ac, type: 3}
 --- !u!1 &5455459975147119383
 GameObject:
   m_ObjectHideFlags: 0
@@ -5524,6 +5554,7 @@ GameObject:
   - component: {fileID: 4683320703912257720}
   - component: {fileID: 8597834345411192605}
   - component: {fileID: 5815646308441248727}
+  - component: {fileID: 8027662056060786530}
   m_Layer: 0
   m_Name: Chocolate Bar (29)
   m_TagString: Untagged
@@ -5596,6 +5627,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8027662056060786530
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5455459975253750274}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2105976954179722371, guid: 345b23e564bd8e149ac62637a09986ac, type: 3}
 --- !u!1 &5455459975257081993
 GameObject:
   m_ObjectHideFlags: 0
