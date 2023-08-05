@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6867292661832643278}
   - component: {fileID: 7557706340716608875}
   - component: {fileID: 5694426340903717281}
+  - component: {fileID: 6239983631758037709}
   m_Layer: 0
   m_Name: Pink Swirl Lollipop
   m_TagString: Untagged
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6239983631758037709
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6054622295016482932}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4027042321487694885, guid: b33026b48cafbf74ca95ca87b02540c6, type: 3}

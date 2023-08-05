@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 318599968378527833}
   - component: {fileID: 3730176137119674364}
   - component: {fileID: 1450379150257347382}
+  - component: {fileID: 7085867541822880370}
   m_Layer: 0
   m_Name: Cyan Swirl Lollipop
   m_TagString: Untagged
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7085867541822880370
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089928658863749859}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4027042321487694885, guid: b33026b48cafbf74ca95ca87b02540c6, type: 3}

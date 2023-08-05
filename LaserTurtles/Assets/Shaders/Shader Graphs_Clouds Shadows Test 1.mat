@@ -43,13 +43,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 0.7
+    - _Alpha: 0.89
     - _Clouds_Offset: 0.005
     - _Clouds_Tiling: 2.94
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Texture_2_Offet: 0.002
-    - _Texture_2_Tiling: 0.65
+    - _Texture_2_Tiling: 0.98
     m_Colors: []
   m_BuildTextureStacks: []
 --- !u!114 &5238459424125017187
