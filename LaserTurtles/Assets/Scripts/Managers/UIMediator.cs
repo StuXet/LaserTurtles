@@ -16,6 +16,8 @@ public class UIMediator : MonoBehaviour
 
     private void Awake()
     {
+        gameObject.SetActive(true);
+
         if (Instance == null)
         {
             Instance = this;
