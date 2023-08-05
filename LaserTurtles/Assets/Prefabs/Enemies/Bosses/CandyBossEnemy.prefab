@@ -426,7 +426,7 @@ MonoBehaviour:
   Player: {fileID: 0}
   _healthHandlerRef: {fileID: 3732241753493091364}
   _animatorRef: {fileID: 0}
-  DestroyOnDeath: 1
+  DestroyOnDeath: 0
   CanPatrol: 0
   CanChase: 1
   CanFly: 0
@@ -460,6 +460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372cf9209eba7f24583ef72b751c8a22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemyAIRef: {fileID: 3652150714881463665}
   _weaponCollider1: {fileID: 1774903017516284693}
   _weaponCollider2: {fileID: 0}
   _comboTwoWeapons: 0
