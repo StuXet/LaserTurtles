@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2413399646302592998}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chocolate Bar Single Row
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,6 +102,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chocolate Bar Single
       objectReference: {fileID: 0}
+    - target: {fileID: 5264909476098650864, guid: acb3fb3a5e512e54ba55df6c8633aba5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: acb3fb3a5e512e54ba55df6c8633aba5, type: 3}
 --- !u!4 &5155750037059980482 stripped
@@ -110,6 +115,28 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 420946640063964296}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5532452219482969720 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5264909476098650864, guid: acb3fb3a5e512e54ba55df6c8633aba5,
+    type: 3}
+  m_PrefabInstance: {fileID: 420946640063964296}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4533636534637734979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5532452219482969720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1001 &964598683329310774
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -177,8 +204,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chocolate Bar Single (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5264909476098650864, guid: acb3fb3a5e512e54ba55df6c8633aba5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: acb3fb3a5e512e54ba55df6c8633aba5, type: 3}
+--- !u!1 &4932081655240557254 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5264909476098650864, guid: acb3fb3a5e512e54ba55df6c8633aba5,
+    type: 3}
+  m_PrefabInstance: {fileID: 964598683329310774}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5664553470001856422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4932081655240557254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!4 &5708759542744340604 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4781529686314510410, guid: acb3fb3a5e512e54ba55df6c8633aba5,
@@ -252,8 +306,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chocolate Bar Single (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5264909476098650864, guid: acb3fb3a5e512e54ba55df6c8633aba5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: acb3fb3a5e512e54ba55df6c8633aba5, type: 3}
+--- !u!1 &208286112543687011 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5264909476098650864, guid: acb3fb3a5e512e54ba55df6c8633aba5,
+    type: 3}
+  m_PrefabInstance: {fileID: 5472801929075815315}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6458349836550568424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208286112543687011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!4 &695854182701210585 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4781529686314510410, guid: acb3fb3a5e512e54ba55df6c8633aba5,
@@ -327,8 +408,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chocolate Bar Single (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5264909476098650864, guid: acb3fb3a5e512e54ba55df6c8633aba5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: acb3fb3a5e512e54ba55df6c8633aba5, type: 3}
+--- !u!1 &1722816524448877614 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5264909476098650864, guid: acb3fb3a5e512e54ba55df6c8633aba5,
+    type: 3}
+  m_PrefabInstance: {fileID: 6843250172374318814}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &367076275310562233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722816524448877614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!4 &2063629586213803668 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4781529686314510410, guid: acb3fb3a5e512e54ba55df6c8633aba5,

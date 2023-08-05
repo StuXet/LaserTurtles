@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 1343389189278819919}
   - component: {fileID: 3837165909231833733}
   - component: {fileID: -7592928146725355869}
-  m_Layer: 0
+  - component: {fileID: 3440570508032528056}
+  m_Layer: 8
   m_Name: Green Swirl Lollipop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,3 +99,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -4027042321487694885, guid: b33026b48cafbf74ca95ca87b02540c6, type: 3}
+--- !u!114 &3440570508032528056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3332846656620016464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
