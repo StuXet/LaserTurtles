@@ -306,18 +306,23 @@ public class EnemyAI : MonoBehaviour
             {
                 //Attack code here
                 AttackPatternController();
-                if (_attackSFX != null)
-                {
-                    float pitch = Random.Range(_pitchLow, _pitchHigh);
-                    _attackSFX.pitch = pitch;
-                    _attackSFX.Play();
-                }
+
                 //Debug.Log("Attacked");
                 //End of attack code
 
                 AlreadyAttacked = true;
                 StartCoroutine(ResetAttack(AttackCoolDownTime, delegate () { AlreadyAttacked = false; }));
             }
+        }
+    }
+
+    public void PlayAttackSFX()
+    {
+        if (_attackSFX != null)
+        {
+            float pitch = Random.Range(_pitchLow, _pitchHigh);
+            _attackSFX.pitch = pitch;
+            _attackSFX.Play();
         }
     }
 

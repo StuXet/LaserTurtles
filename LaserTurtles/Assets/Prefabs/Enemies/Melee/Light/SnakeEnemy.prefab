@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372cf9209eba7f24583ef72b751c8a22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemyAIRef: {fileID: 2600917390528916939}
   _weaponCollider1: {fileID: 8265042422552643772}
   _weaponCollider2: {fileID: 0}
   _comboTwoWeapons: 0
