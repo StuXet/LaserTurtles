@@ -117,7 +117,7 @@ MonoBehaviour:
   Player: {fileID: 0}
   _healthHandlerRef: {fileID: 4718742583778345460}
   _animatorRef: {fileID: 1097917047486490807}
-  DestroyOnDeath: 1
+  DestroyOnDeath: 0
   CanPatrol: 1
   CanChase: 1
   CanFly: 0
@@ -137,6 +137,8 @@ MonoBehaviour:
   _hurtSFX: {fileID: 5431685787928165238}
   _voiceSFX: {fileID: 5160527992345405478}
   _moveSFX: {fileID: 1964514569046898621}
+  _pitchLow: 0.8
+  _pitchHigh: 1.2
 --- !u!114 &1655155455741120437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e8f1661cee43f4a85498679949f043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemyAIRef: {fileID: 2770793692575537998}
   _projectile: {fileID: 5601993761966769206, guid: 3ecc2802b0f7bc8489296b4cce6ba2fc,
     type: 3}
   _firePoint: {fileID: 7644431126201349979}

@@ -1,0 +1,417 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3845506922652149490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 929967905466828633}
+  m_Layer: 8
+  m_Name: Chocolate Wall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &929967905466828633
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3845506922652149490}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 98.88, y: 2.28, z: 108.97}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7387818369760914798}
+  - {fileID: 1688789344858289729}
+  - {fileID: 1923386917413107494}
+  - {fileID: 8178400299612370907}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &144806622639925284
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 929967905466828633}
+    m_Modifications:
+    - target: {fileID: 371143386804151562, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 461ab95a4aa5bff44b8625e91e49aa38, type: 2}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5127
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5127
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5127
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.820001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2172543174069568735, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_Name
+      value: Chocolate Bar (30)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8bbe9e72edc47cb4aba55e407d95054b, type: 3}
+--- !u!4 &1688789344858289729 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+    type: 3}
+  m_PrefabInstance: {fileID: 144806622639925284}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1142931449149073731
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 929967905466828633}
+    m_Modifications:
+    - target: {fileID: 371143386804151562, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 461ab95a4aa5bff44b8625e91e49aa38, type: 2}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5127
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5127
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5127
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2172543174069568735, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_Name
+      value: Chocolate Bar (29)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8bbe9e72edc47cb4aba55e407d95054b, type: 3}
+--- !u!4 &1923386917413107494 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1142931449149073731}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7210895844813990334
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 929967905466828633}
+    m_Modifications:
+    - target: {fileID: 371143386804151562, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 461ab95a4aa5bff44b8625e91e49aa38, type: 2}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5127
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5127
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5127
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2172543174069568735, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_Name
+      value: Chocolate Bar (28)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8bbe9e72edc47cb4aba55e407d95054b, type: 3}
+--- !u!4 &8178400299612370907 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+    type: 3}
+  m_PrefabInstance: {fileID: 7210895844813990334}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8352894759422522123
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 929967905466828633}
+    m_Modifications:
+    - target: {fileID: 371143386804151562, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 461ab95a4aa5bff44b8625e91e49aa38, type: 2}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5127
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5127
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5127
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 13.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2172543174069568735, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+        type: 3}
+      propertyPath: m_Name
+      value: Chocolate Bar (31)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8bbe9e72edc47cb4aba55e407d95054b, type: 3}
+--- !u!4 &7387818369760914798 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+    type: 3}
+  m_PrefabInstance: {fileID: 8352894759422522123}
+  m_PrefabAsset: {fileID: 0}

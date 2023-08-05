@@ -13,6 +13,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private HealthHandler _healthHandlerRef;
     [SerializeField] private Animator _animatorRef;
     public bool DestroyOnDeath;
+    private bool _isDead;
 
     // Patroling
     public bool CanPatrol = false;
@@ -65,6 +66,10 @@ public class EnemyAI : MonoBehaviour
     public bool GetPlayerInSightRange { get => PlayerInSightRange; }
     public bool GetPlayerInAttackRange { get => PlayerInAttackRange; }
 
+    private void OnEnable()
+    {
+        _isDead = false;
+    }
 
     private void Awake()
     {
@@ -163,7 +168,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (UseToggleHP)
         {
-            if (PlayerInSightRange)
+            if (PlayerInSightRange && !_isDead)
             {
                 _healthHandlerRef.ToggleHealthBar(true);
             }
@@ -301,18 +306,23 @@ public class EnemyAI : MonoBehaviour
             {
                 //Attack code here
                 AttackPatternController();
-                if (_attackSFX != null)
-                {
-                    float pitch = Random.Range(_pitchLow, _pitchHigh);
-                    _attackSFX.pitch = pitch;
-                    _attackSFX.Play();
-                }
+
                 //Debug.Log("Attacked");
                 //End of attack code
 
                 AlreadyAttacked = true;
                 StartCoroutine(ResetAttack(AttackCoolDownTime, delegate () { AlreadyAttacked = false; }));
             }
+        }
+    }
+
+    public void PlayAttackSFX()
+    {
+        if (_attackSFX != null)
+        {
+            float pitch = Random.Range(_pitchLow, _pitchHigh);
+            _attackSFX.pitch = pitch;
+            _attackSFX.Play();
         }
     }
 
@@ -338,7 +348,7 @@ public class EnemyAI : MonoBehaviour
 
     private void _healthHandlerRef_OnDamageOccured(object sender, System.EventArgs e)
     {
-        if (_hurtSFX != null)
+        if (_hurtSFX != null && !_deathSFX.isPlaying)
         {
             float pitch = Random.Range(_pitchLow, _pitchHigh);
             _hurtSFX.pitch = pitch;
@@ -353,6 +363,7 @@ public class EnemyAI : MonoBehaviour
 
     public virtual void EnemyDeath()
     {
+        _isDead = true;
         if (DestroyOnDeath)
         {
             if (_deathSFX != null)
@@ -375,6 +386,8 @@ public class EnemyAI : MonoBehaviour
             _healthHandlerRef._healthSystem.RefillHealth();
             AlreadyAttacked = false;
         }
+
+        ToggleHPBarState();
     }
 
     IEnumerator DeathSFX()

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class ShootProjectile : MonoBehaviour
 {
+    [SerializeField] private EnemyAI _enemyAIRef;
+
     [SerializeField] private GameObject _projectile;
     [SerializeField] private Transform _firePoint;
     [SerializeField] Transform _target;
@@ -49,6 +51,7 @@ public class ShootProjectile : MonoBehaviour
                 InstantiateProjectile(_firePoint);
                 _prepAttackIcon.SetActive(false);
                 _attackingIcon.SetActive(true);
+                _enemyAIRef.PlayAttackSFX();
             }
             else
             {
