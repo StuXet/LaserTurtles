@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 276017654401683599}
   - component: {fileID: 3781694434951192362}
   - component: {fileID: 1414042616508885984}
-  m_Layer: 0
+  - component: {fileID: 8615728219760613010}
+  m_Layer: 8
   m_Name: Chocolate Bar (28)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,6 +84,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8615728219760613010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621299062924708405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &921541311517115467
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,7 +109,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3851681837213722080}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chocolate Wall (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +144,8 @@ GameObject:
   - component: {fileID: 2532495162381522335}
   - component: {fileID: 1480243350021495354}
   - component: {fileID: 3705923947799949040}
-  m_Layer: 0
+  - component: {fileID: 7224138360724808399}
+  m_Layer: 8
   m_Name: Chocolate Bar (29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,6 +217,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7224138360724808399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2913523578942328613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &4395511142989304834
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,7 +244,8 @@ GameObject:
   - component: {fileID: 4013884518633459384}
   - component: {fileID: 7869347537699101}
   - component: {fileID: 2882024935101412823}
-  m_Layer: 0
+  - component: {fileID: 348886805265432573}
+  m_Layer: 8
   m_Name: Chocolate Bar (28)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -282,6 +317,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &348886805265432573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4395511142989304834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &4872991321990123480
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,7 +344,8 @@ GameObject:
   - component: {fileID: 5254442265072899426}
   - component: {fileID: 9170556943611665095}
   - component: {fileID: 6386293087809302029}
-  m_Layer: 0
+  - component: {fileID: 331906983748009620}
+  m_Layer: 8
   m_Name: Chocolate Bar (28)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -365,6 +417,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &331906983748009620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4872991321990123480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &5185581670416384422
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,7 +442,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9100921385153454093}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chocolate Wall (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -407,7 +475,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4734334207170642996}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chocolate Roof v2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -443,7 +511,8 @@ GameObject:
   - component: {fileID: 6663800485323673157}
   - component: {fileID: 7770196624592339424}
   - component: {fileID: 5490380391713142058}
-  m_Layer: 0
+  - component: {fileID: 506819629172211390}
+  m_Layer: 8
   m_Name: Chocolate Bar (29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -515,6 +584,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &506819629172211390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6282877243991217407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &7156767075102640840
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,7 +611,8 @@ GameObject:
   - component: {fileID: 7501344482093437042}
   - component: {fileID: 6896693854851506135}
   - component: {fileID: 8669725930259475229}
-  m_Layer: 0
+  - component: {fileID: 5095468762393145300}
+  m_Layer: 8
   m_Name: Chocolate Bar (29)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -598,6 +684,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5095468762393145300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7156767075102640840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &8328933768114806673
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,7 +709,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5344723736993791546}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chocolate Wall (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 4307579177367705432}
   - component: {fileID: 2027586550515098514}
   - component: {fileID: -6139771935310744218}
-  m_Layer: 0
+  - component: {fileID: 870684040985043405}
+  m_Layer: 8
   m_Name: Magenta Swirl Lollipop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,3 +99,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -4027042321487694885, guid: b33026b48cafbf74ca95ca87b02540c6, type: 3}
+--- !u!114 &870684040985043405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 514416727017144903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4140490381819655179}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chocolate Roof v1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,6 +101,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chocolate Wall (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 3845506922652149490, guid: 8323acb4c1d752e4c954ddb6ec261cab,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8323acb4c1d752e4c954ddb6ec261cab, type: 3}
 --- !u!4 &471389462328823858 stripped
@@ -176,6 +181,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chocolate Wall (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 3845506922652149490, guid: 8323acb4c1d752e4c954ddb6ec261cab,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8323acb4c1d752e4c954ddb6ec261cab, type: 3}
 --- !u!4 &3668749363816418821 stripped
@@ -250,6 +260,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Chocolate Wall (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3845506922652149490, guid: 8323acb4c1d752e4c954ddb6ec261cab,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8323acb4c1d752e4c954ddb6ec261cab, type: 3}

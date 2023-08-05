@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6142525614389334278}
   - component: {fileID: 611535849828762291}
   - component: {fileID: 2954180619258076583}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pCylinder4 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 613543339864786459}
   - component: {fileID: 2912819962310584196}
   - component: {fileID: 4167497090860677113}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pCylinder8 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 3174800194532427120}
   - component: {fileID: 6869287470185339272}
   - component: {fileID: 8436907815550712034}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pCylinder2 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 4138170546015020307}
   - component: {fileID: 451052065974314581}
   - component: {fileID: 234948377294767115}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pCylinder6 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 849178327190912840}
   - component: {fileID: 1791409475651387453}
   - component: {fileID: 1145596562792632906}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pCylinder11 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -426,7 +426,7 @@ GameObject:
   - component: {fileID: 7334273396862265140}
   - component: {fileID: 30100992880447953}
   - component: {fileID: 3276672539899637196}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pCylinder9 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,7 +509,7 @@ GameObject:
   - component: {fileID: 2868820999850274703}
   - component: {fileID: 485786664321133021}
   - component: {fileID: 2073701113443102188}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pCylinder3 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -592,7 +592,7 @@ GameObject:
   - component: {fileID: 1584087245024377929}
   - component: {fileID: 6822482865083710182}
   - component: {fileID: 56014675193884841}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pCylinder5 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -673,7 +673,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1316113701479768510}
-  m_Layer: 0
+  - component: {fileID: 5702980327378341508}
+  - component: {fileID: 3102027705826130450}
+  m_Layer: 8
   m_Name: Oreo Stack v2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -705,6 +707,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5702980327378341508
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7694252422941617563}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 10, z: 5}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3102027705826130450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7694252422941617563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &7917633811330800978
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,7 +747,7 @@ GameObject:
   - component: {fileID: 937517676228845396}
   - component: {fileID: 1977440373417463227}
   - component: {fileID: 8561601556585772400}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pCylinder1 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -799,7 +830,7 @@ GameObject:
   - component: {fileID: 7644700943363582868}
   - component: {fileID: 2203261492376383685}
   - component: {fileID: 4168703433703109131}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pCylinder7 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
