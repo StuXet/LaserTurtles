@@ -11,6 +11,8 @@ public enum MeleeComboState
 
 public class MeleeAttack : MonoBehaviour
 {
+    [SerializeField] private EnemyAI _enemyAIRef;
+
     [SerializeField] private Collider _weaponCollider1;
     [SerializeField] private Collider _weaponCollider2;
 
@@ -24,6 +26,7 @@ public class MeleeAttack : MonoBehaviour
     private float _delayTimer;
     private bool _isActive;
     private bool _wasActive;
+    private bool _playedSFX;
 
     [SerializeField] private GameObject _prepAttackIcon, _attackingIcon;
 
@@ -63,6 +66,7 @@ public class MeleeAttack : MonoBehaviour
                 {
                     _isActive = false;
                     _wasActive = true;
+                    _playedSFX = false;
                 }
                 else
                 {
@@ -85,6 +89,12 @@ public class MeleeAttack : MonoBehaviour
                     _timer += Time.deltaTime;
                     _prepAttackIcon.SetActive(false);
                     _attackingIcon.SetActive(true);
+
+                    if (!_playedSFX)
+                    {
+                        _playedSFX = true;
+                        _enemyAIRef.PlayAttackSFX();
+                    }
                 }
             }
             else
@@ -110,6 +120,7 @@ public class MeleeAttack : MonoBehaviour
             if (_weaponCollider2 != null) _weaponCollider2.enabled = false;
             _prepAttackIcon.SetActive(false);
             _attackingIcon.SetActive(false);
+            _playedSFX = false;
         }
     }
 }
