@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_Clouds Shadows Test 1
+  m_Name: Shader Graphs_Clouds Shadows v1
   m_Shader: {fileID: -6465566751694194690, guid: 3f41ea1b6adfcd341aa5208289d08efb,
     type: 3}
   m_ValidKeywords: []
@@ -43,18 +43,23 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Blending: 1.19
+    - _Blending: 1.71
     - _Clouds_Offset: 0.01
     - _Clouds_Tiling: 4.17
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Texture_1_Alpha: 0.12
-    - _Texture_1_Offset: 0.02
-    - _Texture_1_Tiling: 16.59
-    - _Texture_2_Alpha: 1.71
-    - _Texture_2_Offet: 0.001
-    - _Texture_2_Tiling: 1
-    m_Colors: []
+    - _Texture_1_Alpha: 0.36
+    - _Texture_1_Offset: 0.03
+    - _Texture_1_Tiling: -4.1
+    - _Texture_2_Alpha: 0.52
+    - _Texture_2_Offet: -0.001
+    - _Texture_2_Offset: 0.03
+    - _Texture_2_Tiling: -0.84
+    - _Texture_Offset: 0.005
+    m_Colors:
+    - _Texture_1_Tiling: {r: 1, g: -1, b: 0, a: 0}
+    - _Texture_2_Tiling: {r: 1, g: -1, b: 0, a: 0}
+    - _Texture_Tiling: {r: 4, g: -4, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &3142880246675410090
 MonoBehaviour:
