@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement & Looking")]
     public float MaxSpeed = 10.0f;
+    public float CurrentMaxSpeed;
     private float _currentSpeed;
     //[SerializeField] private float _acceleration = 40;
     [SerializeField] private float _deceleration = 40;
@@ -124,6 +125,8 @@ public class PlayerController : MonoBehaviour
         {
             MoveType = MovementType.WorldPosTrackLook;
         }
+
+        CurrentMaxSpeed = MaxSpeed;
     }
 
     private void Update()
@@ -169,7 +172,7 @@ public class PlayerController : MonoBehaviour
 
         if (_movementDir != Vector3.zero)
         {
-            _currentSpeed = MaxSpeed * _movementDir.magnitude;
+            _currentSpeed = CurrentMaxSpeed * _movementDir.magnitude;
         }
         else
         {

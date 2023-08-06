@@ -215,7 +215,7 @@ public class PlayerCombatSystem : MonoBehaviour
             {
                 //isHeavyAttacking = false;
             }
-            else 
+            else
             {
                 Debug.Log("Light attack");
                 Attack();
@@ -800,9 +800,10 @@ public class PlayerCombatSystem : MonoBehaviour
 
     private void DisableMovementOnAttack()
     {
-        if (!_isUsingSpecial)
+        _playerController.CurrentMaxSpeed = _playerController.MaxSpeed;
+        if (!_isUsingSpecial && !_isPrepShooting)
         {
-            if (isAttacking || isHeavyAttacking || isLightAttacking || _isPrepShooting || _isPrepShooting & _playerController.InControl)
+            if (isAttacking || isHeavyAttacking || isLightAttacking)
             {
                 _playerController.InControl = false;
             }
@@ -817,6 +818,12 @@ public class PlayerCombatSystem : MonoBehaviour
         else if (_isUsingSpecial)
         {
             _playerController.InControl = true;
+            _playerController.CurrentMaxSpeed = _playerController.MaxSpeed / 4 * 3;
+        }
+        else if (_isPrepShooting)
+        {
+            _playerController.InControl = true;
+            _playerController.CurrentMaxSpeed = _playerController.MaxSpeed / 2;
         }
     }
 }
