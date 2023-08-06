@@ -425,14 +425,14 @@ MonoBehaviour:
   Agent: {fileID: 7228148100382587494}
   Player: {fileID: 0}
   _healthHandlerRef: {fileID: 3732241753493091364}
-  _animatorRef: {fileID: 0}
+  _animatorRef: {fileID: 980415939297643843}
   DestroyOnDeath: 0
   CanPatrol: 0
   CanChase: 1
   CanFly: 0
   UseToggleHP: 1
   PatrolRange: 0
-  AttackCoolDownTime: 2
+  AttackCoolDownTime: 5
   AlreadyAttacked: 0
   _inControl: 1
   SightRange: 50
@@ -469,8 +469,8 @@ MonoBehaviour:
   _comboTwoWeapons: 0
   _comboLength: 1
   ComboState: 1
-  _activeDuration: 1
-  _startDelay: 0.5
+  _activeDuration: 0.2
+  _startDelay: 2
   _prepAttackIcon: {fileID: 761735572415298329}
   _attackingIcon: {fileID: 2430715257506992364}
 --- !u!114 &1670963446090427153
@@ -649,6 +649,91 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5565624641691466412}
     m_Modifications:
+    - target: {fileID: 971005184899906228, guid: 820060cdce60de74594de15b6d5bda23,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -0.78272146
+      objectReference: {fileID: 0}
+    - target: {fileID: 971005184899906228, guid: 820060cdce60de74594de15b6d5bda23,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -1.3267622e-14
+      objectReference: {fileID: 0}
+    - target: {fileID: 971005184899906228, guid: 820060cdce60de74594de15b6d5bda23,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -1.2254632e-14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344908261656610825, guid: 820060cdce60de74594de15b6d5bda23,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -18.598043
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070987678446500909, guid: 820060cdce60de74594de15b6d5bda23,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -8.244247
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070987678446500909, guid: 820060cdce60de74594de15b6d5bda23,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0.0000036089432
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070987678446500909, guid: 820060cdce60de74594de15b6d5bda23,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -0.0000066576395
+      objectReference: {fileID: 0}
+    - target: {fileID: 2091359832441609776, guid: 820060cdce60de74594de15b6d5bda23,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 2.8540278e-13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2091359832441609776, guid: 820060cdce60de74594de15b6d5bda23,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 2.8540278e-13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2091359832441609776, guid: 820060cdce60de74594de15b6d5bda23,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -1.2722259e-14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2506521238916530804, guid: 820060cdce60de74594de15b6d5bda23,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953492258489399512, guid: 820060cdce60de74594de15b6d5bda23,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -177.57402
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953492258489399512, guid: 820060cdce60de74594de15b6d5bda23,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5246482731808257022, guid: 820060cdce60de74594de15b6d5bda23,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028490539722948372, guid: 820060cdce60de74594de15b6d5bda23,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 9.027087
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028490539722948372, guid: 820060cdce60de74594de15b6d5bda23,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 2.4768262e-15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028490539722948372, guid: 820060cdce60de74594de15b6d5bda23,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 1.0147768e-15
+      objectReference: {fileID: 0}
     - target: {fileID: 7136467055374592939, guid: 820060cdce60de74594de15b6d5bda23,
         type: 3}
       propertyPath: m_RootOrder
@@ -704,13 +789,49 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7402237897739207106, guid: 820060cdce60de74594de15b6d5bda23,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0.001741177
+      objectReference: {fileID: 0}
+    - target: {fileID: 7402237897739207106, guid: 820060cdce60de74594de15b6d5bda23,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.000018960618
+      objectReference: {fileID: 0}
+    - target: {fileID: 7402237897739207106, guid: 820060cdce60de74594de15b6d5bda23,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -0.0001022684
+      objectReference: {fileID: 0}
     - target: {fileID: 7512569694387253521, guid: 820060cdce60de74594de15b6d5bda23,
         type: 3}
       propertyPath: m_Name
       value: Castle with Witch MDL
       objectReference: {fileID: 0}
+    - target: {fileID: 7962485677893156599, guid: 820060cdce60de74594de15b6d5bda23,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -2.4259644
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962485677893156599, guid: 820060cdce60de74594de15b6d5bda23,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7962485677893156599, guid: 820060cdce60de74594de15b6d5bda23,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 820060cdce60de74594de15b6d5bda23, type: 3}
+--- !u!95 &980415939297643843 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1254443765171716046, guid: 820060cdce60de74594de15b6d5bda23,
+    type: 3}
+  m_PrefabInstance: {fileID: 2086168211500626573}
+  m_PrefabAsset: {fileID: 0}
 --- !u!137 &1567905126007216874 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 662556399050975335, guid: 820060cdce60de74594de15b6d5bda23,
