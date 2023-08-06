@@ -21,12 +21,16 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _SampleTexture2D_4613624e8e8442f6933e1d5063eb4b88_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 12e54d166c72a65479169088a677c389, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Texture_1:
-        m_Texture: {fileID: 2800000, guid: a9735d9fa3a74224fbf863a05cf96b78, type: 3}
+        m_Texture: {fileID: 2800000, guid: 368fdb12cc43b1648b1bcb1adb4c8b85, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture_2:
-        m_Texture: {fileID: 2800000, guid: 368fdb12cc43b1648b1bcb1adb4c8b85, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3771f9535c4ad6d4c8fb4ef63a941479, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -43,11 +47,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Blending: 1.71
+    - _Alpha: 1
+    - _Blending: 32.24
     - _Clouds_Offset: 0.01
     - _Clouds_Tiling: 4.17
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Softness: 2.86
     - _Texture_1_Alpha: 0.36
     - _Texture_1_Offset: 0.03
     - _Texture_1_Tiling: -4.1
@@ -55,11 +61,13 @@ Material:
     - _Texture_2_Offet: -0.001
     - _Texture_2_Offset: 0.03
     - _Texture_2_Tiling: -0.84
-    - _Texture_Offset: 0.005
+    - _Texture_Offset: 0.02
+    - _Texture_Offset_Clouds_Speed: 0.003
     m_Colors:
     - _Texture_1_Tiling: {r: 1, g: -1, b: 0, a: 0}
     - _Texture_2_Tiling: {r: 1, g: -1, b: 0, a: 0}
     - _Texture_Tiling: {r: 4, g: -4, b: 0, a: 0}
+    - _Texture_Tiling_Clouds_Direction: {r: 1, g: -1, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &3142880246675410090
 MonoBehaviour:
