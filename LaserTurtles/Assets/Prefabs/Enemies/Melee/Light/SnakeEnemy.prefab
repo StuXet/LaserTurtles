@@ -117,7 +117,7 @@ MonoBehaviour:
   Agent: {fileID: 1035096525642697167}
   Player: {fileID: 0}
   _healthHandlerRef: {fileID: 6474340841305229197}
-  _animatorRef: {fileID: 0}
+  _animatorRef: {fileID: 5309919068668160175}
   DestroyOnDeath: 0
   CanPatrol: 1
   CanChase: 1
@@ -161,7 +161,7 @@ MonoBehaviour:
   _comboTwoWeapons: 0
   _comboLength: 1
   ComboState: 1
-  _activeDuration: 1
+  _activeDuration: 0.25
   _startDelay: 0.5
   _prepAttackIcon: {fileID: 3271568424955357690}
   _attackingIcon: {fileID: 454699684877632015}
@@ -3156,6 +3156,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e3d777dd3972ed40a05044b49ab7a0d, type: 3}
+--- !u!95 &5309919068668160175 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2790221992366876508, guid: 9e3d777dd3972ed40a05044b49ab7a0d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8000718804357959667}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6407425212606024049 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4027339656839874178, guid: 9e3d777dd3972ed40a05044b49ab7a0d,
