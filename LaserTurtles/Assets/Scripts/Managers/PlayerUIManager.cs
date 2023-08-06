@@ -14,9 +14,12 @@ public class PlayerUIManager : MonoBehaviour
     [SerializeField] private GameObject InventoryOverlay;
     private bool _isInventoryOverlayOpen = false;
 
+    private GameObject _objectiveUIRef;
+
     // Start is called before the first frame update
     void Start()
     {
+        _objectiveUIRef = UIMediator.Instance.ObjectiveUI;
         _plInputActions = _inputManagerRef.PlInputActions;
         _plInputActions.Player.Map.performed += MapToggle;
         _plInputActions.Player.Inventory.performed += InventoryToggle;
@@ -83,10 +86,12 @@ public class PlayerUIManager : MonoBehaviour
         if (_isLargeMapOverlayOpen)
         {
             LargeMapOverlay.SetActive(true);
+            _objectiveUIRef.SetActive(true);
         }
         else
         {
             LargeMapOverlay.SetActive(false);
+            _objectiveUIRef.SetActive(false);
         }
     }
     #endregion
