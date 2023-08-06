@@ -322,7 +322,7 @@ public class PlayerController : MonoBehaviour
         {
             _usingController = true;
         }
-        else if(_plInputActions.Player.AnyKeyKeyboardMouse.IsInProgress())
+        else if (_plInputActions.Player.AnyKeyKeyboardMouse.IsInProgress())
         {
             _usingController = false;
         }
@@ -395,13 +395,16 @@ public class PlayerController : MonoBehaviour
 
     private void DodgeEffect()
     {
-        if (isDodging)
+        if (_dodgeEffect != null)
         {
-            _dodgeEffect.SetActive(true);
-        }
-        else
-        {
-            _dodgeEffect.SetActive(false);
+            if (isDodging)
+            {
+                _dodgeEffect.SetActive(true);
+            }
+            else
+            {
+                _dodgeEffect.SetActive(false);
+            }
         }
     }
 
