@@ -196,8 +196,7 @@ public class PlayerCombatSystem : MonoBehaviour
     {
         if (!inDialogue)
         {
-            Debug.Log("Started melee");
-            Attack();
+            //Debug.Log("Started melee");
         }
     }
     private void HeavyAttack(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -212,9 +211,18 @@ public class PlayerCombatSystem : MonoBehaviour
     {
         if (!inDialogue)
         {
+            if (isHeavyAttacking)
+            {
+                //isHeavyAttacking = false;
+            }
+            else 
+            {
+                Debug.Log("Light attack");
+                Attack();
+            }
+
             Debug.Log("Release melee");
             //isAttacking = false;
-            isHeavyAttacking = false;
         }
     }
 
@@ -484,8 +492,9 @@ public class PlayerCombatSystem : MonoBehaviour
 
     void HeavyAttack()
     {
-        if (!_isShooting && isLightAttacking && !isHeavyAttacking && _equippedMeleeWeapon != null && _currentSlot != 4)
+        if (!_isShooting && !isHeavyAttacking && _equippedMeleeWeapon != null && _currentSlot != 4)
         {
+            _playerController.RotateToCursor();
             //Debug.Log("Heavy Attack");
             isHeavyAttacking = true;
             //_isHeavy = true;
