@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 1741225562860613471}
   - component: {fileID: 3424364066849546490}
   - component: {fileID: 603833850732024880}
-  m_Layer: 0
+  - component: {fileID: 2710017384577636292}
+  m_Layer: 8
   m_Name: cinnamone_bun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,3 +84,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2710017384577636292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1396612589241415141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
