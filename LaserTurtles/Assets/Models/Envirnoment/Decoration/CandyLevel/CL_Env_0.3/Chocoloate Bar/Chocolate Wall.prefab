@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 929967905466828633}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chocolate Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

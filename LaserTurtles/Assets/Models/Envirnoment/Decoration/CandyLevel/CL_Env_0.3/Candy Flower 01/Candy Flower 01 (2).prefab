@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3080898979991794087}
   - component: {fileID: 2120727967990103554}
   - component: {fileID: 4218361641493449416}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Candy Flower 01 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
