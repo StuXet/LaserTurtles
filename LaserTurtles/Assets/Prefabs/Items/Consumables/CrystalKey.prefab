@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 562351984610926044}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.711088, y: -1, z: -18.24019}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -188,8 +188,12 @@ MonoBehaviour:
   PickupPressIcon: {fileID: 7736983163420492702}
   _outline: {fileID: 3917156486496329749}
   _pickUpSFX: {fileID: 2318973075462682259}
+  _pitchLow: 0.8
+  _pitchHigh: 1.2
+  _magnetSpeed: 5
   CanBePicked: 1
   RequiresInteraction: 1
+  Magnetize: 0
 --- !u!1 &6999919559947420293
 GameObject:
   m_ObjectHideFlags: 0

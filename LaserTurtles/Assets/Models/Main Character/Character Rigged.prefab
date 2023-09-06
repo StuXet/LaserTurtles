@@ -512,6 +512,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2517441114253030985}
   - component: {fileID: 141275090180964799}
+  - component: {fileID: 3686852367102995899}
   m_Layer: 0
   m_Name: Character Rigged
   m_TagString: Untagged
@@ -557,6 +558,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3686852367102995899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3000646355777727731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e880a350e604765409dc5ee1deb8feaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3006384668997617647
 GameObject:
   m_ObjectHideFlags: 0

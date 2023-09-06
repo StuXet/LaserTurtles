@@ -429,7 +429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uIMediator: {fileID: 0}
-  interactionRange: 3
+  interactionRange: 7.5
   dialoguePanel: {fileID: 0}
   dialogueButton: {fileID: 0}
   dialogueText: {fileID: 0}

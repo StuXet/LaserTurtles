@@ -85,7 +85,8 @@ public class EnemySpawner : MonoBehaviour
         yield return new WaitForSeconds(delay);
         enemyPref.transform.position = spawnPos;
         enemyPref.SetActive(true);
-
+        var enemyAI = enemyPref.GetComponent<EnemyAI>();
+        if (enemyAI != null && enemyAI.SpawnVFX != null) enemyAI.SpawnVFX.Play();
     }
 
     bool AllEnemiesSpawned()

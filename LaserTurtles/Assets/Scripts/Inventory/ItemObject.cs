@@ -49,7 +49,7 @@ public class ItemObject : MonoBehaviour
             else
             {
                 ItemAnimator.enabled = false;
-                if (_outline != null) _outline.OutlineMode = Outline.Mode.SilhouetteOnly;
+                if (_outline != null) _outline.OutlineMode = Outline.Mode.Disabled;
             }
         }
 

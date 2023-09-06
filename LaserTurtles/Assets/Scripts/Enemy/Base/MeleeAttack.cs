@@ -27,10 +27,12 @@ public class MeleeAttack : MonoBehaviour
     private bool _isActive;
     private bool _wasActive;
     private bool _playedSFX;
+    private bool _attacked;
 
     [SerializeField] private GameObject _prepAttackIcon, _attackingIcon;
 
     public bool IsActive { get => _isActive; }
+    public bool Attacked { get => _attacked; }
 
 
     // Update is called once per frame
@@ -67,6 +69,7 @@ public class MeleeAttack : MonoBehaviour
                     _isActive = false;
                     _wasActive = true;
                     _playedSFX = false;
+                    _attacked = false;
                 }
                 else
                 {
@@ -95,6 +98,8 @@ public class MeleeAttack : MonoBehaviour
                         _playedSFX = true;
                         _enemyAIRef.PlayAttackSFX();
                     }
+
+                    _attacked = true;
                 }
             }
             else
@@ -121,6 +126,7 @@ public class MeleeAttack : MonoBehaviour
             _prepAttackIcon.SetActive(false);
             _attackingIcon.SetActive(false);
             _playedSFX = false;
+            _attacked = false;
         }
     }
 }

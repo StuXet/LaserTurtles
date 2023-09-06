@@ -161,4 +161,10 @@ public class Merchant : MonoBehaviour
             EndDialogue();
         }
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, interactionRange);
+    }
 }

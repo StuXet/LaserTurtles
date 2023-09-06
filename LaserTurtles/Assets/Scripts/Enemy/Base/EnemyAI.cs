@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.VFX;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -50,6 +51,7 @@ public class EnemyAI : MonoBehaviour
 
     // Audio Sources
     [Header("Audios")]
+    [SerializeField] private Transform _sFXTransform;
     [SerializeField] private AudioSource _deathSFX;
     [SerializeField] private AudioSource _attackSFX;
     [SerializeField] private AudioSource _hurtSFX;
@@ -60,9 +62,15 @@ public class EnemyAI : MonoBehaviour
     private bool _voiceSFXActivated;
     private bool _moveSFXActivated;
 
+    // Visual Effects
+    [Header("VFX")]
+    [SerializeField] private Transform _vFXTransform;
+    [SerializeField] private VisualEffect _spawnVFX;
+
 
     public HealthHandler HealthHandlerRef { get => _healthHandlerRef; set => _healthHandlerRef = value; }
     public Animator AnimatorRef { get => _animatorRef; }
+    public VisualEffect SpawnVFX { get => _spawnVFX; }
     public bool GetPlayerInSightRange { get => PlayerInSightRange; }
     public bool GetPlayerInAttackRange { get => PlayerInAttackRange; }
 
@@ -370,6 +378,8 @@ public class EnemyAI : MonoBehaviour
             {
                 _deathSFX.Play();
                 _deathSFX.transform.parent = null;
+                if (_spawnVFX != null) _spawnVFX.Play();
+                _spawnVFX.transform.parent = null;
                 Destroy(_deathSFX.gameObject, 1f);
             }
             Destroy(gameObject);
@@ -380,7 +390,9 @@ public class EnemyAI : MonoBehaviour
             {
                 _deathSFX.Play();
                 _deathSFX.transform.parent = null;
-                StartCoroutine(DeathSFX());
+                if (_spawnVFX != null) _spawnVFX.Play();
+                _spawnVFX.transform.parent = null;
+                StartCoroutine(DeathFX());
             }
             gameObject.SetActive(false);
             _healthHandlerRef._healthSystem.RefillHealth();
@@ -390,10 +402,11 @@ public class EnemyAI : MonoBehaviour
         ToggleHPBarState();
     }
 
-    IEnumerator DeathSFX()
+    IEnumerator DeathFX()
     {
         yield return new WaitForSeconds(1f);
-        _deathSFX.transform.parent = transform;
+        _deathSFX.transform.parent = _sFXTransform;
+        _spawnVFX.transform.parent = _vFXTransform;
     }
 
     private void OnDrawGizmosSelected()

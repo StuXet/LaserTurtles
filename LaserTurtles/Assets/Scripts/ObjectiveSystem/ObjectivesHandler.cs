@@ -29,6 +29,7 @@ public class ObjectivesHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _textUI = UIMediator.Instance.ObjectiveUI.GetComponentInChildren<TextMeshProUGUI>();
         if (_objectiveIndicator) _objectiveIndicatorStartDist = _objectiveIndicator.transform.localPosition.z;
     }
 

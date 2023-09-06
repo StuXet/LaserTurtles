@@ -21,4 +21,9 @@ public class SnakeEnemyAI : EnemyAI
     {
         _meleeAttackRef.DoAttack();
     }
+
+    public override void AnimationHandler()
+    {
+        if (AnimatorRef != null) AnimatorRef.SetBool("Attack", _meleeAttackRef.Attacked);
+    }
 }
