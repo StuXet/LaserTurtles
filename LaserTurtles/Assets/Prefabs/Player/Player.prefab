@@ -1292,7 +1292,7 @@ MonoBehaviour:
   _camera: {fileID: 0}
   _fadedAlpha: 0.33
   _retainShadows: 1
-  _targetPositionOffset: {x: 0, y: 0.5, z: 0}
+  _targetPositionOffset: {x: 0, y: 0, z: 0}
   _fadeSpeed: 3
   _objectsBlockingView: []
 --- !u!1 &5195345205009075710

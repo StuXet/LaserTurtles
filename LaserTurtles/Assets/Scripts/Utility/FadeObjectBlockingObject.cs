@@ -11,6 +11,7 @@ public class FadeObjectBlockingObject : MonoBehaviour
     private Transform _target;
     [SerializeField]
     private Camera _camera;
+    private CameraFollow _camFollow;
     [SerializeField]
     [Range(0, 1f)]
     private float _fadedAlpha = 0.33f;
@@ -29,6 +30,11 @@ public class FadeObjectBlockingObject : MonoBehaviour
     private RaycastHit[] _hits = new RaycastHit[10];
 
 
+    private void Awake()
+    {
+        if (_camera) _camFollow = _camera.GetComponent<CameraFollow>();
+    }
+
     private void Start()
     {
         StartCoroutine(CheckForObjects());
@@ -38,9 +44,11 @@ public class FadeObjectBlockingObject : MonoBehaviour
     {
         while (true)
         {
-            int hits = Physics.RaycastNonAlloc(_camera.transform.position,
-                (_target.transform.position + _targetPositionOffset - _camera.transform.position).normalized,
-                _hits, Vector3.Distance(_camera.transform.position, _target.transform.position + _targetPositionOffset), _layerMask);
+            Vector3 camPos = _camFollow.CamOffset * 2 + _camFollow.ObjToFollow.transform.position;
+
+            int hits = Physics.RaycastNonAlloc(camPos,
+                (_target.transform.position + _targetPositionOffset - camPos).normalized,
+                _hits, Vector3.Distance(camPos, _target.transform.position + _targetPositionOffset), _layerMask);
 
             if (hits > 0)
             {
@@ -221,11 +229,12 @@ public class FadeObjectBlockingObject : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (_camera)
+        if (_camera && _camFollow)
         {
+            Vector3 camPos = _camFollow.CamOffset * 2 + _camFollow.ObjToFollow.transform.position;
+
             Gizmos.color = Color.yellow;
-            Gizmos.DrawRay(_camera.transform.position,
-                    (_target.transform.position + _targetPositionOffset - _camera.transform.position));
+            Gizmos.DrawRay(camPos, _target.transform.position + _targetPositionOffset - camPos);
         }
     }
 }
