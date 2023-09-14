@@ -44,7 +44,7 @@ public class FadeObjectBlockingObject : MonoBehaviour
     {
         while (true)
         {
-            Vector3 camPos = _camFollow.CamOffset * 2 + _camFollow.ObjToFollow.transform.position;
+            Vector3 camPos = _camFollow.CamOffset * 5 + _camFollow.ObjToFollow.transform.position;
 
             int hits = Physics.RaycastNonAlloc(camPos,
                 (_target.transform.position + _targetPositionOffset - camPos).normalized,
@@ -231,7 +231,7 @@ public class FadeObjectBlockingObject : MonoBehaviour
     {
         if (_camera && _camFollow)
         {
-            Vector3 camPos = _camFollow.CamOffset * 2 + _camFollow.ObjToFollow.transform.position;
+            Vector3 camPos = _camFollow.CamOffset * 5 + _camFollow.ObjToFollow.transform.position;
 
             Gizmos.color = Color.yellow;
             Gizmos.DrawRay(camPos, _target.transform.position + _targetPositionOffset - camPos);

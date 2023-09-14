@@ -11,10 +11,12 @@ GameObject:
   - component: {fileID: 6249792402585089015}
   - component: {fileID: 6995324451194403922}
   - component: {fileID: 5111750294968666264}
+  - component: {fileID: 4522715134356094304}
   - component: {fileID: 1505038081524537035}
+  - component: {fileID: 1779892870096679991}
   m_Layer: 8
   m_Name: Ice Cream tree 02
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,6 +86,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &4522715134356094304
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6769026510452205901}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 2.9351768
+  m_Height: 13.576836
+  m_Direction: 1
+  m_Center: {x: -0.00000023841858, y: 6.788418, z: -0.00000011920929}
 --- !u!114 &1505038081524537035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,3 +116,20 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!114 &1779892870096679991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6769026510452205901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f687f787dcfda5c49ad05c7ff5834b39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Renderers:
+  - {fileID: 5111750294968666264}
+  Position: {x: 0, y: 0, z: 0}
+  Materials: []
+  InitialAlpha: 0
