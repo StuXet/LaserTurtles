@@ -7972,9 +7972,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 562382233946828223}
-  m_Layer: 0
+  - component: {fileID: 220265625314958747}
+  - component: {fileID: 165714273070845594}
+  m_Layer: 8
   m_Name: Chocolate House v2
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -8071,6 +8073,138 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &220265625314958747
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5795090297293441262}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 20, y: 25, z: 25}
+  m_Center: {x: -3, y: 13, z: -4}
+--- !u!114 &165714273070845594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5795090297293441262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f687f787dcfda5c49ad05c7ff5834b39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Renderers:
+  - {fileID: 2737211986107980101}
+  - {fileID: 2737211986655190506}
+  - {fileID: 2737211986855461223}
+  - {fileID: 2737211987824126321}
+  - {fileID: 3970911105718236251}
+  - {fileID: 3970911106997787554}
+  - {fileID: 3970911105910360122}
+  - {fileID: 3970911105816043863}
+  - {fileID: 3970911106244782532}
+  - {fileID: 2169458590969069002}
+  - {fileID: 8066635519220197093}
+  - {fileID: 7074174833757497218}
+  - {fileID: 712194431796832127}
+  - {fileID: 7515710601512255857}
+  - {fileID: 4967737689129075748}
+  - {fileID: 3826360146382135051}
+  - {fileID: 4091239355193302636}
+  - {fileID: 5983521440286662289}
+  - {fileID: 4967737689213682344}
+  - {fileID: 3826360146400680327}
+  - {fileID: 4091239355276335328}
+  - {fileID: 5983521440333649949}
+  - {fileID: 4967737690020565858}
+  - {fileID: 3826360146669635661}
+  - {fileID: 4091239353932581162}
+  - {fileID: 5983521440066783703}
+  - {fileID: 4967737690147076828}
+  - {fileID: 3826360147333308915}
+  - {fileID: 4091239354066264212}
+  - {fileID: 5983521439400763497}
+  - {fileID: 4967737689110205373}
+  - {fileID: 3826360146363254930}
+  - {fileID: 4091239355170228725}
+  - {fileID: 5983521440305531144}
+  - {fileID: 4967737689202096163}
+  - {fileID: 3826360146389345036}
+  - {fileID: 4091239355279680107}
+  - {fileID: 5983521440347349654}
+  - {fileID: 4967737689849966593}
+  - {fileID: 3826360146567228206}
+  - {fileID: 4091239353767782985}
+  - {fileID: 5983521440235793076}
+  - {fileID: 4967737688761664178}
+  - {fileID: 3826360145412086173}
+  - {fileID: 4091239354822514938}
+  - {fileID: 5983521441190385671}
+  - {fileID: 4899948352797563498}
+  - {fileID: 3444867343725828759}
+  - {fileID: 1098604455091445639}
+  - {fileID: 7273800921237053306}
+  - {fileID: 4278336917460484528}
+  - {fileID: 5805431609866928461}
+  - {fileID: 95424823576403782}
+  - {fileID: 7682500873294700475}
+  - {fileID: 5362696035395689131}
+  - {fileID: 2423677848863283798}
+  - {fileID: 9082825371764180124}
+  - {fileID: 1567833236820034657}
+  - {fileID: 95424823913570008}
+  - {fileID: 7682500872554815013}
+  - {fileID: 5362696035061603125}
+  - {fileID: 2423677849599957960}
+  - {fileID: 9082825372637136130}
+  - {fileID: 1567833236618102271}
+  - {fileID: 95424824519412565}
+  - {fileID: 7682500874503359400}
+  - {fileID: 5362696036602777272}
+  - {fileID: 2423677849799478853}
+  - {fileID: 9082825372970881167}
+  - {fileID: 1567833237756629106}
+  - {fileID: 3970911105736745871}
+  - {fileID: 3970911105714196560}
+  - {fileID: 3970911105231373010}
+  - {fileID: 2737211987228465212}
+  - {fileID: 2737211987149352749}
+  - {fileID: 2737211987842587642}
+  - {fileID: 2737211986826635279}
+  - {fileID: 2737211986416543846}
+  - {fileID: 2737211986851794528}
+  - {fileID: 2737211986188609610}
+  - {fileID: 2737211987448686929}
+  - {fileID: 2737211986686200017}
+  - {fileID: 2737211986668234643}
+  - {fileID: 2737211986104572129}
+  - {fileID: 3970911105184786583}
+  - {fileID: 3970911105552025629}
+  - {fileID: 3970911106139426367}
+  - {fileID: 3970911106750716808}
+  - {fileID: 5698165188762514261}
+  - {fileID: 137483867568765781}
+  - {fileID: 7753956081626997023}
+  - {fileID: 2314689776756963775}
+  - {fileID: 3582210154465028001}
+  - {fileID: 1864902129143790877}
+  - {fileID: 5039308907057752094}
+  - {fileID: 3672758367501201358}
+  - {fileID: 1938533490344119827}
+  - {fileID: 6274409538265287687}
+  - {fileID: 2863330378268987610}
+  - {fileID: 539667234020987158}
+  - {fileID: 539667233347330350}
+  - {fileID: 539667232076006518}
+  - {fileID: 3972156178168827380}
+  Position: {x: 0, y: 0, z: 0}
+  Materials: []
+  InitialAlpha: 0
 --- !u!1 &5867314903803001726
 GameObject:
   m_ObjectHideFlags: 0
@@ -11286,6 +11420,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bbe9e72edc47cb4aba55e407d95054b, type: 3}
+--- !u!23 &7515710601512255857 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 371143386804151562, guid: 8bbe9e72edc47cb4aba55e407d95054b,
+    type: 3}
+  m_PrefabInstance: {fileID: 7884600122589635707}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8648606888010283550 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1544097148972146277, guid: 8bbe9e72edc47cb4aba55e407d95054b,

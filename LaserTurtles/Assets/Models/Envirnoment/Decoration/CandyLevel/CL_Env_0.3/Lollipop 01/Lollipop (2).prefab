@@ -11,10 +11,12 @@ GameObject:
   - component: {fileID: 1340210092676121910}
   - component: {fileID: 2681535617343785619}
   - component: {fileID: 203309759565495897}
+  - component: {fileID: 7649040448171229061}
   - component: {fileID: -5941592716791919789}
+  - component: {fileID: 5663549734887700004}
   m_Layer: 8
   m_Name: Lollipop (2)
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,6 +86,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &7649040448171229061
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860744579400785804}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.37343937
+  m_Height: 2.286934
+  m_Direction: 1
+  m_Center: {x: 0.000000044703484, y: 1.143467, z: 0.000000044703484}
 --- !u!114 &-5941592716791919789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,3 +116,20 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!114 &5663549734887700004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860744579400785804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f687f787dcfda5c49ad05c7ff5834b39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Renderers:
+  - {fileID: 203309759565495897}
+  Position: {x: 0, y: 0, z: 0}
+  Materials: []
+  InitialAlpha: 0
