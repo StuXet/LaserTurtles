@@ -7,11 +7,12 @@ public class UIMediator : MonoBehaviour
 {
     public static UIMediator Instance;
 
-    [SerializeField] private GameObject _dialougeUI, _winUI, _bossHPUI;
+    [SerializeField] private GameObject _dialougeUI, _winUI, _bossHPUI, _objectiveUI;
 
     public GameObject DialougeUI { get => _dialougeUI; }
     public GameObject WinUI { get => _winUI; }
     public GameObject BossHPUI { get => _bossHPUI; }
+    public GameObject ObjectiveUI { get => _objectiveUI; }
 
 
     private void Awake()

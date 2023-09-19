@@ -11,10 +11,12 @@ GameObject:
   - component: {fileID: 8348962259349435187}
   - component: {fileID: 4932184200031075478}
   - component: {fileID: 7176015604278986844}
+  - component: {fileID: 9071000457972125304}
   - component: {fileID: 4839805606615966049}
+  - component: {fileID: 482185942229063788}
   m_Layer: 8
   m_Name: choclate_bar
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,6 +86,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &9071000457972125304
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8689317645039315337}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.8378248, y: 7.4933443, z: 0.77599365}
+  m_Center: {x: 0, y: 3.7466717, z: -0.12558815}
 --- !u!114 &4839805606615966049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,3 +115,20 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!114 &482185942229063788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8689317645039315337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f687f787dcfda5c49ad05c7ff5834b39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Renderers:
+  - {fileID: 7176015604278986844}
+  Position: {x: 0, y: 0, z: 0}
+  Materials: []
+  InitialAlpha: 0

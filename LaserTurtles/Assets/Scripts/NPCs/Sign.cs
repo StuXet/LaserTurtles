@@ -8,6 +8,7 @@ public class Sign : MonoBehaviour
     [SerializeField] private GameObject exclamationMark;
     [SerializeField] private GameObject pressEIcon;
     [SerializeField] private GameObject popUpWindow;
+    [SerializeField] private Animator popupAnim;
     [SerializeField] private TMP_Text textObject;
     [TextArea(5, 20)]
     [SerializeField] private string textContent;
@@ -45,11 +46,13 @@ public class Sign : MonoBehaviour
         pressEIcon.SetActive(false);
         popUpWindow.SetActive(false);
         _interactable = false;
+        popupAnim.SetBool("Popup", false);
     }
 
     private void CloseWindow()
     {
-        popUpWindow.SetActive(false);
+        //popUpWindow.SetActive(false);
+        popupAnim.SetBool("Popup", false);
         pressEIcon.SetActive(true);
         _interactable = true;
     }
@@ -60,8 +63,9 @@ public class Sign : MonoBehaviour
         {
             if (!popUpWindow.activeSelf)
             {
+                popupAnim.SetBool("Popup", true);
                 pressEIcon.SetActive(false);
-                popUpWindow.SetActive(true);
+                //popUpWindow.SetActive(true);
                 _used = true;
             }
             else

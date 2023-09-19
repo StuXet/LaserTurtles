@@ -15,12 +15,16 @@ public class CameraFollow : MonoBehaviour
     public bool Follow;
     public bool SmoothDamp;
 
+    public Vector3 CamOffset { get => _camOffset; }
+    public GameObject ObjToFollow { get => _objToFollow; }
+
 
     // Default Methods
     // --------------------
     private void OnValidate()
     {
         _thisCamera = GetComponent<Camera>();
+        CalibrateDistance();
     }
 
     private void Awake()
@@ -49,15 +53,15 @@ public class CameraFollow : MonoBehaviour
 
     private void SettingFollowPos()
     {
-        if (Follow && _objToFollow)
+        if (Follow && ObjToFollow)
         {
             if (!SmoothDamp)
             {
-                transform.position = _camOffset + _objToFollow.transform.position;
+                transform.position = _camOffset + ObjToFollow.transform.position;
             }
             else
             {
-                transform.position = Vector3.SmoothDamp(transform.position, _camOffset + _objToFollow.transform.position, ref _camVelocity, SmoothTime);
+                transform.position = Vector3.SmoothDamp(transform.position, _camOffset + ObjToFollow.transform.position, ref _camVelocity, SmoothTime);
             }
         }
     }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4090336652275191302}
   - component: {fileID: 511775726739274428}
   - component: {fileID: 3902793457864320396}
+  - component: {fileID: 5888601645167446290}
   m_Layer: 8
   m_Name: Strawberry Ice Cream
   m_TagString: Environment
@@ -115,3 +116,20 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!114 &5888601645167446290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2576964931625693139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f687f787dcfda5c49ad05c7ff5834b39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Renderers:
+  - {fileID: 4090336652275191302}
+  Position: {x: 0, y: 0, z: 0}
+  Materials: []
+  InitialAlpha: 0

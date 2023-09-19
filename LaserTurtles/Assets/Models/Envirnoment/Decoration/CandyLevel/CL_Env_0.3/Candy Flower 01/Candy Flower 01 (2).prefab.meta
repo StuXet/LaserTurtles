@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:LaserTurtles/Assets/Models/Envirnoment/Decoration/CandyLevel/CL_Env_0.3/Candy Flower 01/Candy Flower 01 (2).prefab.meta
 guid: b725983b0de36654dbe6d1ff880a6cc6
+========
+guid: 820060cdce60de74594de15b6d5bda23
+>>>>>>>> main:LaserTurtles/Assets/Models/Enemies/Boss/Castle with Witch MDL.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
