@@ -436,7 +436,7 @@ MonoBehaviour:
   AttackCoolDownTime: 2
   AlreadyAttacked: 0
   _inControl: 1
-  SightRange: 25
+  SightRange: 50
   AttackRange: 1.5
   _gravityEnabled: 1
   _groundCheckOffset: {x: 0, y: 0, z: 0}
