@@ -7,7 +7,9 @@ using static UnityEngine.GraphicsBuffer;
 
 public class ObjectivesHandler : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _textUI;
+    private TextMeshProUGUI _textUI;
+    private Animator _objUIAnimator;
+
     [SerializeField] private GameObject _compassTracker, _objectiveIndicator;
     [SerializeField] private bool _useCompass = true;
     private float _objectiveIndicatorStartDist;
@@ -18,6 +20,9 @@ public class ObjectivesHandler : MonoBehaviour
     private ObjectiveBase _currentObjective;
     private int _currentObjectiveIndex;
 
+    private bool _showUI;
+    [SerializeField] private float _popupDuration = 2.5f;
+    private float _popupTimer;
 
 
     private void Awake()
@@ -30,6 +35,7 @@ public class ObjectivesHandler : MonoBehaviour
     void Start()
     {
         _textUI = UIMediator.Instance.ObjectiveUI.GetComponentInChildren<TextMeshProUGUI>();
+        _objUIAnimator = UIMediator.Instance.ObjectiveUI.GetComponent<Animator>();
         if (_objectiveIndicator) _objectiveIndicatorStartDist = _objectiveIndicator.transform.localPosition.z;
     }
 
@@ -38,7 +44,29 @@ public class ObjectivesHandler : MonoBehaviour
     {
         CheckStatus();
         RenewText();
+        ObjectivePopup();
         Compass();
+    }
+
+    private void ObjectivePopup()
+    {
+        if (_showUI)
+        {
+            _popupTimer += Time.deltaTime;
+            if (_popupTimer <= _popupDuration)
+            {
+                _objUIAnimator.SetBool("Show", true);
+            }
+            else
+            {
+                _objUIAnimator.SetBool("Show", false);
+                _showUI = false;
+            }
+        }
+        else
+        {
+            _popupTimer = 0;
+        }
     }
 
     private void Compass()
@@ -111,7 +139,7 @@ public class ObjectivesHandler : MonoBehaviour
         }
         else
         {
-            _textUI.text = "Objective: Explore!";
+            _textUI.text = "Objective: Well Done!";
         }
     }
 
@@ -134,6 +162,10 @@ public class ObjectivesHandler : MonoBehaviour
                 if (_currentObjective.CompletedObjective)
                 {
                     _currentObjectiveIndex--;
+
+                    // For UI Popup
+                    _showUI = true;
+                    _popupTimer = 0;
                 }
             }
         }
@@ -147,6 +179,10 @@ public class ObjectivesHandler : MonoBehaviour
             {
                 _objectivesList.Add(objective);
                 _currentObjectiveIndex = _objectivesList.Count;
+
+                // For UI Popup
+                _showUI = true;
+                _popupTimer = 0;
             }
         }
     }
