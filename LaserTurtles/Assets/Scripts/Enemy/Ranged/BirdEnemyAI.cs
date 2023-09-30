@@ -24,6 +24,6 @@ public class BirdEnemyAI : EnemyAI
 
     public override void AnimationHandler()
     {
-        if (AnimatorRef != null) AnimatorRef.SetBool("Attack", _shootProjRef.Firing);
+        if (AnimatorRef != null) AnimatorRef.SetBool("Attack", _shootProjRef._initAttack);
     }
 }

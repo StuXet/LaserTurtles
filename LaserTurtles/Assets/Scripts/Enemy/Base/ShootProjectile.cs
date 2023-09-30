@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ShootProjectile : MonoBehaviour
+public class ShootProjectile : AttackBase
 {
+    [Header("Class Variables")]
     [SerializeField] private EnemyAI _enemyAIRef;
 
     [SerializeField] private GameObject _projectile;
@@ -16,18 +17,19 @@ public class ShootProjectile : MonoBehaviour
     [SerializeField] private float _startDelay = 0.75f;
     [SerializeField] private float _cooldown = 1f;
     private float _delayTimer;
-    private bool _firing;
     private bool _fired;
 
     [SerializeField] private GameObject _prepAttackIcon, _attackingIcon;
 
-    public bool Firing { get => _firing; }
 
 
     // Start is called before the first frame update
     void Start()
     {
-        _target = GetComponent<EnemyAI>().Player;
+        _prepAttackIcon.SetActive(false);
+        _attackingIcon.SetActive(false);
+
+        _target = _enemyAIRef.Player;
     }
 
     void Update()
@@ -37,12 +39,15 @@ public class ShootProjectile : MonoBehaviour
 
     private void DelayShoot()
     {
-        if (_firing)
+        if (_initAttack)
         {
             if (_delayTimer >= _cooldown)
             {
-                _firing = false;
+                _initAttack = false;
                 _fired = false;
+
+                _prepAttackIcon.SetActive(false);
+                _attackingIcon.SetActive(false);
             }
             else if (_delayTimer >= _startDelay && !_fired)
             {
@@ -62,14 +67,14 @@ public class ShootProjectile : MonoBehaviour
         else
         {
             _delayTimer = 0;
-            _prepAttackIcon.SetActive(false);
-            _attackingIcon.SetActive(false);
+            //_prepAttackIcon.SetActive(false);
+            //_attackingIcon.SetActive(false);
         }
     }
 
     public void Shoot()
     {
-        _firing = true;
+        _initAttack = true;
     }
     void SetTargetDestination()
     {
