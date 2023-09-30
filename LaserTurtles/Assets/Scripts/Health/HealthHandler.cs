@@ -18,7 +18,16 @@ public class HealthHandler : MonoBehaviour
     [SerializeField] private HealthBar _healthBar;
     [SerializeField] private int _maxHP;
     [SerializeField] private int _currentHP;
+
+    [Header("Invulnerability")]
     [SerializeField] private bool _invulnerable = false;
+    [SerializeField] private Renderer _skinedMeshRenderer;
+    [SerializeField] private Material _invEffect;
+    [SerializeField] private Color _invEffectColor = Color.white;
+    [SerializeField] private float _invEffectStrength = 1;
+    [Range(0,1)]
+    [SerializeField] private float _invEffectMaxOpacity = 1;
+    private Material _invMatInstance;
     //[Header("Damage Popup")]
     //[SerializeField] private GameObject _dmgPopup;
     //[SerializeField] private float _dmgPopupYOffset = 2;
@@ -37,6 +46,8 @@ public class HealthHandler : MonoBehaviour
         if (_healthBar != null) _healthBar.Setup(_healthSystem, CharacterName);
         _healthSystem.OnDeath += _healthSystem_OnDeath;
         _healthSystem.OnDamaged += _healthSystem_OnDamaged;
+
+        InvulnerabilitySetup();
     }
 
     public void AssignHealthBar(HealthBar hpBar)
@@ -64,6 +75,18 @@ public class HealthHandler : MonoBehaviour
     void Update()
     {
         _currentHP = _healthSystem.CurrentHealth;
+
+        if (_invMatInstance != null)
+        {
+            if (_invulnerable)
+            {
+                _invMatInstance.SetFloat("_Opacity", _invEffectMaxOpacity);
+            }
+            else
+            {
+                _invMatInstance.SetFloat("_Opacity", 0);
+            }
+        }
     }
 
     public void HealHP(int hp)
@@ -231,4 +254,19 @@ public class HealthHandler : MonoBehaviour
     //    }
     //}
 
+    private void InvulnerabilitySetup()
+    {
+        if (_skinedMeshRenderer != null)
+        {
+            for (int i = 0; i < _skinedMeshRenderer.materials.Length; i++)
+            {
+                if (_skinedMeshRenderer.materials[i].name == _invEffect.name + " (Instance)")
+                {
+                    _invMatInstance = _skinedMeshRenderer.materials[i];
+                    _invMatInstance.SetColor("_EffectColor", _invEffectColor);
+                    _invMatInstance.SetFloat("_Power", _invEffectStrength);
+                }
+            }
+        }
+    }
 }

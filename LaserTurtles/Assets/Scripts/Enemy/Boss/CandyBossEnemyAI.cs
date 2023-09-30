@@ -18,8 +18,9 @@ public class CandyBossEnemyAI : EnemyAI
 
     [Header("Phases")]
     //[SerializeField] private bool _usePhases;
-    private int _currentPhase;
+    [SerializeField] private int _currentPhase;
     private int _lastPhase;
+    [SerializeField] private float _invulnerabilityTime;
     [SerializeField] List<Phase> _phasesList;
 
 
@@ -83,6 +84,8 @@ public class CandyBossEnemyAI : EnemyAI
             lastPhaseState.AttackRef._initAttack = false;
             if (AnimatorRef != null) AnimatorRef.SetBool(lastPhaseState.AnimationParam, lastPhaseState.AttackRef._initAttack);
             _lastPhase = _currentPhase;
+
+            StartCoroutine(TimedInvulnerability());
         }
         else
         {
@@ -90,6 +93,13 @@ public class CandyBossEnemyAI : EnemyAI
             AttackRange = currentPhaseState.AttackRef._attackRange;
             AttackCoolDownTime = currentPhaseState.AttackRef._cooldownTime;
         }
+    }
+
+    IEnumerator TimedInvulnerability()
+    {
+        HealthHandlerRef.Invulnerable = true;
+        yield return new WaitForSeconds(_invulnerabilityTime);
+        HealthHandlerRef.Invulnerable = false;
     }
 
     private void PhaseStatus()

@@ -59,6 +59,11 @@ MonoBehaviour:
   _maxHP: 400
   _currentHP: 0
   _invulnerable: 0
+  _skinedMeshRenderer: {fileID: 9142351335400280884}
+  _invEffect: {fileID: 2100000, guid: 65f65fcf3b9df3b43a2b2d5e7db7becf, type: 2}
+  _invEffectColor: {r: 1, g: 0, b: 1, a: 1}
+  _invEffectStrength: 1
+  _invEffectMaxOpacity: 1
   knockbackable: 0
 --- !u!114 &5168271363645760439
 MonoBehaviour:
@@ -716,6 +721,8 @@ MonoBehaviour:
   _pitchHigh: 1.2
   _vFXTransform: {fileID: 8539651400512266881}
   _spawnVFX: {fileID: 3763053577980597702}
+  _currentPhase: 0
+  _invulnerabilityTime: 5
   _phasesList:
   - HPPercentage: 100
     State: {fileID: 8770334095027963391}
@@ -864,7 +871,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _initAttack: 0
-  _attackRange: 10
+  _attackRange: 20
   _cooldownTime: 3
   _enemyAIRef: {fileID: 3652150714881463665}
   _projectile: {fileID: 5601993761966769206, guid: 3ecc2802b0f7bc8489296b4cce6ba2fc,
@@ -1085,6 +1092,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 1.0147768e-15
       objectReference: {fileID: 0}
+    - target: {fileID: 7067175818357563833, guid: 820060cdce60de74594de15b6d5bda23,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7067175818357563833, guid: 820060cdce60de74594de15b6d5bda23,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 65f65fcf3b9df3b43a2b2d5e7db7becf, type: 2}
     - target: {fileID: 7136467055374592939, guid: 820060cdce60de74594de15b6d5bda23,
         type: 3}
       propertyPath: m_RootOrder
