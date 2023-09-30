@@ -98,7 +98,7 @@ public class CandyBossEnemyAI : EnemyAI
     IEnumerator TimedInvulnerability()
     {
         HealthHandlerRef.Invulnerable = true;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(_invulnerabilityTime);
         HealthHandlerRef.Invulnerable = false;
     }
 
