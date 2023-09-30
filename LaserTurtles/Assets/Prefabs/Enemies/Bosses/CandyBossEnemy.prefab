@@ -716,6 +716,8 @@ MonoBehaviour:
   _pitchHigh: 1.2
   _vFXTransform: {fileID: 8539651400512266881}
   _spawnVFX: {fileID: 3763053577980597702}
+  _currentPhase: 0
+  _invulnerabilityTime: 2.5
   _phasesList:
   - HPPercentage: 100
     State: {fileID: 8770334095027963391}
