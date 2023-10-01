@@ -15,11 +15,13 @@ public class PlayerUIManager : MonoBehaviour
     private bool _isInventoryOverlayOpen = false;
 
     private GameObject _objectiveUIRef;
+    private Animator _objUIAnimator;
 
     // Start is called before the first frame update
     void Start()
     {
         _objectiveUIRef = UIMediator.Instance.ObjectiveUI;
+        _objUIAnimator = _objectiveUIRef.GetComponent<Animator>();
         _plInputActions = _inputManagerRef.PlInputActions;
         _plInputActions.Player.Map.performed += MapToggle;
         _plInputActions.Player.Inventory.performed += InventoryToggle;
@@ -86,12 +88,14 @@ public class PlayerUIManager : MonoBehaviour
         if (_isLargeMapOverlayOpen)
         {
             LargeMapOverlay.SetActive(true);
-            _objectiveUIRef.SetActive(true);
+            //_objectiveUIRef.SetActive(true);
+            _objUIAnimator.SetBool("Locked", true);
         }
         else
         {
             LargeMapOverlay.SetActive(false);
-            _objectiveUIRef.SetActive(false);
+            //_objectiveUIRef.SetActive(false);
+            _objUIAnimator.SetBool("Locked", false);
         }
     }
     #endregion

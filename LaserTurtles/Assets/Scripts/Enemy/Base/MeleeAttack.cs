@@ -9,8 +9,9 @@ public enum MeleeComboState
     Third,
 }
 
-public class MeleeAttack : MonoBehaviour
+public class MeleeAttack : AttackBase
 {
+    [Header("Class Variables")]
     [SerializeField] private EnemyAI _enemyAIRef;
 
     [SerializeField] private Collider _weaponCollider1;
@@ -24,16 +25,19 @@ public class MeleeAttack : MonoBehaviour
     [SerializeField] private float _startDelay = 0.25f;
     private float _timer;
     private float _delayTimer;
-    private bool _isActive;
     private bool _wasActive;
     private bool _playedSFX;
     private bool _attacked;
 
     [SerializeField] private GameObject _prepAttackIcon, _attackingIcon;
 
-    public bool IsActive { get => _isActive; }
     public bool Attacked { get => _attacked; }
 
+    private void Start()
+    {
+        _prepAttackIcon.SetActive(false);
+        _attackingIcon.SetActive(false);
+    }
 
     // Update is called once per frame
     void Update()
@@ -43,7 +47,7 @@ public class MeleeAttack : MonoBehaviour
 
     public void DoAttack()
     {
-        _isActive = true;
+        _initAttack = true;
     }
 
     private void ToggleComboState()
@@ -60,16 +64,19 @@ public class MeleeAttack : MonoBehaviour
 
     private void AttackState()
     {
-        if (_isActive)
+        if (_initAttack)
         {
             if (_delayTimer >= _startDelay)
             {
                 if (_timer >= _activeDuration)
                 {
-                    _isActive = false;
+                    _initAttack = false;
                     _wasActive = true;
                     _playedSFX = false;
                     _attacked = false;
+
+                    _prepAttackIcon.SetActive(false);
+                    _attackingIcon.SetActive(false);
                 }
                 else
                 {
@@ -123,8 +130,8 @@ public class MeleeAttack : MonoBehaviour
             _delayTimer = 0;
             _weaponCollider1.enabled = false;
             if (_weaponCollider2 != null) _weaponCollider2.enabled = false;
-            _prepAttackIcon.SetActive(false);
-            _attackingIcon.SetActive(false);
+            //_prepAttackIcon.SetActive(false);
+            //_attackingIcon.SetActive(false);
             _playedSFX = false;
             _attacked = false;
         }

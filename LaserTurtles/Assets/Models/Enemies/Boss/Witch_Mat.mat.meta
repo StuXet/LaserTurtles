@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:LaserTurtles/Assets/Models/Enemies/Boss/Witch_Mat.mat.meta
 guid: 45a82a6f91b602f42b6c1e4e7b2245ab
+========
+guid: 65f65fcf3b9df3b43a2b2d5e7db7becf
+>>>>>>>> George:LaserTurtles/Assets/Materials/InvulnerabilityMat.mat.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000

@@ -1250,10 +1250,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e538d488c107ee43bbbd787351767a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textUI: {fileID: 0}
   _compassTracker: {fileID: 2793087358602907508}
   _objectiveIndicator: {fileID: 4590417559797837118}
   _useCompass: 1
+  _popupDuration: 2.5
 --- !u!114 &5296579856332710866
 MonoBehaviour:
   m_ObjectHideFlags: 0
