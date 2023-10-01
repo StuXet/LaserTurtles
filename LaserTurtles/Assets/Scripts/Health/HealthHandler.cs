@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class HealthHandler : MonoBehaviour
 {
@@ -25,15 +26,18 @@ public class HealthHandler : MonoBehaviour
     [SerializeField] private Material _invEffect;
     [SerializeField] private Color _invEffectColor = Color.white;
     [SerializeField] private float _invEffectStrength = 1;
-    [Range(0,1)]
+    [Range(0, 1)]
     [SerializeField] private float _invEffectMaxOpacity = 1;
     private Material _invMatInstance;
-    //[Header("Damage Popup")]
-    //[SerializeField] private GameObject _dmgPopup;
-    //[SerializeField] private float _dmgPopupYOffset = 2;
-    //[SerializeField] private Color _normalDmgColor = Color.white;
-    //[SerializeField] private Color _resDmgColor = Color.magenta;
-    //[SerializeField] private Color _weakDmgColor = Color.red;
+
+    [Header("Damage Popup")]
+    [SerializeField] private GameObject _dmgPopup;
+    [SerializeField] private float _dmgPopupYOffset = 2;
+    [SerializeField] private float _dmgPopupXOffset = 2;
+    [SerializeField] private Color _normalDmgColor = Color.white;
+    [SerializeField] private Color _resDmgColor = Color.magenta;
+    [SerializeField] private Color _weakDmgColor = Color.red;
+
     [Header("Knockback")]
     [SerializeField] bool knockbackable = true;
     //[SerializeField] private float _knockbackForceModifier = 1f;
@@ -172,38 +176,38 @@ public class HealthHandler : MonoBehaviour
     private void HandleDamageModifierType(Damager _damager, bool _normalModifier, bool _weakness, bool _resistance)
     {
         float modVal;
-        //Color modColor;
+        Color modColor;
         if (_normalModifier || (_weakness && _resistance))
         {
             modVal = 1;
-            //modColor = _normalDmgColor;
+            modColor = _normalDmgColor;
         }
         else if (_weakness)
         {
             modVal = 2;
-            //modColor = _weakDmgColor;
+            modColor = _weakDmgColor;
         }
         else if (_resistance)
         {
             modVal = 0.5f;
-            //modColor = _resDmgColor;
+            modColor = _resDmgColor;
         }
         else
         {
             modVal = 1;
-            //modColor = _normalDmgColor;
+            modColor = _normalDmgColor;
         }
 
 
         if (!_damager.UsingHeavy)
         {
             _healthSystem.Damage((int)(_damager.LightDamageAmount * modVal * _damager.DamageModifier));
-            //EnemyDmgPopUp((int)(_damager.LightDamageAmount * modVal), modColor, gameObject.tag);
+            EnemyDmgPopUp((int)(_damager.LightDamageAmount * modVal), modColor, gameObject.tag);
         }
         else
         {
             _healthSystem.Damage((int)(_damager.HeavyDamageAmount * modVal));
-            //EnemyDmgPopUp((int)(_damager.HeavyDamageAmount * modVal), modColor, gameObject.tag);
+            EnemyDmgPopUp((int)(_damager.HeavyDamageAmount * modVal), modColor, gameObject.tag);
         }
     }
 
@@ -243,16 +247,17 @@ public class HealthHandler : MonoBehaviour
     }
 
 
-    //private void EnemyDmgPopUp(int dmg, Color txtColor, string tag)
-    //{
-    //    if (_dmgPopup)
-    //    {
-    //        GameObject popup = Instantiate(_dmgPopup, new Vector3(transform.position.x, transform.position.y + _dmgPopupYOffset, transform.position.z), Quaternion.identity, transform);
-    //        TextMeshPro dmgText = popup.GetComponent<TextMeshPro>();
-    //        dmgText.text = dmg.ToString();
-    //        dmgText.color = txtColor;
-    //    }
-    //}
+    private void EnemyDmgPopUp(int dmg, Color txtColor, string tag)
+    {
+        if (_dmgPopup)
+        {
+            float xOff = Random.Range(-_dmgPopupXOffset, _dmgPopupXOffset);
+            GameObject popup = Instantiate(_dmgPopup, new Vector3(transform.position.x + xOff, transform.position.y + _dmgPopupYOffset, transform.position.z), Quaternion.identity, transform);
+            TextMeshPro dmgText = popup.GetComponent<TextMeshPro>();
+            dmgText.text = dmg.ToString();
+            dmgText.color = txtColor;
+        }
+    }
 
     private void InvulnerabilitySetup()
     {
