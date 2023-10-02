@@ -51,6 +51,11 @@ public class Damager : MonoBehaviour
     [SerializeField] private float _knockbackStunTime = 2;
     public bool CanKnockback;
 
+    [Header("Stun")]
+    public float minStunTime;
+    public float maxStunTime;
+    
+
     // Properties
     // --------------------
     internal CanAffect CanAffect { get { return _canAffect; } }

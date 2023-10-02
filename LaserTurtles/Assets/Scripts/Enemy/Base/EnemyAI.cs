@@ -51,8 +51,6 @@ public class EnemyAI : MonoBehaviour
 
     //Stun
     [SerializeField] private bool _canBeStunned;
-    [SerializeField] private float _lightStunTime;
-    [SerializeField] private float _heavyStunTime;
     private bool _isStunned;
 
     // Audio Sources
@@ -414,22 +412,21 @@ public class EnemyAI : MonoBehaviour
         _deathSFX.transform.parent = _sFXTransform;
         _spawnVFX.transform.parent = _vFXTransform;
     }
-    private IEnumerator HandleStun(bool isHeavy)
+    private IEnumerator HandleStun(float minTime, float maxTime)
     {
         if (_canBeStunned)
         {
             _isStunned = true;
-            float stunTime = isHeavy ? _heavyStunTime : _lightStunTime;
-            yield return new WaitForSeconds(stunTime);
+            yield return new WaitForSeconds(Random.Range(minTime, maxTime));
             _isStunned = false;
         }
     }
 
-    public void Stun(bool isHeavy)
+    public void Stun(float minTime, float maxTime)
     {
         if (gameObject.activeSelf)
         {
-            StartCoroutine(HandleStun(isHeavy));
+            StartCoroutine(HandleStun(minTime, maxTime));
         }
     }
 
