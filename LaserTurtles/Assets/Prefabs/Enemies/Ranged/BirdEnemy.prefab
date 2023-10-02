@@ -133,6 +133,8 @@ MonoBehaviour:
   _groundCheckOffset: {x: 0, y: 0, z: 0}
   _groundRadius: 0.5
   _gravityModifier: 10
+  _canBeStunned: 1
+  isStunned: 0
   _sFXTransform: {fileID: 2539715219192336615}
   _deathSFX: {fileID: 1231697554904299870}
   _attackSFX: {fileID: 8072835217019393056}
@@ -155,6 +157,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e8f1661cee43f4a85498679949f043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _initAttack: 0
+  _attackRange: 0
+  _cooldownTime: 0
   _enemyAIRef: {fileID: 2770793692575537998}
   _projectile: {fileID: 5601993761966769206, guid: 3ecc2802b0f7bc8489296b4cce6ba2fc,
     type: 3}
@@ -437,6 +442,17 @@ MonoBehaviour:
   _maxHP: 40
   _currentHP: 0
   _invulnerable: 0
+  _skinedMeshRenderer: {fileID: 0}
+  _invEffect: {fileID: 0}
+  _invEffectColor: {r: 1, g: 1, b: 1, a: 1}
+  _invEffectStrength: 1
+  _invEffectMaxOpacity: 1
+  _dmgPopup: {fileID: 0}
+  _dmgPopupYOffset: 2
+  _dmgPopupXOffset: 2
+  _normalDmgColor: {r: 1, g: 1, b: 1, a: 1}
+  _resDmgColor: {r: 1, g: 0, b: 1, a: 1}
+  _weakDmgColor: {r: 1, g: 0, b: 0, a: 1}
   knockbackable: 1
 --- !u!114 &8724689807990754746
 MonoBehaviour:

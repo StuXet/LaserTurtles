@@ -68,6 +68,11 @@ public class MeleeAttack : AttackBase
         {
             if (_delayTimer >= _startDelay)
             {
+                if (_enemyAIRef.isStunned)
+                {
+                    _timer = _activeDuration;
+                }
+
                 if (_timer >= _activeDuration)
                 {
                     _initAttack = false;

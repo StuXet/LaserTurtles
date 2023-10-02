@@ -51,7 +51,7 @@ public class EnemyAI : MonoBehaviour
 
     //Stun
     [SerializeField] private bool _canBeStunned;
-    private bool _isStunned;
+    public bool isStunned;
 
     // Audio Sources
     [Header("Audios")]
@@ -106,7 +106,7 @@ public class EnemyAI : MonoBehaviour
 
         //ToggleHPBarState();
 
-        if (_inControl && _isGrounded && !_isStunned)
+        if (_inControl && _isGrounded && !isStunned)
         {
             Agent.enabled = true;
             if (!PlayerInSightRange && !PlayerInAttackRange) Patroling();
@@ -416,9 +416,9 @@ public class EnemyAI : MonoBehaviour
     {
         if (_canBeStunned)
         {
-            _isStunned = true;
+            isStunned = true;
             yield return new WaitForSeconds(Random.Range(minTime, maxTime));
-            _isStunned = false;
+            isStunned = false;
         }
     }
 
