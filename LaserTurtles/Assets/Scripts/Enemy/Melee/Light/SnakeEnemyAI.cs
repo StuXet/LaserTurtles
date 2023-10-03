@@ -25,5 +25,6 @@ public class SnakeEnemyAI : EnemyAI
     public override void AnimationHandler()
     {
         if (AnimatorRef != null) AnimatorRef.SetBool("Attack", _meleeAttackRef.Attacked);
+        if (isStunned) AnimatorRef.SetBool("Attack", false);
     }
 }
