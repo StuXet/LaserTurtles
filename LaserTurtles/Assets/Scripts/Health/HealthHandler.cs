@@ -42,6 +42,8 @@ public class HealthHandler : MonoBehaviour
     [SerializeField] bool knockbackable = true;
     //[SerializeField] private float _knockbackForceModifier = 1f;
 
+    
+
     public bool Invulnerable { get => _invulnerable; set => _invulnerable = value; }
 
     private void Awake()
@@ -157,6 +159,11 @@ public class HealthHandler : MonoBehaviour
                         HandleDamageModifierType(tempDamager, false, false, false);
                     }
 
+                    if (_enemyAI)
+                    {
+                        _enemyAI.Stun(tempDamager.minStunTime, tempDamager.maxStunTime);
+                    }
+
                     tempDamager.UsingHeavy = false;
                 }
                 // If Damager is Over Time
@@ -246,7 +253,7 @@ public class HealthHandler : MonoBehaviour
         }
     }
 
-
+   
     private void EnemyDmgPopUp(int dmg, Color txtColor, string tag)
     {
         if (_dmgPopup)

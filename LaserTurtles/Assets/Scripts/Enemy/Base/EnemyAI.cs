@@ -49,6 +49,10 @@ public class EnemyAI : MonoBehaviour
     private float _knockbackTimer;
     private Vector3 _knockbackDirection;
 
+    //Stun
+    [SerializeField] private bool _canBeStunned;
+    public bool isStunned;
+
     // Audio Sources
     [Header("Audios")]
     [SerializeField] private Transform _sFXTransform;
@@ -102,7 +106,7 @@ public class EnemyAI : MonoBehaviour
 
         //ToggleHPBarState();
 
-        if (_inControl && _isGrounded)
+        if (_inControl && _isGrounded && !isStunned)
         {
             Agent.enabled = true;
             if (!PlayerInSightRange && !PlayerInAttackRange) Patroling();
@@ -408,6 +412,23 @@ public class EnemyAI : MonoBehaviour
         _deathSFX.transform.parent = _sFXTransform;
         _spawnVFX.transform.parent = _vFXTransform;
     }
+    private IEnumerator HandleStun(float minTime, float maxTime)
+    {
+        if (_canBeStunned)
+        {
+            isStunned = true;
+            yield return new WaitForSeconds(Random.Range(minTime, maxTime));
+            isStunned = false;
+        }
+    }
+
+    public void Stun(float minTime, float maxTime)
+    {
+        if (gameObject.activeSelf)
+        {
+            StartCoroutine(HandleStun(minTime, maxTime));
+        }
+    }
 
     private void OnDrawGizmosSelected()
     {
@@ -427,4 +448,5 @@ public class EnemyAI : MonoBehaviour
         // when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
         Gizmos.DrawSphere(transform.position + _groundCheckOffset, _groundRadius);
     }
+
 }

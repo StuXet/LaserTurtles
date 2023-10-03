@@ -72,6 +72,17 @@ MonoBehaviour:
   _maxHP: 80
   _currentHP: 0
   _invulnerable: 0
+  _skinedMeshRenderer: {fileID: 0}
+  _invEffect: {fileID: 0}
+  _invEffectColor: {r: 1, g: 1, b: 1, a: 1}
+  _invEffectStrength: 1
+  _invEffectMaxOpacity: 1
+  _dmgPopup: {fileID: 0}
+  _dmgPopupYOffset: 2
+  _dmgPopupXOffset: 2
+  _normalDmgColor: {r: 1, g: 1, b: 1, a: 1}
+  _resDmgColor: {r: 1, g: 0, b: 1, a: 1}
+  _weakDmgColor: {r: 1, g: 0, b: 0, a: 1}
   knockbackable: 1
 --- !u!114 &5168271363645760439
 MonoBehaviour:
@@ -254,6 +265,8 @@ MonoBehaviour:
   _knockbackHeavyMultiplier: 2
   _knockbackStunTime: 2
   CanKnockback: 0
+  minStunTime: 0
+  maxStunTime: 0
 --- !u!1 &2004943697087899162
 GameObject:
   m_ObjectHideFlags: 0
@@ -439,6 +452,8 @@ MonoBehaviour:
   _groundCheckOffset: {x: 0, y: 0, z: 0}
   _groundRadius: 0.5
   _gravityModifier: 10
+  _canBeStunned: 1
+  isStunned: 0
   _sFXTransform: {fileID: 178771343648815197}
   _deathSFX: {fileID: 3481881163061105124}
   _attackSFX: {fileID: 5858486873564675226}
@@ -461,6 +476,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372cf9209eba7f24583ef72b751c8a22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _initAttack: 0
+  _attackRange: 0
+  _cooldownTime: 0
   _enemyAIRef: {fileID: 6135216701375911095}
   _weaponCollider1: {fileID: 1774903017516284693}
   _weaponCollider2: {fileID: 0}

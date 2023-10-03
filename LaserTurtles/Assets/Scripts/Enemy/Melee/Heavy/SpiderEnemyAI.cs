@@ -25,5 +25,6 @@ public class SpiderEnemyAI : EnemyAI
     public override void AnimationHandler()
     {
         if (AnimatorRef != null) AnimatorRef.SetBool("Attack", _meleeAttackRef._initAttack);
+        if (isStunned) AnimatorRef.SetBool("Attack", false);
     }
 }

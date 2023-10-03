@@ -41,6 +41,10 @@ public class ShootProjectile : AttackBase
     {
         if (_initAttack)
         {
+            if (_enemyAIRef.isStunned)
+            {
+                _delayTimer = _cooldown;
+            }
             if (_delayTimer >= _cooldown)
             {
                 _initAttack = false;
