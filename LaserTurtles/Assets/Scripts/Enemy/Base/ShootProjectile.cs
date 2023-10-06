@@ -18,6 +18,10 @@ public class ShootProjectile : AttackBase
     [SerializeField] private float _cooldown = 1f;
     private float _delayTimer;
     private bool _fired;
+    [SerializeField] private bool _grow;
+    private bool _growing;
+    private float _growElapsedTime;
+    private GameObject _tempProj;
 
     [SerializeField] private GameObject _prepAttackIcon, _attackingIcon;
 
@@ -44,6 +48,13 @@ public class ShootProjectile : AttackBase
             if (_enemyAIRef.isStunned)
             {
                 _delayTimer = _cooldown;
+
+                if (_tempProj != null)
+                {
+                    Destroy(_tempProj);
+                    _tempProj = null;
+                    _growing = false;
+                }
             }
             if (_delayTimer >= _cooldown)
             {
@@ -57,7 +68,17 @@ public class ShootProjectile : AttackBase
             {
                 _fired = true;
                 SetTargetDestination();
-                InstantiateProjectile(_firePoint);
+                if (!_grow)
+                {
+                    var projectile = Instantiate(_projectile, _firePoint.position, _firePoint.rotation);
+                    FireProjectile(projectile);
+                }
+                else
+                {
+                    _growing = false;
+                    FireProjectile(_tempProj);
+                    _tempProj = null;
+                }
                 _prepAttackIcon.SetActive(false);
                 _attackingIcon.SetActive(true);
                 _enemyAIRef.PlayAttackSFX();
@@ -66,6 +87,7 @@ public class ShootProjectile : AttackBase
             {
                 _delayTimer += Time.deltaTime;
                 _prepAttackIcon.SetActive(true);
+                if (_grow) GrowProjectile();
             }
         }
         else
@@ -84,13 +106,36 @@ public class ShootProjectile : AttackBase
     {
         _firePoint.LookAt(_target);
     }
-    void InstantiateProjectile(Transform firePoint)
+    void FireProjectile(GameObject projectile)
     {
-        var projectile = Instantiate(_projectile, _firePoint.position, _firePoint.rotation);
         projectile.transform.SetParent(null);
         projectile.SetActive(true);
         projectile.GetComponent<Damager>().CanDamage = true;
         projectile.GetComponent<Destroyer>().CanBeDestroyed = true;
         projectile.GetComponent<Rigidbody>().AddForce(projectile.transform.forward * _projectileSpeed, ForceMode.Impulse);
+    }
+
+    void GrowProjectile()
+    {
+        if (!_growing && !_fired)
+        {
+            _growing = true;
+            _tempProj = Instantiate(_projectile, _firePoint.position, _firePoint.rotation, _firePoint);
+            _tempProj.transform.localScale = Vector3.zero;
+            _growElapsedTime = 0;
+        }
+
+        if (_tempProj != null)
+        {
+            if (_growElapsedTime < _startDelay)
+            {
+                _tempProj.transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, _growElapsedTime / _startDelay);
+                _growElapsedTime += Time.deltaTime;
+            }
+            else
+            {
+                _tempProj.transform.localScale = Vector3.one;
+            }
+        }
     }
 }

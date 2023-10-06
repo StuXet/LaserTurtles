@@ -64,6 +64,12 @@ MonoBehaviour:
   _invEffectColor: {r: 1, g: 0, b: 1, a: 1}
   _invEffectStrength: 1
   _invEffectMaxOpacity: 1
+  _dmgPopup: {fileID: 0}
+  _dmgPopupYOffset: 2
+  _dmgPopupXOffset: 2
+  _normalDmgColor: {r: 1, g: 1, b: 1, a: 1}
+  _resDmgColor: {r: 1, g: 0, b: 1, a: 1}
+  _weakDmgColor: {r: 1, g: 0, b: 0, a: 1}
   knockbackable: 0
 --- !u!114 &5168271363645760439
 MonoBehaviour:
@@ -145,9 +151,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4910603173216086478}
-  - component: {fileID: 427746527612905063}
-  - component: {fileID: 3689797752387991856}
-  - component: {fileID: 6683476750696712784}
   m_Layer: 0
   m_Name: Shooter
   m_TagString: Untagged
@@ -164,75 +167,12 @@ Transform:
   m_GameObject: {fileID: 788267060657974162}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 10, z: 4.25}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5565624641691466412}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &427746527612905063
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 788267060657974162}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &3689797752387991856
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 788267060657974162}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6683476750696712784
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 788267060657974162}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1774903017516284688
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,6 +296,8 @@ MonoBehaviour:
   _knockbackHeavyMultiplier: 2
   _knockbackStunTime: 2
   CanKnockback: 0
+  minStunTime: 0
+  maxStunTime: 0
 --- !u!1 &1791976449939476634
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,6 +653,8 @@ MonoBehaviour:
   _groundCheckOffset: {x: 0, y: 0, z: 0}
   _groundRadius: 0.5
   _gravityModifier: 10
+  _canBeStunned: 0
+  isStunned: 0
   _sFXTransform: {fileID: 5459235478427055462}
   _deathSFX: {fileID: 8784876152952970463}
   _attackSFX: {fileID: 1798485380844106145}
@@ -874,13 +818,14 @@ MonoBehaviour:
   _attackRange: 20
   _cooldownTime: 3
   _enemyAIRef: {fileID: 3652150714881463665}
-  _projectile: {fileID: 5601993761966769206, guid: 3ecc2802b0f7bc8489296b4cce6ba2fc,
+  _projectile: {fileID: 5601993761966769206, guid: 3fb6cb6e1d5a8614c869fe63f93b650c,
     type: 3}
   _firePoint: {fileID: 4910603173216086478}
   _target: {fileID: 0}
   _projectileSpeed: 30
   _startDelay: 0.75
   _cooldown: 1
+  _grow: 1
   _prepAttackIcon: {fileID: 761735572415298329}
   _attackingIcon: {fileID: 2430715257506992364}
 --- !u!1001 &1483005140201693413
