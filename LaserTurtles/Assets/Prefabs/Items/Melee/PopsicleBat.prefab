@@ -212,8 +212,8 @@ MonoBehaviour:
   _canAffect: 1
   _damagerType: 0
   _modifierType: 0
-  _lightDamageAmount: 25
-  _heavyDamageAmount: 50
+  _lightDamageAmount: 15
+  _heavyDamageAmount: 25
   DamageModifier: 1
   UsingHeavy: 0
   UsingSpecial: 0
@@ -222,6 +222,8 @@ MonoBehaviour:
   _knockbackHeavyMultiplier: 2
   _knockbackStunTime: 1
   CanKnockback: 0
+  minStunTime: 0
+  maxStunTime: 0
 --- !u!114 &5609083525479066215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,8 +243,10 @@ MonoBehaviour:
   _pickUpSFX: {fileID: 3408747157536393361}
   _pitchLow: 0.8
   _pitchHigh: 1.2
+  _magnetSpeed: 5
   CanBePicked: 0
   RequiresInteraction: 1
+  Magnetize: 0
 --- !u!114 &6488114023808855350
 MonoBehaviour:
   m_ObjectHideFlags: 0

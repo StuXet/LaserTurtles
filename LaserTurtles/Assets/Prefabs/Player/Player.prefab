@@ -1110,7 +1110,7 @@ MonoBehaviour:
   _dodgeCooldownUI: {fileID: 5521085948847120505}
   dashType: 0
   _dodgeEffect: {fileID: 0}
-  dodgeCooldown: 1.5
+  dodgeCooldown: 1
   dodgeDuration: 0.4
   dodgeSpeed: 20
   isDodging: 0
@@ -1148,6 +1148,17 @@ MonoBehaviour:
   _maxHP: 200
   _currentHP: 0
   _invulnerable: 0
+  _skinedMeshRenderer: {fileID: 0}
+  _invEffect: {fileID: 0}
+  _invEffectColor: {r: 1, g: 1, b: 1, a: 1}
+  _invEffectStrength: 1
+  _invEffectMaxOpacity: 1
+  _dmgPopup: {fileID: 0}
+  _dmgPopupYOffset: 2
+  _dmgPopupXOffset: 2
+  _normalDmgColor: {r: 1, g: 1, b: 1, a: 1}
+  _resDmgColor: {r: 1, g: 0, b: 1, a: 1}
+  _weakDmgColor: {r: 1, g: 0, b: 0, a: 1}
   knockbackable: 0
 --- !u!114 &878156989
 MonoBehaviour:

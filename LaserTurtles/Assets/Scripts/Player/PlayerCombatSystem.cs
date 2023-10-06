@@ -249,6 +249,10 @@ public class PlayerCombatSystem : MonoBehaviour
             Shooting();
             _isPrepShooting = false;
         }
+        if (_equippedRangedWeapon == null)
+        {
+            StartCoroutine(FlashCardRed(_equipmentSlots[_equipmentSlots.Count - 1].transform.parent.gameObject));
+        }
     }
 
 
@@ -488,6 +492,10 @@ public class PlayerCombatSystem : MonoBehaviour
             _isHeavy = false;
             _timer = 0;
         }
+        if (_equippedMeleeWeapon == null)
+        {
+            StartCoroutine(FlashCardRed(_meleeCards[_currentSlot - 1].gameObject));
+        }
     }
 
     void HeavyAttack()
@@ -561,6 +569,10 @@ public class PlayerCombatSystem : MonoBehaviour
                 projectile.GetComponent<Damager>().CanDamage = true;
                 projectile.GetComponent<Destroyer>().CanBeDestroyed = true;
                 projectile.GetComponent<Rigidbody>().AddForce(projectile.transform.forward * _shootForce, ForceMode.Impulse);
+            }
+            else
+            {
+                StartCoroutine(FlashCardRed(_ammoText.transform.parent.gameObject));
             }
         }
     }
@@ -748,6 +760,19 @@ public class PlayerCombatSystem : MonoBehaviour
         }
     }
 
+    IEnumerator FlashCardRed(GameObject card)
+    {
+        Image image = card.GetComponent<Image>();
+        image.color = new Color(1f, 0.5f, 0.5f, 1f);
+        yield return new WaitForSeconds(0.25f);
+        image.color = Color.white;
+        yield return new WaitForSeconds(0.25f);
+        image.color = new Color(1f, 0.5f, 0.5f, 1f);
+        yield return new WaitForSeconds(0.25f);
+        image.color = Color.white;
+        yield return new WaitForSeconds(0.25f);
+    }
+
     private void AnimationHandler()
     {
         if (_playerAnimator)
@@ -805,7 +830,9 @@ public class PlayerCombatSystem : MonoBehaviour
         {
             if (isAttacking || isHeavyAttacking || isLightAttacking)
             {
-                _playerController.InControl = false;
+                //_playerController.InControl = false;
+                _playerController.InControl = true;
+                _playerController.CurrentMaxSpeed = _playerController.MaxSpeed / 4;
             }
             else
             {

@@ -256,8 +256,8 @@ MonoBehaviour:
   _knockbackHeavyMultiplier: 2
   _knockbackStunTime: 0.5
   CanKnockback: 0
-  minStunTime: 2
-  maxStunTime: 3
+  minStunTime: 1
+  maxStunTime: 2
 --- !u!114 &5609083525479066215
 MonoBehaviour:
   m_ObjectHideFlags: 0
