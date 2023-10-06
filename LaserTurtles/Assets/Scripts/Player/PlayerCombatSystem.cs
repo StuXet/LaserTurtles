@@ -805,7 +805,9 @@ public class PlayerCombatSystem : MonoBehaviour
         {
             if (isAttacking || isHeavyAttacking || isLightAttacking)
             {
-                _playerController.InControl = false;
+                //_playerController.InControl = false;
+                _playerController.InControl = true;
+                _playerController.CurrentMaxSpeed = _playerController.MaxSpeed / 4;
             }
             else
             {
