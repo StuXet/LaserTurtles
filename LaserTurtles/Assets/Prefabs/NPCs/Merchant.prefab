@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 8777943013061052682}
   - component: {fileID: 8777943013061052683}
   - component: {fileID: 8777943013061052684}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -355,7 +355,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8777943013202856007}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Overhead icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -562,7 +562,7 @@ GameObject:
   - component: {fileID: 8777943013979915345}
   - component: {fileID: 8777943013979915346}
   - component: {fileID: 8777943013979915347}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
