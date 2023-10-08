@@ -73,6 +73,7 @@ public class EnemyAI : MonoBehaviour
     [Header("VFX")]
     [SerializeField] private Transform _vFXTransform;
     [SerializeField] private VisualEffect _spawnVFX;
+    [SerializeField] private ParticleSystem _stunEffect;
 
 
     public HealthHandler HealthHandlerRef { get => _healthHandlerRef; set => _healthHandlerRef = value; }
@@ -380,6 +381,9 @@ public class EnemyAI : MonoBehaviour
     {
         _isDead = true;
         isStunned = false;
+        if (_stunEffect != null) _stunEffect.Stop();
+        if (_stunEffect != null) _stunEffect.Clear();
+
         if (DestroyOnDeath)
         {
             if (_deathSFX != null)
@@ -419,8 +423,11 @@ public class EnemyAI : MonoBehaviour
     private IEnumerator HandleStun(float minTime, float maxTime)
     {
         isStunned = true;
+        if (_stunEffect != null) _stunEffect.Play();
         yield return new WaitForSeconds(Random.Range(minTime, maxTime));
         isStunned = false;
+        if (_stunEffect != null) _stunEffect.Stop();
+        if (_stunEffect != null) _stunEffect.Clear();
     }
 
     public void Stun(float minTime, float maxTime)

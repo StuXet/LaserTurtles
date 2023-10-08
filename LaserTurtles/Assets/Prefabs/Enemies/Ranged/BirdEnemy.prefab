@@ -135,7 +135,7 @@ MonoBehaviour:
   _gravityModifier: 10
   _canBeStunned: 1
   isStunned: 0
-  _stunChance: 15
+  _stunChance: 30
   _sFXTransform: {fileID: 2539715219192336615}
   _deathSFX: {fileID: 1231697554904299870}
   _attackSFX: {fileID: 8072835217019393056}
@@ -146,6 +146,7 @@ MonoBehaviour:
   _pitchHigh: 1.2
   _vFXTransform: {fileID: 2479089865048665707}
   _spawnVFX: {fileID: 6979627135682451756}
+  _stunEffect: {fileID: 350896955471953632}
 --- !u!114 &1655155455741120437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -677,6 +678,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2851740006274703716}
     m_Modifications:
+    - target: {fileID: 1762960151599513779, guid: 53dead03f3c9bd34f92614ae641c55ce,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1762960151599513779, guid: 53dead03f3c9bd34f92614ae641c55ce,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.25
+      objectReference: {fileID: 0}
     - target: {fileID: 2156288649192884099, guid: 53dead03f3c9bd34f92614ae641c55ce,
         type: 3}
       propertyPath: m_RootOrder
@@ -749,6 +760,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53dead03f3c9bd34f92614ae641c55ce, type: 3}
+--- !u!198 &350896955471953632 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4275447567615891208, guid: 53dead03f3c9bd34f92614ae641c55ce,
+    type: 3}
+  m_PrefabInstance: {fileID: 4578984356145949160}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2479089865048665707 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2156288649192884099, guid: 53dead03f3c9bd34f92614ae641c55ce,
