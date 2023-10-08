@@ -13,6 +13,7 @@ public class PlayerUIManager : MonoBehaviour
 
     [SerializeField] private GameObject InventoryOverlay;
     private bool _isInventoryOverlayOpen = false;
+    [SerializeField] private bool _allowInvDisplay = true;
 
     private GameObject _objectiveUIRef;
     private Animator _objUIAnimator;
@@ -104,15 +105,18 @@ public class PlayerUIManager : MonoBehaviour
     #region Inventory Overlay
     private void ToggleInventoryOverlay()
     {
-        _isInventoryOverlayOpen = CloseAllExcept(_isInventoryOverlayOpen);
+        if (_allowInvDisplay)
+        {
+            _isInventoryOverlayOpen = CloseAllExcept(_isInventoryOverlayOpen);
 
-        if (_isInventoryOverlayOpen)
-        {
-            _isInventoryOverlayOpen = false;
-        }
-        else
-        {
-            _isInventoryOverlayOpen = true;
+            if (_isInventoryOverlayOpen)
+            {
+                _isInventoryOverlayOpen = false;
+            }
+            else
+            {
+                _isInventoryOverlayOpen = true;
+            }
         }
     }
 
