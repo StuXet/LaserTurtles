@@ -1355,7 +1355,7 @@ MonoBehaviour:
   _inputManagerRef: {fileID: 39110088067695669}
   LargeMapOverlay: {fileID: 2565370255680769995}
   InventoryOverlay: {fileID: 9053707344131515673}
-  _allowInvDisplay: 1
+  _allowInvDisplay: 0
 --- !u!1 &5986399918260106865
 GameObject:
   m_ObjectHideFlags: 0
