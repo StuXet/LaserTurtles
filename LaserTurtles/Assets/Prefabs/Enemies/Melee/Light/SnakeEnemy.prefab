@@ -134,8 +134,8 @@ MonoBehaviour:
   _groundRadius: 0.5
   _gravityModifier: 10
   _canBeStunned: 1
-  _lightStunTime: 5
-  _heavyStunTime: 5
+  isStunned: 0
+  _stunChance: 10
   _sFXTransform: {fileID: 1320328266374050666}
   _deathSFX: {fileID: 2340605715513907923}
   _attackSFX: {fileID: 4711933727050659757}
@@ -2626,6 +2626,8 @@ MonoBehaviour:
   _knockbackHeavyMultiplier: 2
   _knockbackStunTime: 2
   CanKnockback: 0
+  minStunTime: 0
+  maxStunTime: 0
 --- !u!1001 &2136920003111070099
 PrefabInstance:
   m_ObjectHideFlags: 0

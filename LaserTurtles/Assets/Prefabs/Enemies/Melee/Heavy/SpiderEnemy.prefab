@@ -454,6 +454,7 @@ MonoBehaviour:
   _gravityModifier: 10
   _canBeStunned: 1
   isStunned: 0
+  _stunChance: 5
   _sFXTransform: {fileID: 178771343648815197}
   _deathSFX: {fileID: 3481881163061105124}
   _attackSFX: {fileID: 5858486873564675226}

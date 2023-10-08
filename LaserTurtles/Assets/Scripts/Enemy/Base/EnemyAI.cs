@@ -50,8 +50,11 @@ public class EnemyAI : MonoBehaviour
     private Vector3 _knockbackDirection;
 
     //Stun
+    [Header("Stun")]
     [SerializeField] private bool _canBeStunned;
-    public bool isStunned;
+    [HideInInspector] public bool isStunned;
+    [Range(0, 100)]
+    [SerializeField] private int _stunChance = 0;
 
     // Audio Sources
     [Header("Audios")]
@@ -376,6 +379,7 @@ public class EnemyAI : MonoBehaviour
     public virtual void EnemyDeath()
     {
         _isDead = true;
+        isStunned = false;
         if (DestroyOnDeath)
         {
             if (_deathSFX != null)
@@ -414,19 +418,22 @@ public class EnemyAI : MonoBehaviour
     }
     private IEnumerator HandleStun(float minTime, float maxTime)
     {
-        if (_canBeStunned)
-        {
-            isStunned = true;
-            yield return new WaitForSeconds(Random.Range(minTime, maxTime));
-            isStunned = false;
-        }
+        isStunned = true;
+        yield return new WaitForSeconds(Random.Range(minTime, maxTime));
+        isStunned = false;
     }
 
     public void Stun(float minTime, float maxTime)
     {
-        if (gameObject.activeSelf)
+        if (gameObject.activeSelf && _canBeStunned && !isStunned)
         {
-            StartCoroutine(HandleStun(minTime, maxTime));
+            int chance = Random.Range(0, 101);
+            Debug.Log(chance);
+
+            if (chance < _stunChance)
+            {
+                StartCoroutine(HandleStun(minTime, maxTime));
+            }
         }
     }
 
