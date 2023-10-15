@@ -203,7 +203,7 @@ public class PlayerCombatSystem : MonoBehaviour
     {
         if (!inDialogue)
         {
-            Debug.Log("Performed melee");
+            //Debug.Log("Performed melee");
             HeavyAttack();
         }
     }
@@ -217,11 +217,11 @@ public class PlayerCombatSystem : MonoBehaviour
             }
             else
             {
-                Debug.Log("Light attack");
+                //Debug.Log("Light attack");
                 Attack();
             }
 
-            Debug.Log("Release melee");
+            //Debug.Log("Release melee");
             //isAttacking = false;
         }
     }
@@ -230,7 +230,7 @@ public class PlayerCombatSystem : MonoBehaviour
     {
         if (!inDialogue && _equippedRangedWeapon != null)
         {
-            Debug.Log("Shoot pressed");
+            //Debug.Log("Shoot pressed");
             _isPrepShooting = true;
         }
     }
@@ -245,7 +245,7 @@ public class PlayerCombatSystem : MonoBehaviour
     {
         if (!inDialogue && _equippedRangedWeapon != null && _isPrepShooting)
         {
-            Debug.Log("shooooooooooooooot");
+            //Debug.Log("shooooooooooooooot");
             Shooting();
             _isPrepShooting = false;
         }
@@ -261,7 +261,7 @@ public class PlayerCombatSystem : MonoBehaviour
 
         if (AllowSpecial && !inDialogue && _currentChargeBar >= _maxChargeBar)
         {
-            Debug.Log("Special attack");
+            //Debug.Log("Special attack");
             SpecialAttack();
             _currentChargeBar = 0;
         }
@@ -818,7 +818,7 @@ public class PlayerCombatSystem : MonoBehaviour
 
                 eAI.enabled = true;
                 navAgent.enabled = true;
-                Debug.Log("BIG PP");
+                //Debug.Log("BIG PP");
             }
         }
     }

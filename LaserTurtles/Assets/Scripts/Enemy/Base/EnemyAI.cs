@@ -435,7 +435,7 @@ public class EnemyAI : MonoBehaviour
         if (gameObject.activeSelf && _canBeStunned && !isStunned)
         {
             int chance = Random.Range(0, 101);
-            Debug.Log(chance);
+            //Debug.Log(chance);
 
             if (chance < _stunChance)
             {
