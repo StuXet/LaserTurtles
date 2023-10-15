@@ -147,6 +147,7 @@ public class ItemObject : MonoBehaviour
         if (other.CompareTag("Inventory"))
         {
             _colliding = true;
+            Magnetize = false;
             if (PickupPressIcon && CanBePicked && RequiresInteraction)
             {
                 PickupPressIcon.SetActive(true);

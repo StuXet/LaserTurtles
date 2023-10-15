@@ -13,6 +13,8 @@ public class EnemyAI : MonoBehaviour
     [HideInInspector] public Transform Player;
     [SerializeField] private HealthHandler _healthHandlerRef;
     [SerializeField] private Animator _animatorRef;
+    [SerializeField] private GameObject _GFX;
+    [SerializeField] private float _deathLength = 2f;
     public bool DestroyOnDeath;
     private bool _isDead;
 
@@ -50,8 +52,11 @@ public class EnemyAI : MonoBehaviour
     private Vector3 _knockbackDirection;
 
     //Stun
+    [Header("Stun")]
     [SerializeField] private bool _canBeStunned;
     public bool isStunned;
+    [Range(0, 100)]
+    [SerializeField] private int _stunChance = 0;
 
     // Audio Sources
     [Header("Audios")]
@@ -70,6 +75,7 @@ public class EnemyAI : MonoBehaviour
     [Header("VFX")]
     [SerializeField] private Transform _vFXTransform;
     [SerializeField] private VisualEffect _spawnVFX;
+    [SerializeField] private ParticleSystem _stunEffect;
 
 
     public HealthHandler HealthHandlerRef { get => _healthHandlerRef; set => _healthHandlerRef = value; }
@@ -131,19 +137,22 @@ public class EnemyAI : MonoBehaviour
     private void SFXHandler()
     {
         // Voice SFX
-        if (!_voiceSFXActivated && PlayerInSightRange)
+        if (!_isDead)
         {
-            if (_voiceSFX != null)
+            if (!_voiceSFXActivated && PlayerInSightRange)
             {
-                float pitch = Random.Range(_pitchLow, _pitchHigh);
-                _voiceSFX.pitch = pitch;
-                _voiceSFX.Play();
-                _voiceSFXActivated = true;
+                if (_voiceSFX != null)
+                {
+                    float pitch = Random.Range(_pitchLow, _pitchHigh);
+                    _voiceSFX.pitch = pitch;
+                    _voiceSFX.Play();
+                    _voiceSFXActivated = true;
+                }
             }
-        }
-        else if (!PlayerInSightRange)
-        {
-            _voiceSFXActivated = false;
+            else if (!PlayerInSightRange)
+            {
+                _voiceSFXActivated = false;
+            }
         }
     }
 
@@ -290,7 +299,7 @@ public class EnemyAI : MonoBehaviour
         }
         else
         {
-            _inControl = true;
+            if (!_isDead) _inControl = true;
             _knockbackForce = 0;
             _knockbackTimer = 0;
             _knockbackDirection = Vector3.zero;
@@ -376,57 +385,81 @@ public class EnemyAI : MonoBehaviour
     public virtual void EnemyDeath()
     {
         _isDead = true;
+
         if (DestroyOnDeath)
         {
             if (_deathSFX != null)
             {
                 _deathSFX.Play();
                 _deathSFX.transform.parent = null;
-                if (_spawnVFX != null) _spawnVFX.Play();
+                Destroy(_deathSFX.gameObject, _deathLength);
+            }
+            if (_spawnVFX != null)
+            {
+                _spawnVFX.Play();
                 _spawnVFX.transform.parent = null;
-                Destroy(_deathSFX.gameObject, 1f);
+                Destroy(_spawnVFX.gameObject, _deathLength);
+
             }
             Destroy(gameObject);
         }
         else
         {
-            if (_deathSFX != null)
-            {
-                _deathSFX.Play();
-                _deathSFX.transform.parent = null;
-                if (_spawnVFX != null) _spawnVFX.Play();
-                _spawnVFX.transform.parent = null;
-                StartCoroutine(DeathFX());
-            }
-            gameObject.SetActive(false);
-            _healthHandlerRef._healthSystem.RefillHealth();
-            AlreadyAttacked = false;
+            // Stop Stun Effect
+            isStunned = false;
+            if (_stunEffect != null) _stunEffect.Stop();
+            if (_stunEffect != null) _stunEffect.Clear();
+            // Play Death Effects
+            if (_deathSFX != null) _deathSFX.Play();
+            if (_spawnVFX != null) _spawnVFX.Play();
+            // Disable Controls
+            _inControl = false;
+            _voiceSFXActivated = false;
+            // Disable HPUI
+            _healthHandlerRef.ToggleHealthBar(false);
+            // Disable GFX
+            _GFX.gameObject.SetActive(false);
+            // After Timer Death ReEnables
+            StartCoroutine(DeathTransition());
         }
 
         ToggleHPBarState();
     }
 
-    IEnumerator DeathFX()
+    IEnumerator DeathTransition()
     {
-        yield return new WaitForSeconds(1f);
-        _deathSFX.transform.parent = _sFXTransform;
-        _spawnVFX.transform.parent = _vFXTransform;
+        yield return new WaitForSeconds(_deathLength);
+        // Enable Controls
+        _inControl = true;
+        // Enable GFX
+        _GFX.gameObject.SetActive(true);
+        // Enable HPUI
+        _healthHandlerRef.ToggleHealthBar(true);
+        _healthHandlerRef._healthSystem.RefillHealth();
+        // Disable EnemyObj
+        gameObject.SetActive(false);
     }
     private IEnumerator HandleStun(float minTime, float maxTime)
     {
-        if (_canBeStunned)
-        {
-            isStunned = true;
-            yield return new WaitForSeconds(Random.Range(minTime, maxTime));
-            isStunned = false;
-        }
+        isStunned = true;
+        if (_stunEffect != null) _stunEffect.Play();
+        yield return new WaitForSeconds(Random.Range(minTime, maxTime));
+        isStunned = false;
+        if (_stunEffect != null) _stunEffect.Stop();
+        if (_stunEffect != null) _stunEffect.Clear();
     }
 
     public void Stun(float minTime, float maxTime)
     {
-        if (gameObject.activeSelf)
+        if (gameObject.activeSelf && _canBeStunned && !isStunned && !_isDead)
         {
-            StartCoroutine(HandleStun(minTime, maxTime));
+            int chance = Random.Range(0, 101);
+            //Debug.Log(chance);
+
+            if (chance < _stunChance)
+            {
+                StartCoroutine(HandleStun(minTime, maxTime));
+            }
         }
     }
 

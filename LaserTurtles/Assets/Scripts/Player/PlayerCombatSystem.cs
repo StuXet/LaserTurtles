@@ -203,7 +203,7 @@ public class PlayerCombatSystem : MonoBehaviour
     {
         if (!inDialogue)
         {
-            Debug.Log("Performed melee");
+            //Debug.Log("Performed melee");
             HeavyAttack();
         }
     }
@@ -217,11 +217,11 @@ public class PlayerCombatSystem : MonoBehaviour
             }
             else
             {
-                Debug.Log("Light attack");
+                //Debug.Log("Light attack");
                 Attack();
             }
 
-            Debug.Log("Release melee");
+            //Debug.Log("Release melee");
             //isAttacking = false;
         }
     }
@@ -230,7 +230,7 @@ public class PlayerCombatSystem : MonoBehaviour
     {
         if (!inDialogue && _equippedRangedWeapon != null)
         {
-            Debug.Log("Shoot pressed");
+            //Debug.Log("Shoot pressed");
             _isPrepShooting = true;
         }
     }
@@ -245,7 +245,7 @@ public class PlayerCombatSystem : MonoBehaviour
     {
         if (!inDialogue && _equippedRangedWeapon != null && _isPrepShooting)
         {
-            Debug.Log("shooooooooooooooot");
+            //Debug.Log("shooooooooooooooot");
             Shooting();
             _isPrepShooting = false;
         }
@@ -259,9 +259,9 @@ public class PlayerCombatSystem : MonoBehaviour
     private void SpecialAttack(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
 
-        if (AllowSpecial && !inDialogue && _currentChargeBar >= _maxChargeBar)
+        if (AllowSpecial && !inDialogue && _currentChargeBar >= _maxChargeBar && !isAttacking)
         {
-            Debug.Log("Special attack");
+            //Debug.Log("Special attack");
             SpecialAttack();
             _currentChargeBar = 0;
         }
@@ -473,7 +473,7 @@ public class PlayerCombatSystem : MonoBehaviour
     void Attack()
     {
         _playerController.RotateToCursor();
-        if (!isLightAttacking && !_isShooting && _equippedMeleeWeapon != null && _currentSlot != 4)
+        if (!isLightAttacking && !_isShooting && !_isUsingSpecial && _equippedMeleeWeapon != null && _currentSlot != 4)
         {
             isLightAttacking = true;
             _isHeavy = false;
@@ -485,7 +485,7 @@ public class PlayerCombatSystem : MonoBehaviour
             //anim.SetTrigger("Attack");
             //StartCoroutine(ResetAttackCooldown());
         }
-        else if ((combo.GetDuration() / 100 * 75 <= _timer && combo.GetDuration() >= _timer) && (isLightAttacking && !_isShooting && _equippedMeleeWeapon != null && _currentSlot != 4))
+        else if ((combo.GetDuration() / 100 * 75 <= _timer && combo.GetDuration() >= _timer) && (isLightAttacking && !_isShooting && !_isUsingSpecial && _equippedMeleeWeapon != null && _currentSlot != 4))
         {
             combo.OnClick();
             isLightAttacking = true;
@@ -500,7 +500,7 @@ public class PlayerCombatSystem : MonoBehaviour
 
     void HeavyAttack()
     {
-        if (!_isShooting && !isHeavyAttacking && _equippedMeleeWeapon != null && _currentSlot != 4)
+        if (!_isShooting && !isHeavyAttacking && !_isUsingSpecial && _equippedMeleeWeapon != null && _currentSlot != 4)
         {
             _playerController.RotateToCursor();
             //Debug.Log("Heavy Attack");
@@ -818,7 +818,7 @@ public class PlayerCombatSystem : MonoBehaviour
 
                 eAI.enabled = true;
                 navAgent.enabled = true;
-                Debug.Log("BIG PP");
+                //Debug.Log("BIG PP");
             }
         }
     }

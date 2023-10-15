@@ -437,6 +437,8 @@ MonoBehaviour:
   Player: {fileID: 0}
   _healthHandlerRef: {fileID: 3732241753493091364}
   _animatorRef: {fileID: 6387273848593591875}
+  _GFX: {fileID: 603221281009302736}
+  _deathLength: 2
   DestroyOnDeath: 0
   CanPatrol: 1
   CanChase: 1
@@ -454,6 +456,7 @@ MonoBehaviour:
   _gravityModifier: 10
   _canBeStunned: 1
   isStunned: 0
+  _stunChance: 10
   _sFXTransform: {fileID: 178771343648815197}
   _deathSFX: {fileID: 3481881163061105124}
   _attackSFX: {fileID: 5858486873564675226}
@@ -464,6 +467,7 @@ MonoBehaviour:
   _pitchHigh: 1.2
   _vFXTransform: {fileID: 2369818472629880874}
   _spawnVFX: {fileID: 7086602746613989229}
+  _stunEffect: {fileID: 457841775778175137}
 --- !u!114 &7228148100382587493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -941,6 +945,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6135216701375911092}
     m_Modifications:
+    - target: {fileID: 1762960151599513779, guid: 53dead03f3c9bd34f92614ae641c55ce,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1762960151599513779, guid: 53dead03f3c9bd34f92614ae641c55ce,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.75
+      objectReference: {fileID: 0}
     - target: {fileID: 2156288649192884099, guid: 53dead03f3c9bd34f92614ae641c55ce,
         type: 3}
       propertyPath: m_RootOrder
@@ -1013,6 +1027,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53dead03f3c9bd34f92614ae641c55ce, type: 3}
+--- !u!198 &457841775778175137 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4275447567615891208, guid: 53dead03f3c9bd34f92614ae641c55ce,
+    type: 3}
+  m_PrefabInstance: {fileID: 4399986334343237545}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2369818472629880874 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2156288649192884099, guid: 53dead03f3c9bd34f92614ae641c55ce,
