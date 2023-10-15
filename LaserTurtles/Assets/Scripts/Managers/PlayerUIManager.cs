@@ -18,9 +18,6 @@ public class PlayerUIManager : MonoBehaviour
     private GameObject _objectiveUIRef;
     private Animator _objUIAnimator;
 
-    private GameObject _objectiveUIRef;
-    private Animator _objUIAnimator;
-
     // Start is called before the first frame update
     void Start()
     {
