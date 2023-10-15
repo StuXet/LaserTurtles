@@ -118,6 +118,8 @@ MonoBehaviour:
   Player: {fileID: 0}
   _healthHandlerRef: {fileID: 4718742583778345460}
   _animatorRef: {fileID: 1097917047486490807}
+  _GFX: {fileID: 8856561727849613568}
+  _deathLength: 2
   DestroyOnDeath: 0
   CanPatrol: 1
   CanChase: 1

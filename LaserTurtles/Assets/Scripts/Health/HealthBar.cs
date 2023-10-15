@@ -44,6 +44,11 @@ public class HealthBar : MonoBehaviour
         SetTransparency(0);
     }
 
+    private void OnEnable()
+    {
+        SetTransparency(0);
+    }
+
     private void Update()
     {
         if (_isBoss)
