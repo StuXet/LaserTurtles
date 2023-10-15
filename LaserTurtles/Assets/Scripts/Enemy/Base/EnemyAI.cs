@@ -14,6 +14,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private HealthHandler _healthHandlerRef;
     [SerializeField] private Animator _animatorRef;
     [SerializeField] private GameObject _GFX;
+    [SerializeField] private GameObject _enemyUI;
     [SerializeField] private float _deathLength = 2f;
     public bool DestroyOnDeath;
     private bool _isDead;
@@ -415,8 +416,9 @@ public class EnemyAI : MonoBehaviour
             // Disable Controls
             _inControl = false;
             _voiceSFXActivated = false;
-            // Disable HPUI
+            // Disable UI
             _healthHandlerRef.ToggleHealthBar(false);
+            _enemyUI.SetActive(false);
             // Disable GFX
             _GFX.gameObject.SetActive(false);
             // After Timer Death ReEnables
@@ -433,9 +435,10 @@ public class EnemyAI : MonoBehaviour
         _inControl = true;
         // Enable GFX
         _GFX.gameObject.SetActive(true);
-        // Enable HPUI
+        // Enable UI
         _healthHandlerRef.ToggleHealthBar(true);
         _healthHandlerRef._healthSystem.RefillHealth();
+        _enemyUI.SetActive(true);
         // Disable EnemyObj
         gameObject.SetActive(false);
     }
