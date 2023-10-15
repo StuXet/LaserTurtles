@@ -259,7 +259,7 @@ public class PlayerCombatSystem : MonoBehaviour
     private void SpecialAttack(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
 
-        if (AllowSpecial && !inDialogue && _currentChargeBar >= _maxChargeBar)
+        if (AllowSpecial && !inDialogue && _currentChargeBar >= _maxChargeBar && !isAttacking)
         {
             //Debug.Log("Special attack");
             SpecialAttack();
@@ -473,7 +473,7 @@ public class PlayerCombatSystem : MonoBehaviour
     void Attack()
     {
         _playerController.RotateToCursor();
-        if (!isLightAttacking && !_isShooting && _equippedMeleeWeapon != null && _currentSlot != 4)
+        if (!isLightAttacking && !_isShooting && !_isUsingSpecial && _equippedMeleeWeapon != null && _currentSlot != 4)
         {
             isLightAttacking = true;
             _isHeavy = false;
@@ -485,7 +485,7 @@ public class PlayerCombatSystem : MonoBehaviour
             //anim.SetTrigger("Attack");
             //StartCoroutine(ResetAttackCooldown());
         }
-        else if ((combo.GetDuration() / 100 * 75 <= _timer && combo.GetDuration() >= _timer) && (isLightAttacking && !_isShooting && _equippedMeleeWeapon != null && _currentSlot != 4))
+        else if ((combo.GetDuration() / 100 * 75 <= _timer && combo.GetDuration() >= _timer) && (isLightAttacking && !_isShooting && !_isUsingSpecial && _equippedMeleeWeapon != null && _currentSlot != 4))
         {
             combo.OnClick();
             isLightAttacking = true;
@@ -500,7 +500,7 @@ public class PlayerCombatSystem : MonoBehaviour
 
     void HeavyAttack()
     {
-        if (!_isShooting && !isHeavyAttacking && _equippedMeleeWeapon != null && _currentSlot != 4)
+        if (!_isShooting && !isHeavyAttacking && !_isUsingSpecial && _equippedMeleeWeapon != null && _currentSlot != 4)
         {
             _playerController.RotateToCursor();
             //Debug.Log("Heavy Attack");
