@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
+using UnityEditor.SceneManagement;
+
 public class Merchant : MonoBehaviour
 {
     public delegate void SoldItem(InventoryItemData itemData);
@@ -19,7 +22,7 @@ public class Merchant : MonoBehaviour
     [SerializeField] TextMeshProUGUI dialogueText;
     [SerializeField] GameObject interactTip;
     [SerializeField] GameObject exclamationMark;
-    [SerializeField] int swordPrice = 10;
+    [SerializeField] int _itemPrice = 10;
 
     [Header("Reward Setting")]
     [SerializeField] GameObject reward;
@@ -31,8 +34,8 @@ public class Merchant : MonoBehaviour
 
 
     string stage1 = "I've been waiting for you kid! i got a special weapon you can use to defeat the witch!";
-    string stage2t = "Great! looks like you got enough crystals, here you go...";
-    string stage2f = "Hmmm, I might be your father but i still need something in return, come back when you got enough crystals";
+    string stage2t = "Great! looks like you got enough Crystals, here you go...";
+    string stage2f = "Hmmm, I might be your father but i still need something in return, come back when you got '<price>' Crystals";
     string stage3 = "Good luck kid";
 
 
@@ -49,6 +52,8 @@ public class Merchant : MonoBehaviour
         dialoguePanel = _uIMediator.DialougeUI.transform.GetChild(0).gameObject;
         dialogueText = _uIMediator.DialougeUI.transform.GetChild(1).GetComponentInChildren<TextMeshProUGUI>();
         dialogueButton = _uIMediator.DialougeUI.transform.GetChild(2).GetComponentInChildren<Button>();
+
+        ToggleDialoguePanel(false);
     }
 
     // Update is called once per frame
@@ -102,11 +107,16 @@ public class Merchant : MonoBehaviour
         }
     }
 
+    void ToggleDialoguePanel(bool toggle)
+    {
+        dialoguePanel.SetActive(toggle);
+        dialogueText.gameObject.SetActive(toggle);
+        dialogueButton.gameObject.SetActive(toggle);
+    }
+
     void EndDialogue()
     {
-        dialoguePanel.SetActive(false);
-        dialogueText.gameObject.SetActive(false);
-        dialogueButton.gameObject.SetActive(false);
+        ToggleDialoguePanel(false);
         inDialogue = false;
         player.GetComponent<PlayerCombatSystem>().inDialogue = false;
         isFirstTime = false;
@@ -116,15 +126,13 @@ public class Merchant : MonoBehaviour
     {
         inDialogue = true;
         player.GetComponent<PlayerCombatSystem>().inDialogue = true;
-        dialoguePanel.SetActive(true);
-        dialogueText.gameObject.SetActive(true);
-        dialogueButton.gameObject.SetActive(true);
+        ToggleDialoguePanel(true);
         interactTip.SetActive(false);
         exclamationMark.SetActive(false);
 
         dialogueText.text = stage1;
 
-        
+
         if (!isFirstTime)
         {
             NextStage();
@@ -134,18 +142,19 @@ public class Merchant : MonoBehaviour
     public void NextStage()
     {
         print("checkcheck");
-        if (dialogueText.text == stage1 && pWallet.Coins >= swordPrice)
+        if (dialogueText.text == stage1 && pWallet.Coins >= _itemPrice)
         {
             dialogueText.text = stage2t;
             GameObject weapon = Instantiate(reward, rewardSpawnPos.position, rewardSpawnPos.rotation);
             ItemObject tempItem = weapon.GetComponent<ItemObject>();
             tempItem.CanBePicked = true;
-            pWallet.DeductCoins(swordPrice);
+            pWallet.DeductCoins(_itemPrice);
             if (OnSoldItem != null) { OnSoldItem.Invoke(tempItem.ReferenceItem); };
         }
         else if (dialogueText.text == stage1)
         {
-            dialogueText.text = stage2f;
+            string tempStr = stage2f.Replace("<price>", _itemPrice.ToString());
+            dialogueText.text = tempStr;
         }
         else if (dialogueText.text == stage2f)
         {
