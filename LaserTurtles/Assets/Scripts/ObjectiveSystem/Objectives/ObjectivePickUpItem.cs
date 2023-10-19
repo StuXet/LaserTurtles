@@ -24,11 +24,11 @@ public class ObjectivePickUpItem : ObjectiveBase
         ObjectiveRequirementMet();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!CompletedObjective)
-        {
-            BeginObjective();
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (!CompletedObjective)
+    //    {
+    //        BeginObjective();
+    //    }
+    //}
 }

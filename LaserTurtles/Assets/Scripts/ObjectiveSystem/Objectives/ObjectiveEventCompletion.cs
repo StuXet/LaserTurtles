@@ -54,11 +54,11 @@ public class ObjectiveEventCompletion : ObjectiveBase
     }
 
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!CompletedObjective)
-        {
-            BeginObjective();
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (!CompletedObjective)
+    //    {
+    //        BeginObjective();
+    //    }
+    //}
 }

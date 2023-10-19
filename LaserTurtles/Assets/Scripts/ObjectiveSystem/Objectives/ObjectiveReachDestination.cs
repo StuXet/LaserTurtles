@@ -25,11 +25,11 @@ public class ObjectiveReachDestination : ObjectiveBase
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!CompletedObjective)
-        {
-            BeginObjective();
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (!CompletedObjective)
+    //    {
+    //        BeginObjective();
+    //    }
+    //}
 }
