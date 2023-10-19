@@ -138,8 +138,17 @@ public class HealthBar : MonoBehaviour
             if (DamageHealthBar2 != null) DamageHealthBar2.fillAmount = _healthSystem.GetHealthPercent();
         }
 
-        _hideTimer = 0;
-        SetTransparency(1);
+
+        if (_healthSystem.GetHealthPercent() <= 0)
+        {
+            _hideTimer = _hideSpeed;
+            SetTransparency(0);
+        }
+        else
+        {
+            _hideTimer = 0;
+            SetTransparency(1);
+        }
     }
 
     private void SetTransparency(float a)

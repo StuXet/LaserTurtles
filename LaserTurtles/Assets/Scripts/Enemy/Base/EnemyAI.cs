@@ -417,7 +417,6 @@ public class EnemyAI : MonoBehaviour
             _inControl = false;
             _voiceSFXActivated = false;
             // Disable UI
-            _healthHandlerRef.ToggleHealthBar(false);
             _enemyUI.SetActive(false);
             // Disable GFX
             _GFX.gameObject.SetActive(false);
@@ -436,7 +435,6 @@ public class EnemyAI : MonoBehaviour
         // Enable GFX
         _GFX.gameObject.SetActive(true);
         // Enable UI
-        _healthHandlerRef.ToggleHealthBar(true);
         _healthHandlerRef._healthSystem.RefillHealth();
         _enemyUI.SetActive(true);
         // Disable EnemyObj
