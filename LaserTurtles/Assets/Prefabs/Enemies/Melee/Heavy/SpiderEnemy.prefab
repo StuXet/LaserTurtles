@@ -489,8 +489,8 @@ MonoBehaviour:
   _comboTwoWeapons: 0
   _comboLength: 1
   ComboState: 1
-  _activeDuration: 1
-  _startDelay: 0.5
+  _activeDuration: 0.3
+  _startDelay: 0.7
   _prepAttackIcon: {fileID: 2520157254345436808}
   _attackingIcon: {fileID: 707343841055081853}
 --- !u!114 &2644558523111022368
