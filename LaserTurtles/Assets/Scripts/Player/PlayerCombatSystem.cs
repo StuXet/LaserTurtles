@@ -201,7 +201,7 @@ public class PlayerCombatSystem : MonoBehaviour
     }
     private void HeavyAttack(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        if (!inDialogue)
+        if (!inDialogue && !_playerController.IsDead)
         {
             //Debug.Log("Performed melee");
             HeavyAttack();
@@ -209,7 +209,7 @@ public class PlayerCombatSystem : MonoBehaviour
     }
     private void ReleaseMelee(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        if (!inDialogue)
+        if (!inDialogue && !_playerController.IsDead)
         {
             if (isHeavyAttacking)
             {
@@ -228,7 +228,7 @@ public class PlayerCombatSystem : MonoBehaviour
 
     private void ShootAttackStarted(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        if (!inDialogue && _equippedRangedWeapon != null)
+        if (!inDialogue && !_playerController.IsDead && _equippedRangedWeapon != null)
         {
             //Debug.Log("Shoot pressed");
             _isPrepShooting = true;
@@ -243,7 +243,7 @@ public class PlayerCombatSystem : MonoBehaviour
     //}
     private void ShootAttackCancel(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        if (!inDialogue && _equippedRangedWeapon != null && _isPrepShooting)
+        if (!inDialogue && !_playerController.IsDead && _equippedRangedWeapon != null && _isPrepShooting)
         {
             //Debug.Log("shooooooooooooooot");
             Shooting();
@@ -259,7 +259,7 @@ public class PlayerCombatSystem : MonoBehaviour
     private void SpecialAttack(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
 
-        if (AllowSpecial && !inDialogue && _currentChargeBar >= _maxChargeBar && !isAttacking)
+        if (AllowSpecial && !inDialogue && !_playerController.IsDead && _currentChargeBar >= _maxChargeBar && !isAttacking)
         {
             //Debug.Log("Special attack");
             SpecialAttack();
@@ -831,25 +831,25 @@ public class PlayerCombatSystem : MonoBehaviour
             if (isAttacking || isHeavyAttacking || isLightAttacking)
             {
                 //_playerController.InControl = false;
-                _playerController.InControl = true;
+                //_playerController.InControl = true;
                 _playerController.CurrentMaxSpeed = _playerController.MaxSpeed / 4;
             }
-            else
-            {
-                if (!_playerController.IsDead)
-                {
-                    _playerController.InControl = true;
-                }
-            }
+            //else
+            //{
+            //    if (!_playerController.IsDead)
+            //    {
+            //        _playerController.InControl = true;
+            //    }
+            //}
         }
         else if (_isUsingSpecial)
         {
-            _playerController.InControl = true;
+            //_playerController.InControl = true;
             _playerController.CurrentMaxSpeed = _playerController.MaxSpeed / 4 * 3;
         }
         else if (_isPrepShooting)
         {
-            _playerController.InControl = true;
+            //_playerController.InControl = true;
             _playerController.CurrentMaxSpeed = _playerController.MaxSpeed / 2;
         }
     }
