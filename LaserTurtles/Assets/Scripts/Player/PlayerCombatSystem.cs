@@ -54,6 +54,7 @@ public class PlayerCombatSystem : MonoBehaviour
     [Header("Shooting")]
     [SerializeField] private bool _isShooting;
     [SerializeField] private bool _isPrepShooting;
+    private bool _prepShootHeld;
     [SerializeField] private float _shootForce = 25f;
     [SerializeField] private float _fireRate = 0.5f;
     private float _fireRateTimer;
@@ -232,6 +233,7 @@ public class PlayerCombatSystem : MonoBehaviour
         {
             //Debug.Log("Shoot pressed");
             _isPrepShooting = true;
+            _prepShootHeld = true;
         }
     }
     //private void ShootAttackPerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -253,6 +255,7 @@ public class PlayerCombatSystem : MonoBehaviour
         {
             StartCoroutine(FlashCardRed(_equipmentSlots[_equipmentSlots.Count - 1].transform.parent.gameObject));
         }
+        _prepShootHeld = false;
     }
 
 
@@ -791,6 +794,8 @@ public class PlayerCombatSystem : MonoBehaviour
             {
                 _playerAnimator.SetBool("SpecialAttack", _isUsingSpecial);
             }
+
+            _playerAnimator.SetBool("Aiming", _isPrepShooting);
         }
     }
 
@@ -851,6 +856,16 @@ public class PlayerCombatSystem : MonoBehaviour
         {
             //_playerController.InControl = true;
             _playerController.CurrentMaxSpeed = _playerController.MaxSpeed / 2;
+        }
+
+        // Shoot Cancel
+        if (_playerController.isDodging)
+        {
+            _isPrepShooting = false;
+        }
+        else if (_prepShootHeld && !_playerController.isDodging)
+        {
+            _isPrepShooting = true;
         }
     }
 }
