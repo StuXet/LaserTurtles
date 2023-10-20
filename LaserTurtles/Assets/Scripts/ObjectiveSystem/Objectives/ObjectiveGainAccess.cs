@@ -19,7 +19,7 @@ public class ObjectiveGainAccess : ObjectiveBase
     private Color _tempColor;
     private int _keyObjectivesCounter = 0;
 
-    public List<ObjectiveBase> KeyObjectives { get => keyObjectives;}
+    public List<ObjectiveBase> KeyObjectives { get => keyObjectives; }
 
     private void Awake()
     {
@@ -60,12 +60,16 @@ public class ObjectiveGainAccess : ObjectiveBase
 
     private void OpenDoor()
     {
-        _openDoor = true;
-        if (_objectivesCounterText != null) _objectivesCounterText.gameObject.SetActive(false);
-        if (!_useFade)
+        if (!_openDoor)
         {
-            _door.SetActive(false);
-            _doorOpened = true;
+            _openDoor = true;
+            if (_doorLockIcon != null) _doorLockIcon.SetActive(false);
+            if (_objectivesCounterText != null) _objectivesCounterText.gameObject.SetActive(false);
+            if (!_useFade)
+            {
+                _door.SetActive(false);
+                _doorOpened = true;
+            }
         }
     }
 
@@ -73,28 +77,13 @@ public class ObjectiveGainAccess : ObjectiveBase
     {
         if (!_doorOpened && _useFade)
         {
-            //if (_openDoor)
-            //{
-            //    float fadeVal = _doorMat.GetFloat("_Fade_Depth");
-
-            //    fadeVal = Mathf.Lerp(fadeVal, 180, 2 * Time.deltaTime);
-
-            //    _doorMat.SetFloat("_Fade_Depth", fadeVal);
-            //}
-
-            //if (_doorMat.GetFloat("_Fade_Depth") >= 150)
-            //{
-            //    _door.SetActive(false);
-            //    _doorOpened = true;
-            //}
-
             if (_openDoor)
             {
-                _tempColor.a = Mathf.Lerp(_tempColor.a,0, _fadeSpeed * Time.deltaTime);
+                _tempColor.a = Mathf.Lerp(_tempColor.a, 0, _fadeSpeed * Time.deltaTime);
                 _doorMat.color = _tempColor;
             }
 
-            if (_doorMat.color.a <= 0.1f)
+            if (_doorMat.color.a <= 0.02f)
             {
                 _door.SetActive(false);
                 _doorOpened = true;
@@ -123,30 +112,13 @@ public class ObjectiveGainAccess : ObjectiveBase
             if (allDone)
             {
                 ObjectiveRequirementMet();
+                OpenDoor();
             }
         }
     }
 
     private void RefreshText()
     {
-        if (CompletedObjective)
-        {
-            if (_doorLockIcon != null) _doorLockIcon.SetActive(false);
-        }
         if (_objectivesCounterText != null) _objectivesCounterText.text = _keyObjectivesCounter.ToString() + "/" + keyObjectives.Count.ToString();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!CompletedObjective)
-        {
-            BeginObjective();
-        }
-        else
-        {
-            OpenDoor();
-        }
-
-        CamZoomOnEnter(other);
     }
 }
