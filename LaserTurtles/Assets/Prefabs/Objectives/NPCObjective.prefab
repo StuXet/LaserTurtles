@@ -59,5 +59,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectiveName: Talk to the NPC
+  _camDistanceChange: -2
   _merchant: {fileID: 0}
   _inventoryItemData: {fileID: 0}

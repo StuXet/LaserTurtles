@@ -33,6 +33,10 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private bool _alwaysVisible;
     private Color _textOGColor;
 
+    [Header("Amount")]
+    [SerializeField] private TextMeshProUGUI _amountText;
+    [SerializeField] private bool _showAmount;
+
     private void Awake()
     {
         if (_nameText)
@@ -80,6 +84,8 @@ public class HealthBar : MonoBehaviour
         }
 
         ShrinkBar();
+
+        RefreshAmount();
     }
 
 
@@ -138,8 +144,17 @@ public class HealthBar : MonoBehaviour
             if (DamageHealthBar2 != null) DamageHealthBar2.fillAmount = _healthSystem.GetHealthPercent();
         }
 
-        _hideTimer = 0;
-        SetTransparency(1);
+
+        if (_healthSystem.GetHealthPercent() <= 0)
+        {
+            _hideTimer = _hideSpeed;
+            SetTransparency(0);
+        }
+        else
+        {
+            _hideTimer = 0;
+            SetTransparency(1);
+        }
     }
 
     private void SetTransparency(float a)
@@ -170,5 +185,20 @@ public class HealthBar : MonoBehaviour
                 _nameText.color = tempCol;
             }
         }
+    }
+
+    private void RefreshAmount()
+    {
+        if (_amountText != null)
+        {
+            _amountText.gameObject.SetActive(_showAmount);
+
+            _amountText.text = _healthSystem.CurrentHealth + "/" + _healthSystem.MaxHealth;
+        }
+    }
+
+    public void ShowAmount(bool show)
+    {
+        _showAmount = show;
     }
 }

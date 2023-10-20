@@ -28,11 +28,11 @@ public class ObjectiveNPC : ObjectiveBase
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!CompletedObjective)
-        {
-            BeginObjective();
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (!CompletedObjective)
+    //    {
+    //        BeginObjective();
+    //    }
+    //}
 }

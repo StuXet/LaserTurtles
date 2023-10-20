@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectiveName: Beat Thy Enemies!
+  _camDistanceChange: 1
   _spawner: {fileID: 824944940722374630}
 --- !u!1001 &4178572810989300744
 PrefabInstance:

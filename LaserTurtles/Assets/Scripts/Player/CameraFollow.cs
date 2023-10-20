@@ -8,7 +8,8 @@ public class CameraFollow : MonoBehaviour
     // --------------------
     private Camera _thisCamera;
     [SerializeField] private GameObject _objToFollow;
-    public float OffsetDistance = 10;
+    [SerializeField] private float OffsetDistance = 10;
+    private float _defaultOffsetDistance;
     public float SmoothTime = 0.25f;
     private Vector3 _camOffset;
     private Vector3 _camVelocity = Vector3.zero;
@@ -24,12 +25,14 @@ public class CameraFollow : MonoBehaviour
     private void OnValidate()
     {
         _thisCamera = GetComponent<Camera>();
-        CalibrateDistance();
+        _camOffset = new Vector3(-OffsetDistance, OffsetDistance, -OffsetDistance);
+        _thisCamera.orthographicSize = OffsetDistance;
     }
 
     private void Awake()
     {
         _thisCamera = GetComponent<Camera>();
+        _defaultOffsetDistance = OffsetDistance;
     }
 
     void Update()
@@ -45,10 +48,34 @@ public class CameraFollow : MonoBehaviour
 
     // Created Methods
     // --------------------
+    public void ChangeCamDistance(float num)
+    {
+        if (_defaultOffsetDistance + num > 0)
+        {
+            OffsetDistance = _defaultOffsetDistance + num;
+        }
+    }
+
+    public void ResetCamDistance()
+    {
+        OffsetDistance = _defaultOffsetDistance;
+    }
+
     private void CalibrateDistance()
     {
         _camOffset = new Vector3(-OffsetDistance, OffsetDistance, -OffsetDistance);
-        _thisCamera.orthographicSize = OffsetDistance;
+
+        float camSize = _thisCamera.orthographicSize;
+
+        if (camSize <= OffsetDistance + 0.01f && camSize >= OffsetDistance - 0.01f)
+        {
+            _thisCamera.orthographicSize = OffsetDistance;
+        }
+        else
+        {
+            float tempDist = Mathf.Lerp(camSize, OffsetDistance, Time.deltaTime);
+            _thisCamera.orthographicSize = tempDist;
+        }
     }
 
     private void SettingFollowPos()

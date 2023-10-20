@@ -97,6 +97,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _livesLeftText;
 
     public bool IsDead { get => _isDead; }
+    public Camera PlayerCam { get => _playerCam; }
 
 
     // Default Methods

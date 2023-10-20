@@ -506,6 +506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectiveName: Gain Access
+  _camDistanceChange: 0
   _useFade: 1
   _fadeSpeed: 10
   _door: {fileID: 7922340074326025686}
