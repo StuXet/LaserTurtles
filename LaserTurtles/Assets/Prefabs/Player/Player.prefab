@@ -1195,9 +1195,9 @@ MonoBehaviour:
   isLightAttacking: 0
   isHeavyAttacking: 0
   inDialogue: 0
-  _heavyAttackCooldown: 1.5
-  _heavyDamageStart: 0.5
-  _heavyDamageEnd: 1
+  _heavyAttackCooldown: 1
+  _heavyDamageStart: 0.25
+  _heavyDamageEnd: 0.5
   combo: {fileID: 5477559149360212607}
   _isShooting: 0
   _isPrepShooting: 0
