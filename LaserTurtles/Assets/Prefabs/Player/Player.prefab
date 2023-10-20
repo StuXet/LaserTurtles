@@ -268,37 +268,6 @@ Transform:
   m_Father: {fileID: 8973474907154380600}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2512978246664672161
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3700855802432446184}
-  m_Layer: 0
-  m_Name: RangedHoldPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3700855802432446184
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2512978246664672161}
-  m_LocalRotation: {x: 0.70441604, y: -0.06162845, z: 0.06162845, w: 0.70441604}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8340830094273563729}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 90, y: -10, z: 0}
 --- !u!1 &2793087358602907508
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,6 +300,37 @@ Transform:
   m_Father: {fileID: 4800407385372773090}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2891536048484482511
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7397729576334070874}
+  m_Layer: 0
+  m_Name: RangedHoldPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7397729576334070874
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2891536048484482511}
+  m_LocalRotation: {x: 0.06425799, y: -0.7344718, z: -0.05888159, w: 0.67301935}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6518592562616482354}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -95, z: -10}
 --- !u!1 &2933622421903713727
 GameObject:
   m_ObjectHideFlags: 0
@@ -1184,7 +1184,7 @@ MonoBehaviour:
     type: 3}
   shootingPoint: {fileID: 221368591}
   _meleeHoldPoint: {fileID: 4850596892579114794}
-  _rangedHoldPoint: {fileID: 3700855802432446184}
+  _rangedHoldPoint: {fileID: 7397729576334070874}
   _usingCardView: 1
   _meleeCardsHolder: {fileID: 2648283864279273463}
   _meleeCards:
@@ -1195,9 +1195,9 @@ MonoBehaviour:
   isLightAttacking: 0
   isHeavyAttacking: 0
   inDialogue: 0
-  _heavyAttackCooldown: 1.5
-  _heavyDamageStart: 0.5
-  _heavyDamageEnd: 1
+  _heavyAttackCooldown: 1
+  _heavyDamageStart: 0.25
+  _heavyDamageEnd: 0.5
   combo: {fileID: 5477559149360212607}
   _isShooting: 0
   _isPrepShooting: 0
@@ -3345,6 +3345,12 @@ SkinnedMeshRenderer:
 --- !u!95 &4976644559587137402 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 141275090180964799, guid: 761e0d37319a2b64da502b2e3f4dc540,
+    type: 3}
+  m_PrefabInstance: {fileID: 4964514000433534661}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6518592562616482354 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2203331452220304631, guid: 761e0d37319a2b64da502b2e3f4dc540,
     type: 3}
   m_PrefabInstance: {fileID: 4964514000433534661}
   m_PrefabAsset: {fileID: 0}
