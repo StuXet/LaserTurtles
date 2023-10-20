@@ -8,6 +8,8 @@ public class PlayerUIManager : MonoBehaviour
     [SerializeField] private InputManager _inputManagerRef;
     private PlayerInputActions _plInputActions;
 
+    [SerializeField] private HealthBar _healthBarRef;
+
     [SerializeField] private GameObject LargeMapOverlay;
     private bool _isLargeMapOverlayOpen = false;
 
@@ -91,12 +93,14 @@ public class PlayerUIManager : MonoBehaviour
             LargeMapOverlay.SetActive(true);
             //_objectiveUIRef.SetActive(true);
             _objUIAnimator.SetBool("Locked", true);
+            _healthBarRef.ShowAmount(true);
         }
         else
         {
             LargeMapOverlay.SetActive(false);
             //_objectiveUIRef.SetActive(false);
             _objUIAnimator.SetBool("Locked", false);
+            _healthBarRef.ShowAmount(false);
         }
     }
     #endregion

@@ -1352,6 +1352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputManagerRef: {fileID: 39110088067695669}
+  _healthBarRef: {fileID: 8353132162002614410}
   LargeMapOverlay: {fileID: 2565370255680769995}
   InventoryOverlay: {fileID: 9053707344131515673}
   _allowInvDisplay: 0

@@ -11,7 +11,9 @@ public class HealthSystem
 
     private int _maxHealth;
     private int _currentHealth;
+    public int MaxHealth { get { return _maxHealth; } }
     public int CurrentHealth { get { return _currentHealth; } }
+
 
     public HealthSystem(int maxHealth)
     {
