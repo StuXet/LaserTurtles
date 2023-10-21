@@ -118,7 +118,7 @@ MonoBehaviour:
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 11400000, guid: a6c7fce67bac67e4ea55ef62bb9a66ac, type: 2}
+  m_spriteAsset: {fileID: 11400000, guid: 306f7329d970bdb41a928c59bbcc2a47, type: 2}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 11400000, guid: f952c082cb03451daed3ee968ac6c63e, type: 2}
   m_TextStyleHashCode: -1183493901
