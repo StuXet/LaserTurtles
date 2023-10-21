@@ -260,7 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterName: Someone
   _enemyAI: {fileID: 2600917390528916939}
-  _weakness: 0
+  _weakness: 5
   _resistance: 0
   _healthBar: {fileID: 5719574608732324761}
   _maxHP: 50
