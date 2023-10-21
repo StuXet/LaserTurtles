@@ -23,6 +23,11 @@ public class GameManager : MonoBehaviour
     public bool IsGamePaused { get => _isGamePaused; }
     public Transform PlayerTransform { get => _playerTransform; }
 
+
+    [SerializeField] private ElementalModifierData _elementalModifier;
+    public ElementalModifierData ElementalModifier { get => _elementalModifier; }
+
+
     private void Awake()
     {
         if (Instance == null)

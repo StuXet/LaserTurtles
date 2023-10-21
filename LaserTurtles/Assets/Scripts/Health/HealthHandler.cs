@@ -14,8 +14,8 @@ public class HealthHandler : MonoBehaviour
     public HealthSystem _healthSystem;
     public string CharacterName = "Someone";
     [SerializeField] private EnemyAI _enemyAI;
-    [SerializeField] private WeaknessResistance _weakness;
-    [SerializeField] private WeaknessResistance _resistance;
+    [SerializeField] private ElementalModifiers _weakness;
+    [SerializeField] private ElementalModifiers _resistance;
     [SerializeField] private HealthBar _healthBar;
     [SerializeField] private int _maxHP;
     [SerializeField] private int _currentHP;
@@ -139,7 +139,7 @@ public class HealthHandler : MonoBehaviour
                         Knockback(tempDamager, tempDamager.UsingHeavy);
                     }
 
-                    if (_weakness == WeaknessResistance.none && _resistance == WeaknessResistance.none)
+                    if (_weakness == ElementalModifiers.None && _resistance == ElementalModifiers.None)
                     {
                         HandleDamageModifierType(tempDamager, true, false, false);
                     }
