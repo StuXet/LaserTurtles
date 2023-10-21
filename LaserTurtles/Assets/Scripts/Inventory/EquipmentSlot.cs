@@ -9,6 +9,7 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler
 {
     [SerializeField] private ItemType _equipType;
     [SerializeField] private InventorySystem _inventorySystemRef;
+    [SerializeField] private PlayerCombatSystem _playerCombatSystemRef;
     [SerializeField] private InventoryItemData _equippedItemData;
     [SerializeField] private GameObject _slotPrefab;
     [SerializeField] private GameObject _slotTypeIcon;
@@ -127,7 +128,20 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler
     {
         if (_elementIconImage)
         {
-            ElementalModifiers em = _equippedItemData.Prefab.GetComponent<Damager>().ModifierType;
+            ElementalModifiers em;
+            if (_equipType == ItemType.Melee)
+            {
+                em = _equippedItemData.Prefab.GetComponent<Damager>().ModifierType;
+            }
+            else if (_equipType == ItemType.Ranged)
+            {
+                em = _playerCombatSystemRef.Projectile.GetComponent<Damager>().ModifierType;
+            }
+            else
+            {
+                em = ElementalModifiers.None;
+            }
+
             if (em == ElementalModifiers.None)
             {
                 _elementIconImage.sprite = null;
