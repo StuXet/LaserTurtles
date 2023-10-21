@@ -15,5 +15,5 @@ public enum ElementalModifiers
 [CreateAssetMenu(menuName = "Scriptable Object/ElementalModifierData")]
 public class ElementalModifierData : ScriptableObject
 {
-    public Texture2D[] ElementalIcons;
+    public Sprite[] ElementalIcons;
 }

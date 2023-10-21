@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 972df7e69a05a5c4a955e008423dfef9, type: 3}
   m_Name: ElementalModifierData_V1
   m_EditorClassIdentifier: 
-  ElementalIcons: []
+  ElementalIcons:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: 4560e18e487fdf34984b73d0d56165b6, type: 3}
+  - {fileID: 21300000, guid: 80ad5a13d103b3047b6f8e95bc9360a2, type: 3}
+  - {fileID: 21300000, guid: 6fb9c96bded89d14f86444b40b3cd096, type: 3}
+  - {fileID: 21300000, guid: 256be89ca4b29e949b4a72f9c80a900f, type: 3}
+  - {fileID: 21300000, guid: 31c4c4dbaebaf0f4ba0eefb50f95429a, type: 3}

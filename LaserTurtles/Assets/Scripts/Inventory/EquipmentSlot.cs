@@ -13,6 +13,7 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler
     [SerializeField] private GameObject _slotPrefab;
     [SerializeField] private GameObject _slotTypeIcon;
     [SerializeField] private GameObject _slotSelectIcon;
+    [SerializeField] private Image _elementIconImage;
     [SerializeField] private Transform _canvas;
     [SerializeField] private InventoryUIManager _inventoryUIRef;
 
@@ -20,7 +21,7 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler
     public InventoryItemData EquippedItemData { get => _equippedItemData; set => _equippedItemData = value; }
     public GameObject SlotSelectIcon { get => _slotSelectIcon; }
 
-    private void Awake()
+    private void Start()
     {
         SetupPreEquipped();
     }
@@ -34,6 +35,15 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler
         else
         {
             _slotTypeIcon.SetActive(true);
+        }
+
+        if (_equippedItemData == null)
+        {
+            if (_elementIconImage && _elementIconImage.enabled)
+            {
+                _elementIconImage.sprite = null;
+                _elementIconImage.enabled = false;
+            }
         }
     }
 
@@ -62,6 +72,8 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler
 
                 _equippedItemData = invSlot.ItemData;
                 draggableItem.EquipSlotRef = this;
+
+                RefreshElementIcon();
 
                 _inventorySystemRef.Remove(invSlot.ItemData);
                 Debug.Log("Dropped");
@@ -105,6 +117,26 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler
                 draggableItem.EquipSlotRef = this;
 
                 obj.transform.SetParent(icon.transform);
+
+                RefreshElementIcon();
+            }
+        }
+    }
+
+    private void RefreshElementIcon()
+    {
+        if (_elementIconImage)
+        {
+            ElementalModifiers em = _equippedItemData.Prefab.GetComponent<Damager>().ModifierType;
+            if (em == ElementalModifiers.None)
+            {
+                _elementIconImage.sprite = null;
+                _elementIconImage.enabled = false;
+            }
+            else
+            {
+                _elementIconImage.enabled = true;
+                _elementIconImage.sprite = GameManager.Instance.ElementalModifier.ElementalIcons[(int)em];
             }
         }
     }
