@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dad202f5750e70a4fa48889eb8ffd23c, type: 3}
+  m_Name: HealthPermaBuff_IID
+  m_EditorClassIdentifier: 
+  ItemID: Item_HealthPermaBuff
+  DisplayName: HealthPermaBuff
+  Icon: {fileID: 21300000, guid: dee83f599288f304793ddcb97944b0eb, type: 3}
+  Prefab: {fileID: 6238125817439501149, guid: 3b2d5e79ee5d17840872d1816385ebc9, type: 3}
+  Type: 2
+  IsStackable: 1
+  Value: 1
+  Description: Increases Health Permanently!

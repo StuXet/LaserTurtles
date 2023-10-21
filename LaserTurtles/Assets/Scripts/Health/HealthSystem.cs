@@ -53,4 +53,10 @@ public class HealthSystem
         _currentHealth = _maxHealth;
         if (OnHealthChanged != null) OnHealthChanged(this, EventArgs.Empty);
     }
+
+    public void IncreaseMaxHealth(int amount)
+    {
+        _maxHealth += amount;
+        if (OnHealthChanged != null) OnHealthChanged(this, EventArgs.Empty);
+    }
 }

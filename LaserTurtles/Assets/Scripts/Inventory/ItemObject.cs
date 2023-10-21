@@ -137,7 +137,7 @@ public class ItemObject : MonoBehaviour
             _pickUpSFX.pitch = pitch;
             _pickUpSFX.Play();
             _pickUpSFX.transform.parent = null;
-            Destroy(_pickUpSFX.gameObject, 1f);
+            Destroy(_pickUpSFX.gameObject, 2f);
         }
         Destroy(gameObject);
     }
