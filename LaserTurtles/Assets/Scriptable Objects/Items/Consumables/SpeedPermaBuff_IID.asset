@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dad202f5750e70a4fa48889eb8ffd23c, type: 3}
+  m_Name: SpeedPermaBuff_IID
+  m_EditorClassIdentifier: 
+  ItemID: Item_SpeedPermaBuff
+  DisplayName: SpeedPermaBuff
+  Icon: {fileID: 21300000, guid: bd1a58a2289058c4b99717949f86b9f7, type: 3}
+  Prefab: {fileID: 6811551659647497285, guid: 22a1bc47ac2a5194ab1396ddc54fec93, type: 3}
+  Type: 2
+  IsStackable: 1
+  Value: 1
+  Description: Increases Speed Permanently!

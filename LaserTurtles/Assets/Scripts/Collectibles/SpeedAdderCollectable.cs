@@ -1,18 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SpeedAdderCollectable : MonoBehaviour
 {
-    public float speedToAdd = 10;
+    public float speedToAdd = 2;
 
-    private void OnTriggerEnter(Collider other)
+    private ItemObject _itemObjectRef;
+
+    private void Awake()
     {
-        if (other.gameObject.tag == "Player")
-        {
-            PlayerController playerController = other.gameObject.GetComponent<PlayerController>();
-            playerController.MaxSpeed += speedToAdd;
-            Destroy(gameObject);
-        }
+        _itemObjectRef = GetComponent<ItemObject>();
+        _itemObjectRef.PickedUpItem += _itemObjectRef_PickedUpItem;
+    }
+
+    private void _itemObjectRef_PickedUpItem(GameObject player)
+    {
+        PlayerController playerController = player.gameObject.GetComponent<PlayerController>();
+        playerController.MaxSpeed += speedToAdd;
     }
 }

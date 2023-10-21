@@ -102,7 +102,8 @@ public class HealthHandler : MonoBehaviour
 
     public void IncreaseMaxHP(int addHealth)
     {
-        _maxHP += addHealth;
+        _healthSystem.IncreaseMaxHealth(addHealth);
+        _maxHP = _healthSystem.MaxHealth;
     }
 
     public void ToggleHealthBar(bool state)
