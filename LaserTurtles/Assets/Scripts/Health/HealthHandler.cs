@@ -42,7 +42,7 @@ public class HealthHandler : MonoBehaviour
     [SerializeField] bool knockbackable = true;
     //[SerializeField] private float _knockbackForceModifier = 1f;
 
-    
+
 
     public bool Invulnerable { get => _invulnerable; set => _invulnerable = value; }
 
@@ -147,11 +147,11 @@ public class HealthHandler : MonoBehaviour
                     {
                         HandleDamageModifierType(tempDamager, false, true, true);
                     }
-                    else if (_weakness == tempDamager.ModifierType)
+                    else if (_weakness == tempDamager.ModifierType && tempDamager.ModifierType != ElementalModifiers.None)
                     {
                         HandleDamageModifierType(tempDamager, false, true, false);
                     }
-                    else if (_resistance == tempDamager.ModifierType)
+                    else if (_resistance == tempDamager.ModifierType && tempDamager.ModifierType != ElementalModifiers.None)
                     {
                         HandleDamageModifierType(tempDamager, false, false, true);
                     }
@@ -206,17 +206,18 @@ public class HealthHandler : MonoBehaviour
             modColor = _normalDmgColor;
         }
 
-
+        int totalDmg;
         if (!_damager.UsingHeavy)
         {
-            _healthSystem.Damage((int)(_damager.LightDamageAmount * modVal * _damager.DamageModifier));
-            EnemyDmgPopUp((int)(_damager.LightDamageAmount * modVal), modColor, gameObject.tag);
+            totalDmg = (int)(_damager.LightDamageAmount * modVal * _damager.DamageModifier);
         }
         else
         {
-            _healthSystem.Damage((int)(_damager.HeavyDamageAmount * modVal));
-            EnemyDmgPopUp((int)(_damager.HeavyDamageAmount * modVal), modColor, gameObject.tag);
+            totalDmg = (int)(_damager.HeavyDamageAmount * modVal * _damager.DamageModifier);
         }
+        _healthSystem.Damage(totalDmg);
+
+        EnemyDmgPopUp(totalDmg, modColor, gameObject.tag);
     }
 
 
@@ -254,7 +255,7 @@ public class HealthHandler : MonoBehaviour
         }
     }
 
-   
+
     private void EnemyDmgPopUp(int dmg, Color txtColor, string tag)
     {
         if (_dmgPopup)
