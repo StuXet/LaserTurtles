@@ -2136,6 +2136,11 @@ PrefabInstance:
       propertyPath: _inventorySystemRef
       value: 
       objectReference: {fileID: 2773289642886009211}
+    - target: {fileID: 662359747528579728, guid: adddd2546efb5d24585c769d9392ffbb,
+        type: 3}
+      propertyPath: _playerCombatSystemRef
+      value: 
+      objectReference: {fileID: 878156989}
     - target: {fileID: 904616596647298579, guid: adddd2546efb5d24585c769d9392ffbb,
         type: 3}
       propertyPath: m_Name
@@ -2166,6 +2171,11 @@ PrefabInstance:
       propertyPath: _inventorySystemRef
       value: 
       objectReference: {fileID: 2773289642886009211}
+    - target: {fileID: 1512994947493830986, guid: adddd2546efb5d24585c769d9392ffbb,
+        type: 3}
+      propertyPath: _playerCombatSystemRef
+      value: 
+      objectReference: {fileID: 878156989}
     - target: {fileID: 4880088985643539702, guid: adddd2546efb5d24585c769d9392ffbb,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2221,6 +2231,11 @@ PrefabInstance:
       propertyPath: _inventorySystemRef
       value: 
       objectReference: {fileID: 2773289642886009211}
+    - target: {fileID: 5380604612628306936, guid: adddd2546efb5d24585c769d9392ffbb,
+        type: 3}
+      propertyPath: _playerCombatSystemRef
+      value: 
+      objectReference: {fileID: 878156989}
     - target: {fileID: 5877063876439976936, guid: adddd2546efb5d24585c769d9392ffbb,
         type: 3}
       propertyPath: _canvas
@@ -2348,6 +2363,11 @@ PrefabInstance:
       propertyPath: _inventorySystemRef
       value: 
       objectReference: {fileID: 2773289642886009211}
+    - target: {fileID: 8670493707000861180, guid: adddd2546efb5d24585c769d9392ffbb,
+        type: 3}
+      propertyPath: _playerCombatSystemRef
+      value: 
+      objectReference: {fileID: 878156989}
     - target: {fileID: 8963565169629045500, guid: adddd2546efb5d24585c769d9392ffbb,
         type: 3}
       propertyPath: m_Pivot.x

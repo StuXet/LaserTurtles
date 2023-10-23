@@ -19,15 +19,6 @@ enum DamagerType
     InstaDeath
 }
 
-// 
-public enum WeaknessResistance
-{
-    none,
-    salty,
-    spicy,
-    sweet,
-}
-
 
 public class Damager : MonoBehaviour
 {
@@ -36,7 +27,7 @@ public class Damager : MonoBehaviour
     [Header("Damage")]
     [SerializeField] private CanAffect _canAffect;
     [SerializeField] private DamagerType _damagerType;
-    [SerializeField] private WeaknessResistance _modifierType;
+    [SerializeField] private ElementalModifiers _modifierType;
     [SerializeField] private int _lightDamageAmount;
     [SerializeField] private int _heavyDamageAmount;
     public float DamageModifier = 1;
@@ -60,7 +51,7 @@ public class Damager : MonoBehaviour
     // --------------------
     internal CanAffect CanAffect { get { return _canAffect; } }
     internal DamagerType DamagerType { get { return _damagerType; } }
-    public WeaknessResistance ModifierType { get { return _modifierType; } }
+    public ElementalModifiers ModifierType { get { return _modifierType; } }
 
     public int LightDamageAmount { get { return _lightDamageAmount; } }
     public int HeavyDamageAmount { get { return _heavyDamageAmount; } }

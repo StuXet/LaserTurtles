@@ -66,8 +66,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterName: Someone
   _enemyAI: {fileID: 6135216701375911095}
-  _weakness: 0
-  _resistance: 0
+  _weakness: 4
+  _resistance: 5
   _healthBar: {fileID: 2698481246451724336}
   _maxHP: 80
   _currentHP: 0
@@ -77,7 +77,8 @@ MonoBehaviour:
   _invEffectColor: {r: 1, g: 1, b: 1, a: 1}
   _invEffectStrength: 1
   _invEffectMaxOpacity: 1
-  _dmgPopup: {fileID: 0}
+  _dmgPopup: {fileID: 4823436943637356501, guid: 4e085fcee1859f042a0f4eff7a3538ea,
+    type: 3}
   _dmgPopupYOffset: 2
   _dmgPopupXOffset: 2
   _normalDmgColor: {r: 1, g: 1, b: 1, a: 1}
@@ -893,16 +894,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2163569669734882300, guid: 7105336187f2a0049bc9bea8753d5006,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3832303749362053129, guid: 7105336187f2a0049bc9bea8753d5006,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4417167636366729209, guid: 7105336187f2a0049bc9bea8753d5006,
         type: 3}

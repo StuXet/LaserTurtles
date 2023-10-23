@@ -260,7 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterName: Someone
   _enemyAI: {fileID: 2600917390528916939}
-  _weakness: 0
+  _weakness: 5
   _resistance: 0
   _healthBar: {fileID: 5719574608732324761}
   _maxHP: 50
@@ -271,7 +271,8 @@ MonoBehaviour:
   _invEffectColor: {r: 1, g: 1, b: 1, a: 1}
   _invEffectStrength: 1
   _invEffectMaxOpacity: 1
-  _dmgPopup: {fileID: 0}
+  _dmgPopup: {fileID: 4823436943637356501, guid: 4e085fcee1859f042a0f4eff7a3538ea,
+    type: 3}
   _dmgPopupYOffset: 2
   _dmgPopupXOffset: 2
   _normalDmgColor: {r: 1, g: 1, b: 1, a: 1}

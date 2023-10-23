@@ -77,6 +77,8 @@ public class PlayerCombatSystem : MonoBehaviour
     [SerializeField] private float _killChargeAmount = 5;
     private bool _isUsingSpecial;
 
+    public GameObject Projectile { get => _projectile; }
+
     private void Start()
     {
         _plInputActions = _inputManagerRef.PlInputActions;
