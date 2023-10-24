@@ -65,6 +65,7 @@ public class HealthHandler : MonoBehaviour
     private void _healthSystem_OnDamaged(object sender, EventArgs e)
     {
         if (OnDamageOccured != null) OnDamageOccured(this, EventArgs.Empty);
+        _currentHP = _healthSystem.CurrentHealth;
     }
 
     private void _healthSystem_OnDeath(object sender, System.EventArgs e)
@@ -258,7 +259,7 @@ public class HealthHandler : MonoBehaviour
 
     private void EnemyDmgPopUp(int dmg, Color txtColor, string tag)
     {
-        if (_dmgPopup)
+        if (_dmgPopup && _currentHP > 0)
         {
             float xOff = Random.Range(-_dmgPopupXOffset, _dmgPopupXOffset);
             GameObject popup = Instantiate(_dmgPopup, new Vector3(transform.position.x + xOff, transform.position.y + _dmgPopupYOffset, transform.position.z), Quaternion.identity, transform);
