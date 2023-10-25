@@ -20,8 +20,20 @@ public class CandyBossEnemyAI : EnemyAI
     //[SerializeField] private bool _usePhases;
     [SerializeField] private int _currentPhase;
     private int _lastPhase;
-    [SerializeField] private float _invulnerabilityTime;
     [SerializeField] List<Phase> _phasesList;
+    //[SerializeField] private float _invulnerabilityTime;
+
+    [Header("Invulnerability")]
+    [SerializeField] private float _invulnerabilityMinTime;
+    [SerializeField] private float _invulnerabilityMaxTime;
+    [SerializeField] private float _invulnerabilityActiveMinTime;
+    [SerializeField] private float _invulnerabilityActiveMaxTime;
+    private float _invTimer;
+    private float _invTime;
+    private float _invTimeActive;
+    private bool _invTimeSet;
+    private bool _invTimeActiveSet;
+
 
 
     // Update is called once per frame
@@ -30,6 +42,8 @@ public class CandyBossEnemyAI : EnemyAI
         PhaseStatus();
 
         RunEnemy();
+
+        HandleInvulnerability();
 
         AssignHPBar();
     }
@@ -45,6 +59,7 @@ public class CandyBossEnemyAI : EnemyAI
     {
         var phaseState = _phasesList[GetCurrentPhase()].State;
         if (AnimatorRef != null) AnimatorRef.SetBool(phaseState.AnimationParam, phaseState.AttackRef._initAttack);
+        if (AnimatorRef != null) AnimatorRef.SetBool("Staggered", isStunned);
     }
 
     private void AssignHPBar()
@@ -85,7 +100,8 @@ public class CandyBossEnemyAI : EnemyAI
             if (AnimatorRef != null) AnimatorRef.SetBool(lastPhaseState.AnimationParam, lastPhaseState.AttackRef._initAttack);
             _lastPhase = _currentPhase;
 
-            StartCoroutine(TimedInvulnerability());
+            //StartCoroutine(TimedInvulnerability());
+            //StartCoroutine(HandleStun(3, 7));
         }
         else
         {
@@ -95,16 +111,59 @@ public class CandyBossEnemyAI : EnemyAI
         }
     }
 
-    IEnumerator TimedInvulnerability()
-    {
-        HealthHandlerRef.Invulnerable = true;
-        yield return new WaitForSeconds(_invulnerabilityTime);
-        HealthHandlerRef.Invulnerable = false;
-    }
-
     private void PhaseStatus()
     {
         _currentPhase = GetCurrentPhase();
         ChangePhase();
+    }
+    
+    IEnumerator TimedInvulnerability()
+    {
+        HealthHandlerRef.Invulnerable = true;
+        //yield return new WaitForSeconds(_invulnerabilityTime);
+        yield return new WaitForSeconds(_invTimeActive);
+        HealthHandlerRef.Invulnerable = false;
+        _invTimer = 0;
+        _invTimeSet = false;
+        _invTimeActiveSet = false;
+    }
+
+    private void HandleInvulnerability()
+    {
+        if (!isStunned)
+        {
+            if (!_invTimeSet)
+            {
+                _invTime = Random.Range(_invulnerabilityMinTime, _invulnerabilityMaxTime);
+                _invTimeSet = true;
+            }
+            else
+            {
+                if (_invTimer < _invTime)
+                {
+                    _invTimer += Time.deltaTime;
+                }
+                else
+                {
+                    if (!_invTimeActiveSet)
+                    {
+                        _invTimeActive = Random.Range(_invulnerabilityActiveMinTime, _invulnerabilityActiveMaxTime);
+                        StartCoroutine(TimedInvulnerability());
+                        _invTimeActiveSet = true;
+                    }
+                }
+            }
+        }
+        else
+        {
+            if (_invTimeActiveSet)
+            {
+                StopCoroutine(TimedInvulnerability());
+                HealthHandlerRef.Invulnerable = false;
+                _invTimeActiveSet = false;
+            }
+            _invTimeSet = false;
+            _invTimer = 0;
+        }
     }
 }

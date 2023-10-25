@@ -58,6 +58,7 @@ public class EnemyAI : MonoBehaviour
     public bool isStunned;
     [Range(0, 100)]
     [SerializeField] private int _stunChance = 0;
+    public float StunEffectMultiplier = 1;
 
     // Audio Sources
     [Header("Audios")]
@@ -440,7 +441,7 @@ public class EnemyAI : MonoBehaviour
         // Disable EnemyObj
         gameObject.SetActive(false);
     }
-    private IEnumerator HandleStun(float minTime, float maxTime)
+    public IEnumerator HandleStun(float minTime, float maxTime)
     {
         isStunned = true;
         if (_stunEffect != null) _stunEffect.Play();

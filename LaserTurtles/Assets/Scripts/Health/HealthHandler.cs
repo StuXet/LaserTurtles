@@ -163,7 +163,7 @@ public class HealthHandler : MonoBehaviour
 
                     if (_enemyAI)
                     {
-                        _enemyAI.Stun(tempDamager.minStunTime, tempDamager.maxStunTime);
+                        _enemyAI.Stun(tempDamager.minStunTime * _enemyAI.StunEffectMultiplier, tempDamager.maxStunTime * _enemyAI.StunEffectMultiplier);
                     }
 
                     tempDamager.UsingHeavy = false;
