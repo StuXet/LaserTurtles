@@ -58,7 +58,7 @@ public class CandyBossEnemyAI : EnemyAI
     public override void AnimationHandler()
     {
         var phaseState = _phasesList[GetCurrentPhase()].State;
-        if (AnimatorRef != null) AnimatorRef.SetBool(phaseState.AttackRef._currentAttack._animationParam, phaseState.AttackRef._currentAttack._initAttack);
+        if (AnimatorRef != null && phaseState.AttackRef._currentAttack._animationParam != "") AnimatorRef.SetBool(phaseState.AttackRef._currentAttack._animationParam, phaseState.AttackRef._currentAttack._initAttack);
         if (AnimatorRef != null) AnimatorRef.SetBool("Staggered", isStunned);
     }
 
@@ -97,7 +97,7 @@ public class CandyBossEnemyAI : EnemyAI
         {
             var lastPhaseState = _phasesList[_lastPhase].State;
             lastPhaseState.AttackRef._initAttack = false;
-            if (AnimatorRef != null) AnimatorRef.SetBool(lastPhaseState.AttackRef._currentAttack._animationParam, lastPhaseState.AttackRef._currentAttack._initAttack);
+            if (AnimatorRef != null && lastPhaseState.AttackRef._currentAttack._animationParam != "") AnimatorRef.SetBool(lastPhaseState.AttackRef._currentAttack._animationParam, lastPhaseState.AttackRef._currentAttack._initAttack);
             _lastPhase = _currentPhase;
 
             //StartCoroutine(TimedInvulnerability());
@@ -116,10 +116,11 @@ public class CandyBossEnemyAI : EnemyAI
         _currentPhase = GetCurrentPhase();
         ChangePhase();
     }
-    
+
     IEnumerator TimedInvulnerability()
     {
         HealthHandlerRef.Invulnerable = true;
+
         //yield return new WaitForSeconds(_invulnerabilityTime);
         yield return new WaitForSeconds(_invTimeActive);
         HealthHandlerRef.Invulnerable = false;

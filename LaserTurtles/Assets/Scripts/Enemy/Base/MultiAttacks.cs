@@ -31,7 +31,6 @@ public class MultiAttacks : AttackBase
         }
         else
         {
-            if (_currentAttack != null) _currentAttack._initAttack = false;
             _rolled = false;
         }
     }

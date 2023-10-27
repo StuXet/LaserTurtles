@@ -5406,7 +5406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currentAttack: {fileID: 0}
   _initAttack: 0
-  _attackRange: 0
+  _attackRange: 20
   _cooldownTime: 0
   _animationParam: 
   _attackBases:
@@ -5618,6 +5618,7 @@ MonoBehaviour:
     State: {fileID: 2032946898883238426}
   - HPPercentage: 50
     State: {fileID: 228098274998663292}
+  _invulnerabilityTime: 0
   _invulnerabilityMinTime: 5
   _invulnerabilityMaxTime: 15
   _invulnerabilityActiveMinTime: 3
