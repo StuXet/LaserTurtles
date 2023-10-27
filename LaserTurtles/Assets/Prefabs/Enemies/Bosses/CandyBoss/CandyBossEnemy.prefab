@@ -143,6 +143,51 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4, y: 1, z: 5.5}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!1 &637583210423583993
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3482802706002142639}
+  - component: {fileID: 228098274998663292}
+  m_Layer: 0
+  m_Name: Phase (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3482802706002142639
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637583210423583993}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3458517466455136431}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &228098274998663292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637583210423583993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5238b183b5489e8428b5b0acdca9845c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackRef: {fileID: 8731584673146555102}
 --- !u!1 &788267060657974162
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,9 +388,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372cf9209eba7f24583ef72b751c8a22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentAttack: {fileID: 0}
   _initAttack: 0
   _attackRange: 3.5
   _cooldownTime: 5
+  _animationParam: MeleeAttack
   _enemyAIRef: {fileID: 3652150714881463665}
   _weaponCollider1: {fileID: 1774903017516284693}
   _weaponCollider2: {fileID: 0}
@@ -386,6 +433,7 @@ Transform:
   m_Children:
   - {fileID: 5405779323606214216}
   - {fileID: 6979804723288069178}
+  - {fileID: 2247225812959032301}
   m_Father: {fileID: 6135216701375911092}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5312,6 +5360,58 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &5245930837379877529
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2247225812959032301}
+  - component: {fileID: 8731584673146555102}
+  m_Layer: 0
+  m_Name: MeleeRanged
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2247225812959032301
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5245930837379877529}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8131695219749117492}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8731584673146555102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5245930837379877529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e175b985119408b4d894e20f4905cba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentAttack: {fileID: 0}
+  _initAttack: 0
+  _attackRange: 0
+  _cooldownTime: 0
+  _animationParam: 
+  _attackBases:
+  - {fileID: 881417213411890814}
+  - {fileID: 504141576842280275}
 --- !u!1 &5281685787888677496
 GameObject:
   m_ObjectHideFlags: 0
@@ -5342,6 +5442,7 @@ Transform:
   m_Children:
   - {fileID: 4918859246060855418}
   - {fileID: 6271405497161467407}
+  - {fileID: 3482802706002142639}
   m_Father: {fileID: 6135216701375911092}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5389,7 +5490,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5238b183b5489e8428b5b0acdca9845c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AnimationParam: RangedAttack
   AttackRef: {fileID: 504141576842280275}
 --- !u!1 &6135216701375911093
 GameObject:
@@ -5514,8 +5614,10 @@ MonoBehaviour:
   _phasesList:
   - HPPercentage: 100
     State: {fileID: 8770334095027963391}
-  - HPPercentage: 50
+  - HPPercentage: 75
     State: {fileID: 2032946898883238426}
+  - HPPercentage: 50
+    State: {fileID: 228098274998663292}
   _invulnerabilityMinTime: 5
   _invulnerabilityMaxTime: 15
   _invulnerabilityActiveMinTime: 3
@@ -5584,7 +5686,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5238b183b5489e8428b5b0acdca9845c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AnimationParam: MeleeAttack
   AttackRef: {fileID: 881417213411890814}
 --- !u!1 &7362000821981152017
 GameObject:
@@ -5695,9 +5796,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e8f1661cee43f4a85498679949f043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentAttack: {fileID: 0}
   _initAttack: 0
   _attackRange: 20
   _cooldownTime: 3
+  _animationParam: RangedAttack
   _enemyAIRef: {fileID: 3652150714881463665}
   _projectile: {fileID: 5601993761966769206, guid: 3fb6cb6e1d5a8614c869fe63f93b650c,
     type: 3}

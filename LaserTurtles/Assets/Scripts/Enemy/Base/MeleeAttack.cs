@@ -33,6 +33,11 @@ public class MeleeAttack : AttackBase
 
     public bool Attacked { get => _attacked; }
 
+    private void Awake()
+    {
+        _currentAttack = this;
+    }
+
     private void Start()
     {
         _prepAttackIcon.SetActive(false);

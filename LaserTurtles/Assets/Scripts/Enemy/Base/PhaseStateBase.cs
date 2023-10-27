@@ -4,6 +4,5 @@ using UnityEngine;
 
 public class PhaseStateBase : MonoBehaviour
 {
-    public string AnimationParam;
     public AttackBase AttackRef;
 }

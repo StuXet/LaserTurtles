@@ -25,7 +25,10 @@ public class ShootProjectile : AttackBase
 
     [SerializeField] private GameObject _prepAttackIcon, _attackingIcon;
 
-
+    private void Awake()
+    {
+        _currentAttack = this;
+    }
 
     // Start is called before the first frame update
     void Start()
