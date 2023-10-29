@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using UnityEditor.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class Merchant : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class Merchant : MonoBehaviour
     [SerializeField] TextMeshProUGUI dialogueText;
     [SerializeField] GameObject interactTip;
     [SerializeField] GameObject exclamationMark;
+    [SerializeField] AudioSource merchantVoice;
     [SerializeField] int _itemPrice = 10;
 
     [Header("Reward Setting")]
@@ -132,6 +134,8 @@ public class Merchant : MonoBehaviour
 
         dialogueText.text = stage1;
 
+        merchantVoice.pitch = Random.Range(1.0f, 1.2f);
+        merchantVoice.Play();
 
         if (!isFirstTime)
         {
@@ -169,6 +173,9 @@ public class Merchant : MonoBehaviour
             isComplete = true;
             EndDialogue();
         }
+
+        merchantVoice.pitch = Random.Range(1.0f, 1.2f);
+        merchantVoice.Play();
     }
 
     private void OnDrawGizmosSelected()
