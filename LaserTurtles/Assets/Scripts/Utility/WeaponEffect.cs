@@ -22,7 +22,7 @@ public class WeaponEffect : MonoBehaviour
         _boxCollider = GetComponent<BoxCollider>();
     }
 
-    public void EffectState(bool state)
+    public void EffectState(bool state, bool loop)
     {
         _weaponParticle.SetActive(state);
         if (state)
@@ -34,12 +34,18 @@ public class WeaponEffect : MonoBehaviour
                     _isAttacking = true;
                     float attackPitch = Random.Range(_pitchLow, _pitchHigh);
                     _attackSFX.pitch = attackPitch;
+                    _attackSFX.loop = loop;
                     _attackSFX.Play();
                 }
             }
         }
         else
         {
+            if (_attackSFX != null) 
+            { 
+                _attackSFX.loop = loop;
+                _attackSFX.Stop();
+            }
             _isAttacking = false;
         }
     }

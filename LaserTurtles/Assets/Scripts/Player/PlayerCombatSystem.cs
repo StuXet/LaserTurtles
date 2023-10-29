@@ -274,31 +274,34 @@ public class PlayerCombatSystem : MonoBehaviour
 
     private void ScrollThroughWeapons()
     {
-        _scrollVal = _plInputActions.Player.ScrollWeapons.ReadValue<Vector2>().y;
+        if (!isAttacking && !_isUsingSpecial && !_isPrepShooting)
+        {
+            _scrollVal = _plInputActions.Player.ScrollWeapons.ReadValue<Vector2>().y;
 
-        if (_scrollVal > 0)
-        {
-            if (_currentSlot == _equipmentSlots.Count - 1)
+            if (_scrollVal > 0)
             {
-                _currentSlot = 1;
+                if (_currentSlot == _equipmentSlots.Count - 1)
+                {
+                    _currentSlot = 1;
+                }
+                else
+                {
+                    _currentSlot++;
+                }
+                ChangeWeapon(_currentSlot);
             }
-            else
+            else if (_scrollVal < 0)
             {
-                _currentSlot++;
+                if (_currentSlot == 1)
+                {
+                    _currentSlot = 3;
+                }
+                else
+                {
+                    _currentSlot--;
+                }
+                ChangeWeapon(_currentSlot);
             }
-            ChangeWeapon(_currentSlot);
-        }
-        else if (_scrollVal < 0)
-        {
-            if (_currentSlot == 1)
-            {
-                _currentSlot = 3;
-            }
-            else
-            {
-                _currentSlot--;
-            }
-            ChangeWeapon(_currentSlot);
         }
     }
 
@@ -360,28 +363,31 @@ public class PlayerCombatSystem : MonoBehaviour
 
     private void ChangeWeapon(int slot)
     {
-        if (_currentSlot != slot && slot <= _equipmentSlots.Count)
+        if (!isAttacking && !_isUsingSpecial && !_isPrepShooting)
         {
-            _currentSlot = slot;
-        }
+            if (_currentSlot != slot && slot <= _equipmentSlots.Count)
+            {
+                _currentSlot = slot;
+            }
 
-        if (_meleeHoldPoint.childCount != 0)
-        {
-            Destroy(_meleeHoldPoint.GetChild(0).gameObject);
-        }
+            if (_meleeHoldPoint.childCount != 0)
+            {
+                Destroy(_meleeHoldPoint.GetChild(0).gameObject);
+            }
 
-        if (_equipmentSlots[slot - 1].EquippedItemData != null)
-        {
-            GameObject weapon = Instantiate(_equipmentSlots[slot - 1].EquippedItemData.Prefab, _meleeHoldPoint);
-            weapon.transform.localPosition = _meleeHoldPoint.transform.localPosition;
-            _equippedMeleeWeapon = weapon;
-        }
-        else
-        {
-            _equippedMeleeWeapon = null;
-        }
+            if (_equipmentSlots[slot - 1].EquippedItemData != null)
+            {
+                GameObject weapon = Instantiate(_equipmentSlots[slot - 1].EquippedItemData.Prefab, _meleeHoldPoint);
+                weapon.transform.localPosition = _meleeHoldPoint.transform.localPosition;
+                _equippedMeleeWeapon = weapon;
+            }
+            else
+            {
+                _equippedMeleeWeapon = null;
+            }
 
-        SelectedSlotIcons();
+            SelectedSlotIcons();
+        }
     }
 
     private void SelectedSlotIcons()
@@ -599,12 +605,20 @@ public class PlayerCombatSystem : MonoBehaviour
         {
             isAttacking = true;
 
+            WeaponEffect weaponEffect = null;
+            if (_equippedMeleeWeapon.TryGetComponent(out WeaponEffect effect))
+            {
+                weaponEffect = effect;
+            }
+
             if (_timer >= combo.GetDuration())
             {
                 Damager currentDamager = _equippedMeleeWeapon.GetComponent<Damager>();
                 currentDamager.CanDamage = false;
                 isLightAttacking = false;
                 _timer = 0;
+
+                if (weaponEffect != null) weaponEffect.EffectState(false, false);
             }
             else if (_timer >= combo.GetActiveStart() && _timer <= combo.GetActiveEnd())
             {
@@ -615,6 +629,7 @@ public class PlayerCombatSystem : MonoBehaviour
                 currentDamager.DamageModifier = combo.GetDamageMultiplier();
 
                 //_isDamaging = true;
+                if (weaponEffect != null) weaponEffect.EffectState(true, false);
             }
             else
             {
@@ -622,11 +637,6 @@ public class PlayerCombatSystem : MonoBehaviour
                 Damager currentDamager = _equippedMeleeWeapon.GetComponent<Damager>();
                 currentDamager.CanDamage = false;
                 //_isDamaging = false;
-            }
-
-            if (_equippedMeleeWeapon.TryGetComponent(out WeaponEffect effect))
-            {
-                effect.EffectState(true);
             }
 
             _timer += Time.deltaTime;
@@ -637,9 +647,17 @@ public class PlayerCombatSystem : MonoBehaviour
             _isHeavy = true;
             isAttacking = true;
 
+            WeaponEffect weaponEffect = null;
+            if (_equippedMeleeWeapon.TryGetComponent(out WeaponEffect effect))
+            {
+                weaponEffect = effect;
+            }
+
             if (_timer >= _heavyAttackCooldown)
             {
                 isHeavyAttacking = false;
+
+                if (weaponEffect != null) weaponEffect.EffectState(false, false);
             }
             else if (_timer >= _heavyDamageStart && _timer <= _heavyDamageEnd)
             {
@@ -647,7 +665,9 @@ public class PlayerCombatSystem : MonoBehaviour
                 currentDamager.UsingHeavy = true;
                 currentDamager.CanDamage = true;
                 currentDamager.CanKnockback = true;
+
                 //_isDamaging = true;
+                if (weaponEffect != null) weaponEffect.EffectState(true, false);
             }
             else
             {
@@ -655,10 +675,6 @@ public class PlayerCombatSystem : MonoBehaviour
                 //_isDamaging = false;
             }
 
-            if (_equippedMeleeWeapon.TryGetComponent(out WeaponEffect effect))
-            {
-                effect.EffectState(true);
-            }
 
             _timer += Time.deltaTime;
         }
@@ -666,12 +682,20 @@ public class PlayerCombatSystem : MonoBehaviour
         {
             isAttacking = true;
 
+            WeaponEffect weaponEffect = null;
+            if (_equippedMeleeWeapon.TryGetComponent(out WeaponEffect effect))
+            {
+                weaponEffect = effect;
+            }
+
             if (_timer >= _specialAttackDuration)
             {
                 Damager currentDamager = _equippedMeleeWeapon.GetComponent<Damager>();
                 currentDamager.CanDamage = false;
                 _isUsingSpecial = false;
                 _timer = 0;
+
+                if (weaponEffect != null) weaponEffect.EffectState(false, false);
             }
             else if (_timer >= _specialDamageStart && _timer <= _specialDamageEnd)
             {
@@ -682,6 +706,7 @@ public class PlayerCombatSystem : MonoBehaviour
                 currentDamager.DamageModifier = _specialDamageModifier;
 
                 //_isDamaging = true;
+                if (weaponEffect != null) weaponEffect.EffectState(true, true);
             }
             else
             {
@@ -691,10 +716,7 @@ public class PlayerCombatSystem : MonoBehaviour
                 //_isDamaging = false;
             }
 
-            if (_equippedMeleeWeapon.TryGetComponent(out WeaponEffect effect))
-            {
-                effect.EffectState(true);
-            }
+
 
             _timer += Time.deltaTime;
         }
@@ -704,7 +726,7 @@ public class PlayerCombatSystem : MonoBehaviour
             {
                 if (_equippedMeleeWeapon.TryGetComponent(out WeaponEffect effect))
                 {
-                    effect.EffectState(false);
+                    effect.EffectState(false, false);
                 }
             }
 
