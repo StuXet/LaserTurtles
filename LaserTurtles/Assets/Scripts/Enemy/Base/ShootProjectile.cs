@@ -24,6 +24,7 @@ public class ShootProjectile : AttackBase
     private GameObject _tempProj;
 
     [SerializeField] private GameObject _prepAttackIcon, _attackingIcon;
+    [SerializeField] private AudioSource _prepAttackSFX, _attackingSFX;
 
     private void Awake()
     {
@@ -85,6 +86,11 @@ public class ShootProjectile : AttackBase
                 _prepAttackIcon.SetActive(false);
                 _attackingIcon.SetActive(true);
                 _enemyAIRef.PlayAttackSFX();
+                if (_attackingSFX != null)
+                {
+                    _attackingSFX.pitch = Random.Range(0.9f, 1.1f);
+                    _attackingSFX.Play();
+                }
             }
             else
             {
@@ -126,6 +132,12 @@ public class ShootProjectile : AttackBase
             _tempProj = Instantiate(_projectile, _firePoint.position, _firePoint.rotation, _firePoint);
             _tempProj.transform.localScale = Vector3.zero;
             _growElapsedTime = 0;
+
+            if (_prepAttackSFX != null)
+            {
+                _prepAttackSFX.pitch = Random.Range(0.9f, 1.1f);
+                _prepAttackSFX.Play();
+            }
         }
 
         if (_tempProj != null)

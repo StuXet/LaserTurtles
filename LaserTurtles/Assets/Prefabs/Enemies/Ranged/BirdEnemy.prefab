@@ -139,6 +139,7 @@ MonoBehaviour:
   _canBeStunned: 1
   isStunned: 0
   _stunChance: 30
+  StunEffectMultiplier: 1
   _sFXTransform: {fileID: 2539715219192336615}
   _deathSFX: {fileID: 1231697554904299870}
   _attackSFX: {fileID: 8072835217019393056}
@@ -162,9 +163,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e8f1661cee43f4a85498679949f043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentAttack: {fileID: 0}
   _initAttack: 0
   _attackRange: 0
   _cooldownTime: 0
+  _animationParam: 
   _enemyAIRef: {fileID: 2770793692575537998}
   _projectile: {fileID: 5601993761966769206, guid: 3ecc2802b0f7bc8489296b4cce6ba2fc,
     type: 3}
@@ -469,7 +472,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: 16468c6ef8238f04ca9792f00d486843, type: 3}
     - target: {fileID: 3027759089523851553, guid: aab112c8327b6fd428bd100b78eff615,
         type: 3}
       propertyPath: m_RootOrder

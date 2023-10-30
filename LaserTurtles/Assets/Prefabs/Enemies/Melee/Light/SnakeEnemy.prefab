@@ -139,6 +139,7 @@ MonoBehaviour:
   _canBeStunned: 1
   isStunned: 0
   _stunChance: 20
+  StunEffectMultiplier: 1
   _sFXTransform: {fileID: 1320328266374050666}
   _deathSFX: {fileID: 2340605715513907923}
   _attackSFX: {fileID: 4711933727050659757}
@@ -162,9 +163,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372cf9209eba7f24583ef72b751c8a22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentAttack: {fileID: 0}
   _initAttack: 0
   _attackRange: 0
   _cooldownTime: 0
+  _animationParam: 
   _enemyAIRef: {fileID: 2600917390528916939}
   _weaponCollider1: {fileID: 8265042422552643772}
   _weaponCollider2: {fileID: 0}
@@ -2899,6 +2902,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4781444165582301872, guid: aab112c8327b6fd428bd100b78eff615,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ae0b723e93043a44b9cd884d9d38c385, type: 3}
     - target: {fileID: 5667713672989800928, guid: aab112c8327b6fd428bd100b78eff615,
         type: 3}
       propertyPath: m_audioClip

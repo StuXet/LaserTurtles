@@ -9,6 +9,7 @@ public class Sign : MonoBehaviour
     [SerializeField] private GameObject pressEIcon;
     [SerializeField] private GameObject popUpWindow;
     [SerializeField] private Animator popupAnim;
+    [SerializeField] private AudioSource _popUpSFX, _popOutSFX;
     [SerializeField] private TMP_Text textObject;
     [TextArea(5, 20)]
     [SerializeField] private string textContent;
@@ -44,6 +45,11 @@ public class Sign : MonoBehaviour
             exclamationMark.SetActive(true);
         }
         pressEIcon.SetActive(false);
+        if (popUpWindow.activeInHierarchy)
+        {
+            _popUpSFX.Stop();
+            _popOutSFX.Play();
+        }
         popUpWindow.SetActive(false);
         _interactable = false;
         popupAnim.SetBool("Popup", false);
@@ -55,6 +61,8 @@ public class Sign : MonoBehaviour
         popupAnim.SetBool("Popup", false);
         pressEIcon.SetActive(true);
         _interactable = true;
+        _popUpSFX.Stop();
+        _popOutSFX.Play();
     }
 
     private void Interact(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -67,6 +75,8 @@ public class Sign : MonoBehaviour
                 pressEIcon.SetActive(false);
                 //popUpWindow.SetActive(true);
                 _used = true;
+                _popOutSFX.Stop();
+                _popUpSFX.Play();
             }
             else
             {

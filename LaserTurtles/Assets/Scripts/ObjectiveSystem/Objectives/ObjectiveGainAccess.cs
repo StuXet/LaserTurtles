@@ -10,6 +10,7 @@ public class ObjectiveGainAccess : ObjectiveBase
     [SerializeField] private GameObject _door;
     [SerializeField] private GameObject _doorLockIcon;
     [SerializeField] private TextMeshPro _objectivesCounterText;
+    [SerializeField] private AudioSource _doorOpenSFX;
     [SerializeField] private List<ObjectiveBase> keyObjectives = new List<ObjectiveBase>();
 
     private bool _openDoor;
@@ -70,6 +71,7 @@ public class ObjectiveGainAccess : ObjectiveBase
                 _door.SetActive(false);
                 _doorOpened = true;
             }
+            _doorOpenSFX.Play();
         }
     }
 

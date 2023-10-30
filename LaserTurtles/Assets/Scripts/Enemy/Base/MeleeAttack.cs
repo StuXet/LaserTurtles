@@ -26,10 +26,13 @@ public class MeleeAttack : AttackBase
     private float _timer;
     private float _delayTimer;
     private bool _wasActive;
-    private bool _playedSFX;
+    private bool _playedPrepSFX;
+    private bool _playedAttackSFX;
     private bool _attacked;
 
     [SerializeField] private GameObject _prepAttackIcon, _attackingIcon;
+    [SerializeField] private AudioSource _prepAttackSFX, _attackingSFX;
+    [SerializeField] private float _delayPrepAttackSFX, _delayAttackingSFX;
 
     public bool Attacked { get => _attacked; }
 
@@ -82,7 +85,8 @@ public class MeleeAttack : AttackBase
                 {
                     _initAttack = false;
                     _wasActive = true;
-                    _playedSFX = false;
+                    _playedPrepSFX = false;
+                    _playedAttackSFX = false;
                     _attacked = false;
 
                     _prepAttackIcon.SetActive(false);
@@ -110,10 +114,15 @@ public class MeleeAttack : AttackBase
                     _prepAttackIcon.SetActive(false);
                     _attackingIcon.SetActive(true);
 
-                    if (!_playedSFX)
+                    if (!_playedAttackSFX && _delayAttackingSFX <= _timer)
                     {
-                        _playedSFX = true;
+                        _playedAttackSFX = true;
                         _enemyAIRef.PlayAttackSFX();
+                        if (_attackingSFX != null)
+                        {
+                            _attackingSFX.pitch = Random.Range(0.9f, 1.1f);
+                            _attackingSFX.Play();
+                        }
                     }
 
                     _attacked = true;
@@ -123,6 +132,15 @@ public class MeleeAttack : AttackBase
             {
                 _delayTimer += Time.deltaTime;
                 _prepAttackIcon.SetActive(true);
+                if (!_playedPrepSFX && _delayPrepAttackSFX <= _delayTimer)
+                {
+                    _playedPrepSFX = true;
+                    if (_prepAttackSFX != null)
+                    {
+                        _prepAttackSFX.pitch = Random.Range(0.9f, 1.1f);
+                        _prepAttackSFX.Play();
+                    }
+                }
             }
         }
         else
@@ -142,7 +160,8 @@ public class MeleeAttack : AttackBase
             if (_weaponCollider2 != null) _weaponCollider2.enabled = false;
             //_prepAttackIcon.SetActive(false);
             //_attackingIcon.SetActive(false);
-            _playedSFX = false;
+            _playedPrepSFX = false;
+            _playedAttackSFX = false;
             _attacked = false;
         }
     }
