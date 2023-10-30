@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class PlayerCombatSystem : MonoBehaviour
 {
@@ -61,6 +62,7 @@ public class PlayerCombatSystem : MonoBehaviour
     public int CurrentAmmo;
     [SerializeField] private TextMeshProUGUI _ammoText;
     [SerializeField] private GameObject _aimingArrow;
+    [SerializeField] private AudioSource _rangedAimSFX, _rangedShootSFX;
 
     [Header("SpecialAttack")]
     public bool AllowSpecial;
@@ -236,6 +238,9 @@ public class PlayerCombatSystem : MonoBehaviour
             //Debug.Log("Shoot pressed");
             _isPrepShooting = true;
             _prepShootHeld = true;
+
+            _rangedAimSFX.pitch = Random.Range(0.9f, 1.1f);
+            _rangedAimSFX.Play();
         }
     }
     //private void ShootAttackPerformed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -580,6 +585,9 @@ public class PlayerCombatSystem : MonoBehaviour
                 projectile.GetComponent<Damager>().CanDamage = true;
                 projectile.GetComponent<Destroyer>().CanBeDestroyed = true;
                 projectile.GetComponent<Rigidbody>().AddForce(projectile.transform.forward * _shootForce, ForceMode.Impulse);
+
+                _rangedShootSFX.pitch = Random.Range(0.9f, 1.1f);
+                _rangedShootSFX.Play();
             }
             else
             {
