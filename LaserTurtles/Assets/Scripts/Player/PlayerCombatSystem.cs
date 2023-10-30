@@ -26,6 +26,7 @@ public class PlayerCombatSystem : MonoBehaviour
     [SerializeField] private Transform shootingPoint;
     [SerializeField] private Transform _meleeHoldPoint;
     [SerializeField] private Transform _rangedHoldPoint;
+    [SerializeField] private AudioSource _emptySFX;
 
     [Header("EquippingCards")]
     [SerializeField] private bool _usingCardView;
@@ -797,6 +798,7 @@ public class PlayerCombatSystem : MonoBehaviour
 
     IEnumerator FlashCardRed(GameObject card)
     {
+        _emptySFX.Play();
         Image image = card.GetComponent<Image>();
         image.color = new Color(1f, 0.5f, 0.5f, 1f);
         yield return new WaitForSeconds(0.25f);
