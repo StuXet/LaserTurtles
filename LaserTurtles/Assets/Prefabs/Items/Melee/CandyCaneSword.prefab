@@ -247,7 +247,7 @@ MonoBehaviour:
   _damagerType: 0
   _modifierType: 1
   _lightDamageAmount: 10
-  _heavyDamageAmount: 20
+  _heavyDamageAmount: 15
   DamageModifier: 1
   UsingHeavy: 0
   UsingSpecial: 0
@@ -344,7 +344,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 0b265dd579e33dc4b8f4de74d8b8e78d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.5
   m_Pitch: -3
   Loop: 0
   Mute: 0
@@ -471,7 +471,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 5129006518863891616, guid: 30d3b97f668aa6f4fac2e63a717ac560,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 38bddcded31141649b3eee69dddc1567, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 11976ab031e1b7b418ee7ce40a48653c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

@@ -69,7 +69,7 @@ MonoBehaviour:
   _weakness: 4
   _resistance: 5
   _healthBar: {fileID: 2698481246451724336}
-  _maxHP: 80
+  _maxHP: 60
   _currentHP: 0
   _invulnerable: 0
   _skinedMeshRenderer: {fileID: 0}
@@ -100,10 +100,10 @@ MonoBehaviour:
   itemsToDrop:
   - dropChance: 60
     dropObject: {fileID: 0}
-  - dropChance: 10
+  - dropChance: 5
     dropObject: {fileID: 154455731916256318, guid: bdb3c85b7d1227c4dabf8be09449871b,
       type: 3}
-  - dropChance: 25
+  - dropChance: 30
     dropObject: {fileID: 5601993761966769206, guid: 5fb94eb5dcb7e4243b59fb099ed614a0,
       type: 3}
   - dropChance: 5
@@ -458,6 +458,7 @@ MonoBehaviour:
   _canBeStunned: 1
   isStunned: 0
   _stunChance: 10
+  StunEffectMultiplier: 1
   _sFXTransform: {fileID: 178771343648815197}
   _deathSFX: {fileID: 3481881163061105124}
   _attackSFX: {fileID: 5858486873564675226}
@@ -481,9 +482,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372cf9209eba7f24583ef72b751c8a22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentAttack: {fileID: 0}
   _initAttack: 0
   _attackRange: 0
   _cooldownTime: 0
+  _animationParam: 
   _enemyAIRef: {fileID: 6135216701375911095}
   _weaponCollider1: {fileID: 1774903017516284693}
   _weaponCollider2: {fileID: 0}
@@ -494,6 +497,10 @@ MonoBehaviour:
   _startDelay: 0.7
   _prepAttackIcon: {fileID: 2520157254345436808}
   _attackingIcon: {fileID: 707343841055081853}
+  _prepAttackSFX: {fileID: 0}
+  _attackingSFX: {fileID: 0}
+  _delayPrepAttackSFX: 0
+  _delayAttackingSFX: 0
 --- !u!114 &2644558523111022368
 MonoBehaviour:
   m_ObjectHideFlags: 0
