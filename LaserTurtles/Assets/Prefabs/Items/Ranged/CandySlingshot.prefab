@@ -157,8 +157,10 @@ MonoBehaviour:
   _pickUpSFX: {fileID: 8435121625341524512}
   _pitchLow: 0.8
   _pitchHigh: 1.2
+  _magnetSpeed: 5
   CanBePicked: 0
   RequiresInteraction: 1
+  Magnetize: 0
 --- !u!1 &5213358157600228103
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,7 +236,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 5129006518863891616, guid: 30d3b97f668aa6f4fac2e63a717ac560,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 38bddcded31141649b3eee69dddc1567, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 11976ab031e1b7b418ee7ce40a48653c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

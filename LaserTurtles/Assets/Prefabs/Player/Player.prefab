@@ -987,7 +987,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 981f1152e29b4134cb4a659eab19a244, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.25
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1531,7 +1531,7 @@ MonoBehaviour:
   _weakness: 0
   _resistance: 0
   _healthBar: {fileID: 8353132162002614410}
-  _maxHP: 200
+  _maxHP: 150
   _currentHP: 0
   _invulnerable: 0
   _skinedMeshRenderer: {fileID: 0}
@@ -2040,7 +2040,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 135d9495b0359b4429148f9d227337b0, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.4
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0

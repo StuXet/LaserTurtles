@@ -83,8 +83,12 @@ MonoBehaviour:
   PickupPressIcon: {fileID: 0}
   _outline: {fileID: 5470236698540785496}
   _pickUpSFX: {fileID: 4443081113185869701}
+  _pitchLow: 0.8
+  _pitchHigh: 1.2
+  _magnetSpeed: 5
   CanBePicked: 1
   RequiresInteraction: 0
+  Magnetize: 0
 --- !u!1 &4886158861649928075
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +206,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: df0af318fc20011458ebab266714f284, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 0
   Mute: 0

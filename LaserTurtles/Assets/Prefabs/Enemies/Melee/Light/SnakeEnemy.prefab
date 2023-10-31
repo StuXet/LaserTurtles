@@ -178,6 +178,10 @@ MonoBehaviour:
   _startDelay: 0.5
   _prepAttackIcon: {fileID: 3271568424955357690}
   _attackingIcon: {fileID: 454699684877632015}
+  _prepAttackSFX: {fileID: 0}
+  _attackingSFX: {fileID: 0}
+  _delayPrepAttackSFX: 0
+  _delayAttackingSFX: 0
 --- !u!114 &8228160493960922276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,10 +301,10 @@ MonoBehaviour:
   itemsToDrop:
   - dropChance: 60
     dropObject: {fileID: 0}
-  - dropChance: 10
+  - dropChance: 5
     dropObject: {fileID: 154455731916256318, guid: bdb3c85b7d1227c4dabf8be09449871b,
       type: 3}
-  - dropChance: 25
+  - dropChance: 30
     dropObject: {fileID: 5601993761966769206, guid: 5fb94eb5dcb7e4243b59fb099ed614a0,
       type: 3}
   - dropChance: 5

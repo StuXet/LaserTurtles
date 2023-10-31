@@ -185,7 +185,7 @@ MonoBehaviour:
   _weakness: 0
   _resistance: 0
   _healthBar: {fileID: 2698481246451724336}
-  _maxHP: 500
+  _maxHP: 1000
   _currentHP: 0
   _invulnerable: 0
   _skinedMeshRenderer: {fileID: 9142351335400280884}
@@ -6338,8 +6338,6 @@ MonoBehaviour:
   _attackingIcon: {fileID: 2430715257506992364}
   _prepAttackSFX: {fileID: 6183500326611339671}
   _attackingSFX: {fileID: 7040227005194307776}
-  _delayPrepAttackSFX: 0
-  _delayAttackingSFX: 0
 --- !u!1001 &1483005140201693413
 PrefabInstance:
   m_ObjectHideFlags: 0
