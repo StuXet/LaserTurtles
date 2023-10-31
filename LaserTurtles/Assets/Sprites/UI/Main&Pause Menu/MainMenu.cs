@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
@@ -17,11 +18,15 @@ public class MainMenu : MonoBehaviour
     public EventSystem _eventSystem;
     public GameObject _mainMenuSelectedObj, _settingsSelectedObj, _creditsSelectedObj;
 
+    [Header("Extras")]
+    public TextMeshProUGUI _versionNumText;
+
     private InputAction escapeAction;
     private int lastSceneIndex;
 
     private void Start()
     {
+        _versionNumText.text = "V." + Application.version;
         lastSceneIndex = PlayerPrefs.GetInt("LastSceneIndex", 0);
         _eventSystem.firstSelectedGameObject = _mainMenuSelectedObj;
     }
