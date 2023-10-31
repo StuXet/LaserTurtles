@@ -38,11 +38,11 @@ public class SettingsMenu : MonoBehaviour
         int currentResolutionIndex = 0;
         for (int i = 0; i < resolutions.Length; i++)
         {
-            string option = resolutions[i].width + " x " + resolutions[i].height;
+            string option = resolutions[i].width + " x " + resolutions[i].height + " : " + resolutions[i].refreshRate + "Hz";
             options.Add(option);
 
             if (resolutions[i].width == Screen.currentResolution.width &&
-                resolutions[i].height == Screen.currentResolution.height)
+                resolutions[i].height == Screen.currentResolution.height && resolutions[i].refreshRate == Screen.currentResolution.refreshRate)
             {
                 currentResolutionIndex = i;
             }
@@ -66,11 +66,11 @@ public class SettingsMenu : MonoBehaviour
         if (tempVolBool)
         {
             masterVolumeSlider.value = PlayerPrefs.GetFloat("Master", tempVol);
-            _audioMixer.SetFloat("Master", masterVolumeSlider.value);   
+            _audioMixer.SetFloat("Master", masterVolumeSlider.value);
             musicVolumeSlider.value = PlayerPrefs.GetFloat("Music", tempVol);
             _audioMixer.SetFloat("Music", musicVolumeSlider.value);
             ambientVolumeSlider.value = PlayerPrefs.GetFloat("Ambient", tempVol);
-            _audioMixer.SetFloat("Ambient", ambientVolumeSlider.value);    
+            _audioMixer.SetFloat("Ambient", ambientVolumeSlider.value);
             sfxVolumeSlider.value = PlayerPrefs.GetFloat("SFX", tempVol);
             _audioMixer.SetFloat("SFX", sfxVolumeSlider.value);
         }
